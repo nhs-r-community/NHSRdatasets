@@ -38,7 +38,7 @@ __To contribute, please:__
 * Create a pull request, detailing your additions, and we will review it before merging.
 
 <br>
-___When contributing a data, the contributor certifies that:___
+___When contributing a dataset, the contributor certifies that:___
 
 * They are the data owner, or are authorised to republish the dataset in question.
 * The dataset does not contain real patient-level data.

@@ -44,7 +44,7 @@ in training or publications.
   - Create a pull request, detailing your additions, and we will review
     it before merging.
 
-<br> ***When contributing a data, the contributor certifies that:***
+<br> ***When contributing a dataset, the contributor certifies that:***
 
   - They are the data owner, or are authorised to republish the dataset
     in question.
