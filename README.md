@@ -3,23 +3,23 @@
 
 <br><br>
 
-## This package is a work in progress
+## This package is a work in progress, and may change or be withdrawn
 
 ## Datasources for reuse
 
 This package has been created to help NHS, Public Health and related
 analysts/data scientists learn to use `R`. It contains several free
 datasets (just one at the moment), help files explaining their
-structure, and `vignette` examples of thier use. We encourage
+structure, and `vignette` examples of their use. We encourage
 contributions to the package, both to expand the set of training
-material, but also as development for newer `R`/github users as a firest
+material, but also as development for newer `R`/github users as a first
 contribution. Please add relevant free, open source data sets that you
 think may benefit the NHS R-community.
 
-## Installation instrutions
+## Installation instructions
 
-This packages is not yet submitted to CRAN, so can be installed form
-sources from Github. You will need `Rtools`
+This packages is not yet submitted to CRAN, but can be installed from
+source, via this Github repository. You will need `Rtools`
 (<https://cran.r-project.org/bin/windows/Rtools/>) installed to build
 the package, and the `remotes`
 package.
@@ -37,13 +37,14 @@ in training or publications.
 
   - Fork the repository.
   - Add your dataset in the `data` folder, in `.RData` format.
-  - Please add a minimal `R` function to act as a help file.
+  - Please add a minimal `R` function to act as a help file. You can use
+    the `LOS_model` as a guide.
   - Consider adding a `vignette` demonstrating how the data has been
     used previously.
   - Create a pull request, detailing your additions, and we will review
     it before merging.
 
-<br> ***When contributing a data, the author certifies that:***
+<br> ***When contributing a data, the contributor certifies that:***
 
   - They are the data owner, or are authorised to republish the dataset
     in question.
