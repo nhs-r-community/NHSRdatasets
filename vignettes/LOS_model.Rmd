@@ -1,0 +1,155 @@
+---
+title: "LOS_model: A simulated hospital length-of-stay dataset"
+author: "Chris Mainey"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{LOS_model: A simulated hospital length-of-stay dataset}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette details why the `LOS_model` dataset was created, how to load and use it in learning/teaching regression modelling using Generalized Linear Models.  The data are 10 sets of 30 simluated patient records, representing 10 different hospitals ("Trusts").  The dataset contains:
+- ID: an integer value patient number
+- Organisation: A factor, containing hospital name, e.g. "Trust1"
+- Age: an integer representing patient age in years
+- LOS: an integer representing the number of days a patient was in hospital
+- Death: an integer flag (0 or 1) representing whether a patient died
+
+## First, load the data and inspect it
+
+```{r load}
+library(NHSRdatasets)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+
+data("LOS_model")
+
+head(LOS_model)
+
+summary(LOS_model)
+
+# 82.3% survived
+prop.table(table(LOS_model$Death))
+```
+
+
+Now lets look at the distributions of ages and LOS.  Age is rather odd.  Could be uniform, could be bimondal (or more), but nothing clear here.  LOS is higly skewed, and this is not a surprise for count data, as it can only be >0, in integer values, and most patients don't stay very long, but a few do.
+
+```{R VisageLOS}
+
+ggplot(LOS_model, aes(x=Age)) +
+  geom_histogram(alpha=0.5, col=1, fill=12, bins=20)+
+  ggtitle("Distribution of Age")
+
+ggplot(LOS_model, aes(x=LOS)) +
+  geom_histogram(alpha=0.5, col=1, fill=13, bins=20)+
+  ggtitle("Distribution of Length-of-Stay")
+```
+
+
+
+## Modelling LOS and Death
+
+- We will attempt to model LOS, using age and Death, and also to model Death using LOS and Age.
+
+- This vignette doe snot describe linear models, bu assumes you are familiar with linear regression.  If not, pause here and do a little reading before yo ucontinue.
+
+- Our data are not necessarily linear. Death is binary, LOS is a count etc.
+
+- We can extend the linear model idea for this as a Generalized Linear Model (GLM)
+
+$$\large{g(\mu)= \alpha + \beta x}$$
+Where $\mu$ is the expectation of Y, and $g$ is the link function
+
+- The link function transforms the data before fitting a model
+
+- Can't use OLS for this, so we use 'maximum-likelihood'
+
+- Many of the methods for `lm` are common to `glm`, but we can't use R<sup>2</sup>
+
+- Other measures include AUC ('C-statistic'), and AIC or likelihood ratio tests.
+
+
+
+## Generalized Linear Models
+
+- Use a `family` argument with `poisson` for counts or `binomial` for binary outcomes.
+- Plotting residuals is not straight forward, and less common with `glm`
+
+### Firstly, LOS:
+
+
+
+```{r glm3, collapse=TRUE}
+glm_binomial <- glm(Death ~ Age + LOS, data=LOS_model, family="binomial")
+
+sjPlot::tab_model(glm_binomial, show.df = TRUE, show.obs = TRUE, show.se = TRUE, show.r2 = FALSE)
+
+ModelMetrics::auc(glm_binomial)
+
+```
+
+
+## Interactions
+
+- 'Interactions' are where predictor variables affect each other.
+
+- HSMR has an interaction between co-morbidity and age. So co-morbidities have different effects related to age.
+
+- Can add these with `*` or `:` (check help for which to use)
+
+```{r glm4}
+glm_binomial2<- glm(Death ~ Age + LOS + Age*LOS, data=LOS_model, family="binomial")
+
+sjPlot::tab_model(glm_binomial2, show.df = TRUE, show.obs = TRUE, show.se = TRUE, show.r2 = FALSE)
+
+ModelMetrics::auc(glm_binomial2)
+
+```
+
+# Interpretation
+
++ Our model coefficients in `lm` were straight-forward multipliers
++ `glm` is similar, but it is on the scale of the link-function.
+ + log scale for `poisson` models, or logit (log odds) scale for `binomial`
++ Common to transform output back to response scale
++ giving Incident Rate Ratios for `poisson`, or Odds Ratios for `binomial`
+
+```{r coeftransform, warning=FALSE, message=FALSE}
+
+cbind(Link=coef(glm_binomial2), Response=exp(coef(glm_binomial2)))
+
+```
+
+
+## Prediction (1)
+
+- We can then use our model to predict our expected Y:
+- Need to decide what scale to predict on: `link` or `response`
+
+```{r glm5}
+LOS_model$preds <- predict(glm_binomial2, type="response")
+
+top_n(LOS_model,5) %>% knitr::kable(format = "html")
+```
+
+
+
+## Prediction (2)
+
+- Lets see the 10 cases with the highest predicted risk of death:
+
+```{r glm6}
+
+LOS_model %>% arrange(desc(preds)) %>% top_n(10) %>% knitr::kable(format = "html")
+
+```
