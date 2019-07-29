@@ -25,7 +25,7 @@ This vignette details why the `LOS_model` dataset was created, how to load and u
 
 ## First, load the data and inspect it
 
-```{r load}
+```{r load, warning=FALSE, message=FALSE}
 library(NHSRdatasets)
 library(dplyr)
 library(ggplot2)
@@ -61,9 +61,9 @@ ggplot(LOS_model, aes(x=LOS)) +
 
 - We will attempt to model LOS, using age and Death, and also to model Death using LOS and Age.
 
-- This vignette doe snot describe linear models, bu assumes you are familiar with linear regression.  If not, pause here and do a little reading before yo ucontinue.
+- This vignette doesnot describe linear models per se, but assumes you are familiar with linear regression.  If not, pause here and do a little reading before you continue.
 
-- Our data are not necessarily linear. Death is binary, LOS is a count etc.
+- Our data are not continuous, linear, or normally distributed. Death is binary, LOS is a count etc.
 
 - We can extend the linear model idea for this as a Generalized Linear Model (GLM)
 
@@ -72,11 +72,16 @@ Where $\mu$ is the expectation of Y, and $g$ is the link function
 
 - The link function transforms the data before fitting a model
 
-- Can't use OLS for this, so we use 'maximum-likelihood'
+- Ordinary Least squares (OLS), used in linear regression, is not a good fit here as our data are not neccisarily distributed like that.  Here we can use 'maximum-likelihood estimation' (MLE). MLE is related to probability and can be used to identify the parameter that were most likey to have produced our data (the largest likelihood value, or 'maximum likelihood').
 
-- Many of the methods for `lm` are common to `glm`, but we can't use R<sup>2</sup>
+ - MLE is an iterative process, and is actually perfomred on the log-likelihod.  Our model 'convergese' when we can't improve it anymore (usually changes < 1e-8.)
 
-- Other measures include AUC ('C-statistic'), and AIC or likelihood ratio tests.
+ - Although many of the methods for `lm` are common to `glm`, but we can't use R<sup>2</sup>.  Various methods other methods exist and depend on what you want to compare, including:
+  - <b>AUC:</b> For binary (or other multiple categorical models), the 'area under the reciever operator characteristic curve ('AUC', 'ROC' or 'C-statistic') can be used and interpreted like R<sup>2</sup>.
+  - <b>Likelihood Ratio test (LRT):</b> Two `glm`s can be compared using likelihood ratio tests, tests the ratio of the log-likelihoods between two models.  We test a reduced model against the larger model, with the null hypothesis that the two likelihoods are not signficantly different. If out test is positive (usually p<0.05, but beware or p-values...), our reduce model is 'better'.
+  - <b>Akaike Information Criterion (AIC) <sup>[1]</sup>:</b> is a measure of relative information loss.  The value cannot be directly interpreted, but can be compared between models, with lower AIC's suggested less information loss, and being the 'better' model.
+  -  <b>Prediction error:</b> If you rmodel is primarily about prediction, and less about explanantion (Shumeli)<sup>[2]</sup>
+ 
 
 
 
@@ -86,7 +91,6 @@ Where $\mu$ is the expectation of Y, and $g$ is the link function
 - Plotting residuals is not straight forward, and less common with `glm`
 
 ### Firstly, LOS:
-
 
 
 ```{r glm3, collapse=TRUE}
@@ -143,7 +147,7 @@ top_n(LOS_model,5) %>% knitr::kable(format = "html")
 ```
 
 
-
+avad
 ## Prediction (2)
 
 - Lets see the 10 cases with the highest predicted risk of death:
@@ -153,3 +157,10 @@ top_n(LOS_model,5) %>% knitr::kable(format = "html")
 LOS_model %>% arrange(desc(preds)) %>% top_n(10) %>% knitr::kable(format = "html")
 
 ```
+
+
+ .footnote[
+1. AKAIKE, H. 1998. Information Theory and an Extension of the Maximum Likelihood Principle. In: PARZEN, E., TANABE, K. & KITAGAWA, G. (eds.) Selected Papers of Hirotugu Akaike. New York, NY: Springer New York
+
+1. SHMUELI, G. 2010. To Explain or to Predict? Statist. Sci., 25, 289-310.
+ ]
