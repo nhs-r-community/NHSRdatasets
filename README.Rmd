@@ -5,8 +5,7 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-# NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='assets/logo.png' align="right" height="80" /></a>
+javascript:showsample('wip','md') NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='assets/logo.png' align="right" height="80" /></a>
 
 <br><br>
 
