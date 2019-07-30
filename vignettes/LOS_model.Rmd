@@ -16,12 +16,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette details why the `LOS_model` dataset was created, how to load and use it in learning/teaching regression modelling using Generalized Linear Models.  The data are 10 sets of 30 simulated patient records, representing 10 different hospitals ("Trusts").  The dataset contains:
-- ID: an integer value patient number
-- Organisation: A factor, containing hospital name, e.g. "Trust1"
-- Age: an integer representing patient age in years
-- LOS: an integer representing the number of days a patient was in hospital
-- Death: an integer flag (0 or 1) representing whether a patient died
+This vignette details why the `LOS_model` dataset was created, how to load, and gives examples of use for learning/teaching regression modelling using Generalized Linear Models (GLMs).  
+
+The data were created specifically for regression tutorial, simulating a small set of data on hospital in-patient spells.  The data are 10 sets of 30 simulated patient records, representing 10 different hospitals ("Trusts").  The dataset contains:
+
+- __ID:__ an integer value patient number
+- __Organisation:__ A factor, containing hospital name, e.g. "Trust1"
+- __Age:__ an integer representing patient age in years
+- __LOS:__ 'Length of Stay,' an integer representing the number of days a patient was in hospital
+- __Death:__ an integer flag (0 or 1) representing whether a patient died
 
 ## First, load the data and inspect it
 
@@ -42,14 +45,12 @@ prop.table(table(LOS_model$Death))
 ```
 
 
-Now lets look at the distributions of ages and LOS.  Age is rather odd.  Could be uniform, could be bimodal (or more), but nothing clear here.  LOS is highly skewed, and this is not a surprise for count data, as it can only be >0, in integer values, and most patients don't stay very long, but a few do.
+Now lets look at the distributions of ages and LOS.  We might expect Age to be normally distributed, but this would be unrealistic, as elderly patient replresent higher proportions of inpaitents.  It could be uniform, it could be bimodal (or have more peaks), but nothing is particularly clear.  LOS is highly right-skewed.  The means that the hgih values will affect the meanm draggin it out, and the median would be a better estimation of the centre of the distribution.  This shows that most patients don't stay very long, but a few patients stay notably longer.
 
 ```{R VisageLOS}
-
 ggplot(LOS_model, aes(x=Age)) +
   geom_histogram(alpha=0.5, col=1, fill=12, bins=20)+
   ggtitle("Distribution of Age")
-
 ggplot(LOS_model, aes(x=LOS)) +
   geom_histogram(alpha=0.5, col=1, fill=13, bins=20)+
   ggtitle("Distribution of Length-of-Stay")
@@ -122,6 +123,8 @@ ModelMetrics::auc(glm_binomial2)
 ```
 
 Now our model is suggesting that Age, LOS and their interaction are significant.  This suggests that, as well as their own effects, their combination is important.
+
+
 
 ## Prediction (1)
 
