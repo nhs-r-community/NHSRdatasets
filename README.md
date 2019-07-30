@@ -1,4 +1,3 @@
-javascript:showsample('wip','md')
 
 # NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='assets/logo.png' align="right" height="80" /></a>
 
