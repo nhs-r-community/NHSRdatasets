@@ -1,6 +1,8 @@
 
 # NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='assets/logo.png' align="right" height="80" /></a>
 
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)]
+
 <br><br>
 
 ## This package is a work in progress, and may change or be withdrawn
