@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette details why the `LOS_model` dataset was created, how to load and use it in learning/teaching regression modelling using Generalized Linear Models.  The data are 10 sets of 30 simluated patient records, representing 10 different hospitals ("Trusts").  The dataset contains:
+This vignette details why the `LOS_model` dataset was created, how to load and use it in learning/teaching regression modelling using Generalized Linear Models.  The data are 10 sets of 30 simulated patient records, representing 10 different hospitals ("Trusts").  The dataset contains:
 - ID: an integer value patient number
 - Organisation: A factor, containing hospital name, e.g. "Trust1"
 - Age: an integer representing patient age in years
@@ -42,7 +42,7 @@ prop.table(table(LOS_model$Death))
 ```
 
 
-Now lets look at the distributions of ages and LOS.  Age is rather odd.  Could be uniform, could be bimondal (or more), but nothing clear here.  LOS is higly skewed, and this is not a surprise for count data, as it can only be >0, in integer values, and most patients don't stay very long, but a few do.
+Now lets look at the distributions of ages and LOS.  Age is rather odd.  Could be uniform, could be bimodal (or more), but nothing clear here.  LOS is highly skewed, and this is not a surprise for count data, as it can only be >0, in integer values, and most patients don't stay very long, but a few do.
 
 ```{R VisageLOS}
 
@@ -59,110 +59,205 @@ ggplot(LOS_model, aes(x=LOS)) +
 
 ## Modelling LOS and Death
 
-- We will attempt to model LOS, using age and Death, and also to model Death using LOS and Age.
+We will attempt to model LOS, using age and Death, and also to model Death using LOS and Age. This vignette does not describe linear models per se, but assumes you are familiar with linear regression.  If not, pause here and do a little reading before you continue.
 
-- This vignette doesnot describe linear models per se, but assumes you are familiar with linear regression.  If not, pause here and do a little reading before you continue.
-
-- Our data are not continuous, linear, or normally distributed. Death is binary, LOS is a count etc.
-
-- We can extend the linear model idea for this as a Generalized Linear Model (GLM)
+Our data are not continuous, linear, or normally distributed. Death is binary, LOS is a count etc.  We can extend the linear model idea for this as a Generalized Linear Model (GLM)<sup>[5]</sup> , by fitting out model via a 'link function.'  This function transforms data and allows our response, and it's variance, to relate to a linear model through the link function:
 
 $$\large{g(\mu)= \alpha + \beta x}$$
 Where $\mu$ is the expectation of Y, and $g$ is the link function
 
-- The link function transforms the data before fitting a model
 
-- Ordinary Least squares (OLS), used in linear regression, is not a good fit here as our data are not neccisarily distributed like that.  Here we can use 'maximum-likelihood estimation' (MLE). MLE is related to probability and can be used to identify the parameter that were most likey to have produced our data (the largest likelihood value, or 'maximum likelihood').
+The Ordinary Least Squares (OLS) fitting technique, used in linear regression, is not a good fit here as our data are not necessarily distributed like that.  Here we can use 'maximum-likelihood estimation' (MLE).  MLE is related to probability and can be used to identify the parameter that were most likely to have produced our data (the largest likelihood value, or 'maximum likelihood').
 
- - MLE is an iterative process, and is actually perfomred on the log-likelihod.  Our model 'convergese' when we can't improve it anymore (usually changes < 1e-8.)
+MLE is an iterative process, and is actually performed on the log-likelihood. The model is iteratively refitted to maximise the log-likelihood.  Our model is said to 'converge' when we can't improve it any more (usually changes < 1e-8).  __If you get convergence-related error messages, it means the modelling function can't settle on, or reach the MLE.  This often means your parametrisation is mismatched, or it's a 'bad' model.__
 
- - Although many of the methods for `lm` are common to `glm`, but we can't use R<sup>2</sup>.  Various methods other methods exist and depend on what you want to compare, including:
-  - <b>AUC:</b> For binary (or other multiple categorical models), the 'area under the reciever operator characteristic curve ('AUC', 'ROC' or 'C-statistic') can be used and interpreted like R<sup>2</sup>.
-  - <b>Likelihood Ratio test (LRT):</b> Two `glm`s can be compared using likelihood ratio tests, tests the ratio of the log-likelihoods between two models.  We test a reduced model against the larger model, with the null hypothesis that the two likelihoods are not signficantly different. If out test is positive (usually p<0.05, but beware or p-values...), our reduce model is 'better'.
-  - <b>Akaike Information Criterion (AIC) <sup>[1]</sup>:</b> is a measure of relative information loss.  The value cannot be directly interpreted, but can be compared between models, with lower AIC's suggested less information loss, and being the 'better' model.
-  -  <b>Prediction error:</b> If you rmodel is primarily about prediction, and less about explanantion (Shumeli)<sup>[2]</sup>
+Although many of the methods for `lm` are common to `glm`, inspecting plots of residuals is trickier.  We also can't use R<sup>2</sup>.  Various methods other methods exist, depend on what you want to compare, including:
+- <b>AUC:</b> For binary (or other multiple categorical models), the 'area under the receiver operator characteristic curve ('AUC', 'ROC' or 'C-statistic') can be used and interpreted like R<sup>2</sup>.
+- <b>Likelihood Ratio test (LRT):</b> Two `glm`s can be compared using likelihood ratio tests, tests the ratio of the log-likelihoods between two models.  We test a reduced model against the larger model, with the null hypothesis that the two likelihoods are not significantly different. If out test is positive (usually p<0.05, but beware or p-values...), our reduce model is 'better'.
+- <b>Akaike Information Criterion (AIC) <sup>[1]</sup>:</b> is a measure of relative information loss.  The value cannot be directly interpreted, but can be compared between models, with lower AICs suggested less information loss, and being the 'better' model.
+- <b>Prediction error:</b> If you model is primarily about prediction, and less about explanation (Shumeli)<sup>[6]</sup>
  
 
 
 
 ## Generalized Linear Models
 
+<<<<<<< HEAD
 Let's look at LOS first.  It is a count, and therefore has a boundary at zero (you can't have counts smaller than zero), and is highly right-skewed, as most patietns are not in longbut a few are.
 We can use the 'Poisson' distrubtion for this.
 - Use a `family` argument with `poisson` for counts or `binomial` for binary outcomes.
 - Plotting residuals is not straight forward, and less common with `glm`
 
 
+=======
+Let's fit a generalized linear model, firstly for `Death`, and secondly for `LOS`.
 
+### Modelling death:
+>>>>>>> bd138ffacf58d4325708ce838a2dd8957ea01ffb
 
-```{r glm3, collapse=TRUE}
+`Death` is a binary variable recorded in our `LOS_model` dataset.  This cannot be linear and is usually model using the `binomial` family argument, and the `logit` link function.  This link function is the default in `R` for `binomial` regressions, and is commonly referred to as __Logistic Regression__.  We'll fit this using the `glm` function.  Rather than fitting `Death` as such, the link function makes this the log-odds of death.
+
+```{r glm1, collapse=TRUE}
 glm_binomial <- glm(Death ~ Age + LOS, data=LOS_model, family="binomial")
 
-sjPlot::tab_model(glm_binomial, show.df = TRUE, show.obs = TRUE, show.se = TRUE, show.r2 = FALSE)
+summary(glm_binomial)
 
 ModelMetrics::auc(glm_binomial)
 
 ```
 
+Using the `summary` function, we can see our model output, including
+- The 'call', of model formula
+- A description of the distribution of the deviance residuals (don't worry about this for now).
+- The 'coefficients', the estimates of the effects of our predictions, including their standard error, and a z-test for their significance.  There is a 'key' using `*` to indicate the significance levels.
+- Information on fit statistics
+- We also used the `ModelMetrics` package to calculate the `auc`. This is a suggests that ~66% of the variation in our data can be explained by our model.
 
-## Interactions
+If we consider the logic of the model above, it is telling us that LOS is a significant predictor for the log-odds of death, but that age is not.  This seems unlikely, unless Age and LOS are not independent.  If this is the case, e.g. elderly patients stay longer or that shorter staying elderly patients are more likely to have died, the effects of LOS may be obscuring the effects of Age.  This is referred to as confounding.  We can examine this using an __interaction__ term.
 
-- 'Interactions' are where predictor variables affect each other.
+### Interactions
 
-- HSMR has an interaction between co-morbidity and age. So co-morbidities have different effects related to age.
+'Interactions' are where predictor variables affect each other. For example, the Hospital Standardised Mortality Ratio (HSMR) <sup>[4]</sup> uses an interaction term between co-morbidity and age. So co-morbidities score may have different effects related to age, as well as the independent effects of age and co-morbidity score.
 
-- Can add these with `*` or `:` (check help for which to use)
+We can add these with `*` to include the independent terms, or `:` if you just want the combined term:
 
-```{r glm4}
+```{r glm2}
 glm_binomial2<- glm(Death ~ Age + LOS + Age*LOS, data=LOS_model, family="binomial")
 
-sjPlot::tab_model(glm_binomial2, show.df = TRUE, show.obs = TRUE, show.se = TRUE, show.r2 = FALSE)
+summary(glm_binomial2)
 
 ModelMetrics::auc(glm_binomial2)
 
 ```
 
-# Interpretation
-
-+ Our model coefficients in `lm` were straight-forward multipliers
-+ `glm` is similar, but it is on the scale of the link-function.
- + log scale for `poisson` models, or logit (log odds) scale for `binomial`
-+ Common to transform output back to response scale
-+ giving Incident Rate Ratios for `poisson`, or Odds Ratios for `binomial`
-
-```{r coeftransform, warning=FALSE, message=FALSE}
-
-cbind(Link=coef(glm_binomial2), Response=exp(coef(glm_binomial2)))
-
-```
-
+Now our model is suggesting that Age, LOS and their interaction are significant.  This suggests that, as well as their own effects, their combination is important.
 
 ## Prediction (1)
 
-- We can then use our model to predict our expected Y:
-- Need to decide what scale to predict on: `link` or `response`
+Now we have built a model, we can use it our model to predict our expected Y, the probability of death per patient in this case.  We can supply a new dataset to fit it to using `newdata`, or omitting this fits it to the original dataset.  In using a `glm`, we have built a model via a link function, so we need to decide what scale to make our predictions on: the `link` scale (the log-odds of death in this case) or the `response` (the probability of death in this case).
 
 ```{r glm5}
 LOS_model$preds <- predict(glm_binomial2, type="response")
 
-top_n(LOS_model,5) %>% knitr::kable(format = "html")
+head(LOS_model,5)
+```
+
+We have added our predictions back into the original `data.frame` using the column name `preds`, and patient ID 1 has a risk of death of 0.136 or 13.6% probability of death.  These predictions can be used in many different applications, but common uses of them are identifying the highest risk patients for clinical audit, comparing ratios of the observed deaths and expected deaths (sum of the probability), or risk-adjusted control chart monitoring.
+
+
+
+## Length of Stay (LOS)
+
+LOS, the time a patient is in hospital, is another variable to examine in the dataset.  This is a count, and is therefore bounded at zero (can't have counts < 0), can only take integer values (e.g. 2 or 3, but not 2.5) and is heavily right-skewed, as most patient are only admitted for one or two days, but rarely patients are in for much longer. We'll apply a similar modelling approach to the last example, but the `family` argument and link function must be different.  We will use the `Poisson` distribution and the natural logarithm link function, the standard choices for count data.
+
+
+```{r glm3}
+
+glm_poisson <- glm(LOS ~ Age * Death, data=LOS_model, family="poisson" )
+
+summary(glm_poisson)
+
+```
+
+We can't use the `AUC` value here, as that is related to categories.  We can only make comparisons between models or in terms of prediction error.  Lets fit the same model without the interaction and see if it is different using the `AIC` or the likelihood ratio test (that tell you the same thing):
+
+```{r glm4}
+
+glm_poisson2 <- glm(LOS ~ Age + Death, data=LOS_model, family="poisson" )
+
+AIC(glm_poisson)
+AIC(glm_poisson2)
+
+# anova(glm_poisson2, glm_poisson, test="Chisq")  will do the same thing without using the lmtest package
+lmtest::lrtest(glm_poisson2, glm_poisson)
+
+```
+
+Our `AIC` is lower for the interaction model, and the likelihood ratio test is also significantly different.
+
+### Overdispersion
+
+One of the downfalls of a Poisson models that it's variance is fixed.  This is always proportional to the conditional mean.  I will spare you the maths at this point, but what it means is that the variance doesn't scale to the data.  This would be fine if out data were perfectly Poisons distributed, but that is rare in practise.  Data commonly display more variance than we would expect, and this is referred to as ___overdispersion___ (OD). OD causes us to underestimate the variance in our model, and our assessments of the significance of parameters is too optimistic as our error is too small.  It also affects overall assessment of model fit.
+
+We can test for this, as the ratio of the sum of the squared Pearson residuals over the degrees of freedom.  If this value is 1, then the variance is as expected ('equidispersion'), but if it is  >1, then we have overdispersion.
+```{r od}
+ 
+sum(residuals(glm_poisson,type="pearson") ^2)/ df.residual(glm_poisson)
+    
+
+```
+
+Our model is overdispersed, with residual variance around 1.4 times what the Poisson distribution expects.
+
+
+There are various different ways to deal with this, and this vignette demonstrates three of the following list.  Our options include:
+
+- Ignoring it: the Poisson is an `unbiased` model, so if we only care about our estimates, or predicted values (and not the error, or 'significance') we might do this.
+- Manually scaling our variance using our dispersion ratio
+- Use `quasi-likelihood models, these do not use a full MLE process using estimating equations instead. These models allow for scaling of the error, but with no MLE we can't use AIC or likelihood ratio tests.
+- Variance structures (this is a huge topic, but we'll pick one).  Regression assumes all data points are independent and uncorrelated.  If this is not the case in our data, we need to consider this in our models.  We have repeated measurements from 10 Trusts in this dataset.  It likely that LOS, and demographics like age, are at least partly related to which Trust the data come from.  This is referred to as ___clustering___, and it introduced correlations in the data.  There are ways to explicit model this correlation, including:
+  + __Mixture models:__ using more than one distribution to model the data. Negative Binomial family uses two distributions, for between and within unit variances.  The NB2<sup>[2]</sup> parametrisation assumes a Poisson distribution within units and a gamma distribution between.
+  + ___Random-Intercept Model___: GLMs can be further updated to allow for variance structures, using a Generalised Linear Mixed Model (GLMM), or Multi-level model<sup>[3]</sup>.  The variance structures are referred to as 'random effects' and fix the parameter estimate at 0, but allow the variance to be estimate.  Our model coefficients we say in the GLM's earlier are referred to as 'fixed effects' to distinguish between the two.  In our case, a random-intercept at Trust level is appropriate.
+
+
+
+So lets try some of them out.  To fit a quasi-Poisson model, we simply change the family.  Note the dispersion parameter matches the calculation above:
+```{r quasi}
+
+quasi<-glm(LOS ~ Age * Death, data=LOS_model, family="quasipoisson" )
+
+summary(quasi)
+
+```
+
+For a negative binomial model, two options are `glm.nb` from the `MASS` package, or `glmmTMB` function from the package of the same name.  Note that the function from `MASS` does not take a `family` argument.  The dispersion factor here is quadratic to the mean, so don't compare it directly to the scale factor above.
+```{r nb, warning=FALSE, message=FALSE}
+library(MASS)
+
+nb <- glm.nb(LOS ~ Age * Death, data=LOS_model,)
+
+summary(nb)
+
 ```
 
 
-avad
-## Prediction (2)
+Finally, using the random-intercept model, fitted with `glmer` from the `lme4` package.  The extra formula argument specifies the random-intercept, where 1 means the intercept, and the `|` reads as 'intercept varying by organisation.'
 
-- Lets see the 10 cases with the highest predicted risk of death:
+```{r glmm, warning=FALSE}
+library(lme4)
 
-```{r glm6}
+glmm <- glmer(LOS ~ scale(Age) * Death + (1|Organisation), data=LOS_model, family="poisson")
 
-LOS_model %>% arrange(desc(preds)) %>% top_n(10) %>% knitr::kable(format = "html")
+summary(glmm)
+```
+
+```{r confint}
+confint(glmm)
 
 ```
 
+These models are significantly more complicated.  `Confint` can be use to calculate the confidence interval above by profiling the likelihood (provided you have the `MASS` package installed).  This allow you to assess the significance of the random effect.  Our CI buts up to zero here, and the AIC is slightly worse than the `glm`.  This suggests it is not well modelled with the normally distributed random intercept.  The NB model appears to perform better.
 
- .footnote[
-1. AKAIKE, H. 1998. Information Theory and an Extension of the Maximum Likelihood Principle. In: PARZEN, E., TANABE, K. & KITAGAWA, G. (eds.) Selected Papers of Hirotugu Akaike. New York, NY: Springer New York
+Predictions from GLMMS also requires more thought.  You can predict with ("conditional") or without ("marginal") the random effects.  Conditional predictions will have the adjustment for their cluster (or whatever random effect you have fitted), but marginal could be considered the model averages subject to the fixed effects, removing the effects of cluster.
 
-1. SHMUELI, G. 2010. To Explain or to Predict? Statist. Sci., 25, 289-310.
- ]
+
+## Summary
+
+The `LOS_model` dataset is a fabricated patient dataset with Age, Length of Stay and Death status for 300 patients across 10 hospitals ('Trusts').  It can be used to learn GLM, GLMM and other related modelling techniques, with examples above.
+
+---
+
+## References
+
+1. AKAIKE, H. 1998. Information Theory and an Extension of the Maximum Likelihood Principle. In: PARZEN, E., TANABE, K. & KITAGAWA, G. (eds.) _Selected Papers of Hirotugu Akaike_. New York, NY: Springer New York
+
+1. CAMERON, A. C. & TRIVEDI, P. K. 2013. _Regression Analysis of Count Data_, Cambridge University Press
+
+1. GOLDSTEIN, H. 2010. _Multilevel Statistical Models_, John Wiley & Sons Inc.
+
+1. JARMAN, B., GAULT, S., ALVES, B., HIDER, A., DOLAN, S., COOK, A., HURWITZ, B. & IEZZONI, L. I. 1999. _Explaining differences in English hospital death rates using routinely collected data_. BMJ, __318__, 1515-1520
+
+1. NELDER, J. A. & WEDDERBURN, R. W. M. 1972. Generalized Linear Models. _Journal of the Royal Statistical Society. Series A (General)_, __135__, 370-384
+
+1. SHMUELI, G. 2010. To Explain or to Predict? _Statist. Sci._ , __25__, 289-310.
+
