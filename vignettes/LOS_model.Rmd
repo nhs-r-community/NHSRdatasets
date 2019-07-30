@@ -87,10 +87,12 @@ Where $\mu$ is the expectation of Y, and $g$ is the link function
 
 ## Generalized Linear Models
 
+Let's look at LOS first.  It is a count, and therefore has a boundary at zero (you can't have counts smaller than zero), and is highly right-skewed, as most patietns are not in longbut a few are.
+We can use the 'Poisson' distrubtion for this.
 - Use a `family` argument with `poisson` for counts or `binomial` for binary outcomes.
 - Plotting residuals is not straight forward, and less common with `glm`
 
-### Firstly, LOS:
+
 
 
 ```{r glm3, collapse=TRUE}
