@@ -1,8 +1,6 @@
 
 # NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='assets/logo.png' align="right" height="80" /></a>
 
------
-
 <!-- badges: start -->
 
 [![Travis build
@@ -30,7 +28,8 @@ think may benefit the NHS R-community.
 This packages is not yet submitted to CRAN, but can be installed from
 source, via this Github repository. You will need `Rtools`
 (<https://cran.r-project.org/bin/windows/Rtools/>) installed to build
-the package, and the `remotes` package.
+the package, and the `remotes`
+package.
 
 ``` r
 remotes::install_github("https://github.com/nhs-r-community/NHSRdatasets")
