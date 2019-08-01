@@ -19,4 +19,4 @@ Suggests:
     MASS,
     ModelMetrics,
     lmtest,
-    testthat
+    testthat (>= 2.1.0)
