@@ -77,7 +77,7 @@ MLE is an iterative process, and is actually performed on the log-likelihood. Th
 Although many of the methods for `lm` are common to `glm`, inspecting plots of residuals is trickier.  We also can't use R<sup>2</sup> either, as the assumptions refect OLS.  Various methods other methods exist, depend on what you want to compare, including:
 
 - <b>AUC:</b> For binary (or other multiple categorical models), the 'area under the receiver operator characteristic curve' ('AUC', 'ROC' or 'C-statistic') can be used and interpreted like R<sup>2</sup>, as the proportion of variation in $y$ explained by our model.
-- <b>Likelihood Ratio test (LRT):</b> Two `glm`s can be compared using likelihood ratio tests, that compare the log-likelihoods between two models.  We test a reduced model against the larger model, with the null hypothesis that the two likelihoods are not significantly different. If our test is positive (usually p<0.05, but beware of p-values...), our reduced model is 'better'.
+- <b>Likelihood Ratio test (LRT):</b> Two `glm`s can be compared using likelihood ratio tests, that compare the log-likelihoods between two models.  We test a reduced model against the larger model, with the null hypothesis that the two likelihoods are not significantly different. If our test is positive (usually p<0.05, but beware of p-values...), our models are signficantly different, with the one with higher log-likelihood the better model.
 - <b>Akaike Information Criterion (AIC) <sup>[2]</sup>:</b> is a measure of relative information loss.  The value cannot be directly interpreted, but can be compared between models, with lower AICs suggesting less information loss, and being 'better' models.
 - <b>Prediction error:</b> If your model is primarily about prediction, and less about explanation<sup>[3]</sup>, measures of fit such as Mean-Square Error of Mean Absolute error can be helpful measures of predictive accuracy.
  
@@ -132,7 +132,7 @@ Now our model is suggesting that Age, LOS and their interaction are significant.
 
 ## Prediction
 
-Now we have built a model, we can use it to predict our expected $y$, the probability of death per patient in this case.  We can supply a new dataset to fit it to using `newdata`, or omitting this fits it to the original dataset.  In using a `glm`, we have built a model via a link function, so we need to decide what scale to make our predictions on: the `link` scale (the log-odds of death in this case) or the `response` (the probability of death in this case).
+Now we have built a model, we can use it to predict our expected $y$, the probability of death per patient in this case.  We can supply a new dataset to fit it to, using `newdata`, or omitting this fits our model to the original dataset.  Using a `glm`, we have built a model via a link function, so we need to decide what scale to make our predictions on: the `link` scale (the log-odds of death in this case) or the `response` (the probability of death in this case).
 
 ```{r glm5}
 LOS_model$preds <- predict(glm_binomial2, type="response")
@@ -146,7 +146,7 @@ We have added our predictions back into the original `data.frame` using the colu
 
 ## Length of Stay (LOS)
 
-LOS, the time a patient is in hospital, is another variable to examine in the dataset.  This is a count, and is therefore bounded at zero (can't have counts < 0), can only take integer values (e.g. 2 or 3, but not 2.5) and is heavily right-skewed, as most patient are only admitted for one or two days, but rarely patients are in for much longer. We'll apply a similar modelling approach to the last example, but the `family` argument and link function must be different.  We will use the `Poisson` distribution and the natural logarithm link function, the standard choices for count data.
+LOS, the time a patient is in hospital, is another variable to examine in the dataset.  This is a count, and is therefore bounded at zero (can't have counts < 0), can only take integer values (e.g. 2 or 3, but not 2.5) and is heavily right-skewed, as most patient are only admitted for one or two days, but rarely patients are in for much longer. We'll apply a similar modelling approach to the last example, but the `family` argument and link function must be different.  We will use the `Poisson` distribution and the natural logarithm link function, the standard choices for count data<sup>[5]</sup>.
 
 
 ```{r glm3}
@@ -167,41 +167,40 @@ AIC(glm_poisson)
 AIC(glm_poisson2)
 
 # anova(glm_poisson2, glm_poisson, test="Chisq")  will do the same thing without using the lmtest package
-lmtest::lrtest(glm_poisson2, glm_poisson)
+lmtest::lrtest(glm_poisson, glm_poisson2)
 
 ```
 
-Our `AIC` is lower for the interaction model, and the likelihood ratio test is also significantly different.
+Our `AIC` is lower for the interaction model, and the likelihood ratio test suggest the reduced model is significantly worse.
 
 ### Overdispersion
 
-One of the downfalls of a Poisson models that it's variance is fixed.  This is always proportional to the conditional mean.  I will spare you the maths at this point, but what it means is that the variance doesn't scale to the data.  This would be fine if out data were perfectly Poisons distributed, but that is rare in practise.  Data commonly display more variance than we would expect, and this is referred to as ___overdispersion___ (OD). OD causes us to underestimate the variance in our model, and our assessments of the significance of parameters is too optimistic as our error is too small.  It also affects overall assessment of model fit.
+One of the downfalls of a Poisson models that it's variance is fixed.  This is always proportional to the conditional mean.  I will spare you the maths at this point, but what it means is that the variance doesn't scale to the data.  This would be fine if our data were perfectly Poisson distributed, but that is rare in practice.  Data commonly display more variance than we would expect, and this is referred to as ___overdispersion___ (OD). OD causes us to underestimate the variance in our model, and our assessments of the significance of parameters are too optimistic because our error is too small.  It also affects overall assessment of model fit.
 
-We can test for this, as the ratio of the sum of the squared Pearson residuals over the degrees of freedom.  If this value is 1, then the variance is as expected ('equidispersion'), but if it is  >1, then we have overdispersion.
+We can test for this, by comparing the ratio of the sum of the squared Pearson residuals over the degrees of freedom.  If this value is 1, then the variance is as expected ('equidispersion'), but if it is  >1, then we have OD.
 ```{r od}
- 
-sum(residuals(glm_poisson,type="pearson") ^2)/ df.residual(glm_poisson)
+ sum(residuals(glm_poisson,type="pearson") ^2)/ df.residual(glm_poisson)
     
 
 ```
 
-Our model is overdispersed, with residual variance around 1.4 times what the Poisson distribution expects.
+__Our model is overdispersed, with residual variance around 1.4 times what the Poisson distribution expects.__
 
+<br>
 
 There are various different ways to deal with this, and this vignette demonstrates three of the following list.  Our options include:
 
-- Ignoring it: the Poisson is an `unbiased` model, so if we only care about our estimates, or predicted values (and not the error, or 'significance') we might do this.
-- Manually scaling our variance using our dispersion ratio
-- Use `quasi-likelihood models, these do not use a full MLE process using estimating equations instead. These models allow for scaling of the error, but with no MLE we can't use AIC or likelihood ratio tests.
-- Variance structures (this is a huge topic, but we'll pick one).  Regression assumes all data points are independent and uncorrelated.  If this is not the case in our data, we need to consider this in our models.  We have repeated measurements from 10 Trusts in this dataset.  It likely that LOS, and demographics like age, are at least partly related to which Trust the data come from.  This is referred to as ___clustering___, and it introduced correlations in the data.  There are ways to explicit model this correlation, including:
-  + __Mixture models:__ using more than one distribution to model the data. Negative Binomial family uses two distributions, for between and within unit variances.  The NB2<sup>[2]</sup> parametrisation assumes a Poisson distribution within units and a gamma distribution between.
-  + ___Random-Intercept Model___: GLMs can be further updated to allow for variance structures, using a Generalised Linear Mixed Model (GLMM), or Multi-level model<sup>[3]</sup>.  The variance structures are referred to as 'random effects' and fix the parameter estimate at 0, but allow the variance to be estimate.  Our model coefficients we say in the GLM's earlier are referred to as 'fixed effects' to distinguish between the two.  In our case, a random-intercept at Trust level is appropriate.
+- __Ignoring it:__ the Poisson is an `unbiased` model, so if we only care about our estimates, or predicted values (and not the error, or 'significance') we might do this.
+- __Manually scaling our variance:__ we can do this using our dispersion ratio
+- __Quasi-likelihood models:__ these do not use a full MLE process, using estimating equations instead. These models allow for scaling of the error, but with no MLE we can't use AIC or likelihood ratio tests.
+- Variance structures (this is a huge topic, but we'll pick one).  Regression assumes all data points are independent and uncorrelated.  If this is not the case in our data, we need to consider this in our models.  We have repeated measurements from 10 Trusts in this dataset.  It likely that LOS, and demographics like age, are at least partly related to which Trust the data come from.  This is referred to as ___clustering___, and it introduces correlations in the data.  There are ways to explicit model this correlation, including:
+  + __Mixture models:__ using more than one distribution to model the data. Negative Binomial family uses two distributions, for between and within unit variances.  The NB2<sup>[5]</sup> parametrisation assumes a Poisson distribution within units and a gamma distribution between.
+  + __Random-Intercept Model__: GLMs can be further updated to allow for variance structures, using a Generalised Linear Mixed Model (GLMM), or Multi-level model<sup>[6]</sup>.  The variance structures are referred to as 'random effects' and fix the parameter estimate at 0, but allow the variance to be estimated.  Our model coefficients we reported in the GLM's earlier are referred to as 'fixed effects' to distinguish between the two.  In our case, a random-intercept at Trust-level is appropriate.
 
 
 
 So lets try some of them out.  To fit a quasi-Poisson model, we simply change the family.  Note the dispersion parameter matches the calculation above:
 ```{r quasi}
-
 quasi<-glm(LOS ~ Age * Death, data=LOS_model, family="quasipoisson" )
 
 summary(quasi)
@@ -234,9 +233,9 @@ confint(glmm)
 
 ```
 
-These models are significantly more complicated.  `Confint` can be use to calculate the confidence interval above by profiling the likelihood (provided you have the `MASS` package installed).  This allow you to assess the significance of the random effect.  Our CI buts up to zero here, and the AIC is slightly worse than the `glm`.  This suggests it is not well modelled with the normally distributed random intercept.  The NB model appears to perform better.
+These models are significantly more complicated.  `Confint` can be use to calculate the confidence intervals above by profiling the likelihood (provided you have the `MASS` package installed).  This allow you to assess the significance of the random-effects.  Our CI butts up to zero here, and the AIC is slightly worse than the `glm`.  This suggests it is not well-modelled with the normally distributed random-intercept.  The NB model appears to perform better.
 
-Predictions from GLMMS also requires more thought.  You can predict with ("conditional") or without ("marginal") the random effects.  Conditional predictions will have the adjustment for their cluster (or whatever random effect you have fitted), but marginal could be considered the model averages subject to the fixed effects, removing the effects of cluster.
+Predictions from GLMMS also requires more thought.  You can predict with ("conditional") or without ("marginal") the random effects.  Conditional predictions will have the adjustment for their cluster (or whatever random effect you have fitted), but marginal could be considered the model average, subject to the fixed effects, removing the effects of cluster.
 
 
 ## Summary
