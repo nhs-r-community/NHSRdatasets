@@ -10,8 +10,6 @@ has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg) <br><br>
 <!-- badges: end -->
 
-## This package is a work in progress, and may change or be withdrawn
-
 ## Datasources for reuse
 
 This package has been created to help NHS, Public Health and related
@@ -28,8 +26,7 @@ think may benefit the NHS R-community.
 This packages is not yet submitted to CRAN, but can be installed from
 source, via this Github repository. You will need `Rtools`
 (<https://cran.r-project.org/bin/windows/Rtools/>) installed to build
-the package, and the `remotes`
-package.
+the package, and the `remotes` package.
 
 ``` r
 remotes::install_github("https://github.com/nhs-r-community/NHSRdatasets")
