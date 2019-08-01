@@ -13,8 +13,10 @@ LazyData: true
 RoxygenNote: 6.1.1
 Depends: R (>= 3.5.0)
 Suggests: 
-  dplyr,
-  ggplot2,
-  lme4,
-  MASS,
-  ModelMetrics
+    dplyr,
+    ggplot2,
+    lme4,
+    MASS,
+    ModelMetrics,
+    lmtest,
+    testthat
