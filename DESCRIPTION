@@ -1,9 +1,9 @@
 Package: NHSRdatasets
 Type: Package
 Title: NHS and Healthcare related data for education and training
-Version: 0.1.0
-Author@R: c(
-          person("Chris", "Mainey", ,"chris.mainey@uhb.nhs.uk", c("aut", "cre"), comment = c(ORCID ="0000-0002-3018-6171""))
+Version: 0.1.1
+Authors@R: c(
+          person("Chris", "Mainey", ,"chris.mainey@uhb.nhs.uk", c("aut", "cre"), comment = c(ORCID ="0000-0002-3018-6171"))
           )
 Maintainer: Chris Mainey <chris.mainey@uhb.nhs.uk>
 Description: Free NHS and Healthcare related data for education and training purposes
@@ -11,3 +11,10 @@ License: CC0
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+Depends: R (>= 3.5.0)
+Suggests: 
+  dplyr,
+  ggplot2,
+  lme4,
+  MASS,
+  ModelMetrics
