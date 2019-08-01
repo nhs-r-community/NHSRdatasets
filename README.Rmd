@@ -14,8 +14,6 @@ knitr::opts_chunk$set(echo = TRUE)
 <br><br>
   <!-- badges: end -->
 
-## This package is a work in progress, and may change or be withdrawn ##
-
 ## Datasources for reuse
 
 This package has been created to help NHS, Public Health and related analysts/data scientists learn to use `R`. It contains several free datasets (just one at the moment), help files explaining their structure, and `vignette` examples of their use.  We encourage contributions to the package, both to expand the set of training material, but also as development for newer `R`/github users as a first contribution.  Please add relevant free, open source data sets that you think may benefit the NHS R-community.
