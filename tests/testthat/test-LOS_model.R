@@ -1,4 +1,4 @@
-test_that("multiplication works", {
+test_that("dataset is as expectes", {
   expect_type(LOS_model, "list")
   expect_s3_class(LOS_model$Organisation, "factor")
   expect_s3_class(LOS_model, "data.frame")
