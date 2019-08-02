@@ -12,6 +12,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 Depends: R (>= 3.5.0)
+BugReports: https://github.com/nhs-r-community/NHSRdatasets/issues
 Suggests: 
     dplyr,
     ggplot2,
