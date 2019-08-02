@@ -7,7 +7,7 @@ Authors@R: c(
           person("NHS-R community", role = "cph")
           )
 Maintainer: Chris Mainey <chris.mainey@uhb.nhs.uk>
-Description: Free United Kingdom National Health Service (NHS) and other healthcare, or population health-related data for education and training purposes. This package currently contains a single simulated hospital dataset for teaching regression methods, with the addition of more datasets planned for future releases.  This package is aimed at supporting the NHS-R community to support R skills development in the NHS: https://nhsrcommunity.com/.
+Description: Free United Kingdom National Health Service (NHS) and other healthcare, or population health-related data for education and training purposes. This package currently contains a single simulated hospital dataset for teaching regression methods, with the addition of more datasets planned for future releases.  This package is aimed at supporting the NHS-R community to support R skills development in the NHS: <https://nhsrcommunity.com/>.
 License: CC0
 Encoding: UTF-8
 LazyData: true
