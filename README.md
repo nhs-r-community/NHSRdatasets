@@ -1,10 +1,11 @@
 
-# NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='assets/logo.png' align="right" height="80" /></a>
+# NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='man/figures/logo.png' align="right" height="80" /></a>
 
 <!-- badges: start -->
 
 [![Travis build
 status](https://travis-ci.org/nhs-r-community/NHSRdatasets.svg?branch=master)](https://travis-ci.org/nhs-r-community/NHSRdatasets)
+[![codecov](https://codecov.io/gh/nhs-r-community/NHSRdatasets/branch/master/graph/badge.svg)](https://codecov.io/gh/nhs-r-community/NHSRdatasets)
 ![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg) <br><br>
@@ -26,7 +27,8 @@ think may benefit the NHS R-community.
 This packages is not yet submitted to CRAN, but can be installed from
 source, via this Github repository. You will need `Rtools`
 (<https://cran.r-project.org/bin/windows/Rtools/>) installed to build
-the package, and the `remotes` package.
+the package, and the `remotes`
+package.
 
 ``` r
 remotes::install_github("https://github.com/nhs-r-community/NHSRdatasets")
