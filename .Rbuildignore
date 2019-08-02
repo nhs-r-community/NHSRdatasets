@@ -3,3 +3,5 @@
 ^LICENSE\.md$
 ^\.travis\.yml$
 cran-comments.md
+README.Rmd
+/assets

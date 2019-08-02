@@ -20,4 +20,5 @@ Suggests:
     MASS,
     ModelMetrics,
     lmtest,
-    testthat
+    testthat,
+VignetteBuilder: knitr    
