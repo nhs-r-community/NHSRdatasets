@@ -9,8 +9,8 @@ This is the first release of a collaborative dataset packaged for British Nation
 * r-hub:
   * Ubuntu Linux 16.04 LTS, R-release, GCC, fedora-clang-devel
   * Fedora Linux, R-devel, clang, gfortran
-
-
+  
+Currently error on Solaris via R-hub, but nowhere else as 'Modelmetric' package, used in a vignette, is not available on their Solaris R build. Builds correctly with no errors on all other platforms.
 
 ## R CMD check results
 There were no ERRORs, WARNINGs OR NOTES.
