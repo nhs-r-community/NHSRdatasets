@@ -1,7 +1,7 @@
 Package: NHSRdatasets
 Type: Package
 Title: NHS and Healthcare Related Data for Education and Training
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(
           person("Chris", "Mainey", ,"chris.mainey@uhb.nhs.uk", c("aut", "cre"), comment = c(ORCID ="0000-0002-3018-6171")),
           person("NHS-R community", role = "cph")
