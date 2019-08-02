@@ -1,8 +1,5 @@
 #' NHS England Accident & Emergency Attendances and Admissions
 #'
-#' Artificially generated hospital data. Fictional patients at 10 fictional hospitals, with LOS, Age and Date status data
-#' Data were generate to learn Generalized Linear Models (GLM) concepts, modelling either Death or LOS.
-#'
 #' Reported attendances, 4 hour breaches and admissions for all A&E departments
 #' in England for the years 2016/17 through 2018/19 (Apr-Mar). The data has been
 #' tidied to be easily usable within the tidyverse of packages.
