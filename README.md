@@ -6,9 +6,8 @@
 [![Travis build
 status](https://travis-ci.org/nhs-r-community/NHSRdatasets.svg?branch=master)](https://travis-ci.org/nhs-r-community/NHSRdatasets)
 [![codecov](https://codecov.io/gh/nhs-r-community/NHSRdatasets/branch/master/graph/badge.svg)](https://codecov.io/gh/nhs-r-community/NHSRdatasets)
-![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg) <br><br>
+![CRAN Release](https://www.r-pkg.org/badges/version/NHSRdatasets)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <br><br>
 <!-- badges: end -->
 
 ## Datasources for reuse
