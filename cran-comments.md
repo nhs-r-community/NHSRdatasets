@@ -1,5 +1,5 @@
 ## Release summary
-This is the first release of a collaborative dataset packaged for British National Health Services NHS-R community. It contains datasets and vignettes to teach R.  It is likely to see periodic releases as we recieve contributions.
+This is the first release of a collaborative dataset packaged for British National Health Services NHS-R community. It contains datasets and vignettes to teach R.  It is likely to see periodic releases as we receive contributions.
 
 ## Test environments
 * local windows 7, R 3.6.1
