@@ -6,6 +6,10 @@ This is the first release of a collaborative dataset packaged for British Nation
 * local windows 10, R 3.6.1
 * ubuntu 16.04.6 LTS (on travis-ci), R 3.6.1
 * win-builder(devel)
+* r-hub:
+  * Ubuntu Linux 16.04 LTS, R-release, GCC, fedora-clang-devel
+  * Fedora Linux, R-devel, clang, gfortran
+
 
 
 ## R CMD check results
