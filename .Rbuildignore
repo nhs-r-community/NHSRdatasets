@@ -2,4 +2,7 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^\.travis\.yml$
-
+^codecov\.yml$
+cran-comments.md
+README.Rmd
+^CRAN-RELEASE$

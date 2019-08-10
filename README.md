@@ -1,16 +1,15 @@
 
-# NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='assets/logo.png' align="right" height="80" /></a>
+# NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='man/figures/logo.png' align="right" height="80" /></a>
 
 <!-- badges: start -->
-
 [![Travis build
 status](https://travis-ci.org/nhs-r-community/NHSRdatasets.svg?branch=master)](https://travis-ci.org/nhs-r-community/NHSRdatasets)
-![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg) <br><br>
+[![codecov](https://codecov.io/gh/nhs-r-community/NHSRdatasets/branch/master/graph/badge.svg)](https://codecov.io/gh/nhs-r-community/NHSRdatasets)
+![CRAN Release](https://www.r-pkg.org/badges/version/NHSRdatasets)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) 
 <!-- badges: end -->
 
-## This package is a work in progress, and may change or be withdrawn
+<br><br>
 
 ## Datasources for reuse
 

@@ -6,15 +6,14 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='assets/logo.png' align="right" height="80" /></a>
+# NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='man/figures/logo.png' align="right" height="80" /></a>
 
 <!-- badges: start -->
   [![Travis build status](https://travis-ci.org/nhs-r-community/NHSRdatasets.svg?branch=master)](https://travis-ci.org/nhs-r-community/NHSRdatasets)
+  [![codecov](https://codecov.io/gh/nhs-r-community/NHSRdatasets/branch/master/graph/badge.svg)](https://codecov.io/gh/nhs-r-community/NHSRdatasets) 
 ![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)
 <br><br>
   <!-- badges: end -->
-
-## This package is a work in progress, and may change or be withdrawn ##
 
 ## Datasources for reuse
 
