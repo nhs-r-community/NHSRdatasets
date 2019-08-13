@@ -21,14 +21,11 @@
 data(ae_attendances)
 }
 \description{
-Artificially generated hospital data. Fictional patients at 10 fictional hospitals, with LOS, Age and Date status data
-Data were generate to learn Generalized Linear Models (GLM) concepts, modelling either Death or LOS.
-}
-\details{
 Reported attendances, 4 hour breaches and admissions for all A&E departments
 in England for the years 2016/17 through 2018/19 (Apr-Mar). The data has been
 tidied to be easily usable within the tidyverse of packages.
-
+}
+\details{
 Data sourced from \href{https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/}{NHS England Statistical Work Areas}
 which is available under the \href{https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/}{Open Government Licence v3.0}
 }
