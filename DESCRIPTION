@@ -21,8 +21,6 @@ Suggests:
     MASS,
     ModelMetrics,
     lmtest,
-    testthat (>= 2.1.0),
-    covr,
     knitr, 
     rmarkdown,
     scales
