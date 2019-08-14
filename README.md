@@ -63,3 +63,7 @@ in training or publications.
     been processed, anonymised, aggregated or otherwise protected in
     accordance with all legal requirements under General Data Protection
     Regulation (GDPR), or other relevant legislation.
+
+Please note that the ‘NHSRdatasets’ project is released with a
+[Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to
+this project, you agree to abide by its terms.
