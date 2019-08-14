@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <!-- badges: start -->
   [![Travis build status](https://travis-ci.org/nhs-r-community/NHSRdatasets.svg?branch=master)](https://travis-ci.org/nhs-r-community/NHSRdatasets)
-![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN version](http://www.r-pkg.org/badges/version/NHSRdatasets)](http://cran.r-project.org/package=NHSRdatasets)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/NHSRdatasets)
  <!-- badges: end -->
