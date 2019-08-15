@@ -10,10 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <!-- badges: start -->
   [![Travis build status](https://travis-ci.org/nhs-r-community/NHSRdatasets.svg?branch=master)](https://travis-ci.org/nhs-r-community/NHSRdatasets)
-  [![codecov](https://codecov.io/gh/nhs-r-community/NHSRdatasets/branch/master/graph/badge.svg)](https://codecov.io/gh/nhs-r-community/NHSRdatasets) 
-![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![CRAN version](http://www.r-pkg.org/badges/version/NHSRdatasets)](http://cran.r-project.org/package=NHSRdatasets)
+![](http://cranlogs.r-pkg.org/badges/grand-total/NHSRdatasets)
+ <!-- badges: end -->
+ 
 <br><br>
-  <!-- badges: end -->
+ 
 
 ## Datasources for reuse
 
@@ -48,4 +51,7 @@ ___When contributing a dataset, the contributor certifies that:___
 * Where based on patient data, the contributor takes full responsibility for sharing the data and certifies that. it is has been processed, anonymised, aggregated or otherwise protected in accordance with all legal requirements under General Data Protection Regulation (GDPR), or other relevant legislation.
 
 
+Please note that the 'NHSRdatasets' project is released with a
+[Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By contributing to this project, you agree to abide by its terms.
 
