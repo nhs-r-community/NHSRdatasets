@@ -1,0 +1,10 @@
+pandoc: '2.2'
+pkgdown: 1.4.1
+pkgdown_sha: ~
+articles:
+  LOS_model: LOS_model.html
+  ae_attendances: ae_attendances.html
+urls:
+  reference: https://nhs-r-community.github.io/NHSRdatasets/reference
+  article: https://nhs-r-community.github.io/NHSRdatasets/articles
+
