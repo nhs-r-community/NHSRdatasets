@@ -48,7 +48,9 @@ library(knitr)
 library(scales)
 library(ggrepel)
 library(lubridate)
-library(tidyverse)
+library(dplyr)
+library(forcats)
+library(tidyr)
 
 library(NHSRdatasets)
 

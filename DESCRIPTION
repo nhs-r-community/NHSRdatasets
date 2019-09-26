@@ -22,10 +22,11 @@ Suggests:
     MASS,
     ModelMetrics,
     lmtest,
-    knitr, 
     rmarkdown,
     scales,
     ggrepel,
     lubridate,
+    tidyr,
+    forcats,
     knitr
 VignetteBuilder: knitr
