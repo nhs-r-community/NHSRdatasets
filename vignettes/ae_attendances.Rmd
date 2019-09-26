@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 options(tidyverse.quiet = TRUE)
 ```
 
-This vigenette explains how to use the `ae_attendances` dataset in R, and also
+This vignette explains how to use the `ae_attendances` dataset in R, and also
 details where it comes from and how it is generated.
 
 The data is sourced from [NHS England Statistical Work Areas](https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/)
