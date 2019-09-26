@@ -1,6 +1,6 @@
 # NHSRdatasets 0.1.2
 
-- Added a new NHS Accident and Emergency (A&E) dataset with vignette, thanks to Tom Jemmet.
+- Added a new NHS Accident and Emergency (A&E) dataset with vignette, thanks to Tom Jemmett.
 - Typos resolved and cleaned some files
 - Added pkgdown site
 
