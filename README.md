@@ -1,10 +1,10 @@
 
 # NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='man/figures/logo.png' align="right" height="80" /></a>
 
-<!-- badges: start -->
-
-[![Travis build
-status](https://travis-ci.org/nhs-r-community/NHSRdatasets.svg?branch=master)](https://travis-ci.org/nhs-r-community/NHSRdatasets)
+<https://nhsrcommunity.com/>
+<https://api.travis-ci.org/nhs-r-community/NHSRdatasets.svg?branch=master>
+<!-- badges: start --> [![Travis build
+status](https://api.travis-ci.org/nhs-r-community/NHSRdatasets.svg?branch=master)](https://travis-ci.org/nhs-r-community/NHSRdatasets)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -14,6 +14,8 @@ version](http://www.r-pkg.org/badges/version/NHSRdatasets)](http://cran.r-projec
 <!-- badges: end -->
 
 <br><br>
+
+<https://nhsrcommunity.com/>
 
 ## Datasources for reuse
 
