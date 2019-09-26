@@ -11,10 +11,9 @@ This is the second release of a collaborative dataset packaged for British Natio
   * Ubuntu Linux 16.04 LTS, R-release, GCC
   * Fedora Linux, R-devel, clang, gfortran
   
-Currently error on Solaris via R-hub, but nowhere else as 'Modelmetrics' package, used in a vignette, is not available on their Solaris R build. Builds correctly with no errors on all other platforms.
 
 ## R CMD check results
 There were no ERRORs, WARNINGs OR NOTES.
 
 ## Downstream dependencies
-There are currently no downstream dependencies for this package.
+There are no known downstream dependencies for this package.
