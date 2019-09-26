@@ -1,49 +1,12 @@
----
-title: "ae_attendances dataset"
-author:
-- '[Tom Jemmett](mailto:thomas.jemmett@nhs.net), [The Strategy Unit](https://www.strategyunitwm.nhs.uk/)'
-date: "15/08/2019"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{ae_attendances dataset}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
-```{r setup, include = FALSE}
+## ----setup, include = FALSE----------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
 options(tidyverse.quiet = TRUE)
-```
 
-This vigenette explains how to use the `ae_attendances` dataset in R, and also
-details where it comes from and how it is generated.
-
-The data is sourced from [NHS England Statistical Work Areas](https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/)
-and is available under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
-
-The data contains all reported A&E attendances for the period April 2016 through
-March 2019
-
-The dataset contains:
-
-- __period__: the month that this activity relates to, stored as a date (1st of each month)
-- __org_code__: the [ODS](https://digital.nhs.uk/services/organisation-data-service)
-code for the organisation that this activity relates to
-- __type__: the [Department Type](https://digital.nhs.uk/services/organisation-data-service)
-for this activity, either 1, 2, or other
-- __attendances__: the number of attendances for this department type at this organisation
-for this month
-- __breaches__: the number of attendances that breached the 4 hour target
-- __admissions__: the number of attendances that resulted in an admission to the
-hospital
-
-First let's load some packages and the dataset and show the first 10 rows of data.
-
-```{r load data, message=TRUE, warning=TRUE}
+## ----load data, message=TRUE, warning=TRUE-------------------------------
 library(knitr)
 library(scales)
 library(ggrepel)
@@ -64,11 +27,8 @@ ae_attendances %>%
   head(10) %>%
   # format as a table
   kable()
-```
 
-We can calculate the 4 hours performance for England as a whole like so:
-
-```{r england performance}
+## ----england performance-------------------------------------------------
 england_performance <- ae_attendances %>%
   group_by(period) %>%
   summarise_at(vars(attendances, breaches), sum) %>%
@@ -84,11 +44,8 @@ england_performance %>%
   # show the first 10 rows and format as a table
   head(10) %>%
   kable()
-```
 
-We can now plot the monthly performance
-
-```{r england performance plot}
+## ----england performance plot--------------------------------------------
 ggplot(england_performance, aes(period, performance)) +
   geom_line() +
   geom_point() +
@@ -97,13 +54,8 @@ ggplot(england_performance, aes(period, performance)) +
        y = "% of attendances that met the 4 hour standard",
        title = "NHS England A&E 4 Hour Performance",
        caption = "Source: NHS England Statistical Work Areas (OGL v3.0)")
-```
 
-We can clearly see the "Winter Pressures" where performance drops.
-
-We can also inspect performance for the [different types of department](https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp):
-
-```{r england performance by type}
+## ----england performance by type-----------------------------------------
 ae_attendances %>%
   group_by(period, type) %>%
   summarise_if(is.numeric, sum) %>%
@@ -119,19 +71,8 @@ ae_attendances %>%
        title = "NHS England A&E 4 Hour Performance",
        subtitle = "By Department Type",
        caption = "Source: NHS England Statistical Work Areas (OGL v3.0)")
-```
 
-From this it appears as if only the type 1 departments have the seasonal
-drops, type 2 and "other" departments remain pretty consistent.
-
-## What are the best and worst trusts for performance?
-
-We could create a similar table of data for performance by each individual trust,
-but it would be useful to only look at trusts that have a type 1 department as
-it appears from the chart above that these departments have the largest
-variation.
-
-```{r performance_by_trust}
+## ----performance_by_trust------------------------------------------------
 performance_by_trust <- ae_attendances %>%
   group_by(org_code, period) %>%
   # make sure that this trust has a type 1 department
@@ -146,12 +87,8 @@ performance_by_trust %>%
   mutate_at(vars(performance), percent) %>%
   head(10) %>%
   kable()
-```
 
-From this table we can calculate the overall performance by each trust and then
-organise the trusts by their overall performance.
-
-```{r performance_by_trust_ranking}
+## ----performance_by_trust_ranking----------------------------------------
 performance_by_trust_ranking <- performance_by_trust %>%
   summarise(performance = 1 - sum(breaches) / sum(attendances)) %>%
   arrange(performance) %>%
@@ -163,9 +100,8 @@ head(performance_by_trust_ranking, 5)
 
 print("Top 5")
 tail(performance_by_trust_ranking, 5)
-```
 
-```{r performance_by_trust top 5 bottom 5 plot}
+## ----performance_by_trust top 5 bottom 5 plot----------------------------
 performance_by_trust %>%
   ungroup() %>%
   mutate_at(vars(org_code), fct_relevel, performance_by_trust_ranking) %>%
@@ -182,21 +118,8 @@ performance_by_trust %>%
        title = "NHS England A&E 4 Hour Performance",
        subtitle = "Bottom 5/Top 5 over the whole 3 years",
        caption = "Source: NHS England Statistical Work Areas (OGL v3.0)")
-```
 
-## Benchmarking
-
-It is sometimes useful to see how an organisation stacks up against all of the
-other organisations. Below we create a chart where each organisation is shown as
-a point, ordered by performance from left (highest performance) to right (lowest)
-performance.
-
-It's useful to indicate certain organisations on the chart, below I am showing
-the 3 organisations that are at the lower quartile, median and upper quartile,
-however you could change this to instead pick out specific organisations (using
-a reference table and `left_join` or hard coding with `case_when`).
-
-```{r bencmarking plot}
+## ----bencmarking plot----------------------------------------------------
 ae_attendances %>%
   filter(period == last(period)) %>%
   group_by(org_code) %>%
@@ -227,6 +150,4 @@ ae_attendances %>%
         axis.text.x = element_blank(),
         axis.line = element_line(),
         axis.ticks.y = element_line())
-```
-
 
