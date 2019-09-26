@@ -1,5 +1,5 @@
 ## Release summary
-This is the first release of a collaborative dataset packaged for British National Health Services NHS-R community. It contains datasets and vignettes to teach R.  It is likely to see periodic releases as we receive contributions.
+This is the second release of a collaborative dataset packaged for British National Health Services NHS-R community. It contains datasets and vignettes to teach R.  It is likely to see periodic releases as we receive contributions.
 
 ## Test environments
 * local windows 7, R 3.6.1
@@ -7,7 +7,8 @@ This is the first release of a collaborative dataset packaged for British Nation
 * ubuntu 16.04.6 LTS (on travis-ci), R 3.6.1
 * win-builder(devel)
 * r-hub:
-  * Ubuntu Linux 16.04 LTS, R-release, GCC, fedora-clang-devel
+  * Windows Server 2008 R2 SP1, R-devel, 32/64 bit
+  * Ubuntu Linux 16.04 LTS, R-release, GCC
   * Fedora Linux, R-devel, clang, gfortran
   
 Currently error on Solaris via R-hub, but nowhere else as 'Modelmetrics' package, used in a vignette, is not available on their Solaris R build. Builds correctly with no errors on all other platforms.
