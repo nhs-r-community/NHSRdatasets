@@ -25,5 +25,7 @@ Suggests:
     knitr, 
     rmarkdown,
     scales,
-    ggrepel
+    ggrepel,
+    lubridate,
+    knitr
 VignetteBuilder: knitr
