@@ -1,6 +1,6 @@
 destination: docs
 
-url: https://nhs-r-community.github.io/NHSRdatasets/
+url: https://nhs-r-community.github.io/NHSRdatasets
 
 navbar:
   type: default
