@@ -1,6 +1,8 @@
 ## Release summary
 This is the second release of a collaborative dataset packaged for British National Health Services NHS-R community. It contains datasets and vignettes to teach R.  It is likely to see periodic releases as we receive contributions.
 
+Previous CRAN submission comment about adding full link, rather than relative one, for CODE_OF_CONDUCT.md has been resolved.
+
 ## Test environments
 * local windows 7, R 3.6.1
 * local windows 10, R 3.6.1
