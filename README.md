@@ -67,5 +67,5 @@ in training or publications.
     Regulation (GDPR), or other relevant legislation.
 
 Please note that the ‘NHSRdatasets’ project is released with a
-[Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to
+[Contributor Code of Conduct](https://github.com/nhs-r-community/NHSRdatasets/blob/master/CODE_OF_CONDUCT.md). By contributing to
 this project, you agree to abide by its terms.
