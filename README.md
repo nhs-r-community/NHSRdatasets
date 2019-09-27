@@ -9,7 +9,7 @@ status](https://api.travis-ci.org/nhs-r-community/NHSRdatasets.svg?branch=master
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN
-version](http://www.r-pkg.org/badges/version/NHSRdatasets)](http://cran.r-project.org/package=NHSRdatasets)
+version](https://www.r-pkg.org/badges/version/NHSRdatasets)](https://cran.r-project.org/package=NHSRdatasets)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/NHSRdatasets)](https://cran.r-project.org/package=NHSRdatasets)
 <!-- badges: end -->
 
@@ -67,5 +67,6 @@ in training or publications.
     Regulation (GDPR), or other relevant legislation.
 
 Please note that the ‘NHSRdatasets’ project is released with a
-[Contributor Code of Conduct](https://github.com/nhs-r-community/NHSRdatasets/blob/master/CODE_OF_CONDUCT.md). By contributing to
-this project, you agree to abide by its terms.
+[Contributor Code of
+Conduct](https://github.com/nhs-r-community/NHSRdatasets/blob/master/CODE_OF_CONDUCT.md).
+By contributing to this project, you agree to abide by its terms.
