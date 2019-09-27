@@ -10,12 +10,12 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN
 version](http://www.r-pkg.org/badges/version/NHSRdatasets)](http://cran.r-project.org/package=NHSRdatasets)
-[![Downloads](https://cranlogs.r-pkg.org/badges/NHSRdataset)](https://cran.r-project.org/package=NHSRdataset)
+[![Downloads](https://cranlogs.r-pkg.org/badges/NHSRdatasets)](https://cran.r-project.org/package=NHSRdatasets)
 <!-- badges: end -->
 
 <br><br>
 
-<https://nhsrcommunity.com/>
+Please visit: <https://nhsrcommunity.com/>
 
 ## Datasources for reuse
 
