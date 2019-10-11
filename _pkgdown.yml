@@ -20,3 +20,11 @@ authors:
 twitter:
      icon: fa-lg fa-twitter
      href: http://twitter.com/NHSrCommunity
+
+development:
+  mode: auto
+
+template:
+  params:
+    ganalytics: UA-146859070-2
+
