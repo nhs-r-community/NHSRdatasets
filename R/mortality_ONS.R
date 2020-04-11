@@ -127,6 +127,7 @@ ONS <- tmp %>%
                                 TRUE ~ Categories))
 
 # Push date row to column names
+
   ons2010formattedJanitor <- row_to_names(ons2010formatted, 1)
 
   ons2010df <- ons2010formattedJanitor %>%
@@ -136,3 +137,7 @@ ONS <- tmp %>%
     mutate(serialdate = excel_numeric_to_date(as.numeric(weekName), date_system = "modern")) %>%
     group_by(`Week ended`) %>%
     mutate(WeekNo = row_number())
+
+# Save as RData file
+
+  save(ONS, file = "ONSMortalityData.RData")
