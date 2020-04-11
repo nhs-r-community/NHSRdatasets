@@ -3,7 +3,10 @@ library(janitor)
 library(tidyverse)
 
 
-# Main url source
+# Source and licence acknowledgement
+
+# This data has been made available through Office of National Statistics under the Open Government
+# Licence http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
 
 #https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales
 
