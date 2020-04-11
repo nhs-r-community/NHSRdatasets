@@ -128,7 +128,7 @@ ONS <- tmp %>%
 
 # Push date row to column names
 
-  ons2010formattedJanitor <- row_to_names(ons2010formatted, 1)
+  ons2010formattedJanitor <- row_to_names(ONS, 1)
 
   ons2010df <- ons2010formattedJanitor %>%
     pivot_longer(cols = -`Week ended`,
@@ -140,4 +140,4 @@ ONS <- tmp %>%
 
 # Save as RData file
 
-  save(ONS, file = "ONSMortalityData.RData")
+  save(ons2010df, file = "ONSMortality.RData")
