@@ -140,4 +140,4 @@ ONS <- tmp %>%
 
 # Save as RData file
 
-  save(ons2010df, file = "ONSMortality.RData")
+  save(ons2010df, file = "data/ONSMortality.RData")
