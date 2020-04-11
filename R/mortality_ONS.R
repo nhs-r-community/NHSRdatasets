@@ -139,8 +139,15 @@ ONS <- tmp %>%
                  values_to = "obs") %>%
     mutate(serialdate = excel_numeric_to_date(as.numeric(weekName), date_system = "modern")) %>%
     group_by(`Week ended`) %>%
-    mutate(WeekNo = row_number())
+    mutate(WeekNo = row_number()) %>%
+    ungroup()
 
 # Save as RData file
 
   save(ons2010df, file = "data/ONSMortality.RData")
+
+# Resave
+
+  library(cgwtools)
+
+  resave(ons2010df,file = 'data/ONSMortality.RData')
