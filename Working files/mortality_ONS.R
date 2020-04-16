@@ -157,15 +157,6 @@ files_list_sheets <- list.files(path = "Working files",
                          full.names = TRUE
                          )
 
-# df_list <- map(files_list_sheets,
-#                read_csv2,
-#                col_types = cols(.default = col_character()))
-#
-# names(df_list) <- paste0(substr(files_list_sheets, 19, 27),substr(files_list_sheets, 15, 18))
-
-# unlist but to lists
-# list2env(df_list ,.GlobalEnv)
-
 for(i in files_list_sheets) {
 
   x <- read_csv((i), col_types = cols(.default = col_character()))
@@ -321,9 +312,3 @@ Mortality <- do.call("rbind", list(Mortality2010,
   # Save as RData file
 
   save(Mortality, file = "data/ONSMortality.RData")
-
-# Resave
-
-  library(cgwtools)
-
-  resave(Mortality,file = 'data/ONSMortality.RData')
