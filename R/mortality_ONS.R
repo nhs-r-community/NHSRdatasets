@@ -14,6 +14,14 @@ library(lubridate)
 
 # Download data -----------------------------------------------------------
 
+# 2020 Format changed to xlsx from xls
+
+download.file(
+  "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2020/referencetablesweek142020.xlsx",
+  destfile = "2020Mortality.xlsx",
+  method = "wininet",
+  mode = "wb")
+
 # 2019
 download.file(
   "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2019/publishedweek522019.xls",
@@ -85,11 +93,39 @@ download.file(
   mode = "wb")
 
 
-# Extract all worksheets to individual csv -------------------------------------------------------------
+# Extract all worksheets to individual csv 2010-2019 -------------------------------------------------------------
 
 files_list <- list.files(path = "Working files",
                          pattern = "*.xls",
                          full.names = TRUE)
+
+
+read_then_csv <- function(sheet, path) {
+  pathbase <- path %>%
+    basename() %>%
+    tools::file_path_sans_ext()
+  path %>%
+    read_excel(sheet = sheet) %>%
+    write_csv(paste0(pathbase, "-", sheet, ".csv"))
+}
+
+
+for(j in 1:length(files_list)){
+
+  path <- paste0(files_list[j])
+
+  path %>%
+    excel_sheets() %>%
+    set_names() %>%
+    map(read_then_csv, path = path)
+}
+
+# Extract all worksheets to individual csv 2020 -------------------------------------------------------------
+
+files_list <- list.files(path = "Working files",
+                         pattern = "*.xlsx",
+                         full.names = TRUE)
+
 
 read_then_csv <- function(sheet, path) {
   pathbase <- path %>%
@@ -198,8 +234,9 @@ Mortality2015 <- formatFunction(`Working files/2015Mortality-Weekly Figures 2015
 
 
 # Format data 2016 - 2019 -------------------------------------------------
+# Format data 2020 - (added skip line)
 
-formatFunction2016 <- function(file){
+formatFunction2016 <- function(file, skip){
 
   ONS <- file %>%
     clean_names %>%
@@ -233,7 +270,7 @@ formatFunction2016 <- function(file){
 
   # Push date row to column names
 
-  onsFormattedJanitor <- row_to_names(ONS, 3)
+  onsFormattedJanitor <- row_to_names(ONS, skip)
 
   x <- onsFormattedJanitor %>%
     pivot_longer(cols = -`Week ended`,
@@ -253,10 +290,15 @@ formatFunction2016 <- function(file){
 }
 
 
-Mortality2016 <- formatFunction2016(`Working files/2016Mortality-Weekly figures 2016.csv`)
-Mortality2017 <- formatFunction2016(`Working files/2017Mortality-Weekly figures 2017.csv`)
-Mortality2018 <- formatFunction2016(`Working files/2018Mortality-Weekly figures 2018.csv`)
-Mortality2019 <- formatFunction2016(`Working files/2019Mortality-Weekly figures 2019.csv`)
+Mortality2016 <- formatFunction2016(`Working files/2016Mortality-Weekly figures 2016.csv`, 3)
+Mortality2017 <- formatFunction2016(`Working files/2017Mortality-Weekly figures 2017.csv`, 3)
+Mortality2018 <- formatFunction2016(`Working files/2018Mortality-Weekly figures 2018.csv`, 3)
+Mortality2019 <- formatFunction2016(`Working files/2019Mortality-Weekly figures 2019.csv`, 3)
+
+
+
+
+Mortality2020 <- formatFunction2016(`Working files/2020Mortality-Weekly figures 2020.csv`, 4)
 
 
 # Bind together -----------------------------------------------------------
