@@ -1,7 +1,8 @@
 library(readxl)
 library(janitor)
 library(tidyverse)
-
+library(stringi)
+library(lubridate)
 
 # Source and licence acknowledgement
 
@@ -113,28 +114,35 @@ for(j in 1:length(files_list)){
 
 # Reload just weekly figure worksheet -------------------------------------
 
+# From 2010 to 2015 the tab name was Weekly Figures then it changed capitisation to Weekly figures
+
 files_list_sheets <- list.files(path = "Working files",
-                         pattern = "Weekly Figures",
-                         full.names = TRUE)
+                         pattern = "Weekly",
+                         full.names = TRUE
+                         )
 
-filesCsv = lapply(files_list_sheets, read_csv)
+# df_list <- map(files_list_sheets,
+#                read_csv2,
+#                col_types = cols(.default = col_character()))
+#
+# names(df_list) <- paste0(substr(files_list_sheets, 19, 27),substr(files_list_sheets, 15, 18))
 
-#xlist <- list.files(pattern = "*.csv")
+# unlist but to lists
+# list2env(df_list ,.GlobalEnv)
 
 for(i in files_list_sheets) {
 
-  x <- read.csv((i))
+  x <- read_csv((i), col_types = cols(.default = col_character()))
 
   assign(i, x)
 }
 
+# Format data 2010 - 2016 -----------------------------------------------------------
 
-# Format data -----------------------------------------------------------
+formatFunction <- function(file){
 
-ONS <- x %>%
-  # mutate(`...2` = as.numeric(as.character(`...2`))) %>%
+ONS <- file %>%
   clean_names %>%
-  #  mutate(`...2` = as.numeric(as.character(`...2`))) %>%
   remove_empty(c("rows","cols")) %>%
   filter(!contents %in% c('week over the previous five years1',
                           'Deaths by underlying cause2,3',
@@ -147,8 +155,8 @@ ONS <- x %>%
                           'Source: Office for National Statistics',
                           'Deaths by age group'
   )) %>%
-  mutate(Category = case_when(is.na(`...2`) & str_detect(contents, " 4") ~ str_replace(contents, " 4", ""),
-                              is.na(`...2`) & str_detect(contents, " 5") ~ "Region")
+  mutate(Category = case_when(is.na(x2) & str_detect(contents, " 4") ~ str_replace(contents, " 4", ""),
+                              is.na(x2) & str_detect(contents, " 5") ~ "Region")
   ) %>%
   select(contents, Category, everything()) %>%
   fill(Category) %>%
@@ -162,25 +170,118 @@ ONS <- x %>%
 
 # Push date row to column names
 
-ons2010formattedJanitor <- row_to_names(ONS, 3)
+onsFormattedJanitor <- row_to_names(ONS, 3)
 
-x <- ons2010formattedJanitor %>%
+x <- onsFormattedJanitor %>%
   pivot_longer(cols = -`Week ended`,
-               names_to = "ExcelSerialDate",
+               names_to = "allDates",
                values_to = "Counts") %>%
-  mutate(Date = excel_numeric_to_date(as.numeric(ExcelSerialDate), date_system = "modern")) %>%
+  mutate(realDate = dmy(allDates),
+         ExcelSerialDate = case_when(stri_length(allDates) == 5 ~ excel_numeric_to_date(as.numeric(allDates), date_system = "modern")),
+         Date = case_when(is.na(realDate) ~ ExcelSerialDate,
+                          TRUE ~ realDate)) %>%
   group_by(`Week ended`) %>%
   mutate(WeekNo = row_number()) %>%
   ungroup() %>%
   rename(Category = `Week ended`)
 
+return(x)
 
-# Save as RData file
+}
 
-  save(ons2010df, file = "data/ONSMortality.RData")
+Mortality2010 <- formatFunction(`Working files/2010Mortality-Weekly Figures 2010.csv`)
+Mortality2011 <- formatFunction(`Working files/2011Mortality-Weekly Figures 2011.csv`)
+Mortality2012 <- formatFunction(`Working files/2012Mortality-Weekly Figures 2012.csv`)
+Mortality2013 <- formatFunction(`Working files/2013Mortality-Weekly Figures 2013.csv`)
+Mortality2014 <- formatFunction(`Working files/2014Mortality-Weekly Figures 2014.csv`)
+Mortality2015 <- formatFunction(`Working files/2015Mortality-Weekly Figures 2015.csv`)
+
+
+# Format data 2016 - 2019 -------------------------------------------------
+
+formatFunction2016 <- function(file){
+
+  ONS <- file %>%
+    clean_names %>%
+    mutate(x2 = case_when(is.na(x2) ~ contents,
+                              TRUE ~ x2)) %>%
+    remove_empty(c("rows","cols")) %>%
+    select(-contents) %>%
+    filter(!x2 %in% c('week over the previous five years1',
+                            'Deaths by underlying cause2,3',
+                            'Footnotes',
+                            '1 This average is based on the actual number of death registrations recorded for each corresponding week over the previous five years. Moveable public holidays, when register offices are closed, affect the number of registrations made in the published weeks and in the corresponding weeks in previous years.',
+                            '2 Counts of deaths by underlying cause exclude deaths at age under 28 days.',
+                            '3 Coding of deaths by underlying cause for the latest week is not yet complete.',
+                            "4Does not include deaths where age is either missing or not yet fully coded. For this reason counts of 'Persons', 'Males' and 'Females' may not sum to 'Total Deaths, all ages'.",
+                            '5 Does not include deaths of those resident outside England and Wales or those records where the place of residence is either missing or not yet fully coded. For this reason counts for "Deaths by Region of usual residence" may not sum to "Total deaths, all ages".',
+                            'Source: Office for National Statistics',
+                            'Deaths by age group'
+    )) %>%
+    mutate(Category = case_when(is.na(x3) & str_detect(x2, " 4") ~ str_replace(x2, " 4", ""),
+                                is.na(x3) & str_detect(x2, " 5") ~ "Region")
+    ) %>%
+    select(x2, Category, everything()) %>%
+    fill(Category) %>%
+    filter(!x2 %in% c('Persons 4',
+                            'Males 4',
+                            'Females 4')) %>%
+    unite("Categories", Category, x2) %>%
+    filter(Categories != 'Region_Deaths by Region of usual residence 5') %>%
+    mutate(Categories = case_when(str_detect(Categories, "NA_") ~ str_replace(Categories, "NA_", ""),
+                                  TRUE ~ Categories))
+
+  # Push date row to column names
+
+  onsFormattedJanitor <- row_to_names(ONS, 3)
+
+  x <- onsFormattedJanitor %>%
+    pivot_longer(cols = -`Week ended`,
+                 names_to = "allDates",
+                 values_to = "Counts") %>%
+    mutate(realDate = dmy(allDates),
+           ExcelSerialDate = case_when(stri_length(allDates) == 5 ~ excel_numeric_to_date(as.numeric(allDates), date_system = "modern")),
+           Date = case_when(is.na(realDate) ~ ExcelSerialDate,
+                            TRUE ~ realDate)) %>%
+    group_by(`Week ended`) %>%
+    mutate(WeekNo = row_number()) %>%
+    ungroup() %>%
+    rename(Category = `Week ended`)
+
+  return(x)
+
+}
+
+
+Mortality2016 <- formatFunction2016(`Working files/2016Mortality-Weekly figures 2016.csv`)
+Mortality2017 <- formatFunction2016(`Working files/2017Mortality-Weekly figures 2017.csv`)
+Mortality2018 <- formatFunction2016(`Working files/2018Mortality-Weekly figures 2018.csv`)
+Mortality2019 <- formatFunction2016(`Working files/2019Mortality-Weekly figures 2019.csv`)
+
+
+# Bind together -----------------------------------------------------------
+
+Mortality <- do.call("rbind", list(Mortality2010,
+                      Mortality2011,
+                      Mortality2012,
+                      Mortality2013,
+                      Mortality2014,
+                      Mortality2015,
+                      Mortality2016,
+                      Mortality2017,
+                      Mortality2018,
+                      Mortality2019)) %>%
+  select(-allDates,
+         -realDate,
+         -ExcelSerialDate)
+
+
+  # Save as RData file
+
+  save(Mortality, file = "data/ONSMortality.RData")
 
 # Resave
 
   library(cgwtools)
 
-  resave(ons2010df,file = 'data/ONSMortality.RData')
+  resave(Mortality,file = 'data/ONSMortality.RData')
