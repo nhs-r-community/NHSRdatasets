@@ -11,3 +11,4 @@ README.Rmd
 ^docs$
 ^pkgdown$
 ^README\.Rmd$
+^working_files$
