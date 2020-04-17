@@ -5,6 +5,7 @@ Version: 0.1.2
 Authors@R: c(
           person("Chris", "Mainey", ,"chris.mainey@uhb.nhs.uk", c("aut", "cre"), comment = c(ORCID ="0000-0002-3018-6171")),
           person("Tom", "Jemmett", ,"thomas.jemmett@nhs.net", "aut", comment = c(ORCID="0000-0002-6943-2990")),
+          person("Zoe", "Turner", , "zoe.turner@nhs.net", "aut" ),
           person("NHS-R community", role = "cph")
           )
 Maintainer: Chris Mainey <chris.mainey@uhb.nhs.uk>
@@ -12,7 +13,7 @@ Description: Free United Kingdom National Health Service (NHS) and other healthc
 License: CC0
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Depends: R (>= 3.5.0)
 BugReports: https://github.com/nhs-r-community/NHSRdatasets/issues
 Suggests: 
@@ -28,6 +29,7 @@ Suggests:
     lubridate,
     tidyr,
     forcats,
-    knitr
+    knitr,
+    janitor
 VignetteBuilder: knitr
 URL: https://github.com/nhs-r-community/NHSRdatasets, https://nhs-r-community.github.io/NHSRdatasets/
