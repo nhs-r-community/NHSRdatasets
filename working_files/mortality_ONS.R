@@ -95,7 +95,7 @@ download.file(
 
 # Extract all worksheets to individual csv 2010-2019 -------------------------------------------------------------
 
-files_list <- list.files(path = "Working files",
+files_list <- list.files(path = "working_files",
                          pattern = "*.xls",
                          full.names = TRUE)
 
@@ -122,7 +122,7 @@ for(j in 1:length(files_list)){
 
 # Extract all worksheets to individual csv 2020 -------------------------------------------------------------
 
-files_list <- list.files(path = "Working files",
+files_list <- list.files(path = "working_files",
                          pattern = "*.xlsx",
                          full.names = TRUE)
 
@@ -152,7 +152,7 @@ for(j in 1:length(files_list)){
 
 # From 2010 to 2015 the tab name was Weekly Figures then it changed capitisation to Weekly figures
 
-files_list_sheets <- list.files(path = "Working files",
+files_list_sheets <- list.files(path = "working_files",
                          pattern = "Weekly",
                          full.names = TRUE
                          )
@@ -216,12 +216,12 @@ return(x)
 
 }
 
-Mortality2010 <- formatFunction(`Working files/2010Mortality-Weekly Figures 2010.csv`)
-Mortality2011 <- formatFunction(`Working files/2011Mortality-Weekly Figures 2011.csv`)
-Mortality2012 <- formatFunction(`Working files/2012Mortality-Weekly Figures 2012.csv`)
-Mortality2013 <- formatFunction(`Working files/2013Mortality-Weekly Figures 2013.csv`)
-Mortality2014 <- formatFunction(`Working files/2014Mortality-Weekly Figures 2014.csv`)
-Mortality2015 <- formatFunction(`Working files/2015Mortality-Weekly Figures 2015.csv`)
+Mortality2010 <- formatFunction(`working_files/2010Mortality-Weekly Figures 2010.csv`)
+Mortality2011 <- formatFunction(`working_files/2011Mortality-Weekly Figures 2011.csv`)
+Mortality2012 <- formatFunction(`working_files/2012Mortality-Weekly Figures 2012.csv`)
+Mortality2013 <- formatFunction(`working_files/2013Mortality-Weekly Figures 2013.csv`)
+Mortality2014 <- formatFunction(`working_files/2014Mortality-Weekly Figures 2014.csv`)
+Mortality2015 <- formatFunction(`working_files/2015Mortality-Weekly Figures 2015.csv`)
 
 
 # Format data 2016 - 2019 -------------------------------------------------
@@ -281,15 +281,15 @@ formatFunction2016 <- function(file, skip){
 }
 
 
-Mortality2016 <- formatFunction2016(`Working files/2016Mortality-Weekly figures 2016.csv`, 3)
-Mortality2017 <- formatFunction2016(`Working files/2017Mortality-Weekly figures 2017.csv`, 3)
-Mortality2018 <- formatFunction2016(`Working files/2018Mortality-Weekly figures 2018.csv`, 3)
-Mortality2019 <- formatFunction2016(`Working files/2019Mortality-Weekly figures 2019.csv`, 3)
+Mortality2016 <- formatFunction2016(`working_files/2016Mortality-Weekly figures 2016.csv`, 3)
+Mortality2017 <- formatFunction2016(`working_files/2017Mortality-Weekly figures 2017.csv`, 3)
+Mortality2018 <- formatFunction2016(`working_files/2018Mortality-Weekly figures 2018.csv`, 3)
+Mortality2019 <- formatFunction2016(`working_files/2019Mortality-Weekly figures 2019.csv`, 3)
 
 
 
 
-Mortality2020 <- formatFunction2016(`Working files/2020Mortality-Weekly figures 2020.csv`, 4)
+Mortality2020 <- formatFunction2016(`working_files/2020Mortality-Weekly figures 2020.csv`, 4)
 
 
 # Bind together -----------------------------------------------------------
