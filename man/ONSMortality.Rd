@@ -32,8 +32,9 @@ Licence \url{http://www.nationalarchives.gov.uk/doc/open-government-licence/vers
 data(ONSMortality)
 
 library(dplyr)
+library(tidyr)
 
-wideForm <- Mortality \%>\%
+wideForm <- ONSMortality \%>\%
  select(-WeekNo) \%>\%
  pivot_wider(names_from = Date,
              values_from = Counts

@@ -28,6 +28,7 @@
 #' data(ONSMortality)
 #'
 #'library(dplyr)
+#'library(tidyr)
 #'
 #'wideForm <- ONSMortality %>%
 #'  select(-WeekNo) %>%
