@@ -29,7 +29,7 @@
 #'
 #'library(dplyr)
 #'
-#'wideForm <- Mortality %>%
+#'wideForm <- ONSMortality %>%
 #'  select(-WeekNo) %>%
 #'  pivot_wider(names_from = Date,
 #'              values_from = Counts
