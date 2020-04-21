@@ -126,9 +126,10 @@
 <p><strong>To contribute, please:</strong></p>
 <ul>
 <li>Fork the repository.</li>
-<li>Add your dataset in the <code>data</code> folder, in <code>.RData</code> format.</li>
+<li>Add your dataset in the <code>data</code> folder, in <code>.rda</code> format. The best way to do this is with the <code>usethis</code> package with “gzip” compression: <code>usethis::use_data(data, compress="gzip")</code>
+</li>
 <li>Please add a minimal <code>R</code> function to act as a help file. You can use the <code>LOS_model</code> as a guide.</li>
-<li>Consider adding a <code>vignette</code> demonstrating how the data has been used previously.</li>
+<li>Please add a <code>vignette</code> demonstrating how the data has been/can be used.</li>
 <li>Create a pull request, detailing your additions, and we will review it before merging.</li>
 </ul>
 <p><br><strong><em>When contributing a dataset, the contributor certifies that:</em></strong></p>
