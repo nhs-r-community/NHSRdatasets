@@ -18,7 +18,6 @@ Depends: R (>= 3.5.0)
 BugReports: https://github.com/nhs-r-community/NHSRdatasets/issues
 Imports: tibble
 Suggests: 
-    dplyr,
     ggplot2,
     lme4,
     MASS,
@@ -34,3 +33,6 @@ Suggests:
     janitor
 VignetteBuilder: knitr
 URL: https://github.com/nhs-r-community/NHSRdatasets, https://nhs-r-community.github.io/NHSRdatasets/
+Imports: 
+    dplyr,
+    httr
