@@ -16,6 +16,7 @@ LazyData: true
 RoxygenNote: 7.1.0
 Depends: R (>= 3.5.0)
 BugReports: https://github.com/nhs-r-community/NHSRdatasets/issues
+Imports: tibble
 Suggests: 
     dplyr,
     ggplot2,
