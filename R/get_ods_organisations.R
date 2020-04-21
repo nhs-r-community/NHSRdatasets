@@ -162,6 +162,7 @@ get_ods_organisations <- function(name = as.character(NA),
 }
 
 #' @rdname get_ods_organisations
+#' @export
 get_ods_trusts <- function(name = as.character(NA),
                            post_code = as.character(NA),
                            last_change_date = as.Date(NA),
@@ -178,6 +179,7 @@ get_ods_trusts <- function(name = as.character(NA),
 }
 
 #' @rdname get_ods_organisations
+#' @export
 get_ods_trust_sites <- function(name = as.character(NA),
                                 post_code = as.character(NA),
                                 last_change_date = as.Date(NA),
@@ -194,6 +196,7 @@ get_ods_trust_sites <- function(name = as.character(NA),
 }
 
 #' @rdname get_ods_organisations
+#' @export
 get_ods_ccgs <- function(name = as.character(NA),
                          post_code = as.character(NA),
                          last_change_date = as.Date(NA),
