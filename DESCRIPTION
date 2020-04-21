@@ -29,10 +29,10 @@ Suggests:
     lubridate,
     tidyr,
     forcats,
-    knitr,
-    janitor
+    knitr
 VignetteBuilder: knitr
 URL: https://github.com/nhs-r-community/NHSRdatasets, https://nhs-r-community.github.io/NHSRdatasets/
 Imports: 
     dplyr,
-    httr
+    httr,
+    janitor

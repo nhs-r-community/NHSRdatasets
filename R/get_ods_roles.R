@@ -4,6 +4,10 @@ ODS_API_ENDPOINT <- "https://directory.spineservices.nhs.uk/ORD/2-0-0/"
 #'
 #' This function queries the \href{https://digital.nhs.uk/services/organisation-data-service/guidance-for-developers/roles-endpoint}{ODS Roles API}.
 #'
+#' Each organisation that is in the ODS organisations API will have a primary
+#' role (e.g. NHS TRUST) and can have secondary roles. These role ids can be
+#' used to query the Organisations api.
+#'
 #' @return A tibble containing the roles that can be used to query the ODS
 #'         organisations api (with get_ods_organisations())
 #'
@@ -11,6 +15,7 @@ ODS_API_ENDPOINT <- "https://directory.spineservices.nhs.uk/ORD/2-0-0/"
 #'
 #' @importFrom dplyr bind_rows
 #' @importFrom httr GET status_code content
+#' @importFrom janitor clean_names
 #'
 #' @examples
 #' \dontrun{
@@ -25,5 +30,7 @@ get_ods_roles <- function() {
     stop("unable to load data from API")
   }
 
-  dplyr::bind_rows(httr::content(res)[["Roles"]])
+  roles <- dplyr::bind_rows(httr::content(res)[["Roles"]])
+
+  janitor::clean_names(roles)
 }
