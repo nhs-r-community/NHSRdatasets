@@ -47,11 +47,13 @@ in training or publications.
 **To contribute, please:**
 
   - Fork the repository.
-  - Add your dataset in the `data` folder, in `.RData` format.
+  - Add your dataset in the `data` folder, in `.rda` format. The best
+    way to do this is with the `usethis` package with “gzip”
+    compression: `usethis::use_data(data, compress="gzip")`
   - Please add a minimal `R` function to act as a help file. You can use
     the `LOS_model` as a guide.
-  - Consider adding a `vignette` demonstrating how the data has been
-    used previously.
+  - Please add a `vignette` demonstrating how the data has been/can be
+    used.
   - Create a pull request, detailing your additions, and we will review
     it before merging.
 
