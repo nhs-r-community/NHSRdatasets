@@ -16,7 +16,6 @@ LazyData: true
 RoxygenNote: 7.1.0
 Depends: R (>= 3.5.0)
 BugReports: https://github.com/nhs-r-community/NHSRdatasets/issues
-Imports: tibble
 Suggests: 
     ggplot2,
     lme4,
@@ -28,11 +27,14 @@ Suggests:
     ggrepel,
     tidyr,
     forcats,
-    knitr
+    knitr,
+    testthat,
+    mockery
 VignetteBuilder: knitr
 URL: https://github.com/nhs-r-community/NHSRdatasets, https://nhs-r-community.github.io/NHSRdatasets/
 Imports: 
     dplyr,
     httr,
     janitor,
-    lubridate
+    lubridate,
+    tibble
