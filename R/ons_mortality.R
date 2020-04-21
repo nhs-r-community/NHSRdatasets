@@ -22,18 +22,18 @@
 #'
 #' @source Collected by Zoë Turner \email{zoe.turner2@nottshc.nhs.uk}, Apr-2020 from \url{https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales}
 #'
-#' @usage data(ONSMortality)
+#' @usage data(ons_mortality)
 #'
 #' @examples
-#' data(ONSMortality)
+#' data(ons_mortality)
 #'
 #'library(dplyr)
 #'library(tidyr)
 #'
-#'wideForm <- ONSMortality %>%
-#'  select(-WeekNo) %>%
-#'  pivot_wider(names_from = Date,
-#'              values_from = Counts
+#'wideForm <- ons_mortality %>%
+#'  select(-week_no) %>%
+#'  pivot_wider(names_from = date,
+#'              values_from = counts
 #'  )
 #'
-"ONSMortality"
+"ons_mortality"
