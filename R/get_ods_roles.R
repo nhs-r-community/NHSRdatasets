@@ -9,7 +9,7 @@ ODS_API_ENDPOINT <- "https://directory.spineservices.nhs.uk/ORD/2-0-0/"
 #' used to query the Organisations api.
 #'
 #' @return A tibble containing the roles that can be used to query the ODS
-#'         organisations api (with get_ods_organisations())
+#'         organisations api (with \code{\link{get_ods_organisations}})
 #'
 #' @export
 #'

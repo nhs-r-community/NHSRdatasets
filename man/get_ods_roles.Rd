@@ -8,10 +8,15 @@ get_ods_roles()
 }
 \value{
 A tibble containing the roles that can be used to query the ODS
-        organisations api (with get_ods_organisations())
+        organisations api (with \code{\link{get_ods_organisations}})
 }
 \description{
 This function queries the \href{https://digital.nhs.uk/services/organisation-data-service/guidance-for-developers/roles-endpoint}{ODS Roles API}.
+}
+\details{
+Each organisation that is in the ODS organisations API will have a primary
+role (e.g. NHS TRUST) and can have secondary roles. These role ids can be
+used to query the Organisations api.
 }
 \examples{
 \dontrun{
