@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • NHSRdatasets</title>
+<title>Deaths registered weekly in England and Wales, provisional — ons_mortality • NHSRdatasets</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Deaths registered weekly in England and Wales, provisional — ons_mortality" />
+<meta property="og:description" content="Provisional counts of the number of deaths registered in England and Wales, by age, sex and region, in the latest weeks for which data are available." />
 <meta property="og:image" content="https://nhs-r-community.github.io/NHSRdatasets/logo.png" />
 
 
@@ -76,7 +77,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -144,54 +145,56 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Deaths registered weekly in England and Wales, provisional</h1>
+    <small class="dont-index">Source: <a href='https://github.com/nhs-r-community/NHSRdatasets/blob/master/R/ons_mortality.R'><code>R/ons_mortality.R</code></a></small>
+    <div class="hidden name"><code>ons_mortality.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Provisional counts of the number of deaths registered in England and Wales, by age, sex and region, in the latest weeks for which data are available.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>ons_mortality</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="LOS_model.html">LOS_model</a></code> </p>
-        </td>
-        <td><p>Hospital Length of Stay (LOS) Data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ae_attendances.html">ae_attendances</a></code> </p>
-        </td>
-        <td><p>NHS England Accident &amp; Emergency Attendances and Admissions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ons_mortality.html">ons_mortality</a></code> </p>
-        </td>
-        <td><p>Deaths registered weekly in England and Wales, provisional</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>Data frame with five columns</p><dl'>
+<dt>Category</dt><dd><p>Data is released in groups: Totals, by age groups, males by age, females by age,
+All respiratory diseases (ICD-10 J00-J99)  ICD-10 v 2001 and by Region</p></dd>
+<dt>Counts</dt><dd><p>Counts of deaths in whole numbers</p></dd>
+<dt>Date</dt><dd><p>Provisional deaths are released on the Friday of every week.</p></dd>
+<dt>WeekNo</dt><dd><p>Following the format of the ONS spreadsheets each week is numbered sequentially within the year.</p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>Collected by Zoë Turner <a href='mailto:zoe.turner2@nottshc.nhs.uk'>zoe.turner2@nottshc.nhs.uk</a>, Apr-2020 from <a href='https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales'>https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales</a></p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Source and licence acknowledgement
+This data has been made available through Office of National Statistics under the Open Government
+Licence <a href='http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/'>http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</a></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>ons_mortality</span>)
+
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>tidyr</span>)
+
+<span class='no'>wideForm</span> <span class='kw'>&lt;-</span> <span class='no'>ons_mortality</span> <span class='kw'>%&gt;%</span>
+ <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='no'>week_no</span>) <span class='kw'>%&gt;%</span>
+ <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span>(<span class='kw'>names_from</span> <span class='kw'>=</span> <span class='no'>date</span>,
+             <span class='kw'>values_from</span> <span class='kw'>=</span> <span class='no'>counts</span>
+ )</div><div class='output co'>#&gt; <span class='warning'>Warning: Values in `counts` are not uniquely identified; output will contain list-cols.</span>
+#&gt; <span class='warning'>* Use `values_fn = list(counts = list)` to suppress this warning.</span>
+#&gt; <span class='warning'>* Use `values_fn = list(counts = length)` to identify where the duplicates arise</span>
+#&gt; <span class='warning'>* Use `values_fn = list(counts = summary_fun)` to summarise duplicates</span></div><div class='input'>
+</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
