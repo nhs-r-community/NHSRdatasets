@@ -104,7 +104,7 @@
       <h1 data-toc-skip>LOS_model: A simulated hospital length-of-stay dataset</h1>
                         <h4 class="author">Chris Mainey</h4>
             
-            <h4 class="date">2020-04-20</h4>
+            <h4 class="date">2020-04-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nhs-r-community/NHSRdatasets/blob/master/vignettes/LOS_model.Rmd"><code>vignettes/LOS_model.Rmd</code></a></small>
       <div class="hidden name"><code>LOS_model.Rmd</code></div>
@@ -137,13 +137,15 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"LOS_model"</span>)
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">LOS_model</span>)
-<span class="co">#&gt;   ID Organisation Age LOS Death</span>
-<span class="co">#&gt; 1  1       Trust1  55   2     0</span>
-<span class="co">#&gt; 2  2       Trust2  27   1     0</span>
-<span class="co">#&gt; 3  3       Trust3  93  12     0</span>
-<span class="co">#&gt; 4  4       Trust4  45   3     1</span>
-<span class="co">#&gt; 5  5       Trust5  70  11     0</span>
-<span class="co">#&gt; 6  6       Trust6  60   7     0</span>
+<span class="co">#&gt; # A tibble: 6 x 5</span>
+<span class="co">#&gt;      ID Organisation   Age   LOS Death</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;ord&gt;        &lt;int&gt; &lt;int&gt; &lt;int&gt;</span>
+<span class="co">#&gt; 1     1 Trust1          55     2     0</span>
+<span class="co">#&gt; 2     2 Trust2          27     1     0</span>
+<span class="co">#&gt; 3     3 Trust3          93    12     0</span>
+<span class="co">#&gt; 4     4 Trust4          45     3     1</span>
+<span class="co">#&gt; 5     5 Trust5          70    11     0</span>
+<span class="co">#&gt; 6     6 Trust6          60     7     0</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">LOS_model</span>)
 <span class="co">#&gt;        ID          Organisation      Age             LOS        </span>
@@ -293,12 +295,14 @@
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">LOS_model</span>$<span class="no">preds</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">glm_binomial2</span>, <span class="kw">type</span><span class="kw">=</span><span class="st">"response"</span>)
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">LOS_model</span>,<span class="fl">5</span>)
-<span class="co">#&gt;   ID Organisation Age LOS Death      preds</span>
-<span class="co">#&gt; 1  1       Trust1  55   2     0 0.13572744</span>
-<span class="co">#&gt; 2  2       Trust2  27   1     0 0.04700276</span>
-<span class="co">#&gt; 3  3       Trust3  93  12     0 0.14023994</span>
-<span class="co">#&gt; 4  4       Trust4  45   3     1 0.12928742</span>
-<span class="co">#&gt; 5  5       Trust5  70  11     0 0.28486502</span></pre></body></html></div>
+<span class="co">#&gt; # A tibble: 5 x 6</span>
+<span class="co">#&gt;      ID Organisation   Age   LOS Death  preds</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;ord&gt;        &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1 Trust1          55     2     0 0.136 </span>
+<span class="co">#&gt; 2     2 Trust2          27     1     0 0.0470</span>
+<span class="co">#&gt; 3     3 Trust3          93    12     0 0.140 </span>
+<span class="co">#&gt; 4     4 Trust4          45     3     1 0.129 </span>
+<span class="co">#&gt; 5     5 Trust5          70    11     0 0.285</span></pre></body></html></div>
 <p>We have added our predictions back into the original <code>data.frame</code> using the column name <code>preds</code>, and patient ID 1 has a risk of death of 0.136 or 13.6% probability of death. These predictions can be used in many different applications, but common uses of them are identifying the highest risk patients for clinical audit, comparing ratios of the observed deaths and expected deaths (sum of the probability), or risk-adjusted control chart monitoring.</p>
 </div>
 <div id="length-of-stay-los" class="section level2">
