@@ -152,7 +152,7 @@ for(j in 1:length(files_list)){
 
 # From 2010 to 2015 the tab name was Weekly Figures then it changed capitisation to Weekly figures
 
-files_list_sheets <- list.files(path = "working_files",
+files_list_sheets <- list.files(path = "Working files/Weekly",
                          pattern = "Weekly",
                          full.names = TRUE
                          )
@@ -183,13 +183,16 @@ ONS <- file %>%
                           'Deaths by age group'
   )) %>%
   mutate(Category = case_when(is.na(x2) & str_detect(contents, " 4") ~ str_replace(contents, " 4", ""),
-                              is.na(x2) & str_detect(contents, " 5") ~ "Region")
+                              is.na(x2) & str_detect(contents, "Region") ~ "Region",
+                              is.na(x2) & str_detect(contents, "Persons") ~ "Persons",
+                              is.na(x2) & str_detect(contents, "Females") ~ "Females",
+                              is.na(x2) & str_detect(contents, "Males") ~ "Males")
   ) %>%
   select(contents, Category, everything()) %>%
   fill(Category) %>%
-  filter(!contents %in% c('Persons 4',
-                          'Males 4',
-                          'Females 4')) %>%
+  filter(!str_detect(contents, 'Persons'),
+         !str_detect(contents, 'Males'),
+         !str_detect(contents, 'Females')) %>%
   unite("Categories", Category, contents) %>%
   filter(Categories != 'Region_Deaths by Region of usual residence 5') %>%
   mutate(Categories = case_when(str_detect(Categories, "NA_") ~ str_replace(Categories, "NA_", ""),
@@ -202,26 +205,56 @@ onsFormattedJanitor <- row_to_names(ONS, 3)
 x <- onsFormattedJanitor %>%
   pivot_longer(cols = -`Week ended`,
                names_to = "allDates",
-               values_to = "Counts") %>%
+               values_to = "counts") %>%
   mutate(realDate = dmy(allDates),
          ExcelSerialDate = case_when(stri_length(allDates) == 5 ~ excel_numeric_to_date(as.numeric(allDates), date_system = "modern")),
-         Date = case_when(is.na(realDate) ~ ExcelSerialDate,
+         date = case_when(is.na(realDate) ~ ExcelSerialDate,
                           TRUE ~ realDate)) %>%
   group_by(`Week ended`) %>%
-  mutate(WeekNo = row_number()) %>%
+  mutate(week_no = row_number()) %>%
   ungroup() %>%
-  rename(Category = `Week ended`)
+  rename(Category = `Week ended`) %>%
+  mutate(category_1 = case_when(str_detect(Category, ",") ~
+                                  substr(Category,1,str_locate(Category, ",") -1),
+                                str_detect(Category, ":") ~
+                                  substr(Category,1,str_locate(Category, ":") -1),
+                                str_detect(Category, "_") ~
+                                  substr(Category,1,str_locate(Category, "_") -1),
+                                str_detect(Category, "respiratory")  ~
+                                  "All respiratory diseases (ICD-10 J00-J99) ICD-10"),
+         category_2 = case_when(str_detect(Category, ",") ~
+                                  substr(Category,str_locate(Category, ", ") +2, str_length(Category)),
+                                str_detect(Category, ":") ~
+                                  substr(Category,str_locate(Category, ": ") +2, str_length(Category)),
+                                str_detect(Category, "_") ~
+                                  substr(Category,str_locate(Category, "_") +1, str_length(Category)),
+                                str_detect(Category, "respiratory")  ~
+                                  substr(Category,str_locate(Category, "v"), str_length(Category)) ),
+         category_2 = recode(category_2,
+                             "average of corresponding" = "average of same week over 5 years")) %>%
+  select(category_1,
+         category_2,
+         counts,
+         date,
+         week_no
+         ) %>%
+  filter(!is.na(counts),
+         counts != ":") %>%
+  fill(category_1)
 
 return(x)
 
 }
 
-Mortality2010 <- formatFunction(`working_files/2010Mortality-Weekly Figures 2010.csv`)
-Mortality2011 <- formatFunction(`working_files/2011Mortality-Weekly Figures 2011.csv`)
-Mortality2012 <- formatFunction(`working_files/2012Mortality-Weekly Figures 2012.csv`)
-Mortality2013 <- formatFunction(`working_files/2013Mortality-Weekly Figures 2013.csv`)
-Mortality2014 <- formatFunction(`working_files/2014Mortality-Weekly Figures 2014.csv`)
-Mortality2015 <- formatFunction(`working_files/2015Mortality-Weekly Figures 2015.csv`)
+Mortality2010 <- formatFunction(`Working files/Weekly/2010Mortality-Weekly Figures 2010.csv`)
+Mortality2011 <- formatFunction(`Working files/Weekly/2011Mortality-Weekly Figures 2011.csv`) %>%
+  mutate(category_2 = case_when(category_1 == "All respiratory diseases (ICD-10 J00-J99) ICD-10" ~ "v 2010",
+                                TRUE ~ category_2))
+
+Mortality2012 <- formatFunction(`Working files/Weekly/2012Mortality-Weekly Figures 2012.csv`)
+Mortality2013 <- formatFunction(`Working files/Weekly/2013Mortality-Weekly Figures 2013.csv`)
+Mortality2014 <- formatFunction(`Working files/Weekly/2014Mortality-Weekly Figures 2014.csv`)
+Mortality2015 <- formatFunction(`Working files/Weekly/2015Mortality-Weekly Figures 2015.csv`)
 
 
 # Format data 2016 - 2019 -------------------------------------------------
@@ -281,15 +314,15 @@ formatFunction2016 <- function(file, skip){
 }
 
 
-Mortality2016 <- formatFunction2016(`working_files/2016Mortality-Weekly figures 2016.csv`, 3)
-Mortality2017 <- formatFunction2016(`working_files/2017Mortality-Weekly figures 2017.csv`, 3)
-Mortality2018 <- formatFunction2016(`working_files/2018Mortality-Weekly figures 2018.csv`, 3)
-Mortality2019 <- formatFunction2016(`working_files/2019Mortality-Weekly figures 2019.csv`, 3)
+Mortality2016 <- formatFunction2016(`Working files/Weekly/2016Mortality-Weekly figures 2016.csv`, 3)
+Mortality2017 <- formatFunction2016(`Working files/Weekly/2017Mortality-Weekly figures 2017.csv`, 3)
+Mortality2018 <- formatFunction2016(`Working files/Weekly/2018Mortality-Weekly figures 2018.csv`, 3)
+Mortality2019 <- formatFunction2016(`Working files/Weekly/2019Mortality-Weekly figures 2019.csv`, 3)
 
 
 
 
-Mortality2020 <- formatFunction2016(`working_files/2020Mortality-Weekly figures 2020.csv`, 4)
+Mortality2020 <- formatFunction2016(`Working files/Weekly/2020Mortality-Weekly figures 2020.csv`, 4)
 
 
 # Bind together -----------------------------------------------------------
