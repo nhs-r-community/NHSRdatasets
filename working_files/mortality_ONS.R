@@ -354,6 +354,6 @@ ons_mortality <- do.call("rbind", list(
                       Mortality2019)) %>%
   mutate(counts = as.numeric(counts))
 
-  # Save as RData file
+  # Save as rda file
 
   save(ons_mortality, file = "data/ons_mortality.rda")
