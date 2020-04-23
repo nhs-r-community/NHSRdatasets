@@ -24,7 +24,7 @@ download.file(
 
 # Extract all worksheets to individual csv 2020 -------------------------------------------------------------
 
-files_list <- list.files(path = "working_files",
+files_list <- list.files(path = "Working files/Weekly",
                          pattern = "*.xlsx",
                          full.names = TRUE)
 
@@ -49,8 +49,35 @@ for(j in 1:length(files_list)){
     map(read_then_csv, path = path)
 }
 
-
 # Reload just weekly figure worksheet -------------------------------------
+
+# From 2010 to 2015 the tab name was Weekly Figures then it changed capitisation to Weekly figures
+
+files_list_sheets <- list.files(path = "Working files/Weekly",
+                                pattern = "Weekly figures 2020",
+                                full.names = TRUE
+)
+
+for(i in files_list_sheets) {
+
+  x <- read_csv((i), col_types = cols(.default = col_character()))
+
+  assign(i, x)
+}
+
+# Repeated code -----------------------------------------------------------
+
+remove_lookup <- c('week over the previous five years1',
+                   'Deaths by underlying cause2,3',
+                   'Footnotes',
+                   '1 This average is based on the actual number of death registrations recorded for each corresponding week over the previous five years. Moveable public holidays, when register offices are closed, affect the number of registrations made in the published weeks and in the corresponding weeks in previous years.',
+                   '2 Counts of deaths by underlying cause exclude deaths at age under 28 days.',
+                   '3 Coding of deaths by underlying cause for the latest week is not yet complete.',
+                   "4Does not include deaths where age is either missing or not yet fully coded. For this reason counts of 'Persons', 'Males' and 'Females' may not sum to 'Total Deaths, all ages'.",
+                   '5 Does not include deaths of those resident outside England and Wales or those records where the place of residence is either missing or not yet fully coded. For this reason counts for "Deaths by Region of usual residence" may not sum to "Total deaths, all ages".',
+                   'Source: Office for National Statistics',
+                   'Deaths by age group'
+)
 
 # Format data 2020 -------------------------------------------------
 
@@ -140,7 +167,8 @@ formatFunction2020 <- function(file){
            counts,
            date,
            week_no
-    )
+    ) %>%
+    filter(!is.na(counts))
 
   return(x)
 
@@ -151,21 +179,15 @@ Mortality2020 <- formatFunction2020(`Working files/Weekly/2020Mortality-Weekly f
 
 # Bind together -----------------------------------------------------------
 
-Mortality <- do.call("rbind", list(Mortality2010,
-                                   Mortality2011,
-                                   Mortality2012,
-                                   Mortality2013,
-                                   Mortality2014,
-                                   Mortality2015,
-                                   Mortality2016,
-                                   Mortality2017,
-                                   Mortality2018,
-                                   Mortality2019)) %>%
-  select(-allDates,
-         -realDate,
-         -ExcelSerialDate)
+load("data/ons_mortality.rda")
 
+ons_mortality <- do.call("rbind", list(ons_mortality,
+                                   Mortality2020))
 
-# Save as RData file
+# Save as rda file
 
-save(Mortality, file = "data/ONSMortality.RData")
+save(ons_mortality, file = "Working files/ons_mortality.rda")
+
+# Save as a csv file
+
+write_csv(ons_mortality, "Working files/ons_mortality.csv")
