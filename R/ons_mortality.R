@@ -13,8 +13,7 @@
 #'
 #' @format Data frame with five columns
 #' \describe{
-#' \item{Category}{Data is released in groups: Totals, by age groups, males by age, females by age,
-#' All respiratory diseases (ICD-10 J00-J99)  ICD-10 v 2001 and by Region}
+#' \item{category_1}{Data is released in groups and category_1 is the }
 #' \item{Counts}{Counts of deaths in whole numbers}
 #' \item{Date}{Provisional deaths are released on the Friday of every week.}
 #' \item{WeekNo}{Following the format of the ONS spreadsheets each week is numbered sequentially within the year.}
