@@ -144,7 +144,7 @@ for(j in 1:length(files_list)){
 
 # From 2010 to 2015 the tab name was Weekly Figures then it changed capitisation to Weekly figures
 
-files_list_sheets <- list.files(path = "Working files/Weekly",
+files_list_sheets <- list.files(path = "working_files",
                          pattern = "Weekly",
                          full.names = TRUE
                          )
