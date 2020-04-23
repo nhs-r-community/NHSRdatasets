@@ -1,0 +1,50 @@
+Contents,...2,...3,...4,...5,...6
+"Number of deaths involving COVID-19, registered and occurring and those reported on GOV.UK, and by NHS England up to 3 April 2020, England",NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA
+Date,Daily death counts released on GOV.UK,NHS England by date of death - As published on 12th April,ONS deaths by date of registration – registered by 3rd April,ONS deaths by actual date of death – registered by 3rd April,ONS deaths by actual date of death – registered by 11th April
+43895,1,12,0,3,4
+43896,2,15,0,3,4
+43897,2,16,0,3,4
+43898,3,21,0,5,6
+43899,6,23,1,8,10
+43900,6,24,2,9,11
+43901,8,31,3,14,16
+43902,10,40,3,23,26
+43903,20,55,5,35,39
+43904,34,77,5,52,56
+43905,53,105,5,79,83
+43906,67,151,16,114,121
+43907,98,190,28,161,171
+43908,135,249,46,221,234
+43909,167,306,72,285,298
+43910,222,401,105,378,397
+43911,257,493,105,481,507
+43912,303,624,105,631,663
+43913,385,749,158,785,828
+43914,412,905,224,988,1041
+43915,515,1116,343,1242,1312
+43916,679,1408,442,1546,1651
+43917,926,1737,620,1855,2028
+43918,1125,2066,640,2208,2438
+43919,1284,2639,645,2594,2907
+43920,1651,3198,1082,3012,3451
+43921,2166,3502,1630,3445,4091
+43922,2698,4057,2308,3768,4743
+43923,3302,4602,3092,3924,5423
+43924,3939,5186,3950,3950,5979
+NA,NA,NA,NA,NA,NA
+Footnotes,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA
+1 Data is provisional,NA,NA,NA,NA,NA
+2 Figures include deaths of non-residents.,NA,NA,NA,NA,NA
+3 Figures based on boundaries as of February 2020.,NA,NA,NA,NA,NA
+"4 Figures for deaths occurring only include deaths that were registered by the date indicated, so may be an underestimate due to registration delays. More information on registration delays for a range of causes can be found on the ONS website via the link below.",NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA
+Impact of registration delays on mortality statistics in England and Wales: 2018 (latest),NA,NA,NA,NA,NA
+"5 DHSC death counts are taken the next day. For example, deaths reported on the 6 March were used for 5th March. These figures are being worked on by DHSC and next week will require better reconciliation.",NA,NA,NA,NA,NA
+6 Counts are cumulative,NA,NA,NA,NA,NA
+7 NHS counts can be found on the link below,NA,NA,NA,NA,NA
+https://www.england.nhs.uk/statistics/statistical-work-areas/covid-19-daily-deaths/,NA,NA,NA,NA,NA
+8 NHS England and ONS occurrence data will be revised as more notifications and registrations are received,NA,NA,NA,NA,NA
