@@ -1,0 +1,47 @@
+Contents,...2,...3,...4,...5,...6,...7,...8,...9
+"Number of deaths involving COVID-19, registered and occurring and those reported on GOV.UK up to 3 April 2020, England and Wales",NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA
+Date,Daily death counts released on GOV.UK (E&W only),ONS deaths by date of registration – registered by 3rd April,ONS deaths by actual date of death – registered by 3rd April,ONS deaths by actual date of death – registered by 11th April,ONS deaths by date of registration – (England only) registered by 3rd April,ONS deaths by date of registration – (Wales only) registered by 3rd April,ONS deaths by actual date of death – (England only) registered by 11th April,ONS deaths by actual date of death – (Wales only) registered by 11th April
+43895,1,0,3,4,0,0,4,0
+43896,2,0,3,4,0,0,4,0
+43897,2,0,3,4,0,0,4,0
+43898,3,0,5,6,0,0,6,0
+43899,6,1,8,10,1,0,10,0
+43900,6,2,9,11,2,0,11,0
+43901,8,3,14,16,3,0,16,0
+43902,10,3,23,26,3,0,26,0
+43903,20,5,35,39,5,0,39,0
+43904,34,5,52,56,5,0,56,0
+43905,54,5,81,85,5,0,83,1
+43906,69,16,119,126,16,0,121,3
+43907,100,29,167,177,28,0,171,4
+43908,137,47,229,242,46,0,234,6
+43909,170,74,297,310,72,1,298,10
+43910,225,108,394,413,105,2,397,14
+43911,269,108,507,533,105,2,507,23
+43912,319,108,661,693,105,2,663,27
+43913,402,164,822,865,158,4,828,32
+43914,434,232,1036,1089,224,6,1041,43
+43915,543,357,1299,1370,343,12,1312,53
+43916,713,458,1617,1723,442,14,1651,64
+43917,964,647,1941,2117,620,23,2028,81
+43918,1173,667,2310,2543,640,23,2438,97
+43919,1346,672,2717,3034,645,23,2907,118
+43920,1720,1133,3148,3596,1082,45,3451,135
+43921,2264,1710,3597,4258,1630,71,4091,153
+43922,2815,2412,3928,4932,2308,94,4743,174
+43923,3443,3227,4094,5644,3092,123,5423,205
+43924,4093,4122,4123,6235,3950,157,5979,236
+NA,NA,NA,NA,NA,NA,NA,NA,NA
+Footnotes,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA
+1 Data is provisional,NA,NA,NA,NA,NA,NA,NA,NA
+2 Figures include deaths of non-residents.,NA,NA,NA,NA,NA,NA,NA,NA
+3 Figures based on boundaries as of February 2020.,NA,NA,NA,NA,NA,NA,NA,NA
+"4 Figures for deaths occurring only include deaths that were registered by the date indicated, so may be an underestimate due to registration delays. More information on registration delays for a range of causes can be found on the ONS website via the link below.",NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA
+Impact of registration delays on mortality statistics in England and Wales: 2018 (latest),NA,NA,NA,NA,NA,NA,NA,NA
+"5 DHSC death counts are taken the next day. For example, deaths reported on the 6 March were used for 5th March. These figures are being worked on by DHSC and next week will require better reconciliation.",NA,NA,NA,NA,NA,NA,NA,NA
+6 Counts are cumulative,NA,NA,NA,NA,NA,NA,NA,NA
