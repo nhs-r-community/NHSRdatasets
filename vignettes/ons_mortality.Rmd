@@ -1,19 +1,77 @@
-library(readxl)
-library(janitor)
-library(tidyverse)
-library(stringi)
-library(lubridate)
+---
+title: "Building the ONS mortality dataset"
+author: '[Zoë Turner](mailto:zoe.turner@nhs.net)'
+date: "23/04/2020"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ons_mortality dataset}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, eval=FALSE)
+
+```
+
+This vignette details why and how the `ons_mortality` dataset was created.
+
+The data were pulled together from the weekly xls spreadsheets provided by the Office of National Statistics (ONS) from 2010 to 2019 for training purposes and is a static data set.  
+
+Data is released every Friday and includes provisionally registered deaths for England and Wales for:
+
+- Total, all deaths
+- regions of usual residence
+- age bands (persons and for males/females) 
+- by underlying cause 'All respiratory diseases' (the methodology has changed over the years, see the subsection for more information)
+
+### Further notes taken from the spreadsheet:
+
+1 This average is based on the actual number of death registrations recorded for each corresponding week over the previous five years. Moveable public holidays, when register offices are closed, affect the number of registrations made in the published weeks and in the corresponding weeks in previous years.						
+						
+2 Counts of deaths by underlying cause exclude deaths at age under 28 days.						
+						
+3 Coding of deaths by underlying cause for the latest week is not yet complete.						
+						
+4 Does not include deaths where age is either missing or not yet fully coded. For this reason counts of 'Persons', 'Males' and 'Females' may not sum to 'Total Deaths, all ages'.						
+						
+5 Does not include deaths of those resident outside England and Wales or those records where the place of residence is either missing or not yet fully coded. For this reason counts for "Deaths by Region of usual residence" may not sum to "Total deaths, all ages".						
+						
+
+### Later confirmation of deaths					
+
+Aggregate numbers of deaths are later confirmed and released in by [ONS monthly](https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/monthlyfiguresondeathsregisteredbyareaofusualresidence). Numbers are released at a lower geographical level to the weekly data. 
+
+## Preparation of data
+
+In order to prepare this data for analysis the worksheet for weekly figures was extracted and the data was moved to long form and merged together over the available years. This was extracted in April 2020 when full previous years' data was available.
+
+The dataset contains:
+
+- __category_1:__ character, containing the names of the groups for counts, e.g. "Total deaths", "all ages".
+- __category_2:__ character, subcategory of names of groups where necessary, e.g. details of region: "East", details of age bands "15-44".
+- __counts:__ numeric, numbers of deaths in whole numbers and average numbers with decimal points. To retain the integrity of the format this column data is left as character.
+- __date:__ date, format is yyyy-mm-dd; all dates are a Friday.
+- __week_no:__ integer, each week in a year is numbered sequentially.
 
 # Source and licence acknowledgement
 
-# This data has been made available through Office of National Statistics under the Open Government
-# Licence http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+This data has been made available through Office of National Statistics under the [Open Government
+Licence](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
 
-#https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales
+The main page for downloads is [here](https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales).
+
+## Creating the dataset
+
+Spreadsheets are in xls format from 2010 to 2019.
+
+Each week is released with a new file name listing the week number and all weeks for that year are included in the spreadsheet. Counts for weeks ahead are missing and listed as NA. 
+
+When a year has passed it is renamed to the year name and does not change.
 
 
-# Download data -----------------------------------------------------------
-
+```{r webscraping}
 # 2019
 download.file(
   "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2019/publishedweek522019.xls",
@@ -84,8 +142,24 @@ download.file(
   method = "wininet",
   mode = "wb")
 
+```
 
-# Extract all worksheets to individual csv 2010-2019 -------------------------------------------------------------
+## Extracting worksheets to csv
+
+The data can be found in the worksheet called Weekly figures "date/year". Other worksheets in spreadsheets 2010 to 2019 are:
+
+- Contents
+- Information
+- Terms and conditions
+- Weekly figures <year>
+- Related publications
+
+The following code finds the tab name and then creates a csv file for each tab/worksheet.
+
+```{r extracting worksheets}
+
+library(readxl)
+library(dplyr)
 
 files_list <- list.files(path = "working_files",
                          pattern = "*.xls",
@@ -112,37 +186,15 @@ for(j in 1:length(files_list)){
     map(read_then_csv, path = path)
 }
 
-# Extract all worksheets to individual csv 2020 -------------------------------------------------------------
-
-files_list <- list.files(path = "working_files",
-                         pattern = "*.xlsx",
-                         full.names = TRUE)
+```
 
 
-read_then_csv <- function(sheet, path) {
-  pathbase <- path %>%
-    basename() %>%
-    tools::file_path_sans_ext()
-  path %>%
-    read_excel(sheet = sheet) %>%
-    write_csv(paste0(pathbase, "-", sheet, ".csv"))
-}
 
+## Loading the weekly figure worksheets
 
-for(j in 1:length(files_list)){
+From 2010 to 2015 the tab name was Weekly Figures then it changed capitalisation to Weekly figures.
 
-  path <- paste0(files_list[j])
-
-  path %>%
-    excel_sheets() %>%
-    set_names() %>%
-    map(read_then_csv, path = path)
-}
-
-
-# Reload just weekly figure worksheet -------------------------------------
-
-# From 2010 to 2015 the tab name was Weekly Figures then it changed capitisation to Weekly figures
+```{r load_files}
 
 files_list_sheets <- list.files(path = "working_files",
                          pattern = "Weekly",
@@ -156,9 +208,30 @@ for(i in files_list_sheets) {
   assign(i, x)
 }
 
+```
 
+## Format data functions
 
-# Repeated code -----------------------------------------------------------
+Two functions were required to format the spreadsheets as there were changes to the layout from 2016.
+
+Packages used: 
+
+- __janitor:__ a specific package for cleaning data from Excel used here to remove the blank lines and columns, convert Excel serial numbers to dates and to format all column headers by removing spaces in those header names and removing capitalisation.
+- __tidyverse:__ specifically dplyr for data manipulation. 
+- __stringi:__ a package to works with strings and was used to find certain characters or words.
+- __lubridate:__ a package to work with dates and used here to format dates to the same format.
+
+### 2010 - 2015
+
+```{r format function 2010 to 2015}
+
+library(janitor)
+library(tidyverse)
+library(stringi)
+library(lubridate)
+
+# Column names that are not related to data points to be removed. This is the same for all years' spreadsheets.
+# Note that single quotes are used for the categories as one sentence includes '' in the text (4). 
 
 remove_lookup <- c('week over the previous five years1',
   'Deaths by underlying cause2,3',
@@ -172,47 +245,61 @@ remove_lookup <- c('week over the previous five years1',
   'Deaths by age group'
 )
 
-# Format data 2010 - 2015 -----------------------------------------------------------
-
 formatFunction <- function(file){
 
 ONS <- file %>%
   clean_names %>%
   remove_empty(c("rows","cols")) %>%
   filter(!contents %in% remove_lookup) %>%
+  
+  # useful categories are found in the column contents but also include the footnote number
   mutate(Category = case_when(is.na(x2) & str_detect(contents, "Region") ~ "Region",
                               is.na(x2) & str_detect(contents, "Persons") ~ "Persons",
                               is.na(x2) & str_detect(contents, "Females") ~ "Females",
                               is.na(x2) & str_detect(contents, "Males") ~ "Males")
   ) %>%
   select(contents, Category, everything()) %>%
+  
+  # to ensure data like Persons, Males and Females 
   fill(Category) %>%
+  
+  # categories with Persons, Males and Females in the original column do not correspond directly to data points (wide form data) so are removed by referring to str_detect to find the word
   filter(!str_detect(contents, "Persons"),
          !str_detect(contents, "Males"),
          !str_detect(contents, "Females")) %>%
+  
+  # the two columns for Category and contents are merged to Categories to bring the Category column first. Some categories don't have subcategories and these are preceded by NA_ with this merge
   unite("Categories", Category, contents) %>%
-  filter(Categories != 'Region_Deaths by Region of usual residence 5') %>%
+  filter(Categories != "Region_Deaths by Region of usual residence 5") %>%
+  
+  # the NA_ is removed from some of the category names
   mutate(Categories = case_when(str_detect(Categories, "NA_") ~ str_replace(Categories, "NA_", ""),
                                 TRUE ~ Categories))
 
-# Push date row to column names
-
+  # Push date row to column names
 onsFormattedJanitor <- row_to_names(ONS, 3)
 
-# Move to long form and further formatting
-
+  # move data from wide to long form using pivot_longer
 x <- onsFormattedJanitor %>%
   pivot_longer(cols = -`Week ended`,
                names_to = "allDates",
                values_to = "counts") %>%
+  
+  # some spreadsheets import with Excel serial numbers for dates and others as dates, janitor is used to correct this
   mutate(realDate = dmy(allDates),
          ExcelSerialDate = case_when(stri_length(allDates) == 5 ~ excel_numeric_to_date(as.numeric(allDates), date_system = "modern")),
          date = case_when(is.na(realDate) ~ ExcelSerialDate,
                           TRUE ~ realDate)) %>%
   group_by(`Week ended`) %>%
+  
+  # the week number is replaced as this was lost with the moving of dates to the column headers
   mutate(week_no = row_number()) %>%
   ungroup() %>%
+  
+  # Category is a staging name as this is followed by a splitting of the column into category_1 and category_2
   rename(Category = `Week ended`) %>%
+  
+  # to split the columns there are various characters used as a split point ",", "-", and ":" in the respiratory category the version is denoted by "v"
   mutate(category_1 = case_when(str_detect(Category, ",") ~
                                   substr(Category,1,str_locate(Category, ",") -1),
                                 str_detect(Category, ":") ~
@@ -229,6 +316,8 @@ x <- onsFormattedJanitor %>%
                                   substr(Category,str_locate(Category, "_") +1, str_length(Category)),
                                 str_detect(Category, "respiratory")  ~
                                   substr(Category,str_locate(Category, "v"), str_length(Category)) ),
+         
+         # the data for Total deaths: average of corresponding week over the previous 5 years is split over two cells in the spreasheet
          category_2 = recode(category_2,
                              "average of corresponding" = "average of same week over 5 years")) %>%
   select(category_1,
@@ -237,37 +326,47 @@ x <- onsFormattedJanitor %>%
          date,
          week_no
          ) %>%
+  
+  # 2011 requires this code to remove rows where there are no counts and because there are 2 rows relating to respiratory death numbers (see the Respiratory section) the previous methodology has been included in the spreadsheet with : for counts. This code does not affect other years' data/
   filter(!is.na(counts),
-                  counts != ":") %>%
+         counts != ":") %>%
   fill(category_1)
-
 
 return(x)
 
 }
 
-Mortality2010 <- formatFunction(`Working files/Weekly/2010Mortality-Weekly Figures 2010.csv`)
-Mortality2011 <- formatFunction(`Working files/Weekly/2011Mortality-Weekly Figures 2011.csv`) %>%
+Mortality2010 <- formatFunction(`working_files/Weekly/2010Mortality-Weekly Figures 2010.csv`)
+
+# 2011 has two lines relating to respiratory, v 2001 only has one data point and the rest of the year is 2010
+Mortality2011 <- formatFunction(`working_files/Weekly/2011Mortality-Weekly Figures 2011.csv`) %>%
   mutate(category_2 = case_when(is.na(category_2) & category_1 == "All respiratory diseases (ICD-10 J00-J99) ICD-10" ~ "v 2010",
                                 TRUE ~ category_2))
 
-Mortality2012 <- formatFunction(`Working files/Weekly/2012Mortality-Weekly Figures 2012.csv`)
-Mortality2013 <- formatFunction(`Working files/Weekly/2013Mortality-Weekly Figures 2013.csv`)
-Mortality2014 <- formatFunction(`Working files/Weekly/2014Mortality-Weekly Figures 2014.csv`)
-Mortality2015 <- formatFunction(`Working files/Weekly/2015Mortality-Weekly Figures 2015.csv`)
+Mortality2012 <- formatFunction(`working_files/Weekly/2012Mortality-Weekly Figures 2012.csv`)
+Mortality2013 <- formatFunction(`working_files/Weekly/2013Mortality-Weekly Figures 2013.csv`)
+Mortality2014 <- formatFunction(`working_files/Weekly/2014Mortality-Weekly Figures 2014.csv`)
+Mortality2015 <- formatFunction(`working_files/Weekly/2015Mortality-Weekly Figures 2015.csv`)
 
+```
 
-# Format data 2016 - 2019 -------------------------------------------------
+#### Format data 2016 - 2019
+
+```{r format function 2016 to 2019}
 
 formatFunction2016 <- function(file){
 
   ONS <- file %>%
     clean_names %>%
+    
+    # An extra column has been added for region codes (not included in the dataset) meaning contents are now found in the janitor generated column name x2
     mutate(x2 = case_when(is.na(x2) ~ contents,
                               TRUE ~ x2)) %>%
     remove_empty(c("rows","cols")) %>%
     select(-contents) %>%
     filter(!x2 %in% remove_lookup) %>%
+    
+    # Region has changed to region
     mutate(Category = case_when(is.na(x3) & str_detect(x2, "region") ~ "Region",
                                 is.na(x3) & str_detect(x2, "Persons") ~ "Persons",
                                 is.na(x3) & str_detect(x2, "Females") ~ "Females",
@@ -276,20 +375,18 @@ formatFunction2016 <- function(file){
     ) %>%
     select(x2, Category, everything()) %>%
     fill(Category) %>%
-    filter(!str_detect(x2, "Persons"),
-           !str_detect(x2, "Males"),
-           !str_detect(x2, "Females")) %>%
+    filter(!str_detect(x2, 'Persons'),
+           !str_detect(x2, 'Males'),
+           !str_detect(x2, 'Females')) %>%
     unite("Categories", Category, x2) %>%
     filter(Categories != 'Region_Deaths by Region of usual residence 5') %>%
     mutate(Categories = case_when(str_detect(Categories, "NA_") ~ str_replace(Categories, "NA_", ""),
                                   TRUE ~ Categories))
 
   # Push date row to column names
-
   onsFormattedJanitor <- row_to_names(ONS, 3)
 
-  # Move to long form and further formatting
-
+  # move data from wide to long form using pivot_longer
   x <- onsFormattedJanitor %>%
     pivot_longer(cols = -`Week ended`,
                  names_to = "allDates",
@@ -326,20 +423,23 @@ formatFunction2016 <- function(file){
            date,
            week_no
     ) %>%
-    filter(!is.na(counts))
+    filter(!is.na(counts)) 
 
   return(x)
 
 }
 
 
-Mortality2016 <- formatFunction2016(`Working files/Weekly/2016Mortality-Weekly figures 2016.csv`)
-Mortality2017 <- formatFunction2016(`Working files/Weekly/2017Mortality-Weekly figures 2017.csv`)
-Mortality2018 <- formatFunction2016(`Working files/Weekly/2018Mortality-Weekly figures 2018.csv`)
-Mortality2019 <- formatFunction2016(`Working files/Weekly/2019Mortality-Weekly figures 2019.csv`)
+Mortality2016 <- formatFunction2016(`working_files/Weekly/2016Mortality-Weekly figures 2016.csv`)
+Mortality2017 <- formatFunction2016(`working_files/Weekly/2017Mortality-Weekly figures 2017.csv`)
+Mortality2018 <- formatFunction2016(`working_files/Weekly/2018Mortality-Weekly figures 2018.csv`)
+Mortality2019 <- formatFunction2016(`working_files/Weekly/2019Mortality-Weekly figures 2019.csv`)
 
+```
 
-# Bind together -----------------------------------------------------------
+## Bind together 
+
+```{r bind together}
 
 ons_mortality <- do.call("rbind", list(
                       Mortality2010,
@@ -351,9 +451,73 @@ ons_mortality <- do.call("rbind", list(
                       Mortality2016,
                       Mortality2017,
                       Mortality2018,
-                      Mortality2019)) %>%
-  mutate(counts = as.numeric(counts))
+                      Mortality2019))
 
-  # Save as rda file
+```
 
-  save(ons_mortality, file = "data/ons_mortality.rda")
+## Load the data 
+
+```{r load, warning=FALSE, message=FALSE}
+
+library(NHSRdatasets)
+library(dplyr)
+
+data("ons_mortality")
+
+```
+
+## Respiratory
+
+Deaths by underlying cause of respiratory diseases All respiratory diseases (ICD-10 J00-J99) appear as:
+
+```{r respiratory categories}
+
+ons_mortality %>% 
+  mutate(year = year(date)) %>% 
+  select(year, category_1, category_2) %>% 
+  group_by(year, category_1, category_2) %>% 
+  filter(category_1 == 'All respiratory diseases (ICD-10 J00-J99) ICD-10') %>% 
+  slice(1)
+
+```
+
+Notes from the spreadsheets in relation to these methodology changes:
+
+### 2011 
+
+* Respiratory deaths for 2011 are coded to the new version of ICD-10 while for 2010 they are coded to the previous version. Week 1 2011 has been coded to both versions to give an indication of the impact of the change.						
+					
+### 2014
+
+* For deaths registered from January 2014, cause of death is coded to the ICD-10 classification using IRIS software. Further information about the implementation of the software is available on the ONS website. 						
+
+* All deaths registered in week 2 were dual-coded using both ICD-10 v2010 (NCHS) and ICD-10 v2013 (IRIS). An information note providing the preliminary findings on the impact of the implementation of IRIS software for ICD-10 cause of death coding on mortality statistics in England and Wales is available on the ONS website.						
+
+### 2015
+
+* For deaths registered from January 2014, cause of death is coded to the ICD-10 classification using IRIS software. Further information about the [implementation of the software](https://webarchive.nationalarchives.gov.uk/20160106020045/http://www.ons.gov.uk/ons/guide-method/user-guidance/health-and-life-events/Changes-to-cause-of-death-coding-in-England-and-Wales/index.html) is available on the ONS website.						
+					
+## Age bands
+
+Numbers are provided for categories: Persons, Females and Males. 
+
+As detailed in the notes, if the age is missing or not coded at the time of release then the counts of 'Persons', 'Males' and 'Females' may not sum to 'Total Deaths, all ages'.						
+
+Note that these age bands were changed in 2020 releases.
+
+```{r age bands}
+
+ons_mortality %>% 
+  select(category_1, category_2) %>% 
+  group_by(category_1, category_2) %>% 
+  filter(category_1 %in% c('Persons','Females','Males')) %>% 
+  slice(1)
+
+```
+
+
+# Remove working files folder
+
+```{r removefiles}
+unlink(working_files)
+```
