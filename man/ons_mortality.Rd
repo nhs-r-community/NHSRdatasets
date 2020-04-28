@@ -7,11 +7,11 @@
 \format{
 Data frame with five columns
 \describe{
-\item{Category}{Data is released in groups: Totals, by age groups, males by age, females by age,
-All respiratory diseases (ICD-10 J00-J99)  ICD-10 v 2001 and by Region}
-\item{Counts}{Counts of deaths in whole numbers}
-\item{Date}{Provisional deaths are released on the Friday of every week.}
-\item{WeekNo}{Following the format of the ONS spreadsheets each week is numbered sequentially within the year.}
+\item{category_1}{character, containing the names of the groups for counts, e.g. "Total deaths", "all ages".}
+\item{category_2}{character, subcategory of names of groups where necessary, e.g. details of region: "East", details of age bands "15-44".}
+\item{counts}{numeric, numbers of deaths in whole numbers and average numbers with decimal points. To retain the integrity of the format this column data is left as character.}
+\item{date}{date, format is yyyy-mm-dd; all dates are a Friday.}
+\item{week_no}{integer, each week in a year is numbered sequentially.}
 }
 }
 \source{
