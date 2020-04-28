@@ -373,3 +373,6 @@ knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, eval=FALSE)
 #    slice(1)
 #  
 
+## ----removefiles--------------------------------------------------------------
+#  unlink("working_files", recursive = TRUE)
+

@@ -4,7 +4,7 @@ author: '[Zoë Turner](mailto:zoe.turner@nhs.net)'
 date: "23/04/2020"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ons_mortality dataset}
+  %\VignetteIndexEntry{Building the ONS mortality dataset}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -516,8 +516,8 @@ ons_mortality %>%
 ```
 
 
-# Remove working files folder
+## Remove working_files folder
 
 ```{r removefiles}
-unlink(working_files)
+unlink("working_files", recursive = TRUE)
 ```
