@@ -70,10 +70,10 @@
       <a href="../articles/LOS_model.html">LOS_model: A simulated hospital length-of-stay dataset</a>
     </li>
     <li>
-      <a href="../articles/ONSMortality.html">Building the ONS mortality dataset</a>
+      <a href="../articles/ae_attendances.html">ae_attendances dataset</a>
     </li>
     <li>
-      <a href="../articles/ae_attendances.html">ae_attendances dataset</a>
+      <a href="../articles/ons_mortality.html">Building the ONS mortality dataset</a>
     </li>
   </ul>
 </li>
@@ -104,7 +104,7 @@
       <h1 data-toc-skip>LOS_model: A simulated hospital length-of-stay dataset</h1>
                         <h4 class="author">Chris Mainey</h4>
             
-            <h4 class="date">2020-04-23</h4>
+            <h4 class="date">2020-04-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nhs-r-community/NHSRdatasets/blob/master/vignettes/LOS_model.Rmd"><code>vignettes/LOS_model.Rmd</code></a></small>
       <div class="hidden name"><code>LOS_model.Rmd</code></div>
@@ -166,7 +166,7 @@
 <span class="co">#&gt; </span>
 
 <span class="co"># 82.3% survived</span>
-<span class="fu"><a href="https://rdrr.io/r/base/prop.table.html">prop.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">LOS_model</span>$<span class="no">Death</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">LOS_model</span>$<span class="no">Death</span>))
 <span class="co">#&gt; </span>
 <span class="co">#&gt;         0         1 </span>
 <span class="co">#&gt; 0.8233333 0.1766667</span></pre></body></html></div>

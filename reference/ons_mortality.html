@@ -116,10 +116,10 @@
       <a href="../articles/LOS_model.html">LOS_model: A simulated hospital length-of-stay dataset</a>
     </li>
     <li>
-      <a href="../articles/ONSMortality.html">Building the ONS mortality dataset</a>
+      <a href="../articles/ae_attendances.html">ae_attendances dataset</a>
     </li>
     <li>
-      <a href="../articles/ae_attendances.html">ae_attendances dataset</a>
+      <a href="../articles/ons_mortality.html">Building the ONS mortality dataset</a>
     </li>
   </ul>
 </li>
@@ -162,11 +162,11 @@
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>Data frame with five columns</p><dl'>
-<dt>Category</dt><dd><p>Data is released in groups: Totals, by age groups, males by age, females by age,
-All respiratory diseases (ICD-10 J00-J99)  ICD-10 v 2001 and by Region</p></dd>
-<dt>Counts</dt><dd><p>Counts of deaths in whole numbers</p></dd>
-<dt>Date</dt><dd><p>Provisional deaths are released on the Friday of every week.</p></dd>
-<dt>WeekNo</dt><dd><p>Following the format of the ONS spreadsheets each week is numbered sequentially within the year.</p></dd>
+<dt>category_1</dt><dd><p>character, containing the names of the groups for counts, e.g. "Total deaths", "all ages".</p></dd>
+<dt>category_2</dt><dd><p>character, subcategory of names of groups where necessary, e.g. details of region: "East", details of age bands "15-44".</p></dd>
+<dt>counts</dt><dd><p>numeric, numbers of deaths in whole numbers and average numbers with decimal points. To retain the integrity of the format this column data is left as character.</p></dd>
+<dt>date</dt><dd><p>date, format is yyyy-mm-dd; all dates are a Friday.</p></dd>
+<dt>week_no</dt><dd><p>integer, each week in a year is numbered sequentially.</p></dd>
 
 </dl>
 

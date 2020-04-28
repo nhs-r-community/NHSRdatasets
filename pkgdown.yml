@@ -3,9 +3,9 @@ pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   LOS_model: LOS_model.html
-  ONSMortality: ONSMortality.html
   ae_attendances: ae_attendances.html
-last_built: 2020-04-23T07:26Z
+  ons_mortality: ons_mortality.html
+last_built: 2020-04-28T10:27Z
 urls:
   reference: https://nhs-r-community.github.io/NHSRdatasets/reference
   article: https://nhs-r-community.github.io/NHSRdatasets/articles
