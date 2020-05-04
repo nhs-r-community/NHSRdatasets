@@ -1,6 +1,6 @@
 Package: NHSRdatasets
 Type: Package
-Title: NHS and healthcare-related data for education and training
+Title: NHS and Healthcare-Related Data for Education and Training
 Date: 2020-05-04
 Version: 0.2.0
 Authors@R: c(
@@ -12,6 +12,7 @@ Authors@R: c(
 Maintainer: Chris Mainey <chris.mainey@uhb.nhs.uk>
 Description: Free United Kingdom National Health Service (NHS) and other healthcare, or population health-related data for education and training purposes. This package currently contains a single simulated hospital dataset for teaching regression methods, with the addition of more datasets planned for future releases.  This package exists to support skills development in the NHS-R community: <https://nhsrcommunity.com/>.
 License: CC0
+Language: en-GB
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0
@@ -33,7 +34,6 @@ Suggests:
     forcats,
     knitr,
     janitor,
-    stringi,
-    tidyverse
+    stringi
 VignetteBuilder: knitr
 URL: https://github.com/nhs-r-community/NHSRdatasets, https://nhs-r-community.github.io/NHSRdatasets/

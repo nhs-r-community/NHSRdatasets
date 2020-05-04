@@ -217,7 +217,8 @@ Two functions were required to format the spreadsheets as there were changes to 
 Packages used: 
 
 - __janitor:__ a specific package for cleaning data from Excel used here to remove the blank lines and columns, convert Excel serial numbers to dates and to format all column headers by removing spaces in those header names and removing capitalisation.
-- __tidyverse:__ specifically dplyr for data manipulation. 
+- __dplyr:__ specifically dplyr for data manipulation (already loaded earlier). 
+- __tidyr:__ for pivoting data from wide to long. 
 - __stringi:__ a package to works with strings and was used to find certain characters or words.
 - __lubridate:__ a package to work with dates and used here to format dates to the same format.
 
@@ -226,7 +227,7 @@ Packages used:
 ```{r format function 2010 to 2015}
 
 library(janitor)
-library(tidyverse)
+library(tidyr)
 library(stringi)
 library(lubridate)
 
