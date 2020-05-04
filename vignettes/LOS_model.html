@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="Chris Mainey" />
 
-<meta name="date" content="2019-08-02" />
+<meta name="date" content="2020-05-04" />
 
 <title>LOS_model: A simulated hospital length-of-stay dataset</title>
 
@@ -118,9 +117,6 @@ padding-right: 2em;
 font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 14px;
 line-height: 1.35;
-}
-#header {
-text-align: center;
 }
 #TOC {
 clear: both;
@@ -289,7 +285,8 @@ code > span.st { color: #d14; }
 code > span.co { color: #888888; font-style: italic; } 
 code > span.ot { color: #007020; } 
 code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
 
@@ -304,7 +301,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">LOS_model: A simulated hospital length-of-stay dataset</h1>
 <h4 class="author">Chris Mainey</h4>
-<h4 class="date">2019-08-02</h4>
+<h4 class="date">2020-05-04</h4>
 
 
 
@@ -326,46 +323,48 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb1-5" title="5"><span class="kw">data</span>(<span class="st">&quot;LOS_model&quot;</span>)</a>
 <a class="sourceLine" id="cb1-6" title="6"></a>
 <a class="sourceLine" id="cb1-7" title="7"><span class="kw">head</span>(LOS_model)</a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt;   ID Organisation Age LOS Death</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt; 1  1       Trust1  55   2     0</span></a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt; 2  2       Trust2  27   1     0</span></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="co">#&gt; 3  3       Trust3  93  12     0</span></a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt; 4  4       Trust4  45   3     1</span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt; 5  5       Trust5  70  11     0</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; 6  6       Trust6  60   7     0</span></a>
-<a class="sourceLine" id="cb1-15" title="15"></a>
-<a class="sourceLine" id="cb1-16" title="16"><span class="kw">summary</span>(LOS_model)</a>
-<a class="sourceLine" id="cb1-17" title="17"><span class="co">#&gt;        ID          Organisation      Age             LOS        </span></a>
-<a class="sourceLine" id="cb1-18" title="18"><span class="co">#&gt;  Min.   :  1.00   Trust1 : 30   Min.   : 5.00   Min.   : 1.000  </span></a>
-<a class="sourceLine" id="cb1-19" title="19"><span class="co">#&gt;  1st Qu.: 75.75   Trust2 : 30   1st Qu.:24.00   1st Qu.: 2.000  </span></a>
-<a class="sourceLine" id="cb1-20" title="20"><span class="co">#&gt;  Median :150.50   Trust3 : 30   Median :54.00   Median : 4.000  </span></a>
-<a class="sourceLine" id="cb1-21" title="21"><span class="co">#&gt;  Mean   :150.50   Trust4 : 30   Mean   :50.66   Mean   : 4.937  </span></a>
-<a class="sourceLine" id="cb1-22" title="22"><span class="co">#&gt;  3rd Qu.:225.25   Trust5 : 30   3rd Qu.:75.25   3rd Qu.: 7.000  </span></a>
-<a class="sourceLine" id="cb1-23" title="23"><span class="co">#&gt;  Max.   :300.00   Trust6 : 30   Max.   :95.00   Max.   :18.000  </span></a>
-<a class="sourceLine" id="cb1-24" title="24"><span class="co">#&gt;                   (Other):120                                   </span></a>
-<a class="sourceLine" id="cb1-25" title="25"><span class="co">#&gt;      Death       </span></a>
-<a class="sourceLine" id="cb1-26" title="26"><span class="co">#&gt;  Min.   :0.0000  </span></a>
-<a class="sourceLine" id="cb1-27" title="27"><span class="co">#&gt;  1st Qu.:0.0000  </span></a>
-<a class="sourceLine" id="cb1-28" title="28"><span class="co">#&gt;  Median :0.0000  </span></a>
-<a class="sourceLine" id="cb1-29" title="29"><span class="co">#&gt;  Mean   :0.1767  </span></a>
-<a class="sourceLine" id="cb1-30" title="30"><span class="co">#&gt;  3rd Qu.:0.0000  </span></a>
-<a class="sourceLine" id="cb1-31" title="31"><span class="co">#&gt;  Max.   :1.0000  </span></a>
-<a class="sourceLine" id="cb1-32" title="32"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-33" title="33"></a>
-<a class="sourceLine" id="cb1-34" title="34"><span class="co"># 82.3% survived</span></a>
-<a class="sourceLine" id="cb1-35" title="35"><span class="kw">prop.table</span>(<span class="kw">table</span>(LOS_model<span class="op">$</span>Death))</a>
-<a class="sourceLine" id="cb1-36" title="36"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-37" title="37"><span class="co">#&gt;         0         1 </span></a>
-<a class="sourceLine" id="cb1-38" title="38"><span class="co">#&gt; 0.8233333 0.1766667</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt; # A tibble: 6 x 5</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt;      ID Organisation   Age   LOS Death</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt;   &lt;int&gt; &lt;ord&gt;        &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="co">#&gt; 1     1 Trust1          55     2     0</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt; 2     2 Trust2          27     1     0</span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt; 3     3 Trust3          93    12     0</span></a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; 4     4 Trust4          45     3     1</span></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt; 5     5 Trust5          70    11     0</span></a>
+<a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt; 6     6 Trust6          60     7     0</span></a>
+<a class="sourceLine" id="cb1-17" title="17"></a>
+<a class="sourceLine" id="cb1-18" title="18"><span class="kw">summary</span>(LOS_model)</a>
+<a class="sourceLine" id="cb1-19" title="19"><span class="co">#&gt;        ID          Organisation      Age             LOS        </span></a>
+<a class="sourceLine" id="cb1-20" title="20"><span class="co">#&gt;  Min.   :  1.00   Trust1 : 30   Min.   : 5.00   Min.   : 1.000  </span></a>
+<a class="sourceLine" id="cb1-21" title="21"><span class="co">#&gt;  1st Qu.: 75.75   Trust2 : 30   1st Qu.:24.00   1st Qu.: 2.000  </span></a>
+<a class="sourceLine" id="cb1-22" title="22"><span class="co">#&gt;  Median :150.50   Trust3 : 30   Median :54.00   Median : 4.000  </span></a>
+<a class="sourceLine" id="cb1-23" title="23"><span class="co">#&gt;  Mean   :150.50   Trust4 : 30   Mean   :50.66   Mean   : 4.937  </span></a>
+<a class="sourceLine" id="cb1-24" title="24"><span class="co">#&gt;  3rd Qu.:225.25   Trust5 : 30   3rd Qu.:75.25   3rd Qu.: 7.000  </span></a>
+<a class="sourceLine" id="cb1-25" title="25"><span class="co">#&gt;  Max.   :300.00   Trust6 : 30   Max.   :95.00   Max.   :18.000  </span></a>
+<a class="sourceLine" id="cb1-26" title="26"><span class="co">#&gt;                   (Other):120                                   </span></a>
+<a class="sourceLine" id="cb1-27" title="27"><span class="co">#&gt;      Death       </span></a>
+<a class="sourceLine" id="cb1-28" title="28"><span class="co">#&gt;  Min.   :0.0000  </span></a>
+<a class="sourceLine" id="cb1-29" title="29"><span class="co">#&gt;  1st Qu.:0.0000  </span></a>
+<a class="sourceLine" id="cb1-30" title="30"><span class="co">#&gt;  Median :0.0000  </span></a>
+<a class="sourceLine" id="cb1-31" title="31"><span class="co">#&gt;  Mean   :0.1767  </span></a>
+<a class="sourceLine" id="cb1-32" title="32"><span class="co">#&gt;  3rd Qu.:0.0000  </span></a>
+<a class="sourceLine" id="cb1-33" title="33"><span class="co">#&gt;  Max.   :1.0000  </span></a>
+<a class="sourceLine" id="cb1-34" title="34"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-35" title="35"></a>
+<a class="sourceLine" id="cb1-36" title="36"><span class="co"># 82.3% survived</span></a>
+<a class="sourceLine" id="cb1-37" title="37"><span class="kw">prop.table</span>(<span class="kw">table</span>(LOS_model<span class="op">$</span>Death))</a>
+<a class="sourceLine" id="cb1-38" title="38"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-39" title="39"><span class="co">#&gt;         0         1 </span></a>
+<a class="sourceLine" id="cb1-40" title="40"><span class="co">#&gt; 0.8233333 0.1766667</span></a></code></pre></div>
 <p>Now lets look at the distributions of Age and LOS. We might expect Age to be normally distributed, but this would be unrealistic, as elderly patient represent higher proportions of the total in-patients. It could be uniform, it could be bi-modal (or have more peaks), but nothing is particularly clear. LOS is highly right-skewed. This means that the high values will affect the mean, dragging it out, and the median would be a better estimation of the centre of the distribution. This shows that most patients don’t stay very long, but a few patients stay notably longer.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">ggplot</span>(LOS_model, <span class="kw">aes</span>(<span class="dt">x=</span>Age)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>, <span class="dt">col=</span><span class="dv">1</span>, <span class="dt">fill=</span><span class="dv">12</span>, <span class="dt">bins=</span><span class="dv">20</span>)<span class="op">+</span></a>
 <a class="sourceLine" id="cb2-3" title="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Distribution of Age&quot;</span>)</a></code></pre></div>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">ggplot</span>(LOS_model, <span class="kw">aes</span>(<span class="dt">x=</span>LOS)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>, <span class="dt">col=</span><span class="dv">1</span>, <span class="dt">fill=</span><span class="dv">13</span>, <span class="dt">bins=</span><span class="dv">20</span>)<span class="op">+</span></a>
 <a class="sourceLine" id="cb3-3" title="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Distribution of Length-of-Stay&quot;</span>)</a></code></pre></div>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
 </div>
 <div id="modelling-los-and-death" class="section level2">
 <h2>Modelling LOS and Death</h2>
@@ -473,12 +472,14 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">LOS_model<span class="op">$</span>preds &lt;-<span class="st"> </span><span class="kw">predict</span>(glm_binomial2, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>)</a>
 <a class="sourceLine" id="cb6-2" title="2"></a>
 <a class="sourceLine" id="cb6-3" title="3"><span class="kw">head</span>(LOS_model,<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt;   ID Organisation Age LOS Death      preds</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; 1  1       Trust1  55   2     0 0.13572744</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; 2  2       Trust2  27   1     0 0.04700276</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; 3  3       Trust3  93  12     0 0.14023994</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; 4  4       Trust4  45   3     1 0.12928742</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; 5  5       Trust5  70  11     0 0.28486502</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; # A tibble: 5 x 6</span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt;      ID Organisation   Age   LOS Death  preds</span></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt;   &lt;int&gt; &lt;ord&gt;        &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; 1     1 Trust1          55     2     0 0.136 </span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; 2     2 Trust2          27     1     0 0.0470</span></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; 3     3 Trust3          93    12     0 0.140 </span></a>
+<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt; 4     4 Trust4          45     3     1 0.129 </span></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt; 5     5 Trust5          70    11     0 0.285</span></a></code></pre></div>
 <p>We have added our predictions back into the original <code>data.frame</code> using the column name <code>preds</code>, and patient ID 1 has a risk of death of 0.136 or 13.6% probability of death. These predictions can be used in many different applications, but common uses of them are identifying the highest risk patients for clinical audit, comparing ratios of the observed deaths and expected deaths (sum of the probability), or risk-adjusted control chart monitoring.</p>
 </div>
 <div id="length-of-stay-los" class="section level2">
