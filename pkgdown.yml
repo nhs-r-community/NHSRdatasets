@@ -5,7 +5,7 @@ articles:
   LOS_model: LOS_model.html
   ae_attendances: ae_attendances.html
   ons_mortality: ons_mortality.html
-last_built: 2020-04-28T10:27Z
+last_built: 2020-05-04T08:42Z
 urls:
   reference: https://nhs-r-community.github.io/NHSRdatasets/reference
   article: https://nhs-r-community.github.io/NHSRdatasets/articles
