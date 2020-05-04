@@ -301,7 +301,9 @@
 <li>
 <strong>janitor:</strong> a specific package for cleaning data from Excel used here to remove the blank lines and columns, convert Excel serial numbers to dates and to format all column headers by removing spaces in those header names and removing capitalisation.</li>
 <li>
-<strong>tidyverse:</strong> specifically dplyr for data manipulation.</li>
+<strong>dplyr:</strong> specifically dplyr for data manipulation (already loaded earlier).</li>
+<li>
+<strong>tidyr:</strong> for pivoting data from wide to long.</li>
 <li>
 <strong>stringi:</strong> a package to works with strings and was used to find certain characters or words.</li>
 <li>
@@ -311,7 +313,7 @@
 <h3 class="hasAnchor">
 <a href="#section" class="anchor"></a>2010 - 2015</h3>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">janitor</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyverse</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyr</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">stringi</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lubridate</span>)
 
@@ -343,10 +345,10 @@
                               <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="no">x2</span>) <span class="kw">&amp;</span> <span class="fu">str_detect</span>(<span class="no">contents</span>, <span class="st">"Females"</span>) ~ <span class="st">"Females"</span>,
                               <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="no">x2</span>) <span class="kw">&amp;</span> <span class="fu">str_detect</span>(<span class="no">contents</span>, <span class="st">"Males"</span>) ~ <span class="st">"Males"</span>)
   ) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">contents</span>, <span class="no">Category</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">everything</a></span>()) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">contents</span>, <span class="no">Category</span>, <span class="fu"><a href="https://tidyr.tidyverse.org/reference/reexports.html">everything</a></span>()) <span class="kw">%&gt;%</span>
 
   <span class="co"># to ensure data like Persons, Males and Females </span>
-  <span class="fu">fill</span>(<span class="no">Category</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/fill.html">fill</a></span>(<span class="no">Category</span>) <span class="kw">%&gt;%</span>
 
   <span class="co"># categories with Persons, Males and Females in the original column do not correspond directly to data points (wide form data) so are removed by referring to str_detect to find the word</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(!<span class="fu">str_detect</span>(<span class="no">contents</span>, <span class="st">"Persons"</span>),
@@ -354,7 +356,7 @@
          !<span class="fu">str_detect</span>(<span class="no">contents</span>, <span class="st">"Females"</span>)) <span class="kw">%&gt;%</span>
 
   <span class="co"># the two columns for Category and contents are merged to Categories to bring the Category column first. Some categories don't have subcategories and these are preceded by NA_ with this merge</span>
-  <span class="fu">unite</span>(<span class="st">"Categories"</span>, <span class="no">Category</span>, <span class="no">contents</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span>(<span class="st">"Categories"</span>, <span class="no">Category</span>, <span class="no">contents</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">Categories</span> <span class="kw">!=</span> <span class="st">"Region_Deaths by Region of usual residence 5"</span>) <span class="kw">%&gt;%</span>
 
   <span class="co"># the NA_ is removed from some of the category names</span>
@@ -366,7 +368,7 @@
 
   <span class="co"># move data from wide to long form using pivot_longer</span>
 <span class="no">x</span> <span class="kw">&lt;-</span> <span class="no">onsFormattedJanitor</span> <span class="kw">%&gt;%</span>
-  <span class="fu">pivot_longer</span>(<span class="kw">cols</span> <span class="kw">=</span> -<span class="no">`Week ended`</span>,
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(<span class="kw">cols</span> <span class="kw">=</span> -<span class="no">`Week ended`</span>,
                <span class="kw">names_to</span> <span class="kw">=</span> <span class="st">"allDates"</span>,
                <span class="kw">values_to</span> <span class="kw">=</span> <span class="st">"counts"</span>) <span class="kw">%&gt;%</span>
 
@@ -415,7 +417,7 @@
   <span class="co"># 2011 requires this code to remove rows where there are no counts and because there are 2 rows relating to respiratory death numbers (see the Respiratory section) the previous methodology has been included in the spreadsheet with : for counts. This code does not affect other years' data/</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(!<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="no">counts</span>),
          <span class="no">counts</span> <span class="kw">!=</span> <span class="st">":"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu">fill</span>(<span class="no">category_1</span>)
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/fill.html">fill</a></span>(<span class="no">category_1</span>)
 
 <span class="fu"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="no">x</span>)
 
@@ -454,12 +456,12 @@
                                 <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="no">x3</span>) <span class="kw">&amp;</span> <span class="fu">str_detect</span>(<span class="no">x2</span>, <span class="st">"Males"</span>) ~ <span class="st">"Males"</span>,
                                 <span class="fl">TRUE</span> ~ <span class="fl">NA_character_</span>)
     ) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">x2</span>, <span class="no">Category</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">everything</a></span>()) <span class="kw">%&gt;%</span>
-    <span class="fu">fill</span>(<span class="no">Category</span>) <span class="kw">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">x2</span>, <span class="no">Category</span>, <span class="fu"><a href="https://tidyr.tidyverse.org/reference/reexports.html">everything</a></span>()) <span class="kw">%&gt;%</span>
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/fill.html">fill</a></span>(<span class="no">Category</span>) <span class="kw">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(!<span class="fu">str_detect</span>(<span class="no">x2</span>, <span class="st">'Persons'</span>),
            !<span class="fu">str_detect</span>(<span class="no">x2</span>, <span class="st">'Males'</span>),
            !<span class="fu">str_detect</span>(<span class="no">x2</span>, <span class="st">'Females'</span>)) <span class="kw">%&gt;%</span>
-    <span class="fu">unite</span>(<span class="st">"Categories"</span>, <span class="no">Category</span>, <span class="no">x2</span>) <span class="kw">%&gt;%</span>
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span>(<span class="st">"Categories"</span>, <span class="no">Category</span>, <span class="no">x2</span>) <span class="kw">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">Categories</span> <span class="kw">!=</span> <span class="st">'Region_Deaths by Region of usual residence 5'</span>) <span class="kw">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">Categories</span> <span class="kw">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span>(<span class="fu">str_detect</span>(<span class="no">Categories</span>, <span class="st">"NA_"</span>) ~ <span class="fu">str_replace</span>(<span class="no">Categories</span>, <span class="st">"NA_"</span>, <span class="st">""</span>),
                                   <span class="fl">TRUE</span> ~ <span class="no">Categories</span>))
@@ -469,7 +471,7 @@
 
   <span class="co"># move data from wide to long form using pivot_longer</span>
   <span class="no">x</span> <span class="kw">&lt;-</span> <span class="no">onsFormattedJanitor</span> <span class="kw">%&gt;%</span>
-    <span class="fu">pivot_longer</span>(<span class="kw">cols</span> <span class="kw">=</span> -<span class="no">`Week ended`</span>,
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(<span class="kw">cols</span> <span class="kw">=</span> -<span class="no">`Week ended`</span>,
                  <span class="kw">names_to</span> <span class="kw">=</span> <span class="st">"allDates"</span>,
                  <span class="kw">values_to</span> <span class="kw">=</span> <span class="st">"counts"</span>) <span class="kw">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">realDate</span> <span class="kw">=</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span>(<span class="no">allDates</span>),
