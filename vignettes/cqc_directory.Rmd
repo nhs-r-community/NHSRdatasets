@@ -117,10 +117,13 @@ With an ageing population, there is increasing demand for care home beds. Is sup
 ```{r care home openings}
 carehome_openings <- cqc_directory %>%
   mutate(location_hsca_start_date = as.Date(location_hsca_start_date)) %>%
-  filter(care_home == 'Y' & location_hsca_start_date >= '2014-01-01' & !(location_region %in% c('Unspecified', '(pseudo) Wales'))) %>%
+  filter(care_home == 'Y' & location_hsca_start_date >= '2014-01-01' & 
+           !(location_region %in% c('Unspecified', '(pseudo) Wales')) &
+           pub_date == max(as.Date(pub_date))) %>%
   mutate(location_month = floor_date(location_hsca_start_date, unit = 'month')) %>%
   group_by(location_month) %>%
-  summarise(number = n()) %>%
+  summarise(number = n(),
+            beds = sum(as.integer(care_homes_beds))) %>%
   mutate(location_year = as.factor(format(floor_date(location_month, unit = 'year'), '%Y')),
          month = format(location_month,"%m"))
 ggplot(carehome_openings, aes(x = month, y = number, colour = location_year, group = location_year))+
@@ -129,5 +132,15 @@ ggplot(carehome_openings, aes(x = month, y = number, colour = location_year, gro
 ```
 
 It is likely that the 2019 timeseries drops off due to a delay between provision starting and CQC reporting data.
-However, overall the number of new care homes opening is not increasing!
+However, overall the number of new care homes opening is not increasing! Perhaps each care home is getting bigger; 
+how many new beds are becoming available?
+
+```{r new beds added}
+ggplot(carehome_openings, aes(x = month, y = beds, colour = location_year, group = location_year))+
+  geom_line()+
+  theme_minimal()
+```
+
+This is a bit more encouraging: in 2016 and 2017, there was a good uptick in new care home beds. However, 
+2018 did not perform quite as well. Still, 2019 appears to be going in the right direction!
 
