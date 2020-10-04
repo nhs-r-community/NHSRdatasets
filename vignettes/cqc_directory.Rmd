@@ -1,0 +1,133 @@
+---
+title: "cqc_directory dataset"
+author:
+- '[Martine Wauben](mailto:martine.wauben@dhsc.gov.uk)'
+date: "04/10/2020"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{cqc_directory dataset}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+options(tidyverse.quiet = TRUE)
+```
+
+This vignette explains how to use the `cqc_directory` dataset in R, and also
+details where it comes from and how it is generated.
+
+The data is sourced from [the Care Quality Commission](https://www.cqc.org.uk/about-us/transparency/using-cqc-data)
+and its archive is available on [Google Drive](https://drive.google.com/drive/folders/1Y6V6r-q2l4lJYKuZL0DXw25VDUTH6L4N). 
+
+The data contains care provider locations and ratings as published monthly in 2019. 
+
+The dataset contains data on locations and providers:
+
+- __location__: location ID, name, ODS code, telephone number, web address, sector, inspection directorate, region, local authority, CCG, street address, parliamentary constituency, and coordinates.
+- __provider__: provider ID, name, company/charity registration, telephone number, web address, sector, inspection directorate, region, local authority, street address, and parliamentary constituency.
+code for the organisation that this activity relates to
+- __pub_date__: The date that particular datapoint was published
+
+First let's load some packages and the dataset and show the first 10 rows of data.
+
+```{r load data, message=TRUE, warning=TRUE}
+library(dplyr)
+library(knitr)
+library(tidyr)
+library(ggplot2)
+library(lubridate)
+
+library(NHSRdatasets)
+
+data("cqc_directory")
+
+# format for display
+cqc_directory %>%
+  # show the first 10 rows
+  head(10) %>%
+  # format as a table
+  kable()
+```
+
+We can calculate the total number of each type of rating at each datapoint like this:
+
+```{r ratings over time}
+rat_overtime <- cqc_directory %>%
+  group_by(pub_date, location_latest_overall_rating) %>%
+  summarise(number = dplyr::n()) %>%
+  filter(!is.na(location_latest_overall_rating)) %>%
+  ungroup() %>%
+  mutate(pub_date = as.Date(pub_date))
+
+rat_overtime %>%
+  pivot_wider(id_cols = location_latest_overall_rating,
+              names_from = pub_date,
+              values_from = number) %>%
+  kable
+```
+
+We can now plot, for each month, the proportion of locations that received each rating:
+
+```{r ratings plot}
+ggplot(rat_overtime, aes(pub_date, number, fill = location_latest_overall_rating)) +
+  geom_bar(stat = 'identity', position = 'fill')+
+  theme_minimal()+
+  labs(x = "Data publication date",
+       y = "Proportion",
+       fill = "CQC rating",
+       title = "CQC ratings as published",
+       caption = "Source: Care Quality Commission")
+```
+
+Although the raw numbers show increases in each rating, this is primarily driven by more and more locations becoming available: proportionally, performance has remained fairly stable at a national level.
+
+We can further break this down by region to better understand what is happening:
+
+```{r ratings over time by region}
+region_ratings_overtime <- cqc_directory %>%
+  group_by(pub_date, location_region, location_latest_overall_rating) %>%
+  summarise(number = dplyr::n()) %>%
+  filter(!is.na(location_latest_overall_rating) & !(location_region %in% c('Unspecified', '(pseudo) Wales'))) %>%
+  ungroup() %>%
+  mutate(pub_date = as.Date(pub_date))
+ggplot(region_ratings_overtime, aes(pub_date, number, fill = location_latest_overall_rating)) +
+  geom_bar(stat = 'identity', position = 'fill')+
+  theme_minimal()+
+  facet_wrap(~location_region)+
+  labs(x = "Data publication date",
+       y = "Proportion",
+       fill = "CQC rating",
+       title = "CQC ratings as published",
+       caption = "Source: Care Quality Commission")
+```
+
+More interesting patterns emerge now: some regions have growing proportions of 'Good' or 'Outstanding' 
+locations, whereas others are seeing increases in locations requiring improvement.
+
+## How many new care homes are being opened?
+
+With an ageing population, there is increasing demand for care home beds. Is supply keeping up?
+
+```{r care home openings}
+carehome_openings <- cqc_directory %>%
+  mutate(location_hsca_start_date = as.Date(location_hsca_start_date)) %>%
+  filter(care_home == 'Y' & location_hsca_start_date >= '2014-01-01' & !(location_region %in% c('Unspecified', '(pseudo) Wales'))) %>%
+  mutate(location_month = floor_date(location_hsca_start_date, unit = 'month')) %>%
+  group_by(location_month) %>%
+  summarise(number = n()) %>%
+  mutate(location_year = as.factor(format(floor_date(location_month, unit = 'year'), '%Y')),
+         month = format(location_month,"%m"))
+ggplot(carehome_openings, aes(x = month, y = number, colour = location_year, group = location_year))+
+  geom_line()+
+  theme_minimal()
+```
+
+It is likely that the 2019 timeseries drops off due to a delay between provision starting and CQC reporting data.
+However, overall the number of new care homes opening is not increasing!
+
