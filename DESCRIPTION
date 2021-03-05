@@ -6,6 +6,7 @@ Version: 0.2.0
 Authors@R: c(
           person("Chris", "Mainey", ,"chris.mainey@uhb.nhs.uk", c("aut", "cre"), comment = c(ORCID ="0000-0002-3018-6171")),
           person("Tom", "Jemmett", ,"thomas.jemmett@nhs.net", "aut", comment = c(ORCID="0000-0002-6943-2990")),
+          person("Gary", "Hutson", "g.hutson@nhs.net", "aut"),
           person("Zoë", "Turner", , "zoe.turner@nhs.net", "aut" ),
           person("NHS-R community", role = "cph")
           )
@@ -14,12 +15,16 @@ Description: Free United Kingdom National Health Service (NHS) and other healthc
 License: CC0
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Depends: R (>= 3.5.0)
 BugReports: https://github.com/nhs-r-community/NHSRdatasets/issues
 Imports: tibble
 Suggests: 
     dplyr,
+    caret,
+    magrittr,
+    varhandle,
+    rsample,
     ggplot2,
     lme4,
     MASS,
