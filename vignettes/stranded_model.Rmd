@@ -1,5 +1,5 @@
 ---
-title: "Stranded Model - a simulated dataset for machine learning classification"
+title: "Stranded Model Tutorial"
 author: "Gary Hutson"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -40,7 +40,7 @@ library(caret)
 library(rsample)
 library(varhandle)
 
-#data("stranded_data")
+data("stranded_data")
 glimpse(stranded_data)
 prop.table(table(stranded_data$stranded.label))
 ```
@@ -54,8 +54,8 @@ The next step will be to decide which features need to be engineered for our mac
 ```{r feature_engineering}
 
 stranded_data <- stranded_data %>% 
-  mutate(stranded.label=factor(stranded.label)) %>% 
-  select(everything(), -c(admit_date))
+  dplyr::mutate(stranded.label=factor(stranded.label)) %>% 
+  dplyr::select(everything(), -c(admit_date))
 
 
 ```
@@ -67,10 +67,10 @@ cat_dummy <- varhandle::to.dummy(cats$frailty_index, "frail_ind")
 #Converts the frailty index column to dummy encoding and sets a column called "frail_ind" prefix
 cat_dummy <- cat_dummy %>% 
   as.data.frame() %>% 
-  select(-frail_ind.No_index_item) #Drop the field of interest
+  dplyr::select(-frail_ind.No_index_item) #Drop the field of interest
 # Drop the frailty index from the stranded data frame and bind on our new encoding categorical variables
 stranded_data <- stranded_data %>% 
-  select(-frailty_index) %>% 
+  dplyr::select(-frailty_index) %>% 
   bind_cols(cat_dummy) %>% na.omit(.)
 
 ```
@@ -95,7 +95,7 @@ The next step will be to create a stranded classification model, in CARET:
 
 ```{r class_model}
 set.seed(123)
-glm_class_mod <- train(factor(stranded.label) ~ ., data = train, 
+glm_class_mod <- caret::train(factor(stranded.label) ~ ., data = train, 
                  method = "glm")
 print(glm_class_mod)
 
@@ -117,7 +117,7 @@ pred_prob <- predict(glm_class_mod, newdata = test, type="prob") #Predict probs
 predicted <- data.frame(preds, pred_prob)
 test <- test %>% 
   bind_cols(predicted) %>% 
-  rename(pred_class=preds)
+  dplyr::rename(pred_class=preds)
 
 glimpse(test)
 ```
