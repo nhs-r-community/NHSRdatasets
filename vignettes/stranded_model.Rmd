@@ -1,0 +1,139 @@
+---
+title: "Stranded Model - a simulated dataset for machine learning classification"
+author: "Gary Hutson"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{LOS_model: A simulated hospital length-of-stay dataset}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette details why the `stranded_model` dataset was created, how to load it, and gives examples of use with the caret Machine Learning library.
+
+The dataset contains:
+
+- __stranded.label:__ a character metric to indicate whether the patient is stranded, or not
+- __age:__ Integer - the age of the patient on admission to hospital
+- __care.home.referral:__ Integer - flag to indicate referred from care home
+- __medicallysafe:__ Integer - flag to indicate whether the patient is medically safe e.g. safe to be discharged but hasn't been
+- __hcop:__ Integer - flag to indicate whether the patient is in a Health Care for Older People area
+- __mental_health_care:__ Integer - flag to indicate mental health care provision
+- __period_of_previous_care:__ Integer - flag to indicate previous periods of care
+- __admit_date:__ Date - admit date
+- __frailty_index:__ Character - specifying frailty type, if frail
+
+## First, load the data and inspect it
+
+```{r load, warning=FALSE, message=FALSE}
+library(NHSRdatasets)
+library(dplyr)
+library(ggplot2)
+library(caret)
+library(rsample)
+library(varhandle)
+
+#data("stranded_data")
+glimpse(stranded_data)
+prop.table(table(stranded_data$stranded.label))
+```
+
+This is good, it shows a relatively even split between the not stranded and stranded labels. Please refer to the webinar on [Advanced Modelling](https://www.youtube.com/watch?v=rO40vvKXU-4&t=1360s) to look at how you can deal with classification imbalance using techniques such as SMOTE (Synthetic Minority Oversampling Technique Estimation) and ROSE (Random Oversampling Estimation), to name a few. 
+
+## Feature engineering
+
+The next step will be to decide which features need to be engineered for our machine learning model. We will drop the admit_date and recode the frailty index, and perhaps allocate the age into age bands. 
+
+```{r feature_engineering}
+
+stranded_data <- stranded_data %>% 
+  mutate(stranded.label=factor(stranded.label)) %>% 
+  select(everything(), -c(admit_date))
+
+
+```
+Next, I will select the categorical variables and make these into dummy variables, i.e. a numerical encoding of a categorical variable:
+
+```{r dummy_encode}
+cats <- select_if(stranded_data, is.character)
+cat_dummy <- varhandle::to.dummy(cats$frailty_index, "frail_ind") 
+#Converts the frailty index column to dummy encoding and sets a column called "frail_ind" prefix
+cat_dummy <- cat_dummy %>% 
+  as.data.frame() %>% 
+  select(-frail_ind.No_index_item) #Drop the field of interest
+# Drop the frailty index from the stranded data frame and bind on our new encoding categorical variables
+stranded_data <- stranded_data %>% 
+  select(-frailty_index) %>% 
+  bind_cols(cat_dummy) %>% na.omit(.)
+
+```
+
+The data is now ready for splitting into a simple train and validation split, to do the machine learning on the set.
+
+## Splitting the data
+
+The next step is to create a simple hold out train/test split:
+
+```{r train_test_split}
+split <- rsample::initial_split(stranded_data, prop = 3/4)
+train <- rsample::training(split)
+test <- rsample::testing(split)
+
+```
+
+
+## Create simple Logistic Regression Model to classify stranded patients
+
+The next step will be to create a stranded classification model, in CARET:
+
+```{r class_model}
+set.seed(123)
+glm_class_mod <- train(factor(stranded.label) ~ ., data = train, 
+                 method = "glm")
+print(glm_class_mod)
+
+```
+
+This is a very basic model and could be improved by model choice, hyperparameter selection, different resampling strategies, etc.
+
+
+## Predicting the test set to validate model
+
+Next, we will use the test dataset to see how our model will perform in the wild:
+
+```{r predicting}
+preds <- predict(glm_class_mod, newdata = test) # Predict class
+pred_prob <- predict(glm_class_mod, newdata = test, type="prob") #Predict probs
+
+# Join prediction on to actual test data frame and evaluate in confusion matrix
+
+predicted <- data.frame(preds, pred_prob)
+test <- test %>% 
+  bind_cols(predicted) %>% 
+  rename(pred_class=preds)
+
+glimpse(test)
+```
+
+## Evaluating with confusion matrix
+
+The final step is to evaluate the model:
+
+```{r evaluation}
+
+caret::confusionMatrix(test$stranded.label, test$pred_class, positive="Stranded")
+
+```
+
+The model performs relatively well and could be improved by better predictors, a bigger sample and class imbalance techniques. 
+
+## Conclusion
+
+This dataset can be used for a number of classification problems and can be the NHS's equivalent to the iris dataset for classification, albeit this only works for binary classification problems. 
