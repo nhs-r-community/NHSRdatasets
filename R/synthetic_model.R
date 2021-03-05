@@ -31,7 +31,7 @@
 #' library(magrittr)
 #' library(dplyr)
 #' data("synthetic_news_data")
-#' syn_news %>% 
+#' synthetic_news_data %>% 
 #'  glimpse()
 #'
 
