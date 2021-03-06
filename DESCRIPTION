@@ -23,6 +23,8 @@ Imports: tibble
 Suggests: 
     dplyr,
     caret,
+    e1071,
+    lattice,
     magrittr,
     varhandle,
     rsample,
