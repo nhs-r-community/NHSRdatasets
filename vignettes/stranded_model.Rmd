@@ -4,7 +4,7 @@ author: "Gary Hutson"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{LOS_model: A simulated hospital length-of-stay dataset}
+  %\VignetteIndexEntry{Stranded Model Tutorial}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
