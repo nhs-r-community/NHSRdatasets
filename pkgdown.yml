@@ -6,7 +6,7 @@ articles:
   ae_attendances: ae_attendances.html
   ons_mortality: ons_mortality.html
   stranded_model: stranded_model.html
-last_built: 2021-03-08T21:11Z
+last_built: 2021-03-08T22:01Z
 urls:
   reference: https://nhs-r-community.github.io/NHSRdatasets/reference
   article: https://nhs-r-community.github.io/NHSRdatasets/articles
