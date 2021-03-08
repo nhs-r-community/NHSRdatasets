@@ -13,12 +13,6 @@
     <loc>https://nhs-r-community.github.io/NHSRdatasets/reference/ons_mortality.html</loc>
   </url>
   <url>
-    <loc>https://nhs-r-community.github.io/NHSRdatasets/reference/stranded_data.html</loc>
-  </url>
-  <url>
-    <loc>https://nhs-r-community.github.io/NHSRdatasets/reference/synthetic_news_data.html</loc>
-  </url>
-  <url>
     <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/LOS_model.html</loc>
   </url>
   <url>
@@ -26,8 +20,5 @@
   </url>
   <url>
     <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/ons_mortality.html</loc>
-  </url>
-  <url>
-    <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/stranded_model.html</loc>
   </url>
 </urlset>
