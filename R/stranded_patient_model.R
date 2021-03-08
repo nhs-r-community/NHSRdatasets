@@ -1,9 +1,10 @@
 #' Stranded Patient (Patients flagged as having a greater than 7 day LOS) Model
 #'
-#' This model is to be used as a machine learning classification model, for superivsed learning. The binary outcome is stranded vs not stranded patients.
-#' 
+#' This model is to be used as a machine learning classification model, for superivsed learning. The binary outcome is
+#' stranded vs not stranded patients.
 #'
 #' @docType data
+#' @export
 #'
 #' @keywords datasets stranded_model
 #'
@@ -28,8 +29,7 @@
 #' library(magrittr)
 #' library(dplyr)
 #' data("stranded_data")
-#' stranded_data %>% 
+#' stranded_data %>%
 #'  glimpse()
 #'
-
 "stranded_data"
