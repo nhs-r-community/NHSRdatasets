@@ -1,7 +1,5 @@
 ## Release summary
-This is the third release of a collaborative dataset package for British National Health Services NHS-R community. It contains datasets and vignettes to teach R in a familiar context.  It is likely to see periodic releases as we receive contributions.
-
-CRAN checks suggested resaving data with a higher compression ratio and this has been applied.
+This is the fourth release of a collaborative dataset package for British National Health Services NHS-R community. It contains datasets and vignettes to teach R in a familiar context.  It is likely to see periodic releases as we receive contributions.
 
 ## Test environments
 * local windows 10, R 4.0.0

@@ -31,7 +31,7 @@ This model is to be used as a machine learning classification model, for superiv
 library(magrittr)
 library(dplyr)
 data("stranded_data")
-stranded_data \%>\% 
+stranded_data \%>\%
  glimpse()
 
 }
