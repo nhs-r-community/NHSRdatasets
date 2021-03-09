@@ -44,7 +44,7 @@ Joint distribution $f(x_1,x_2,x_3,…,x_p)$ is approximated by a set of conditio
 
 The data this is based on is the [NEWS](https://www.rcplondon.ac.uk/projects/outputs/national-early-warning-score-news-2) Score devised by the Royal College of Physicians.
 
-Synthetic data can be generated from new data, utilising the above metholodgy, on the real observed data:
+Synthetic data can be generated from new data, utilising the above methodology, on the real observed data:
 
 ```{r observed_data_generation}
 library(readr)
@@ -56,11 +56,11 @@ glimpse(df)
 
 ```
 
-This reads in the observed NEWS data from the GitHub repository. Now, we will utilise the synthpop package to create a synthetically generated dataset. 
+This reads in the observed NEWS data from the GitHub repository. Now, we will utilise the `synthpop` package to create a synthetically generated dataset. 
 
 ## Generating synthetic NEWS dataset using synthpop package
 
-As stated, now we will use the real observed data and generate a synthetic set, utilising the equations and process mapped out in the preceeding sections:
+As stated, now we will use the real observed data and generate a synthetic set, utilising the equations and process mapped out in the preceding sections:
 
 ```{r synth}
 library(synthpop)  
