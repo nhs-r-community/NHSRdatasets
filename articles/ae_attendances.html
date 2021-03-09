@@ -368,7 +368,7 @@
        caption <span class="op">=</span> <span class="st">"Source: NHS England Statistical Work Areas (OGL v3.0)"</span><span class="op">)</span></code></pre></div>
 <p><img src="ae_attendances_files/figure-html/england%20performance%20plot-1.png" width="700"></p>
 <p>We can clearly see the “Winter Pressures” where performance drops.</p>
-<p>We can also inspect performance for the <a href="https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp">different types of department</a>:</p>
+<p>We can also inspect performance for the <a href="https://web.archive.org/web/20200128111444/https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp">different types of department</a>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ae_attendances</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">period</span>, <span class="va">type</span><span class="op">)</span> <span class="op">%&gt;%</span>
