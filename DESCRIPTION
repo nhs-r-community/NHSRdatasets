@@ -24,6 +24,7 @@ Suggests:
     dplyr,
     caret,
     e1071,
+    readr,
     lattice,
     magrittr,
     varhandle,
@@ -41,6 +42,7 @@ Suggests:
     forcats,
     knitr,
     janitor,
-    stringi
+    stringi,
+    synthpop
 VignetteBuilder: knitr
 URL: https://github.com/nhs-r-community/NHSRdatasets, https://nhs-r-community.github.io/NHSRdatasets/
