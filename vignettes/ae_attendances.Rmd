@@ -1,7 +1,7 @@
 ---
 title: "ae_attendances dataset"
 author:
-- '[Tom Jemmett](mailto:thomas.jemmett@nhs.net), [The Strategy Unit](https://www.strategyunitwm.nhs.uk/)'
+- '[Tom Jemmett][tj_email], [The Strategy Unit][su_web]'
 date: "15/08/2019"
 output: rmarkdown::html_vignette
 vignette: >
@@ -22,8 +22,8 @@ options(tidyverse.quiet = TRUE)
 This vignette explains how to use the `ae_attendances` dataset in R, and also
 details where it comes from and how it is generated.
 
-The data is sourced from [NHS England Statistical Work Areas](https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/)
-and is available under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+The data is sourced from [NHS England Statistical Work Areas][nhs_swa]
+and is available under the [Open Government Licence v3.0][ogl_v3].
 
 The data contains all reported A&E attendances for the period April 2016 through
 March 2019
@@ -31,9 +31,9 @@ March 2019
 The dataset contains:
 
 - __period__: the month that this activity relates to, stored as a date (1st of each month)
-- __org_code__: the [ODS](https://digital.nhs.uk/services/organisation-data-service)
+- __org_code__: the [ODS][ods]
 code for the organisation that this activity relates to
-- __type__: the [Department Type](https://digital.nhs.uk/services/organisation-data-service)
+- __type__: the [Department Type][ae_types]
 for this activity, either 1, 2, or other
 - __attendances__: the number of attendances for this department type at this organisation
 for this month
@@ -103,7 +103,7 @@ ggplot(england_performance, aes(period, performance)) +
 
 We can clearly see the "Winter Pressures" where performance drops.
 
-We can also inspect performance for the [different types of department](https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp):
+We can also inspect performance for the [different types of department][ae_types]:
 
 ```{r england performance by type}
 ae_attendances %>%
@@ -231,4 +231,10 @@ ae_attendances %>%
         axis.ticks.y = element_line())
 ```
 
-
+[//]: <> (URL's / References --------------------------------------------------)
+[tj_email]: mailto:thomas.jemmett@nhs.net
+[su_web]:   https://www.strategyunitwm.nhs.uk/ 
+[nhs_swa]:  https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/
+[ogl_v3]:   https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+[ods]:      https://digital.nhs.uk/services/organisation-data-service
+[ae_types]: https://web.archive.org/web/20200128111444/https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp
