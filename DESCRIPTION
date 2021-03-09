@@ -1,7 +1,7 @@
 Package: NHSRdatasets
 Type: Package
 Title: NHS and Healthcare-Related Data for Education and Training
-Date: 2020-05-04
+Date: 2021-03-09
 Version: 0.3.0
 Authors@R: c(
           person("Gary", "Hutson", , "g.hutson@nhs.net", "aut"),
@@ -19,7 +19,8 @@ LazyData: true
 RoxygenNote: 7.1.1
 Depends: R (>= 3.5.0)
 BugReports: https://github.com/nhs-r-community/NHSRdatasets/issues
-Imports: tibble
+Imports: 
+    tibble
 Suggests: 
     dplyr,
     caret,

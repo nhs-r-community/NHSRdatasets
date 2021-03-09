@@ -103,7 +103,7 @@ ggplot(england_performance, aes(period, performance)) +
 
 We can clearly see the "Winter Pressures" where performance drops.
 
-We can also inspect performance for the [different types of department](https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp):
+We can also inspect performance for the [different types of department](https://web.archive.org/web/20200128111444/https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp):
 
 ```{r england performance by type}
 ae_attendances %>%
