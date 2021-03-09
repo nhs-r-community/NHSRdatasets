@@ -1,3 +1,7 @@
+# NHSRdatasets 0.3.0
+
+- Added two new datasets for 'stranded patients' and synthetic early warning scores (NEWS), thanks to Gary Hutson.
+
 # NHSRdatasets 0.2.0
 
 - Added a new ONS Mortality data set, and vignette showing it's construction, thanks to Zoë Turner.

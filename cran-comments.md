@@ -1,11 +1,11 @@
 ## Release summary
-This is the third release of a collaborative dataset package for British National Health Services NHS-R community. It contains datasets and vignettes to teach R in a familiar context.  It is likely to see periodic releases as we receive contributions.
-
-CRAN checks suggested resaving data with a higher compression ratio and this has been applied.
+This is the fourth release of a collaborative dataset package for British National Health Services NHS-R community. It contains datasets and vignettes to teach R in a familiar context.  It is likely to see periodic releases as we receive contributions.
 
 ## Test environments
-* local windows 10, R 4.0.0
-* ubuntu 16.04.6 LTS (on travis-ci), R 4.0.0
+* local windows 10, R 4.0.3
+* local windows 10, R 4.0.4
+* Mac OS X 10.15.7, R 4.0.4 (GitHub Actions)
+* ubuntu 16.04.6 LTS (Travis-ci), R 4.0.2
 * win-builder(devel)
 * r-hub:
   * Windows Server 2008 R2 SP1, R-devel, 32/64 bit
@@ -14,7 +14,13 @@ CRAN checks suggested resaving data with a higher compression ratio and this has
   
 
 ## R CMD check results
-There were no ERRORs, WARNINGs OR NOTES.
+There were no ERRORs, WARNINGs, with NOTE:
+
+checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: ‘tibble’
+  All declared Imports should be used.
+
+This a dataset package and the serialised data is in 'tibble' format.  Although no functions call it directly, it is required to load the data in the correct format.
 
 ## Downstream dependencies
 There are no known downstream dependencies for this package.
