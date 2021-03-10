@@ -19,11 +19,5 @@ There were no ERRORs, WARNINGs, with NOTES:
 
 New maintainer: change of email address for current maintainer
 
-checking dependencies in R code ... NOTE
-Namespace in Imports field not imported from: ‘tibble’
-  All declared Imports should be used.
-
-This a dataset package and the serialised data is in 'tibble' format.  Although no functions call it directly, it is required to load the data in the correct format.
-
 ## Downstream dependencies
 There are no known downstream dependencies for this package.
