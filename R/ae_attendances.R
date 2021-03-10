@@ -15,7 +15,7 @@
 #' \describe{
 #' \item{period}{The month that this data relates to}
 #' \item{org_code}{The \href{https://digital.nhs.uk/services/organisation-data-service}{ODS} code for this provider}
-#' \item{type}{The \href{https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp}{department type}.
+#' \item{type}{The \href{https://web.archive.org/web/20200128111444/https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp}{department type}.
 #'             either 1, 2 or other}
 #' \item{attendances}{the number of patients who attended this department in this month}
 #' \item{breaches}{the number of patients who breaches the 4 hour target in this month}

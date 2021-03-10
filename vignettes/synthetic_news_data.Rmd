@@ -98,7 +98,7 @@ print(plot)
 
 ## Loading the dataset from NHSRDatasets
 
-This dataset is available from the [NHSRDatasets](https://cran.r-project.org/web/packages/NHSRdatasets/index.html) package and similar comparisons can be made with the above. These examples can be used for data wrangling and data visualisation. 
+This dataset is available from the [NHSRDatasets](https://CRAN.R-project.org/package=NHSRdatasets) package and similar comparisons can be made with the above. These examples can be used for data wrangling and data visualisation. 
 
 For mode information about the [synthpop](http://gradientdescending.com/generating-synthetic-data-sets-with-synthpop-in-r/) package.
 
