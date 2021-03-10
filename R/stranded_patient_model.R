@@ -24,9 +24,6 @@
 #'
 #' @usage data(stranded_data)
 #'
-#' @import magrittr
-#' @import dplyr
-#'
 #' @examples
 #' library(magrittr)
 #' library(dplyr)
