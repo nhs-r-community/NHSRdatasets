@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Stranded Model Tutorial</h1>
                         <h4 class="author">Gary Hutson</h4>
             
-            <h4 class="date">2021-03-09</h4>
+            <h4 class="date">2021-03-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nhs-r-community/NHSRdatasets/blob/master/vignettes/stranded_model.Rmd"><code>vignettes/stranded_model.Rmd</code></a></small>
       <div class="hidden name"><code>stranded_model.Rmd</code></div>
@@ -223,8 +223,8 @@
 <span class="co">#&gt; Summary of sample sizes: 525, 525, 525, 525, 525, 525, ... </span>
 <span class="co">#&gt; Resampling results:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Accuracy   Kappa    </span>
-<span class="co">#&gt;   0.7812749  0.4683148</span></code></pre></div>
+<span class="co">#&gt;   Accuracy   Kappa   </span>
+<span class="co">#&gt;   0.7984839  0.484846</span></code></pre></div>
 <p>This is a very basic model and could be improved by model choice, hyperparameter selection, different resampling strategies, etc.</p>
 </div>
 <div id="predicting-the-test-set-to-validate-model" class="section level2">
@@ -245,19 +245,19 @@
 <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 174</span>
 <span class="co">#&gt; Columns: 13</span>
-<span class="co">#&gt; $ stranded.label                 &lt;fct&gt; Not Stranded, Not Stranded, Not Strande…</span>
-<span class="co">#&gt; $ age                            &lt;int&gt; 31, 69, 33, 75, 63, 30, 72, 31, 77, 43,…</span>
-<span class="co">#&gt; $ care.home.referral             &lt;int&gt; 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, …</span>
-<span class="co">#&gt; $ medicallysafe                  &lt;int&gt; 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, …</span>
-<span class="co">#&gt; $ hcop                           &lt;int&gt; 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, …</span>
-<span class="co">#&gt; $ mental_health_care             &lt;int&gt; 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, …</span>
-<span class="co">#&gt; $ periods_of_previous_care       &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, …</span>
-<span class="co">#&gt; $ frail_ind.Activity_Limitation  &lt;dbl&gt; 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, …</span>
-<span class="co">#&gt; $ frail_ind.Fall_patient_history &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</span>
-<span class="co">#&gt; $ frail_ind.Mobility_problems    &lt;dbl&gt; 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, …</span>
+<span class="co">#&gt; $ stranded.label                 &lt;fct&gt; Not Stranded, Not Stranded, Stranded, N…</span>
+<span class="co">#&gt; $ age                            &lt;int&gt; 50, 64, 29, 62, 79, 35, 70, 64, 74, 22,…</span>
+<span class="co">#&gt; $ care.home.referral             &lt;int&gt; 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, …</span>
+<span class="co">#&gt; $ medicallysafe                  &lt;int&gt; 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, …</span>
+<span class="co">#&gt; $ hcop                           &lt;int&gt; 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, …</span>
+<span class="co">#&gt; $ mental_health_care             &lt;int&gt; 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, …</span>
+<span class="co">#&gt; $ periods_of_previous_care       &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ frail_ind.Activity_Limitation  &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, …</span>
+<span class="co">#&gt; $ frail_ind.Fall_patient_history &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, …</span>
+<span class="co">#&gt; $ frail_ind.Mobility_problems    &lt;dbl&gt; 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, …</span>
 <span class="co">#&gt; $ pred_class                     &lt;fct&gt; Not Stranded, Not Stranded, Not Strande…</span>
-<span class="co">#&gt; $ Not.Stranded                   &lt;dbl&gt; 7.324249e-01, 7.580503e-01, 7.740434e-0…</span>
-<span class="co">#&gt; $ Stranded                       &lt;dbl&gt; 0.2675751, 0.2419497, 0.2259566, 0.2646…</span></code></pre></div>
+<span class="co">#&gt; $ Not.Stranded                   &lt;dbl&gt; 6.723943e-01, 8.454159e-01, 8.129816e-0…</span>
+<span class="co">#&gt; $ Stranded                       &lt;dbl&gt; 0.3276057, 0.1545841, 0.1870184, 0.1185…</span></code></pre></div>
 </div>
 <div id="evaluating-with-confusion-matrix" class="section level2">
 <h2 class="hasAnchor">
@@ -270,26 +270,26 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt;               Reference</span>
 <span class="co">#&gt; Prediction     Not Stranded Stranded</span>
-<span class="co">#&gt;   Not Stranded          115        3</span>
-<span class="co">#&gt;   Stranded               36       20</span>
+<span class="co">#&gt;   Not Stranded          105        3</span>
+<span class="co">#&gt;   Stranded               41       25</span>
 <span class="co">#&gt;                                           </span>
-<span class="co">#&gt;                Accuracy : 0.7759          </span>
-<span class="co">#&gt;                  95% CI : (0.7066, 0.8355)</span>
-<span class="co">#&gt;     No Information Rate : 0.8678          </span>
-<span class="co">#&gt;     P-Value [Acc &gt; NIR] : 0.9997          </span>
+<span class="co">#&gt;                Accuracy : 0.7471          </span>
+<span class="co">#&gt;                  95% CI : (0.6758, 0.8099)</span>
+<span class="co">#&gt;     No Information Rate : 0.8391          </span>
+<span class="co">#&gt;     P-Value [Acc &gt; NIR] : 0.9993          </span>
 <span class="co">#&gt;                                           </span>
-<span class="co">#&gt;                   Kappa : 0.3925          </span>
+<span class="co">#&gt;                   Kappa : 0.3953          </span>
 <span class="co">#&gt;                                           </span>
-<span class="co">#&gt;  Mcnemar's Test P-Value : 2.99e-07        </span>
+<span class="co">#&gt;  Mcnemar's Test P-Value : 2.434e-08       </span>
 <span class="co">#&gt;                                           </span>
-<span class="co">#&gt;             Sensitivity : 0.8696          </span>
-<span class="co">#&gt;             Specificity : 0.7616          </span>
-<span class="co">#&gt;          Pos Pred Value : 0.3571          </span>
-<span class="co">#&gt;          Neg Pred Value : 0.9746          </span>
-<span class="co">#&gt;              Prevalence : 0.1322          </span>
-<span class="co">#&gt;          Detection Rate : 0.1149          </span>
-<span class="co">#&gt;    Detection Prevalence : 0.3218          </span>
-<span class="co">#&gt;       Balanced Accuracy : 0.8156          </span>
+<span class="co">#&gt;             Sensitivity : 0.8929          </span>
+<span class="co">#&gt;             Specificity : 0.7192          </span>
+<span class="co">#&gt;          Pos Pred Value : 0.3788          </span>
+<span class="co">#&gt;          Neg Pred Value : 0.9722          </span>
+<span class="co">#&gt;              Prevalence : 0.1609          </span>
+<span class="co">#&gt;          Detection Rate : 0.1437          </span>
+<span class="co">#&gt;    Detection Prevalence : 0.3793          </span>
+<span class="co">#&gt;       Balanced Accuracy : 0.8060          </span>
 <span class="co">#&gt;                                           </span>
 <span class="co">#&gt;        'Positive' Class : Stranded        </span>
 <span class="co">#&gt; </span></code></pre></div>
