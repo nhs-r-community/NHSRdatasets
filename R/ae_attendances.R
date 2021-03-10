@@ -23,6 +23,9 @@
 #' }
 #'
 #' @source \href{https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/}{NHS England Statistical Work Areas}
+#' @import dplyr
+#' @import ggplot2
+#' @import scaales
 #'
 #' @usage data(ae_attendances)
 #'
