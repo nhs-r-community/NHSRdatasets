@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
  
 <br><br>
  
-Please visit: https://nhsrcommunity.com/
+Please visit: [nhsrcommunity.com](https://nhsrcommunity.com/)
 
 ## Datasources for reuse
 
@@ -31,7 +31,7 @@ This package has been created to help NHS, Public Health and related analysts/da
 
 ## Installation instructions
 
-This packages is available on CRAN or the development version can be installed from source, via this Github repository.  You will need `Rtools` (https://cran.r-project.org/bin/windows/Rtools/) installed to build the package, and the `remotes` package.
+This packages is available on CRAN or the development version can be installed from source, via this Github repository.  You will need [`Rtools`](https://cran.r-project.org/bin/windows/Rtools/) installed to build the package, and the `remotes` package.
 
 ```{r install, eval=FALSE}
 remotes::install_github("https://github.com/nhs-r-community/NHSRdatasets")
