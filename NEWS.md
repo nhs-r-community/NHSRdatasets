@@ -1,6 +1,7 @@
 # NHSRdatasets 0.3.0
 
-- Added two new datasets for 'stranded patients' and synthetic early warning scores (NEWS), thanks to Gary Hutson.
+- Added two new datasets for 'stranded patients' and synthetic early warning scores (NEWS), including vignettes, thanks to Gary Hutson.
+- Removed Travis and added GitHub actions
 
 # NHSRdatasets 0.2.0
 

@@ -15,9 +15,15 @@ This is the fourth release of a collaborative dataset package for British Nation
   
 
 ## R CMD check results
-There were no ERRORs, WARNINGs, with NOTES:
+There were no ERRORs or WARNINGs, with NOTES:
 
 New maintainer: change of email address for current maintainer
 
+Namespace in Imports field not imported from: 'tibble'
+     All declared Imports should be used.
+This is a data package with serialised data from saved tibbles, so tibble requirement not detected.
+
+No linux errors locally, on github actions or Travis, but PREPERROR on R-Hub that seems to be about how docker is functioning, rather than the package itself.
+     
 ## Downstream dependencies
 There are no known downstream dependencies for this package.
