@@ -7,7 +7,7 @@ articles:
   ons_mortality: ons_mortality.html
   stranded_model: stranded_model.html
   synthetic_news_data: synthetic_news_data.html
-last_built: 2021-03-10T12:47Z
+last_built: 2021-03-11T08:12Z
 urls:
   reference: https://nhs-r-community.github.io/NHSRdatasets/reference
   article: https://nhs-r-community.github.io/NHSRdatasets/articles
