@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">NHSRdatasets</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.9999</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.9999</span>
       </span>
     </div>
 
@@ -97,7 +97,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,10 +115,16 @@
       <a href="../articles/LOS_model.html">LOS_model: A simulated hospital length-of-stay dataset</a>
     </li>
     <li>
-      <a href="../articles/ONSMortality.html">Building the ONS mortality dataset</a>
+      <a href="../articles/ae_attendances.html">ae_attendances dataset</a>
     </li>
     <li>
-      <a href="../articles/ae_attendances.html">ae_attendances dataset</a>
+      <a href="../articles/ons_mortality.html">Building the ONS mortality dataset</a>
+    </li>
+    <li>
+      <a href="../articles/stranded_model.html">Stranded Model Tutorial</a>
+    </li>
+    <li>
+      <a href="../articles/synthetic_news_data.html">Synthetic NEWS Data</a>
     </li>
   </ul>
 </li>
@@ -129,7 +135,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/nhs-r-community/NHSRdatasets">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -150,19 +156,38 @@
       <small>Source: <a href='https://github.com/nhs-r-community/NHSRdatasets/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="nhsrdatasets-0-1-2" class="section level1">
+    <div id="nhsrdatasets-030" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.0">
+<a href="#nhsrdatasets-030" class="anchor"></a>NHSRdatasets 0.3.0<small> 2021-03-13 </small>
+</h1>
+<ul>
+<li>Added two new datasets for ‘stranded patients’ and synthetic early warning scores (NEWS), including vignettes, thanks to Gary Hutson.</li>
+<li>Removed Travis and added GitHub actions</li>
+</ul>
+</div>
+    <div id="nhsrdatasets-020" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.0">
+<a href="#nhsrdatasets-020" class="anchor"></a>NHSRdatasets 0.2.0<small> 2020-05-04 </small>
+</h1>
+<ul>
+<li>Added a new ONS Mortality data set, and vignette showing it’s construction, thanks to Zoë Turner.</li>
+<li>Resaved .Rdata files as rda, using “gzip” compression.</li>
+<li>Other minor documentation tweaks.</li>
+</ul>
+</div>
+    <div id="nhsrdatasets-012" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.2">
-<a href="#nhsrdatasets-0-1-2" class="anchor"></a>NHSRdatasets 0.1.2<small> 2019-09-27 </small>
+<a href="#nhsrdatasets-012" class="anchor"></a>NHSRdatasets 0.1.2<small> 2019-09-27 </small>
 </h1>
 <ul>
 <li>Added a new NHS Accident and Emergency (A&amp;E) dataset with vignette, thanks to Tom Jemmett.</li>
-<li>Typos resolved and cleaned some files</li>
-<li>Added pkgdown site</li>
+<li>Typos resolved and cleaned some files.</li>
+<li>Added pkgdown site.</li>
 </ul>
 </div>
-    <div id="nhsrdatasets-0-1-1" class="section level1">
+    <div id="nhsrdatasets-011" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.1">
-<a href="#nhsrdatasets-0-1-1" class="anchor"></a>NHSRdatasets 0.1.1<small> 2019-08-03 </small>
+<a href="#nhsrdatasets-011" class="anchor"></a>NHSRdatasets 0.1.1<small> 2019-08-03 </small>
 </h1>
 <ul>
 <li>This is the first release of this collaborative package for NHS and healthcare analysts to learn or teach R. It will evolve over time as new contributions are released.</li>
@@ -181,11 +206,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.mainard.co.uk'>Chris Mainey</a>, <a href='https://github.com/tomjemmett'>Tom Jemmett</a>, Zoe Turner.</p>
+  <p>Developed by <a href='https://github.com/StatsGary'>Gary Hutson</a>, <a href='https://github.com/tomjemmett'>Tom Jemmett</a>, <a href='https://www.mainard.co.uk'>Chris Mainey</a>, <a href='https://github.com/Lextuga007'>Zoë Turner</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

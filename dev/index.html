@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NHS and Healthcare Related Data for Education and Training • NHSRdatasets</title>
+<title>NHS and Healthcare-Related Data for Education and Training • NHSRdatasets</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,8 +17,8 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="NHS and Healthcare Related Data for Education and Training">
-<meta property="og:description" content="Free United Kingdom National Health Service (NHS) and other healthcare, or population health-related data for education and training purposes. This package currently contains a single simulated hospital dataset for teaching regression methods, with the addition of more datasets planned for future releases.  This package exists to support skills development in the NHS-R community: &lt;https://nhsrcommunity.com/&gt;.">
+<script src="pkgdown.js"></script><meta property="og:title" content="NHS and Healthcare-Related Data for Education and Training">
+<meta property="og:description" content="Free United Kingdom National Health Service (NHS) and other healthcare, or population health-related data for education and training purposes. This package contains synthetic data based on real healthcare datasets, or cuts of open-licenced official data.  This package exists to support skills development in the NHS-R community: &lt;https://nhsrcommunity.com/&gt;.">
 <meta property="og:image" content="https://nhs-r-community.github.io/NHSRdatasets/logo.png">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -45,7 +45,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">NHSRdatasets</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.9999</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.9999</span>
       </span>
     </div>
 
@@ -53,7 +53,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -71,10 +71,16 @@
       <a href="articles/LOS_model.html">LOS_model: A simulated hospital length-of-stay dataset</a>
     </li>
     <li>
-      <a href="articles/ONSMortality.html">Building the ONS mortality dataset</a>
+      <a href="articles/ae_attendances.html">ae_attendances dataset</a>
     </li>
     <li>
-      <a href="articles/ae_attendances.html">ae_attendances dataset</a>
+      <a href="articles/ons_mortality.html">Building the ONS mortality dataset</a>
+    </li>
+    <li>
+      <a href="articles/stranded_model.html">Stranded Model Tutorial</a>
+    </li>
+    <li>
+      <a href="articles/synthetic_news_data.html">Synthetic NEWS Data</a>
     </li>
   </ul>
 </li>
@@ -85,7 +91,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/nhs-r-community/NHSRdatasets">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -101,9 +107,9 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="nhs-r-community-datasets" class="section level1">
+<div id="nhs-r-community-datasets-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#nhs-r-community-datasets" class="anchor"></a>NHS R-community Datasets <a href="https://nhsrcommunity.com/"><img src="reference/figures/logo.png" align="right" height="80"></a>
+<a href="#nhs-r-community-datasets-" class="anchor"></a>NHS R-community Datasets <a href="https://nhsrcommunity.com/"><img src="reference/figures/logo.png" align="right" height="80"></a>
 </h1></div>
 <!-- badges: start -->
 
@@ -118,7 +124,8 @@
 <h2 class="hasAnchor">
 <a href="#installation-instructions" class="anchor"></a>Installation instructions</h2>
 <p>This packages is available on CRAN or the development version can be installed from source, via this Github repository. You will need <code>Rtools</code> (<a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a>) installed to build the package, and the <code>remotes</code> package.</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"https://github.com/nhs-r-community/NHSRdatasets"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"https://github.com/nhs-r-community/NHSRdatasets"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="contribution" class="section level2">
 <h2 class="hasAnchor">
@@ -127,9 +134,10 @@
 <p><strong>To contribute, please:</strong></p>
 <ul>
 <li>Fork the repository.</li>
-<li>Add your dataset in the <code>data</code> folder, in <code>.RData</code> format.</li>
+<li>Add your dataset in the <code>data</code> folder, in <code>.rda</code> format. The best way to do this is with the <code>usethis</code> package with “gzip” compression: <code>usethis::use_data(data, compress="gzip")</code>
+</li>
 <li>Please add a minimal <code>R</code> function to act as a help file. You can use the <code>LOS_model</code> as a guide.</li>
-<li>Consider adding a <code>vignette</code> demonstrating how the data has been used previously.</li>
+<li>Please add a <code>vignette</code> demonstrating how the data has been/can be used.</li>
 <li>Create a pull request, detailing your additions, and we will review it before merging.</li>
 </ul>
 <p><br><strong><em>When contributing a dataset, the contributor certifies that:</em></strong></p>
@@ -172,10 +180,13 @@
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://www.mainard.co.uk">Chris Mainey</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-3018-6171" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="https://github.com/StatsGary">Gary Hutson</a> <br><small class="roles"> Author </small>  </li>
 <li>
 <a href="https://github.com/tomjemmett">Tom Jemmett</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-6943-2990" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Zoe Turner <br><small class="roles"> Author </small>  </li>
+<li>
+<a href="https://www.mainard.co.uk">Chris Mainey</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-3018-6171" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://github.com/Lextuga007">Zoë Turner</a> <br><small class="roles"> Author </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
@@ -194,11 +205,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.mainard.co.uk">Chris Mainey</a>, <a href="https://github.com/tomjemmett">Tom Jemmett</a>, Zoe Turner.</p>
+  <p>Developed by <a href="https://github.com/StatsGary">Gary Hutson</a>, <a href="https://github.com/tomjemmett">Tom Jemmett</a>, <a href="https://www.mainard.co.uk">Chris Mainey</a>, <a href="https://github.com/Lextuga007">Zoë Turner</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
