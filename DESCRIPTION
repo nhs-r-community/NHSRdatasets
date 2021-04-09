@@ -4,7 +4,7 @@ Title: NHS and Healthcare-Related Data for Education and Training
 Date: 2020-05-04
 Version: 0.3.0
 Authors@R: c(
-          person("Gary", "Hutson", , "g.hutson@nhs.net", "aut"),
+          person("Gary", "Hutson", , "g.hutson@nhs.net", "aut", comment = c(ORCID="0000-0003-3534-6143")),
           person("Tom", "Jemmett", ,"thomas.jemmett@nhs.net", "aut", comment = c(ORCID="0000-0002-6943-2990")),
           person("Chris", "Mainey", ,"c.mainey@nhs.net", c("aut", "cre"), comment = c(ORCID ="0000-0002-3018-6171")),
           person("Zoë", "Turner", , "zoe.turner@nhs.net", "aut" ),
