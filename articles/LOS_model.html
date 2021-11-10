@@ -19,7 +19,6 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="LOS_model: A simulated hospital length-of-stay dataset">
 <meta property="og:description" content="NHSRdatasets">
-<meta property="og:image" content="https://nhs-r-community.github.io/NHSRdatasets/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -110,7 +109,7 @@
       <h1 data-toc-skip>LOS_model: A simulated hospital length-of-stay dataset</h1>
                         <h4 class="author">Chris Mainey</h4>
             
-            <h4 class="date">2021-08-06</h4>
+            <h4 class="date">2021-11-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nhs-r-community/NHSRdatasets/blob/master/vignettes/LOS_model.Rmd"><code>vignettes/LOS_model.Rmd</code></a></small>
       <div class="hidden name"><code>LOS_model.Rmd</code></div>
@@ -253,7 +252,7 @@
 <ul>
 <li>The ‘call’, of model formula</li>
 <li>A description of the distribution of the deviance residuals (don’t worry about this for now).</li>
-<li>The ‘coefficients’, the estimates of the effects of our predictors, including their standard errors, and z-tests for their ‘significance.’ There is a legend, using <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code>, to indicate the significance levels.</li>
+<li>The ‘coefficients’, the estimates of the effects of our predictors, including their standard errors, and z-tests for their ‘significance.’ There is a legend, using <code>*</code>, to indicate the significance levels.</li>
 <li>Information on fit statistics</li>
 <li>We also used the <code>ModelMetrics</code> package to calculate the <code>auc</code>. This is suggests that ~66% of the variation in our data can be explained by our model.</li>
 </ul>
@@ -263,7 +262,7 @@
 <h3 class="hasAnchor">
 <a href="#interactions" class="anchor"></a>Interactions</h3>
 <p>‘Interactions’ are where predictor variables affect each other. For example, the Hospital Standardised Mortality Ratio (HSMR) <sup>[4]</sup> uses an interaction term between co-morbidity and age. So co-morbidities score may have different effects related to age, as well as the independent effects of age and co-morbidity score.</p>
-<p>We can add these to our models with <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> to include the interaction and the independent terms, or <code><a href="https://rdrr.io/r/base/Colon.html">:</a></code> if you just want the interaction without the independent terms:</p>
+<p>We can add these to our models with <code>*</code> to include the interaction and the independent terms, or <code>:</code> if you just want the interaction without the independent terms:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">glm_binomial2</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">Death</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">LOS</span> <span class="op">+</span> <span class="va">Age</span><span class="op">*</span><span class="va">LOS</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"binomial"</span><span class="op">)</span>
 
@@ -466,7 +465,7 @@
 <span class="co">#&gt;           Std. Err.:  1.82 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  2 x log-likelihood:  -1378.487</span></code></pre></div>
-<p>Finally, using the random-intercept model, fitted with <code>glmer</code> from the <code>lme4</code> package. The extra formula argument specifies the random-intercept, where 1 means the intercept, and the <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code> reads as ‘intercept varying by organisation.’</p>
+<p>Finally, using the random-intercept model, fitted with <code>glmer</code> from the <code>lme4</code> package. The extra formula argument specifies the random-intercept, where 1 means the intercept, and the <code>|</code> reads as ‘intercept varying by organisation.’</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: Matrix</span>
