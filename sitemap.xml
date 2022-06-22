@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://nhs-r-community.github.io/NHSRdatasets/404.html</loc>
+  </url>
+  <url>
+    <loc>https://nhs-r-community.github.io/NHSRdatasets/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>https://nhs-r-community.github.io/NHSRdatasets/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/LOS_model.html</loc>
+  </url>
+  <url>
+    <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/ae_attendances.html</loc>
+  </url>
+  <url>
+    <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/ons_mortality.html</loc>
+  </url>
+  <url>
+    <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/stranded_model.html</loc>
+  </url>
+  <url>
+    <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/synthetic_news_data.html</loc>
+  </url>
+  <url>
+    <loc>https://nhs-r-community.github.io/NHSRdatasets/authors.html</loc>
+  </url>
+  <url>
     <loc>https://nhs-r-community.github.io/NHSRdatasets/index.html</loc>
+  </url>
+  <url>
+    <loc>https://nhs-r-community.github.io/NHSRdatasets/news/index.html</loc>
   </url>
   <url>
     <loc>https://nhs-r-community.github.io/NHSRdatasets/reference/LOS_model.html</loc>
@@ -13,6 +46,9 @@
     <loc>https://nhs-r-community.github.io/NHSRdatasets/reference/covid19.html</loc>
   </url>
   <url>
+    <loc>https://nhs-r-community.github.io/NHSRdatasets/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://nhs-r-community.github.io/NHSRdatasets/reference/ons_mortality.html</loc>
   </url>
   <url>
@@ -20,20 +56,5 @@
   </url>
   <url>
     <loc>https://nhs-r-community.github.io/NHSRdatasets/reference/synthetic_news_data.html</loc>
-  </url>
-  <url>
-    <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/LOS_model.html</loc>
-  </url>
-  <url>
-    <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/ae_attendances.html</loc>
-  </url>
-  <url>
-    <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/ons_mortality.html</loc>
-  </url>
-  <url>
-    <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/stranded_model.html</loc>
-  </url>
-  <url>
-    <loc>https://nhs-r-community.github.io/NHSRdatasets/articles/synthetic_news_data.html</loc>
   </url>
 </urlset>
