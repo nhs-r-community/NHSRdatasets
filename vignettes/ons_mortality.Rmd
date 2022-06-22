@@ -60,7 +60,7 @@ The dataset contains:
 This data has been made available through Office of National Statistics under the [Open Government
 Licence](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
 
-The main page for downloads is [here](https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales).
+The main page for downloads is found on the [ONS People Population and Community pages](https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales).
 
 ## Creating the dataset
 
