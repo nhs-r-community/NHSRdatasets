@@ -44,6 +44,7 @@ Suggests:
     knitr,
     janitor,
     stringi,
-    synthpop
+    synthpop,
+    rcmdcheck
 VignetteBuilder: knitr
 URL: https://github.com/nhs-r-community/NHSRdatasets, https://nhs-r-community.github.io/NHSRdatasets/
