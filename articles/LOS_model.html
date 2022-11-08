@@ -45,7 +45,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">NHSRdatasets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -105,7 +105,7 @@
       <h1 data-toc-skip>LOS_model: A simulated hospital length-of-stay dataset</h1>
                         <h4 data-toc-skip class="author">Chris Mainey</h4>
             
-            <h4 data-toc-skip class="date">2022-06-23</h4>
+            <h4 data-toc-skip class="date">2022-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nhs-r-community/NHSRdatasets/blob/HEAD/vignettes/LOS_model.Rmd" class="external-link"><code>vignettes/LOS_model.Rmd</code></a></small>
       <div class="hidden name"><code>LOS_model.Rmd</code></div>
@@ -132,56 +132,56 @@
 <h2 id="first-load-the-data-and-inspect-it">First, load the data and inspect it<a class="anchor" aria-label="anchor" href="#first-load-the-data-and-inspect-it"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nhs-r-community/NHSRdatasets" class="external-link">NHSRdatasets</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"LOS_model"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">LOS_model</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 5</span></span>
-<span class="co">#&gt;      ID Organisation   Age   LOS Death</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     1 Trust1          55     2     0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     2 Trust2          27     1     0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     3 Trust3          93    12     0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     4 Trust4          45     3     1</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     5 Trust5          70    11     0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     6 Trust6          60     7     0</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">LOS_model</span><span class="op">)</span>
-<span class="co">#&gt;        ID          Organisation      Age             LOS        </span>
-<span class="co">#&gt;  Min.   :  1.00   Trust1 : 30   Min.   : 5.00   Min.   : 1.000  </span>
-<span class="co">#&gt;  1st Qu.: 75.75   Trust2 : 30   1st Qu.:24.00   1st Qu.: 2.000  </span>
-<span class="co">#&gt;  Median :150.50   Trust3 : 30   Median :54.00   Median : 4.000  </span>
-<span class="co">#&gt;  Mean   :150.50   Trust4 : 30   Mean   :50.66   Mean   : 4.937  </span>
-<span class="co">#&gt;  3rd Qu.:225.25   Trust5 : 30   3rd Qu.:75.25   3rd Qu.: 7.000  </span>
-<span class="co">#&gt;  Max.   :300.00   Trust6 : 30   Max.   :95.00   Max.   :18.000  </span>
-<span class="co">#&gt;                   (Other):120                                   </span>
-<span class="co">#&gt;      Death       </span>
-<span class="co">#&gt;  Min.   :0.0000  </span>
-<span class="co">#&gt;  1st Qu.:0.0000  </span>
-<span class="co">#&gt;  Median :0.0000  </span>
-<span class="co">#&gt;  Mean   :0.1767  </span>
-<span class="co">#&gt;  3rd Qu.:0.0000  </span>
-<span class="co">#&gt;  Max.   :1.0000  </span>
-<span class="co">#&gt; </span>
-
-<span class="co"># 82.3% survived</span>
-<span class="fu"><a href="https://rdrr.io/r/base/proportions.html" class="external-link">prop.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">LOS_model</span><span class="op">$</span><span class="va">Death</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;         0         1 </span>
-<span class="co">#&gt; 0.8233333 0.1766667</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nhs-r-community/NHSRdatasets" class="external-link">NHSRdatasets</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"LOS_model"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">LOS_model</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 5</span></span></span>
+<span><span class="co">#&gt;      ID Organisation   Age   LOS Death</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     1 Trust1          55     2     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     2 Trust2          27     1     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     3 Trust3          93    12     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     4 Trust4          45     3     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     5 Trust5          70    11     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     6 Trust6          60     7     0</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">LOS_model</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        ID          Organisation      Age             LOS        </span></span>
+<span><span class="co">#&gt;  Min.   :  1.00   Trust1 : 30   Min.   : 5.00   Min.   : 1.000  </span></span>
+<span><span class="co">#&gt;  1st Qu.: 75.75   Trust2 : 30   1st Qu.:24.00   1st Qu.: 2.000  </span></span>
+<span><span class="co">#&gt;  Median :150.50   Trust3 : 30   Median :54.00   Median : 4.000  </span></span>
+<span><span class="co">#&gt;  Mean   :150.50   Trust4 : 30   Mean   :50.66   Mean   : 4.937  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:225.25   Trust5 : 30   3rd Qu.:75.25   3rd Qu.: 7.000  </span></span>
+<span><span class="co">#&gt;  Max.   :300.00   Trust6 : 30   Max.   :95.00   Max.   :18.000  </span></span>
+<span><span class="co">#&gt;                   (Other):120                                   </span></span>
+<span><span class="co">#&gt;      Death       </span></span>
+<span><span class="co">#&gt;  Min.   :0.0000  </span></span>
+<span><span class="co">#&gt;  1st Qu.:0.0000  </span></span>
+<span><span class="co">#&gt;  Median :0.0000  </span></span>
+<span><span class="co">#&gt;  Mean   :0.1767  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:0.0000  </span></span>
+<span><span class="co">#&gt;  Max.   :1.0000  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span></span>
+<span><span class="co"># 82.3% survived</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html" class="external-link">prop.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">LOS_model</span><span class="op">$</span><span class="va">Death</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;         0         1 </span></span>
+<span><span class="co">#&gt; 0.8233333 0.1766667</span></span></code></pre></div>
 <p>Now lets look at the distributions of Age and LOS. We might expect Age to be normally distributed, but this would be unrealistic, as elderly patient represent higher proportions of the total in-patients. It could be uniform, it could be bi-modal (or have more peaks), but nothing is particularly clear. LOS is highly right-skewed. This means that the high values will affect the mean, dragging it out, and the median would be a better estimation of the centre of the distribution. This shows that most patients don’t stay very long, but a few patients stay notably longer.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">LOS_model</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Age</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.5</span>, col<span class="op">=</span><span class="fl">1</span>, fill<span class="op">=</span><span class="fl">12</span>, bins<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of Age"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">LOS_model</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Age</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.5</span>, col<span class="op">=</span><span class="fl">1</span>, fill<span class="op">=</span><span class="fl">12</span>, bins<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of Age"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="LOS_model_files/figure-html/VisageLOS-1.png" width="700"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">LOS_model</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">LOS</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.5</span>, col<span class="op">=</span><span class="fl">1</span>, fill<span class="op">=</span><span class="fl">13</span>, bins<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of Length-of-Stay"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">LOS_model</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">LOS</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.5</span>, col<span class="op">=</span><span class="fl">1</span>, fill<span class="op">=</span><span class="fl">13</span>, bins<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of Length-of-Stay"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="LOS_model_files/figure-html/VisageLOS-2.png" width="700"></p>
 </div>
 <div class="section level2">
@@ -215,35 +215,35 @@
 </h3>
 <p><code>Death</code> is a binary variable recorded in our <code>LOS_model</code> dataset. This cannot be linear and is usually modelled using the <code>binomial</code> family argument, and the <code>logit</code> link function. This link function is the default in <code>R</code> for <code>binomial</code> regressions, and is commonly referred to as <strong>Logistic Regression</strong>. We’ll fit this using the <code>glm</code> function. Rather than fitting <code>Death</code> as such, the link function makes this the log-odds of death.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">glm_binomial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Death</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">LOS</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"binomial"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">glm_binomial</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Call:</span>
-<span class="co">#&gt; glm(formula = Death ~ Age + LOS, family = "binomial", data = LOS_model)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Deviance Residuals: </span>
-<span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span>
-<span class="co">#&gt; -1.1007  -0.6407  -0.5118  -0.4499   2.1803  </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="co">#&gt; (Intercept) -2.435539   0.370818  -6.568  5.1e-11 ***</span>
-<span class="co">#&gt; Age          0.003602   0.006372   0.565   0.5719    </span>
-<span class="co">#&gt; LOS          0.127344   0.044359   2.871   0.0041 ** </span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     Null deviance: 279.78  on 299  degrees of freedom</span>
-<span class="co">#&gt; Residual deviance: 267.06  on 297  degrees of freedom</span>
-<span class="co">#&gt; AIC: 273.06</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Number of Fisher Scoring iterations: 4</span>
-
-<span class="fu">ModelMetrics</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ModelMetrics/man/auc.html" class="external-link">auc</a></span><span class="op">(</span><span class="va">glm_binomial</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.6594225</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">glm_binomial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Death</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">LOS</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"binomial"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">glm_binomial</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; glm(formula = Death ~ Age + LOS, family = "binomial", data = LOS_model)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Deviance Residuals: </span></span>
+<span><span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span></span>
+<span><span class="co">#&gt; -1.1007  -0.6407  -0.5118  -0.4499   2.1803  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -2.435539   0.370818  -6.568  5.1e-11 ***</span></span>
+<span><span class="co">#&gt; Age          0.003602   0.006372   0.565   0.5719    </span></span>
+<span><span class="co">#&gt; LOS          0.127344   0.044359   2.871   0.0041 ** </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Null deviance: 279.78  on 299  degrees of freedom</span></span>
+<span><span class="co">#&gt; Residual deviance: 267.06  on 297  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 273.06</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 4</span></span>
+<span></span>
+<span><span class="fu">ModelMetrics</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ModelMetrics/man/auc.html" class="external-link">auc</a></span><span class="op">(</span><span class="va">glm_binomial</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.6594225</span></span></code></pre></div>
 <p>Using the <code>summary</code> function, we can see our model output, including:</p>
 <ul>
 <li>The ‘call’, of model formula</li>
@@ -260,37 +260,37 @@
 <p>‘Interactions’ are where predictor variables affect each other. For example, the Hospital Standardised Mortality Ratio (HSMR) <sup>[4]</sup> uses an interaction term between co-morbidity and age. So co-morbidities score may have different effects related to age, as well as the independent effects of age and co-morbidity score.</p>
 <p>We can add these to our models with <code>*</code> to include the interaction and the independent terms, or <code>:</code> if you just want the interaction without the independent terms:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">glm_binomial2</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Death</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">LOS</span> <span class="op">+</span> <span class="va">Age</span><span class="op">*</span><span class="va">LOS</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"binomial"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">glm_binomial2</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Call:</span>
-<span class="co">#&gt; glm(formula = Death ~ Age + LOS + Age * LOS, family = "binomial", </span>
-<span class="co">#&gt;     data = LOS_model)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Deviance Residuals: </span>
-<span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span>
-<span class="co">#&gt; -1.0115  -0.7134  -0.5092  -0.2699   2.7244  </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="co">#&gt; (Intercept) -4.516296   0.747036  -6.046 1.49e-09 ***</span>
-<span class="co">#&gt; Age          0.042619   0.011875   3.589 0.000332 ***</span>
-<span class="co">#&gt; LOS          0.544862   0.135868   4.010 6.07e-05 ***</span>
-<span class="co">#&gt; Age:LOS     -0.006988   0.001918  -3.643 0.000269 ***</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     Null deviance: 279.78  on 299  degrees of freedom</span>
-<span class="co">#&gt; Residual deviance: 247.94  on 296  degrees of freedom</span>
-<span class="co">#&gt; AIC: 255.94</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Number of Fisher Scoring iterations: 5</span>
-
-<span class="fu">ModelMetrics</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ModelMetrics/man/auc.html" class="external-link">auc</a></span><span class="op">(</span><span class="va">glm_binomial2</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.7068597</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">glm_binomial2</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Death</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">LOS</span> <span class="op">+</span> <span class="va">Age</span><span class="op">*</span><span class="va">LOS</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"binomial"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">glm_binomial2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; glm(formula = Death ~ Age + LOS + Age * LOS, family = "binomial", </span></span>
+<span><span class="co">#&gt;     data = LOS_model)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Deviance Residuals: </span></span>
+<span><span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span></span>
+<span><span class="co">#&gt; -1.0115  -0.7134  -0.5092  -0.2699   2.7244  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -4.516296   0.747036  -6.046 1.49e-09 ***</span></span>
+<span><span class="co">#&gt; Age          0.042619   0.011875   3.589 0.000332 ***</span></span>
+<span><span class="co">#&gt; LOS          0.544862   0.135868   4.010 6.07e-05 ***</span></span>
+<span><span class="co">#&gt; Age:LOS     -0.006988   0.001918  -3.643 0.000269 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Null deviance: 279.78  on 299  degrees of freedom</span></span>
+<span><span class="co">#&gt; Residual deviance: 247.94  on 296  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 255.94</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 5</span></span>
+<span></span>
+<span><span class="fu">ModelMetrics</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ModelMetrics/man/auc.html" class="external-link">auc</a></span><span class="op">(</span><span class="va">glm_binomial2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.7068597</span></span></code></pre></div>
 <p>Now our model is suggesting that Age, LOS and their interaction are significant. This suggests that, as well as their own effects, their combination is important, and their effects confound each other.</p>
 </div>
 </div>
@@ -299,17 +299,17 @@
 </h2>
 <p>Now we have built a model, we can use it to predict our expected <span class="math inline">\(y\)</span>, the probability of death per patient in this case. We can supply a new dataset to fit it to, using <code>newdata</code>, or omitting this fits our model to the original dataset. Using a <code>glm</code>, we have built a model via a link function, so we need to decide what scale to make our predictions on: the <code>link</code> scale (the log-odds of death in this case) or the <code>response</code> (the probability of death in this case).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">LOS_model</span><span class="op">$</span><span class="va">preds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">glm_binomial2</span>, type<span class="op">=</span><span class="st">"response"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">LOS_model</span>,<span class="fl">5</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 6</span></span>
-<span class="co">#&gt;      ID Organisation   Age   LOS Death  preds</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     1 Trust1          55     2     0 0.136 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     2 Trust2          27     1     0 0.047<span style="text-decoration: underline;">0</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     3 Trust3          93    12     0 0.140 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     4 Trust4          45     3     1 0.129 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     5 Trust5          70    11     0 0.285</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">LOS_model</span><span class="op">$</span><span class="va">preds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">glm_binomial2</span>, type<span class="op">=</span><span class="st">"response"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">LOS_model</span>,<span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 6</span></span></span>
+<span><span class="co">#&gt;      ID Organisation   Age   LOS Death  preds</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     1 Trust1          55     2     0 0.136 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     2 Trust2          27     1     0 0.047<span style="text-decoration: underline;">0</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     3 Trust3          93    12     0 0.140 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     4 Trust4          45     3     1 0.129 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     5 Trust5          70    11     0 0.285</span></span></code></pre></div>
 <p>We have added our predictions back into the original <code>data.frame</code> using the column name <code>preds</code>, and patient ID 1 has a risk of death of 0.136 or 13.6% probability of death. These predictions can be used in many different applications, but common uses of them are identifying the highest risk patients for clinical audit, comparing ratios of the observed deaths and expected deaths (sum of the probability), or risk-adjusted control chart monitoring.</p>
 </div>
 <div class="section level2">
@@ -317,55 +317,55 @@
 </h2>
 <p>LOS, the time a patient is in hospital, is another variable to examine in the dataset. This is a count, and is therefore bounded at zero (can’t have counts &lt; 0), can only take integer values (e.g. 2 or 3, but not 2.5) and is heavily right-skewed, as most patient are only admitted for one or two days, but rarely patients are in for much longer. We’ll apply a similar modelling approach to the last example, but the <code>family</code> argument and link function must be different. We will use the <code>Poisson</code> distribution and the natural logarithm link function, the standard choices for count data<sup>[5]</sup>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">glm_poisson</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">LOS</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">*</span> <span class="va">Death</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"poisson"</span> <span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">glm_poisson</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Call:</span>
-<span class="co">#&gt; glm(formula = LOS ~ Age * Death, family = "poisson", data = LOS_model)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Deviance Residuals: </span>
-<span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span>
-<span class="co">#&gt; -3.4929  -0.9039  -0.1069   0.7589   3.3681  </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="co">#&gt; (Intercept)  0.514456   0.078345   6.567 5.15e-11 ***</span>
-<span class="co">#&gt; Age          0.018097   0.001169  15.479  &lt; 2e-16 ***</span>
-<span class="co">#&gt; Death        1.491162   0.140864  10.586  &lt; 2e-16 ***</span>
-<span class="co">#&gt; Age:Death   -0.020209   0.002187  -9.240  &lt; 2e-16 ***</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; (Dispersion parameter for poisson family taken to be 1)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     Null deviance: 752.23  on 299  degrees of freedom</span>
-<span class="co">#&gt; Residual deviance: 459.77  on 296  degrees of freedom</span>
-<span class="co">#&gt; AIC: 1429</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Number of Fisher Scoring iterations: 5</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="va">glm_poisson</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">LOS</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">*</span> <span class="va">Death</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"poisson"</span> <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">glm_poisson</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; glm(formula = LOS ~ Age * Death, family = "poisson", data = LOS_model)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Deviance Residuals: </span></span>
+<span><span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span></span>
+<span><span class="co">#&gt; -3.4929  -0.9039  -0.1069   0.7589   3.3681  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span><span class="co">#&gt; (Intercept)  0.514456   0.078345   6.567 5.15e-11 ***</span></span>
+<span><span class="co">#&gt; Age          0.018097   0.001169  15.479  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; Death        1.491162   0.140864  10.586  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; Age:Death   -0.020209   0.002187  -9.240  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; (Dispersion parameter for poisson family taken to be 1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Null deviance: 752.23  on 299  degrees of freedom</span></span>
+<span><span class="co">#&gt; Residual deviance: 459.77  on 296  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 1429</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 5</span></span></code></pre></div>
 <p>We can’t use the <code>AUC</code> value here, as that is related to categories. We can only make comparisons between models or in terms of prediction error. Lets fit the same model without the interaction and see if it is different using the <code>AIC</code> or the likelihood ratio test (that tell you the same thing):</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">glm_poisson2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">LOS</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">Death</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"poisson"</span> <span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">AIC</a></span><span class="op">(</span><span class="va">glm_poisson</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1428.967</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">AIC</a></span><span class="op">(</span><span class="va">glm_poisson2</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1508.352</span>
-
-<span class="co"># anova(glm_poisson2, glm_poisson, test="Chisq")  will do the same thing without using the lmtest package</span>
-<span class="fu">lmtest</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lmtest/man/lrtest.html" class="external-link">lrtest</a></span><span class="op">(</span><span class="va">glm_poisson</span>, <span class="va">glm_poisson2</span><span class="op">)</span>
-<span class="co">#&gt; Likelihood ratio test</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model 1: LOS ~ Age * Death</span>
-<span class="co">#&gt; Model 2: LOS ~ Age + Death</span>
-<span class="co">#&gt;   #Df  LogLik Df  Chisq Pr(&gt;Chisq)    </span>
-<span class="co">#&gt; 1   4 -710.48                         </span>
-<span class="co">#&gt; 2   3 -751.18 -1 81.385  &lt; 2.2e-16 ***</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="va">glm_poisson2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">LOS</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">Death</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"poisson"</span> <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">AIC</a></span><span class="op">(</span><span class="va">glm_poisson</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1428.967</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">AIC</a></span><span class="op">(</span><span class="va">glm_poisson2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1508.352</span></span>
+<span></span>
+<span><span class="co"># anova(glm_poisson2, glm_poisson, test="Chisq")  will do the same thing without using the lmtest package</span></span>
+<span><span class="fu">lmtest</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lmtest/man/lrtest.html" class="external-link">lrtest</a></span><span class="op">(</span><span class="va">glm_poisson</span>, <span class="va">glm_poisson2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Likelihood ratio test</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model 1: LOS ~ Age * Death</span></span>
+<span><span class="co">#&gt; Model 2: LOS ~ Age + Death</span></span>
+<span><span class="co">#&gt;   #Df  LogLik Df  Chisq Pr(&gt;Chisq)    </span></span>
+<span><span class="co">#&gt; 1   4 -710.48                         </span></span>
+<span><span class="co">#&gt; 2   3 -751.18 -1 81.385  &lt; 2.2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
 <p>Our <code>AIC</code> is lower for the interaction model, and the likelihood ratio test suggest the reduced model is significantly worse.</p>
 <div class="section level3">
 <h3 id="overdispersion">Overdispersion<a class="anchor" aria-label="anchor" href="#overdispersion"></a>
@@ -373,8 +373,8 @@
 <p>One of the downfalls of a Poisson models that it’s variance is fixed. This is always proportional to the conditional mean. I will spare you the maths at this point, but what it means is that the variance doesn’t scale to the data. This would be fine if our data were perfectly Poisson distributed, but that is rare in practice. Data commonly display more variance than we would expect, and this is referred to as <strong><em>overdispersion</em></strong> (OD). OD causes us to underestimate the variance in our model, and our assessments of the significance of parameters are too optimistic because our error is too small. It also affects overall assessment of model fit.</p>
 <p>We can test for this, by comparing the ratio of the sum of the squared Pearson residuals over the degrees of freedom. If this value is 1, then the variance is as expected (‘equidispersion’), but if it is &gt;1, then we have OD.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">glm_poisson</span>,type<span class="op">=</span><span class="st">"pearson"</span><span class="op">)</span> <span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/df.residual.html" class="external-link">df.residual</a></span><span class="op">(</span><span class="va">glm_poisson</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1.464411</span></code></pre></div>
+<code class="sourceCode R"><span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">glm_poisson</span>,type<span class="op">=</span><span class="st">"pearson"</span><span class="op">)</span> <span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/df.residual.html" class="external-link">df.residual</a></span><span class="op">(</span><span class="va">glm_poisson</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1.464411</span></span></code></pre></div>
 <p><strong>Our model is overdispersed, with residual variance around 1.4 times what the Poisson distribution expects.</strong></p>
 <p><br></p>
 <p>There are various different ways to deal with this, and this vignette demonstrates three of the following list. Our options include:</p>
@@ -396,120 +396,120 @@
 </ul>
 <p>So lets try some of them out. To fit a quasi-Poisson model, we simply change the family. Note the dispersion parameter matches the calculation above:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">quasi</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">LOS</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">*</span> <span class="va">Death</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"quasipoisson"</span> <span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">quasi</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Call:</span>
-<span class="co">#&gt; glm(formula = LOS ~ Age * Death, family = "quasipoisson", data = LOS_model)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Deviance Residuals: </span>
-<span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span>
-<span class="co">#&gt; -3.4929  -0.9039  -0.1069   0.7589   3.3681  </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="co">#&gt; (Intercept)  0.514456   0.094807   5.426 1.20e-07 ***</span>
-<span class="co">#&gt; Age          0.018097   0.001415  12.791  &lt; 2e-16 ***</span>
-<span class="co">#&gt; Death        1.491162   0.170463   8.748  &lt; 2e-16 ***</span>
-<span class="co">#&gt; Age:Death   -0.020209   0.002647  -7.636 3.12e-13 ***</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; (Dispersion parameter for quasipoisson family taken to be 1.464411)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     Null deviance: 752.23  on 299  degrees of freedom</span>
-<span class="co">#&gt; Residual deviance: 459.77  on 296  degrees of freedom</span>
-<span class="co">#&gt; AIC: NA</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Number of Fisher Scoring iterations: 5</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">quasi</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">LOS</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">*</span> <span class="va">Death</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"quasipoisson"</span> <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">quasi</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; glm(formula = LOS ~ Age * Death, family = "quasipoisson", data = LOS_model)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Deviance Residuals: </span></span>
+<span><span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span></span>
+<span><span class="co">#&gt; -3.4929  -0.9039  -0.1069   0.7589   3.3681  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept)  0.514456   0.094807   5.426 1.20e-07 ***</span></span>
+<span><span class="co">#&gt; Age          0.018097   0.001415  12.791  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; Death        1.491162   0.170463   8.748  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; Age:Death   -0.020209   0.002647  -7.636 3.12e-13 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; (Dispersion parameter for quasipoisson family taken to be 1.464411)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Null deviance: 752.23  on 299  degrees of freedom</span></span>
+<span><span class="co">#&gt; Residual deviance: 459.77  on 296  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: NA</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 5</span></span></code></pre></div>
 <p>For a negative binomial model, two options are <code>glm.nb</code> from the <code>MASS</code> package, or <code>glmmTMB</code> function from the package of the same name. Note that the function from <code>MASS</code> does not take a <code>family</code> argument. The dispersion factor here is quadratic to the mean, so don’t compare it directly to the scale factor above.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span>
-
-<span class="va">nb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/glm.nb.html" class="external-link">glm.nb</a></span><span class="op">(</span><span class="va">LOS</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">*</span> <span class="va">Death</span>, data<span class="op">=</span><span class="va">LOS_model</span>,<span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">nb</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Call:</span>
-<span class="co">#&gt; glm.nb(formula = LOS ~ Age * Death, data = LOS_model, init.theta = 8.300914044, </span>
-<span class="co">#&gt;     link = log)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Deviance Residuals: </span>
-<span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span>
-<span class="co">#&gt; -2.7320  -0.7464  -0.0903   0.6332   2.2742  </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="co">#&gt; (Intercept)  0.509047   0.091934   5.537 3.08e-08 ***</span>
-<span class="co">#&gt; Age          0.018194   0.001448  12.565  &lt; 2e-16 ***</span>
-<span class="co">#&gt; Death        1.494414   0.183974   8.123 4.55e-16 ***</span>
-<span class="co">#&gt; Age:Death   -0.020269   0.002881  -7.035 2.00e-12 ***</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; (Dispersion parameter for Negative Binomial(8.3009) family taken to be 1)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     Null deviance: 473.82  on 299  degrees of freedom</span>
-<span class="co">#&gt; Residual deviance: 285.44  on 296  degrees of freedom</span>
-<span class="co">#&gt; AIC: 1388.5</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Number of Fisher Scoring iterations: 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;               Theta:  8.30 </span>
-<span class="co">#&gt;           Std. Err.:  1.82 </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;  2 x log-likelihood:  -1378.487</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">nb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/glm.nb.html" class="external-link">glm.nb</a></span><span class="op">(</span><span class="va">LOS</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">*</span> <span class="va">Death</span>, data<span class="op">=</span><span class="va">LOS_model</span>,<span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">nb</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; glm.nb(formula = LOS ~ Age * Death, data = LOS_model, init.theta = 8.300914044, </span></span>
+<span><span class="co">#&gt;     link = log)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Deviance Residuals: </span></span>
+<span><span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span></span>
+<span><span class="co">#&gt; -2.7320  -0.7464  -0.0903   0.6332   2.2742  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span><span class="co">#&gt; (Intercept)  0.509047   0.091934   5.537 3.08e-08 ***</span></span>
+<span><span class="co">#&gt; Age          0.018194   0.001448  12.565  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; Death        1.494414   0.183974   8.123 4.55e-16 ***</span></span>
+<span><span class="co">#&gt; Age:Death   -0.020269   0.002881  -7.035 2.00e-12 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; (Dispersion parameter for Negative Binomial(8.3009) family taken to be 1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Null deviance: 473.82  on 299  degrees of freedom</span></span>
+<span><span class="co">#&gt; Residual deviance: 285.44  on 296  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 1388.5</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;               Theta:  8.30 </span></span>
+<span><span class="co">#&gt;           Std. Err.:  1.82 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  2 x log-likelihood:  -1378.487</span></span></code></pre></div>
 <p>Finally, using the random-intercept model, fitted with <code>glmer</code> from the <code>lme4</code> package. The extra formula argument specifies the random-intercept, where 1 means the intercept, and the <code>|</code> reads as ‘intercept varying by organisation.’</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: Matrix</span>
-
-<span class="va">glmm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/glmer.html" class="external-link">glmer</a></span><span class="op">(</span><span class="va">LOS</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">Age</span><span class="op">)</span> <span class="op">*</span> <span class="va">Death</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">Organisation</span><span class="op">)</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"poisson"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">glmm</span><span class="op">)</span>
-<span class="co">#&gt; Generalized linear mixed model fit by maximum likelihood (Laplace</span>
-<span class="co">#&gt;   Approximation) [glmerMod]</span>
-<span class="co">#&gt;  Family: poisson  ( log )</span>
-<span class="co">#&gt; Formula: LOS ~ scale(Age) * Death + (1 | Organisation)</span>
-<span class="co">#&gt;    Data: LOS_model</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;      AIC      BIC   logLik deviance df.resid </span>
-<span class="co">#&gt;   1429.7   1448.2   -709.9   1419.7      295 </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Scaled residuals: </span>
-<span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
-<span class="co">#&gt; -2.6962 -0.8040 -0.0905  0.8521  4.2508 </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Random effects:</span>
-<span class="co">#&gt;  Groups       Name        Variance Std.Dev.</span>
-<span class="co">#&gt;  Organisation (Intercept) 0.00396  0.06293 </span>
-<span class="co">#&gt; Number of obs: 300, groups:  Organisation, 10</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Fixed effects:</span>
-<span class="co">#&gt;                  Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="co">#&gt; (Intercept)       1.43006    0.03818  37.455  &lt; 2e-16 ***</span>
-<span class="co">#&gt; scale(Age)        0.50621    0.03263  15.513  &lt; 2e-16 ***</span>
-<span class="co">#&gt; Death             0.46200    0.06391   7.229 4.87e-13 ***</span>
-<span class="co">#&gt; scale(Age):Death -0.56021    0.06116  -9.159  &lt; 2e-16 ***</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Correlation of Fixed Effects:</span>
-<span class="co">#&gt;             (Intr) scl(A) Death </span>
-<span class="co">#&gt; scale(Age)  -0.348              </span>
-<span class="co">#&gt; Death       -0.433  0.204       </span>
-<span class="co">#&gt; scl(Ag):Dth  0.183 -0.529 -0.253</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: Matrix</span></span>
+<span></span>
+<span><span class="va">glmm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/glmer.html" class="external-link">glmer</a></span><span class="op">(</span><span class="va">LOS</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">Age</span><span class="op">)</span> <span class="op">*</span> <span class="va">Death</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">Organisation</span><span class="op">)</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"poisson"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">glmm</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Generalized linear mixed model fit by maximum likelihood (Laplace</span></span>
+<span><span class="co">#&gt;   Approximation) [glmerMod]</span></span>
+<span><span class="co">#&gt;  Family: poisson  ( log )</span></span>
+<span><span class="co">#&gt; Formula: LOS ~ scale(Age) * Death + (1 | Organisation)</span></span>
+<span><span class="co">#&gt;    Data: LOS_model</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      AIC      BIC   logLik deviance df.resid </span></span>
+<span><span class="co">#&gt;   1429.7   1448.2   -709.9   1419.7      295 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Scaled residuals: </span></span>
+<span><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
+<span><span class="co">#&gt; -2.6962 -0.8040 -0.0905  0.8521  4.2508 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Random effects:</span></span>
+<span><span class="co">#&gt;  Groups       Name        Variance Std.Dev.</span></span>
+<span><span class="co">#&gt;  Organisation (Intercept) 0.00396  0.06293 </span></span>
+<span><span class="co">#&gt; Number of obs: 300, groups:  Organisation, 10</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Fixed effects:</span></span>
+<span><span class="co">#&gt;                  Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span><span class="co">#&gt; (Intercept)       1.43006    0.03818  37.455  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; scale(Age)        0.50621    0.03263  15.513  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; Death             0.46200    0.06391   7.229 4.87e-13 ***</span></span>
+<span><span class="co">#&gt; scale(Age):Death -0.56021    0.06116  -9.159  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Correlation of Fixed Effects:</span></span>
+<span><span class="co">#&gt;             (Intr) scl(A) Death </span></span>
+<span><span class="co">#&gt; scale(Age)  -0.348              </span></span>
+<span><span class="co">#&gt; Death       -0.433  0.204       </span></span>
+<span><span class="co">#&gt; scl(Ag):Dth  0.183 -0.529 -0.253</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">glmm</span><span class="op">)</span>
-<span class="co">#&gt; Computing profile confidence intervals ...</span>
-<span class="co">#&gt;                       2.5 %     97.5 %</span>
-<span class="co">#&gt; .sig01            0.0000000  0.1511114</span>
-<span class="co">#&gt; (Intercept)       1.3494494  1.5079597</span>
-<span class="co">#&gt; scale(Age)        0.4426231  0.5705900</span>
-<span class="co">#&gt; Death             0.3353796  0.5860630</span>
-<span class="co">#&gt; scale(Age):Death -0.6797591 -0.4398526</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">glmm</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Computing profile confidence intervals ...</span></span>
+<span><span class="co">#&gt;                       2.5 %     97.5 %</span></span>
+<span><span class="co">#&gt; .sig01            0.0000000  0.1511114</span></span>
+<span><span class="co">#&gt; (Intercept)       1.3494494  1.5079597</span></span>
+<span><span class="co">#&gt; scale(Age)        0.4426231  0.5705900</span></span>
+<span><span class="co">#&gt; Death             0.3353796  0.5860630</span></span>
+<span><span class="co">#&gt; scale(Age):Death -0.6797591 -0.4398526</span></span></code></pre></div>
 <p>These models are significantly more complicated. <code>Confint</code> can be use to calculate the confidence intervals above by profiling the likelihood (provided you have the <code>MASS</code> package installed). This allow you to assess the significance of the random-effects. Our CI butts up to zero here, and the AIC is slightly worse than the <code>glm</code>. This suggests it is not well-modelled with the normally distributed random-intercept. The NB model appears to perform better.</p>
 <p>Predictions from GLMMS also requires more thought. You can predict with (“conditional”) or without (“marginal”) the random effects. Conditional predictions will have the adjustment for their cluster (or whatever random effect you have fitted), but marginal could be considered the model average, subject to the fixed effects, removing the effects of cluster.</p>
 </div>
@@ -551,7 +551,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
