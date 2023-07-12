@@ -1,5 +1,5 @@
 
-# NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
+# NHS-R Community Datasets <a href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
 
 <!-- badges: start -->
 
@@ -10,6 +10,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![CRAN
 version](https://www.r-pkg.org/badges/version/NHSRdatasets)](https://cran.r-project.org/package=NHSRdatasets)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/NHSRdatasets)](https://cran.r-project.org/package=NHSRdatasets)
+[![R-CMD-check](https://github.com/nhs-r-community/NHSRdatasets/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/nhs-r-community/NHSRdatasets/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 <br><br>
@@ -23,10 +24,19 @@ examples of their use.
 
 We encourage contributions to the package, both to expand the set of
 training material, and also as development for newer `R`/github users as
-a first or early contribution.
-
+a first or early contribution.  
 Please add relevant free, open source data sets that you think may
 benefit the NHS-R Community.
+
+This package has been created to help NHS, Public Health and related
+analysts/data scientists learn to use `R`. It contains several free
+datasets (just one at the moment), help files explaining their
+structure, and `vignette` examples of their use. We encourage
+contributions to the package, both to expand the set of training
+material, but also as development for newer `R`/github users as a first
+contribution. Please add relevant free, open source data sets that you
+think may benefit the NHS-R Community. \>\>\>\>\>\>\>
+87800e0b30f9343e0d00493ca9daf6040c72790e
 
 ## Installation instructions
 
