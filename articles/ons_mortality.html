@@ -99,7 +99,7 @@
 
       
 
-      </header><script src="ons_mortality_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Building the ONS mortality dataset</h1>
@@ -114,58 +114,92 @@
 
     
     
-<p>This vignette details why and how the <code>ons_mortality</code> dataset was created.</p>
-<p>The data were pulled together from the weekly xls spreadsheets provided by the Office of National Statistics (ONS) from 2010 to 2019 for training purposes and is a static data set.</p>
-<p>Data is released every Friday and includes provisionally registered deaths for England and Wales for:</p>
+<p>This vignette details why and how the <code>ons_mortality</code>
+dataset was created.</p>
+<p>The data were pulled together from the weekly xls spreadsheets
+provided by the Office of National Statistics (ONS) from 2010 to 2019
+for training purposes and is a static data set.</p>
+<p>Data is released every Friday and includes provisionally registered
+deaths for England and Wales for:</p>
 <ul>
 <li>Total, all deaths</li>
 <li>regions of usual residence</li>
 <li>age bands (persons and for males/females)</li>
-<li>by underlying cause ‘All respiratory diseases’ (the methodology has changed over the years, see the subsection for more information)</li>
+<li>by underlying cause ‘All respiratory diseases’ (the methodology has
+changed over the years, see the subsection for more information)</li>
 </ul>
 <div class="section level4">
 <h4 id="further-notes-taken-from-the-spreadsheet">Further notes taken from the spreadsheet:<a class="anchor" aria-label="anchor" href="#further-notes-taken-from-the-spreadsheet"></a>
 </h4>
-<p>1 This average is based on the actual number of death registrations recorded for each corresponding week over the previous five years. Moveable public holidays, when register offices are closed, affect the number of registrations made in the published weeks and in the corresponding weeks in previous years.</p>
-<p>2 Counts of deaths by underlying cause exclude deaths at age under 28 days.</p>
-<p>3 Coding of deaths by underlying cause for the latest week is not yet complete.</p>
-<p>4 Does not include deaths where age is either missing or not yet fully coded. For this reason counts of ‘Persons’, ‘Males’ and ‘Females’ may not sum to ‘Total Deaths, all ages’.</p>
-<p>5 Does not include deaths of those resident outside England and Wales or those records where the place of residence is either missing or not yet fully coded. For this reason counts for “Deaths by Region of usual residence” may not sum to “Total deaths, all ages”.</p>
+<p>1 This average is based on the actual number of death registrations
+recorded for each corresponding week over the previous five years.
+Moveable public holidays, when register offices are closed, affect the
+number of registrations made in the published weeks and in the
+corresponding weeks in previous years.</p>
+<p>2 Counts of deaths by underlying cause exclude deaths at age under 28
+days.</p>
+<p>3 Coding of deaths by underlying cause for the latest week is not yet
+complete.</p>
+<p>4 Does not include deaths where age is either missing or not yet
+fully coded. For this reason counts of ‘Persons’, ‘Males’ and ‘Females’
+may not sum to ‘Total Deaths, all ages’.</p>
+<p>5 Does not include deaths of those resident outside England and Wales
+or those records where the place of residence is either missing or not
+yet fully coded. For this reason counts for “Deaths by Region of usual
+residence” may not sum to “Total deaths, all ages”.</p>
 </div>
 <div class="section level4">
 <h4 id="later-confirmation-of-deaths">Later confirmation of deaths<a class="anchor" aria-label="anchor" href="#later-confirmation-of-deaths"></a>
 </h4>
-<p>Aggregate numbers of deaths are later confirmed and released in by <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/monthlyfiguresondeathsregisteredbyareaofusualresidence" class="external-link">ONS monthly</a>. Numbers are released at a lower geographical level to the weekly data.</p>
+<p>Aggregate numbers of deaths are later confirmed and released in by <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/monthlyfiguresondeathsregisteredbyareaofusualresidence" class="external-link">ONS
+monthly</a>. Numbers are released at a lower geographical level to the
+weekly data.</p>
 </div>
 <div class="section level3">
 <h3 id="preparation-of-data">Preparation of data<a class="anchor" aria-label="anchor" href="#preparation-of-data"></a>
 </h3>
-<p>In order to prepare this data for analysis the worksheet for weekly figures was extracted and the data was moved to long form and merged together over the available years. This was extracted in April 2020 when full previous years’ data was available.</p>
+<p>In order to prepare this data for analysis the worksheet for weekly
+figures was extracted and the data was moved to long form and merged
+together over the available years. This was extracted in April 2020 when
+full previous years’ data was available.</p>
 <p>The dataset contains:</p>
 <ul>
 <li>
-<strong>category_1:</strong> character, containing the names of the groups for counts, e.g. “Total deaths”, “all ages”.</li>
+<strong>category_1:</strong> character, containing the names of the
+groups for counts, e.g. “Total deaths”, “all ages”.</li>
 <li>
-<strong>category_2:</strong> character, subcategory of names of groups where necessary, e.g. details of region: “East”, details of age bands “15-44”.</li>
+<strong>category_2:</strong> character, subcategory of names of
+groups where necessary, e.g. details of region: “East”, details of age
+bands “15-44”.</li>
 <li>
-<strong>counts:</strong> numeric, numbers of deaths in whole numbers and average numbers with decimal points. To retain the integrity of the format this column data is left as character.</li>
+<strong>counts:</strong> numeric, numbers of deaths in whole numbers
+and average numbers with decimal points. To retain the integrity of the
+format this column data is left as character.</li>
 <li>
-<strong>date:</strong> date, format is yyyy-mm-dd; all dates are a Friday.</li>
+<strong>date:</strong> date, format is yyyy-mm-dd; all dates are a
+Friday.</li>
 <li>
-<strong>week_no:</strong> integer, each week in a year is numbered sequentially.</li>
+<strong>week_no:</strong> integer, each week in a year is numbered
+sequentially.</li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="source-and-licence-acknowledgement">Source and licence acknowledgement<a class="anchor" aria-label="anchor" href="#source-and-licence-acknowledgement"></a>
 </h2>
-<p>This data has been made available through Office of National Statistics under the <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" class="external-link">Open Government Licence</a>.</p>
-<p>The main page for downloads is found on the <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales" class="external-link">ONS People Population and Community pages</a>.</p>
+<p>This data has been made available through Office of National
+Statistics under the <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" class="external-link">Open
+Government Licence</a>.</p>
+<p>The main page for downloads is found on the <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales" class="external-link">ONS
+People Population and Community pages</a>.</p>
 <div class="section level3">
 <h3 id="creating-the-dataset">Creating the dataset<a class="anchor" aria-label="anchor" href="#creating-the-dataset"></a>
 </h3>
 <p>Spreadsheets are in xls format from 2010 to 2019.</p>
-<p>Each week is released with a new file name listing the week number and all weeks for that year are included in the spreadsheet. Counts for weeks ahead are missing and listed as NA.</p>
-<p>When a year has passed it is renamed to the year name and does not change.</p>
+<p>Each week is released with a new file name listing the week number
+and all weeks for that year are included in the spreadsheet. Counts for
+weeks ahead are missing and listed as NA.</p>
+<p>When a year has passed it is renamed to the year name and does not
+change.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 2019</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span></span>
@@ -240,7 +274,8 @@
 <div class="section level3">
 <h3 id="extracting-worksheets-to-csv">Extracting worksheets to csv<a class="anchor" aria-label="anchor" href="#extracting-worksheets-to-csv"></a>
 </h3>
-<p>The data can be found in the worksheet called Weekly figures “date/year”. Other worksheets in spreadsheets 2010 to 2019 are:</p>
+<p>The data can be found in the worksheet called Weekly figures
+“date/year”. Other worksheets in spreadsheets 2010 to 2019 are:</p>
 <ul>
 <li>Contents</li>
 <li>Information</li>
@@ -249,7 +284,8 @@
 </li>
 <li>Related publications</li>
 </ul>
-<p>The following code finds the tab name and then creates a csv file for each tab/worksheet.</p>
+<p>The following code finds the tab name and then creates a csv file for
+each tab/worksheet.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org" class="external-link">readxl</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
@@ -282,7 +318,8 @@
 <div class="section level3">
 <h3 id="loading-the-weekly-figure-worksheets">Loading the weekly figure worksheets<a class="anchor" aria-label="anchor" href="#loading-the-weekly-figure-worksheets"></a>
 </h3>
-<p>From 2010 to 2015 the tab name was Weekly Figures then it changed capitalisation to Weekly figures.</p>
+<p>From 2010 to 2015 the tab name was Weekly Figures then it changed
+capitalisation to Weekly figures.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">files_list_sheets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"working_files"</span>,</span>
 <span>                         pattern <span class="op">=</span> <span class="st">"Weekly"</span>,</span>
@@ -299,19 +336,26 @@
 <div class="section level3">
 <h3 id="format-data-functions">Format data functions<a class="anchor" aria-label="anchor" href="#format-data-functions"></a>
 </h3>
-<p>Two functions were required to format the spreadsheets as there were changes to the layout from 2016.</p>
+<p>Two functions were required to format the spreadsheets as there were
+changes to the layout from 2016.</p>
 <p>Packages used:</p>
 <ul>
 <li>
-<strong>janitor:</strong> a specific package for cleaning data from Excel used here to remove the blank lines and columns, convert Excel serial numbers to dates and to format all column headers by removing spaces in those header names and removing capitalisation.</li>
+<strong>janitor:</strong> a specific package for cleaning data from
+Excel used here to remove the blank lines and columns, convert Excel
+serial numbers to dates and to format all column headers by removing
+spaces in those header names and removing capitalisation.</li>
 <li>
-<strong>dplyr:</strong> specifically dplyr for data manipulation (already loaded earlier).</li>
+<strong>dplyr:</strong> specifically dplyr for data manipulation
+(already loaded earlier).</li>
 <li>
 <strong>tidyr:</strong> for pivoting data from wide to long.</li>
 <li>
-<strong>stringi:</strong> a package to works with strings and was used to find certain characters or words.</li>
+<strong>stringi:</strong> a package to works with strings and was
+used to find certain characters or words.</li>
 <li>
-<strong>lubridate:</strong> a package to work with dates and used here to format dates to the same format.</li>
+<strong>lubridate:</strong> a package to work with dates and used
+here to format dates to the same format.</li>
 </ul>
 <div class="section level4">
 <h4 id="section">2010 - 2015<a class="anchor" aria-label="anchor" href="#section"></a>
@@ -341,7 +385,7 @@
 <span></span>
 <span><span class="va">ONS</span> <span class="op">&lt;-</span> <span class="va">file</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="va">clean_names</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/janitor/man/remove_empty.html" class="external-link">remove_empty</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rows"</span>,<span class="st">"cols"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://sfirke.github.io/janitor/reference/remove_empty.html" class="external-link">remove_empty</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rows"</span>,<span class="st">"cols"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">contents</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">remove_lookup</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  </span>
 <span>  <span class="co"># useful categories are found in the column contents but also include the footnote number</span></span>
@@ -369,7 +413,7 @@
 <span>                                <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">Categories</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># Push date row to column names</span></span>
-<span><span class="va">onsFormattedJanitor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/janitor/man/row_to_names.html" class="external-link">row_to_names</a></span><span class="op">(</span><span class="va">ONS</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">onsFormattedJanitor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sfirke.github.io/janitor/reference/row_to_names.html" class="external-link">row_to_names</a></span><span class="op">(</span><span class="va">ONS</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># move data from wide to long form using pivot_longer</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">onsFormattedJanitor</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -379,13 +423,13 @@
 <span>  </span>
 <span>  <span class="co"># some spreadsheets import with Excel serial numbers for dates and others as dates, janitor is used to correct this</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>realDate <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html" class="external-link">dmy</a></span><span class="op">(</span><span class="va">allDates</span><span class="op">)</span>,</span>
-<span>         ExcelSerialDate <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_length.html" class="external-link">stri_length</a></span><span class="op">(</span><span class="va">allDates</span><span class="op">)</span> <span class="op">==</span> <span class="fl">5</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/janitor/man/excel_numeric_to_date.html" class="external-link">excel_numeric_to_date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">allDates</span><span class="op">)</span>, date_system <span class="op">=</span> <span class="st">"modern"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         ExcelSerialDate <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_length.html" class="external-link">stri_length</a></span><span class="op">(</span><span class="va">allDates</span><span class="op">)</span> <span class="op">==</span> <span class="fl">5</span> <span class="op">~</span> <span class="fu"><a href="https://sfirke.github.io/janitor/reference/excel_numeric_to_date.html" class="external-link">excel_numeric_to_date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">allDates</span><span class="op">)</span>, date_system <span class="op">=</span> <span class="st">"modern"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>         date <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">realDate</span><span class="op">)</span> <span class="op">~</span> <span class="va">ExcelSerialDate</span>,</span>
 <span>                          <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">realDate</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">`Week ended`</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  </span>
 <span>  <span class="co"># the week number is replaced as this was lost with the moving of dates to the column headers</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>week_no <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html" class="external-link">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>week_no <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html" class="external-link">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  </span>
 <span>  <span class="co"># Category is a staging name as this is followed by a splitting of the column into category_1 and category_2</span></span>
@@ -451,7 +495,7 @@
 <span>    <span class="co"># An extra column has been added for region codes (not included in the dataset) meaning contents are now found in the janitor generated column name x2</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>x2 <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">x2</span><span class="op">)</span> <span class="op">~</span> <span class="va">contents</span>,</span>
 <span>                              <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">x2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/janitor/man/remove_empty.html" class="external-link">remove_empty</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rows"</span>,<span class="st">"cols"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://sfirke.github.io/janitor/reference/remove_empty.html" class="external-link">remove_empty</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rows"</span>,<span class="st">"cols"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">contents</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">x2</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">remove_lookup</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    </span>
@@ -473,7 +517,7 @@
 <span>                                  <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">Categories</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># Push date row to column names</span></span>
-<span>  <span class="va">onsFormattedJanitor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/janitor/man/row_to_names.html" class="external-link">row_to_names</a></span><span class="op">(</span><span class="va">ONS</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span>  <span class="va">onsFormattedJanitor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sfirke.github.io/janitor/reference/row_to_names.html" class="external-link">row_to_names</a></span><span class="op">(</span><span class="va">ONS</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># move data from wide to long form using pivot_longer</span></span>
 <span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">onsFormattedJanitor</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -481,11 +525,11 @@
 <span>                 names_to <span class="op">=</span> <span class="st">"allDates"</span>,</span>
 <span>                 values_to <span class="op">=</span> <span class="st">"counts"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>realDate <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html" class="external-link">dmy</a></span><span class="op">(</span><span class="va">allDates</span><span class="op">)</span>,</span>
-<span>           ExcelSerialDate <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_length.html" class="external-link">stri_length</a></span><span class="op">(</span><span class="va">allDates</span><span class="op">)</span> <span class="op">==</span> <span class="fl">5</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/janitor/man/excel_numeric_to_date.html" class="external-link">excel_numeric_to_date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">allDates</span><span class="op">)</span>, date_system <span class="op">=</span> <span class="st">"modern"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>           ExcelSerialDate <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_length.html" class="external-link">stri_length</a></span><span class="op">(</span><span class="va">allDates</span><span class="op">)</span> <span class="op">==</span> <span class="fl">5</span> <span class="op">~</span> <span class="fu"><a href="https://sfirke.github.io/janitor/reference/excel_numeric_to_date.html" class="external-link">excel_numeric_to_date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">allDates</span><span class="op">)</span>, date_system <span class="op">=</span> <span class="st">"modern"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>           date <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">realDate</span><span class="op">)</span> <span class="op">~</span> <span class="va">ExcelSerialDate</span>,</span>
 <span>                            <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">realDate</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">`Week ended`</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>week_no <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html" class="external-link">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>week_no <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html" class="external-link">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>Category <span class="op">=</span> <span class="va">`Week ended`</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>category_1 <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">Category</span>, <span class="st">","</span><span class="op">)</span> <span class="op">~</span></span>
@@ -554,7 +598,8 @@
 <div class="section level3">
 <h3 id="respiratory">Respiratory<a class="anchor" aria-label="anchor" href="#respiratory"></a>
 </h3>
-<p>Deaths by underlying cause of respiratory diseases All respiratory diseases (ICD-10 J00-J99) appear as:</p>
+<p>Deaths by underlying cause of respiratory diseases All respiratory
+diseases (ICD-10 J00-J99) appear as:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ons_mortality</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html" class="external-link">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -562,27 +607,41 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">category_1</span>, <span class="va">category_2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">category_1</span> <span class="op">==</span> <span class="st">'All respiratory diseases (ICD-10 J00-J99) ICD-10'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p>Notes from the spreadsheets in relation to these methodology changes:</p>
+<p>Notes from the spreadsheets in relation to these methodology
+changes:</p>
 <div class="section level4">
 <h4 id="section-1">2011<a class="anchor" aria-label="anchor" href="#section-1"></a>
 </h4>
 <ul>
-<li>Respiratory deaths for 2011 are coded to the new version of ICD-10 while for 2010 they are coded to the previous version. Week 1 2011 has been coded to both versions to give an indication of the impact of the change.</li>
+<li>Respiratory deaths for 2011 are coded to the new version of ICD-10
+while for 2010 they are coded to the previous version. Week 1 2011 has
+been coded to both versions to give an indication of the impact of the
+change.</li>
 </ul>
 </div>
 <div class="section level4">
 <h4 id="section-2">2014<a class="anchor" aria-label="anchor" href="#section-2"></a>
 </h4>
 <ul>
-<li><p>For deaths registered from January 2014, cause of death is coded to the ICD-10 classification using IRIS software. Further information about the implementation of the software is available on the ONS website.</p></li>
-<li><p>All deaths registered in week 2 were dual-coded using both ICD-10 v2010 (NCHS) and ICD-10 v2013 (IRIS). An information note providing the preliminary findings on the impact of the implementation of IRIS software for ICD-10 cause of death coding on mortality statistics in England and Wales is available on the ONS website.</p></li>
+<li><p>For deaths registered from January 2014, cause of death is coded
+to the ICD-10 classification using IRIS software. Further information
+about the implementation of the software is available on the ONS
+website.</p></li>
+<li><p>All deaths registered in week 2 were dual-coded using both ICD-10
+v2010 (NCHS) and ICD-10 v2013 (IRIS). An information note providing the
+preliminary findings on the impact of the implementation of IRIS
+software for ICD-10 cause of death coding on mortality statistics in
+England and Wales is available on the ONS website.</p></li>
 </ul>
 </div>
 <div class="section level4">
 <h4 id="section-3">2015<a class="anchor" aria-label="anchor" href="#section-3"></a>
 </h4>
 <ul>
-<li>For deaths registered from January 2014, cause of death is coded to the ICD-10 classification using IRIS software. Further information about the <a href="https://webarchive.nationalarchives.gov.uk/20160106020045/http://www.ons.gov.uk/ons/guide-method/user-guidance/health-and-life-events/Changes-to-cause-of-death-coding-in-England-and-Wales/index.html" class="external-link">implementation of the software</a> is available on the ONS website.</li>
+<li>For deaths registered from January 2014, cause of death is coded to
+the ICD-10 classification using IRIS software. Further information about
+the <a href="https://webarchive.nationalarchives.gov.uk/20160106020045/http://www.ons.gov.uk/ons/guide-method/user-guidance/health-and-life-events/Changes-to-cause-of-death-coding-in-England-and-Wales/index.html" class="external-link">implementation
+of the software</a> is available on the ONS website.</li>
 </ul>
 </div>
 </div>
@@ -590,7 +649,9 @@
 <h3 id="age-bands">Age bands<a class="anchor" aria-label="anchor" href="#age-bands"></a>
 </h3>
 <p>Numbers are provided for categories: Persons, Females and Males.</p>
-<p>As detailed in the notes, if the age is missing or not coded at the time of release then the counts of ‘Persons’, ‘Males’ and ‘Females’ may not sum to ‘Total Deaths, all ages’.</p>
+<p>As detailed in the notes, if the age is missing or not coded at the
+time of release then the counts of ‘Persons’, ‘Males’ and ‘Females’ may
+not sum to ‘Total Deaths, all ages’.</p>
 <p>Note that these age bands were changed in 2020 releases.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ons_mortality</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -625,7 +686,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

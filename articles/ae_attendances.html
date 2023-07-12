@@ -99,7 +99,7 @@
 
       
 
-      </header><script src="ae_attendances_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ae_attendances dataset</h1>
@@ -116,32 +116,43 @@
 
     
     
-<p>This vignette explains how to use the <code>ae_attendances</code> dataset in R, and also details where it comes from and how it is generated.</p>
-<p>The data is sourced from <a href="https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/" class="external-link">NHS England Statistical Work Areas</a> and is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" class="external-link">Open Government Licence v3.0</a>.</p>
-<p>The data contains all reported A&amp;E attendances for the period April 2016 through March 2019</p>
+<p>This vignette explains how to use the <code>ae_attendances</code>
+dataset in R, and also details where it comes from and how it is
+generated.</p>
+<p>The data is sourced from <a href="https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/" class="external-link">NHS
+England Statistical Work Areas</a> and is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" class="external-link">Open
+Government Licence v3.0</a>.</p>
+<p>The data contains all reported A&amp;E attendances for the period
+April 2016 through March 2019</p>
 <p>The dataset contains:</p>
 <ul>
 <li>
-<strong>period</strong>: the month that this activity relates to, stored as a date (1st of each month)</li>
+<strong>period</strong>: the month that this activity relates to,
+stored as a date (1st of each month)</li>
 <li>
-<strong>org_code</strong>: the <a href="https://digital.nhs.uk/services/organisation-data-service" class="external-link">ODS</a> code for the organisation that this activity relates to</li>
+<strong>org_code</strong>: the <a href="https://digital.nhs.uk/services/organisation-data-service" class="external-link">ODS</a>
+code for the organisation that this activity relates to</li>
 <li>
-<strong>type</strong>: the <a href="https://web.archive.org/web/20200128111444/https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp" class="external-link">Department Type</a> for this activity, either 1, 2, or other</li>
+<strong>type</strong>: the <a href="https://web.archive.org/web/20200128111444/https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp" class="external-link">Department
+Type</a> for this activity, either 1, 2, or other</li>
 <li>
-<strong>attendances</strong>: the number of attendances for this department type at this organisation for this month</li>
+<strong>attendances</strong>: the number of attendances for this
+department type at this organisation for this month</li>
 <li>
-<strong>breaches</strong>: the number of attendances that breached the 4 hour target</li>
+<strong>breaches</strong>: the number of attendances that breached
+the 4 hour target</li>
 <li>
-<strong>admissions</strong>: the number of attendances that resulted in an admission to the hospital</li>
+<strong>admissions</strong>: the number of attendances that resulted
+in an admission to the hospital</li>
 </ul>
-<p>First let’s load some packages and the dataset and show the first 10 rows of data.</p>
+<p>First let’s load some packages and the dataset and show the first 10
+rows of data.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org" class="external-link">scales</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel" class="external-link">ggrepel</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: ggplot2</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org" class="external-link">lubridate</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: timechange</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'lubridate'</span></span>
 <span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
@@ -265,7 +276,8 @@
 </tr>
 </tbody>
 </table>
-<p>We can calculate the 4 hours performance for England as a whole like so:</p>
+<p>We can calculate the 4 hours performance for England as a whole like
+so:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">england_performance</span> <span class="op">&lt;-</span> <span class="va">ae_attendances</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">period</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -363,8 +375,10 @@
 <span>       title <span class="op">=</span> <span class="st">"NHS England A&amp;E 4 Hour Performance"</span>,</span>
 <span>       caption <span class="op">=</span> <span class="st">"Source: NHS England Statistical Work Areas (OGL v3.0)"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ae_attendances_files/figure-html/england%20performance%20plot-1.png" width="700"></p>
-<p>We can clearly see the “Winter Pressures” where performance drops.</p>
-<p>We can also inspect performance for the <a href="https://web.archive.org/web/20200128111444/https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp" class="external-link">different types of department</a>:</p>
+<p>We can clearly see the “Winter Pressures” where performance
+drops.</p>
+<p>We can also inspect performance for the <a href="https://web.archive.org/web/20200128111444/https://www.datadictionary.nhs.uk/data_dictionary/attributes/a/acc/accident_and_emergency_department_type_de.asp" class="external-link">different
+types of department</a>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ae_attendances</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">period</span>, <span class="va">type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -382,11 +396,16 @@
 <span>       subtitle <span class="op">=</span> <span class="st">"By Department Type"</span>,</span>
 <span>       caption <span class="op">=</span> <span class="st">"Source: NHS England Statistical Work Areas (OGL v3.0)"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ae_attendances_files/figure-html/england%20performance%20by%20type-1.png" width="700"></p>
-<p>From this it appears as if only the type 1 departments have the seasonal drops, type 2 and “other” departments remain pretty consistent.</p>
+<p>From this it appears as if only the type 1 departments have the
+seasonal drops, type 2 and “other” departments remain pretty
+consistent.</p>
 <div class="section level2">
 <h2 id="what-are-the-best-and-worst-trusts-for-performance">What are the best and worst trusts for performance?<a class="anchor" aria-label="anchor" href="#what-are-the-best-and-worst-trusts-for-performance"></a>
 </h2>
-<p>We could create a similar table of data for performance by each individual trust, but it would be useful to only look at trusts that have a type 1 department as it appears from the chart above that these departments have the largest variation.</p>
+<p>We could create a similar table of data for performance by each
+individual trust, but it would be useful to only look at trusts that
+have a type 1 department as it appears from the chart above that these
+departments have the largest variation.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">performance_by_trust</span> <span class="op">&lt;-</span> <span class="va">ae_attendances</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">org_code</span>, <span class="va">period</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -483,7 +502,8 @@
 </tr>
 </tbody>
 </table>
-<p>From this table we can calculate the overall performance by each trust and then organise the trusts by their overall performance.</p>
+<p>From this table we can calculate the overall performance by each
+trust and then organise the trusts by their overall performance.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">performance_by_trust_ranking</span> <span class="op">&lt;-</span> <span class="va">performance_by_trust</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>performance <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">breaches</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">attendances</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -522,8 +542,15 @@
 <div class="section level2">
 <h2 id="benchmarking">Benchmarking<a class="anchor" aria-label="anchor" href="#benchmarking"></a>
 </h2>
-<p>It is sometimes useful to see how an organisation stacks up against all of the other organisations. Below we create a chart where each organisation is shown as a point, ordered by performance from left (highest performance) to right (lowest) performance.</p>
-<p>It’s useful to indicate certain organisations on the chart, below I am showing the 3 organisations that are at the lower quartile, median and upper quartile, however you could change this to instead pick out specific organisations (using a reference table and <code>left_join</code> or hard coding with <code>case_when</code>).</p>
+<p>It is sometimes useful to see how an organisation stacks up against
+all of the other organisations. Below we create a chart where each
+organisation is shown as a point, ordered by performance from left
+(highest performance) to right (lowest) performance.</p>
+<p>It’s useful to indicate certain organisations on the chart, below I
+am showing the 3 organisations that are at the lower quartile, median
+and upper quartile, however you could change this to instead pick out
+specific organisations (using a reference table and
+<code>left_join</code> or hard coding with <code>case_when</code>).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ae_attendances</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">period</span> <span class="op">==</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">last</a></span><span class="op">(</span><span class="va">period</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -539,8 +566,8 @@
 <span>  <span class="co"># and at the median. First "tile" the data into 4 groups, then we use the</span></span>
 <span>  <span class="co"># lag function to check to see if the value changes between rows. We will get</span></span>
 <span>  <span class="co"># NA for the first row, so replace this with FALSE</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>highlight <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html" class="external-link">ntile</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,</span>
-<span>         highlight <span class="op">=</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/replace_na.html" class="external-link">replace_na</a></span><span class="op">(</span><span class="va">highlight</span> <span class="op">!=</span> <span class="fu">lag</span><span class="op">(</span><span class="va">highlight</span><span class="op">)</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>highlight <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ntile.html" class="external-link">ntile</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,</span>
+<span>         highlight <span class="op">=</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/replace_na.html" class="external-link">replace_na</a></span><span class="op">(</span><span class="va">highlight</span> <span class="op">!=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html" class="external-link">lag</a></span><span class="op">(</span><span class="va">highlight</span><span class="op">)</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">org_code</span>, <span class="va">performance</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="va">overall_performance</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -576,7 +603,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

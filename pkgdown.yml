@@ -1,5 +1,5 @@
-pandoc: 2.7.3
-pkgdown: 2.0.6
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   LOS_model: LOS_model.html
@@ -7,7 +7,7 @@ articles:
   ons_mortality: ons_mortality.html
   stranded_model: stranded_model.html
   synthetic_news_data: synthetic_news_data.html
-last_built: 2022-11-08T13:02Z
+last_built: 2023-07-12T19:26Z
 urls:
   reference: https://nhs-r-community.github.io/NHSRdatasets/reference
   article: https://nhs-r-community.github.io/NHSRdatasets/articles
