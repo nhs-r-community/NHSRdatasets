@@ -522,3 +522,9 @@ ons_mortality %>%
 ```{r removefiles}
 unlink("working_files", recursive = TRUE)
 ```
+
+
+# Citations
+
+The data used to build the mortality dataset in this package is released under © Crown copyright and is free to use under the terms of the Open Government Licence. 
+Any subsequent use should include a source accreditation to ONS - Source: Office for National Statistics licensed under the Open Government Licence.
