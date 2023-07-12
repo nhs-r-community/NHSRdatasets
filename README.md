@@ -1,5 +1,5 @@
 
-# NHS R-community Datasets <a href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
+# NHS-R Community Datasets <a href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
 
 <!-- badges: start -->
 
@@ -26,7 +26,7 @@ structure, and `vignette` examples of their use. We encourage
 contributions to the package, both to expand the set of training
 material, but also as development for newer `R`/github users as a first
 contribution. Please add relevant free, open source data sets that you
-think may benefit the NHS R-community.
+think may benefit the NHS-R Community.
 
 ## Installation instructions
 
