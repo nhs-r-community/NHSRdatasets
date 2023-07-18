@@ -33,17 +33,16 @@ We encourage contributions to the package, both to expand the set of training ma
 Please add relevant free, open source data sets that you think may benefit the NHS-R Community.
 
 This package has been created to help NHS, Public Health and related analysts/data scientists learn to use `R`. It contains several free datasets (just one at the moment), help files explaining their structure, and `vignette` examples of their use.  We encourage contributions to the package, both to expand the set of training material, but also as development for newer `R`/github users as a first contribution.  Please add relevant free, open source data sets that you think may benefit the NHS-R Community.
->>>>>>> 87800e0b30f9343e0d00493ca9daf6040c72790e
 
 ## Installation instructions
 
-You can install the [CRAN](https://CRAN.R-project.org) with:
+You can install the packages from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("NHSRdatasets")
 ```
 
-To install the development version from [GitHub](https://github.com/) use:
+To install the development version from [GitHub](https://github.com/) with:
 
 ```{r install, eval=FALSE}
 # install.packages("remotes")
