@@ -27,16 +27,14 @@ knitr::opts_chunk$set(
 ## Data sources for reuse
 
 This package has been created to help NHS, Public Health and related analysts/data scientists learn to use `R`. 
-It contains several free datasets with help files explaining their structure, and `vignette` examples of their use.  
+It contains several free datasets, with help files, explaining their structure, and includes `vignette` examples of their use.  
 
 We encourage contributions to the package, both to expand the set of training material, and also as development for newer `R`/github users as a first or early contribution.  
 Please add relevant free, open source data sets that you think may benefit the NHS-R Community.
 
-This package has been created to help NHS, Public Health and related analysts/data scientists learn to use `R`. It contains several free datasets (just one at the moment), help files explaining their structure, and `vignette` examples of their use.  We encourage contributions to the package, both to expand the set of training material, but also as development for newer `R`/github users as a first contribution.  Please add relevant free, open source data sets that you think may benefit the NHS-R Community.
-
 ## Installation instructions
 
-You can install the packages from [CRAN](https://CRAN.R-project.org) with:
+You can install the package from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("NHSRdatasets")
