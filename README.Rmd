@@ -62,8 +62,7 @@ ___When contributing a dataset, the contributor certifies that:___
 
 # Citation
 
-Please cite the use of {NHSRdatasets} and promote the work of the NHS-R
-Community!
+It's great to see the {NHSRdatasets} package and data used as it promotes the work of the NHS-R Community so, where it's relevant and makes sense, please give us a mention!
 
 ## Users of the mortality dataset:
 
