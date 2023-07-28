@@ -15,9 +15,18 @@ version](https://www.r-pkg.org/badges/version/NHSRdatasets)](https://cran.r-proj
 
 <br><br>
 
-Please visit: [nhsrcommunity.com](https://nhsrcommunity.com/)
+## Data sources for reuse
 
-## Datasources for reuse
+This package has been created to help NHS, Public Health and related
+analysts/data scientists learn to use `R`. It contains several free
+datasets with help files explaining their structure, and `vignette`
+examples of their use.
+
+We encourage contributions to the package, both to expand the set of
+training material, and also as development for newer `R`/github users as
+a first or early contribution.  
+Please add relevant free, open source data sets that you think may
+benefit the NHS-R Community.
 
 This package has been created to help NHS, Public Health and related
 analysts/data scientists learn to use `R`. It contains several free
@@ -26,49 +35,55 @@ structure, and `vignette` examples of their use. We encourage
 contributions to the package, both to expand the set of training
 material, but also as development for newer `R`/github users as a first
 contribution. Please add relevant free, open source data sets that you
-think may benefit the NHS-R Community.
+think may benefit the NHS-R Community. \>\>\>\>\>\>\>
+87800e0b30f9343e0d00493ca9daf6040c72790e
 
 ## Installation instructions
 
-This packages is available on CRAN or the development version can be
-installed from source, via this Github repository. You will need
-[`Rtools`](https://cran.r-project.org/bin/windows/Rtools/) installed to
-build the package, and the `remotes` package.
+You can install the [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-remotes::install_github("https://github.com/nhs-r-community/NHSRdatasets")
+install.packages("NHSRdatasets")
 ```
 
-## Contribution
+To install the development version from [GitHub](https://github.com/)
+use:
 
-Please contribute to this repository, and please cite it when you use it
-in training or publications.
+``` r
+# install.packages("remotes")
+remotes::install_github("nhs-r-community/NHSRdatasets")
+```
 
-**To contribute, please:**
+## Contributing
 
-- Fork the repository.
-- Add your dataset in the `data` folder, in `.rda` format. The best way
-  to do this is with the `usethis` package with “gzip” compression:
-  `usethis::use_data(data, compress="gzip")`
-- Please add a minimal `R` function to act as a help file. You can use
-  the `LOS_model` as a guide.
-- Please add a `vignette` demonstrating how the data has been/can be
-  used.
-- Create a pull request, detailing your additions, and we will review it
-  before merging.
+Please see our [guidance on how to
+contribute](https://tools.nhsrcommunity.com/contribution.html).
 
-<br> ***When contributing a dataset, the contributor certifies that:***
+This project is released with a Contributor [Code of
+Conduct](./CODE_OF_CONDUCT.md). By contributing to this project, you
+agree to abide by its terms.
+
+***When contributing a dataset, the contributor certifies that:***
 
 - They are the data owner, or are authorised to republish the dataset in
   question.
-- The dataset does not contain real patient-level data.
-- Where based on patient data, the contributor takes full responsibility
-  for sharing the data and certifies that. it is has been processed,
-  anonymised, aggregated or otherwise protected in accordance with all
-  legal requirements under General Data Protection Regulation (GDPR), or
-  other relevant legislation.
+- The dataset does not contain real patient-level or any other sensitive
+  data.
+- Where it is based on sensitive or patient data, the contributor takes
+  full responsibility for sharing the data and certifies that it has
+  been processed, anonymised, aggregated or otherwise protected in
+  accordance with all legal requirements under General Data Protection
+  Regulation (GDPR), or other relevant legislation.
 
-Please note that the ‘NHSRdatasets’ project is released with a
-[Contributor Code of
-Conduct](https://github.com/nhs-r-community/NHSRdatasets/blob/master/CODE_OF_CONDUCT.md).
-By contributing to this project, you agree to abide by its terms.
+# Citation
+
+Please cite the use of {NHSRdatasets} and promote the work of the NHS-R
+Community!
+
+## Users of the mortality dataset:
+
+The data used to build the mortality dataset in this package is released
+under © Crown copyright and is free to use under the terms of the Open
+Government Licence. Any subsequent use should include a source
+accreditation to ONS - Source: Office for National Statistics licensed
+under the Open Government Licence.
