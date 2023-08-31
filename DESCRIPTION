@@ -7,10 +7,10 @@ Authors@R: c(
           person("Gary", "Hutson", , "g.hutson@nhs.net", "aut", comment = c(ORCID="0000-0003-3534-6143")),
           person("Tom", "Jemmett", ,"thomas.jemmett@nhs.net", "aut", comment = c(ORCID="0000-0002-6943-2990")),
           person("Chris", "Mainey", ,"c.mainey1@nhs.net", c("aut", "cre"), comment = c(ORCID ="0000-0002-3018-6171")),
-          person("Zoë", "Turner", role = "aut", email = "zoe.turner2@nottshc.nhs.uk", comment = c(ORCID = "0000-0003-1033-9158")),
+          person("Zoë", "Turner", role = "aut", email = "zoe.turner3@nhs.net", comment = c(ORCID = "0000-0003-1033-9158")),
           person("NHS-R community", role = "cph")
           )
-Maintainer: Zoë Turner <zoe.turner2@nottshc.nhs.uk>
+Maintainer: Zoë Turner <zoe.turner3@nhs.net>
 Description: Free United Kingdom National Health Service (NHS) and other healthcare, or population health-related data for education and training purposes. This package contains synthetic data based on real healthcare datasets, or cuts of open-licenced official data.  This package exists to support skills development in the NHS-R community: <https://nhsrcommunity.com/>.
 License: CC0
 Language: en-GB
