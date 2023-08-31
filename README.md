@@ -45,6 +45,16 @@ with:
 remotes::install_github("nhs-r-community/NHSRdatasets")
 ```
 
+## Datasets available
+
+Note that the versions can be different between CRAN and currently
+version 0.3.0 on CRAN doesn’t include the Covid-19 data but version
+0.3.1 from GitHub does.
+
+Further information on the data can be found through the page
+<https://nhs-r-community.github.io/NHSRdatasets/> which can also be
+located at the top left of the GitHub repository.
+
 ## Contributing
 
 Please see our [guidance on how to
@@ -77,5 +87,7 @@ makes sense, please give us a mention!
 The data used to build the mortality dataset in this package is released
 under © Crown copyright and is free to use under the terms of the Open
 Government Licence. Any subsequent use should include a source
-accreditation to ONS - Source: Office for National Statistics licensed
-under the Open Government Licence.
+accreditation to ONS to help people find the original releases and any
+statistical corrections that may have occurred since this was included
+in this pacakge - Source: Office for National Statistics licensed under
+the Open Government Licence.
