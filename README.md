@@ -19,8 +19,8 @@ version](https://www.r-pkg.org/badges/version/NHSRdatasets)](https://cran.r-proj
 
 This package has been created to help NHS, Public Health and related
 analysts/data scientists learn to use `R`. It contains several free
-datasets with help files explaining their structure, and `vignette`
-examples of their use.
+datasets, with help files, explaining their structure, and includes
+`vignette` examples of their use.
 
 We encourage contributions to the package, both to expand the set of
 training material, and also as development for newer `R`/github users as
@@ -28,26 +28,17 @@ a first or early contribution.
 Please add relevant free, open source data sets that you think may
 benefit the NHS-R Community.
 
-This package has been created to help NHS, Public Health and related
-analysts/data scientists learn to use `R`. It contains several free
-datasets (just one at the moment), help files explaining their
-structure, and `vignette` examples of their use. We encourage
-contributions to the package, both to expand the set of training
-material, but also as development for newer `R`/github users as a first
-contribution. Please add relevant free, open source data sets that you
-think may benefit the NHS-R Community. \>\>\>\>\>\>\>
-87800e0b30f9343e0d00493ca9daf6040c72790e
-
 ## Installation instructions
 
-You can install the [CRAN](https://CRAN.R-project.org) with:
+You can install the package from [CRAN](https://CRAN.R-project.org)
+with:
 
 ``` r
 install.packages("NHSRdatasets")
 ```
 
 To install the development version from [GitHub](https://github.com/)
-use:
+with:
 
 ``` r
 # install.packages("remotes")
@@ -77,8 +68,9 @@ agree to abide by its terms.
 
 # Citation
 
-Please cite the use of {NHSRdatasets} and promote the work of the NHS-R
-Community!
+It’s great to see the {NHSRdatasets} package and data used as it
+promotes the work of the NHS-R Community so, where it’s relevant and
+makes sense, please give us a mention!
 
 ## Users of the mortality dataset:
 
