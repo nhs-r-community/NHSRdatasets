@@ -2,7 +2,7 @@ Package: NHSRdatasets
 Type: Package
 Title: NHS and Healthcare-Related Data for Education and Training
 Date: 2022-11-08
-Version: 0.3.1
+Version: 0.3.2
 Authors@R: c(
           person("Gary", "Hutson", , "g.hutson@nhs.net", "aut", comment = c(ORCID="0000-0003-3534-6143")),
           person("Tom", "Jemmett", ,"thomas.jemmett@nhs.net", "aut", comment = c(ORCID="0000-0002-6943-2990")),
@@ -45,6 +45,7 @@ Suggests:
     janitor,
     stringi,
     synthpop,
-    rcmdcheck
+    rcmdcheck,
+    openxlsx2
 VignetteBuilder: knitr
 URL: https://github.com/nhs-r-community/NHSRdatasets, https://nhs-r-community.github.io/NHSRdatasets/
