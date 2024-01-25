@@ -38,3 +38,15 @@ httr2::request(raw_data_url) |>
   # used instead; but the more verbose/explicit method seems clearer.
   httr2::resp_body_raw() |>
   readr::write_file(dl_tmp)
+
+
+raw_data <- dl_tmp |>
+  openxlsx2::read_xlsx(
+    start_row = 3,
+    col_names = FALSE,
+    skip_empty_rows = TRUE,
+    skip_empty_cols = TRUE
+  ) |>
+  tibble::as_tibble()
+
+# usethis::use_data(apha_analysts, overwrite = TRUE)
