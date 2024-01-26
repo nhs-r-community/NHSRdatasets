@@ -1,7 +1,7 @@
 # Source: https://www.aphanalysts.org/documents/cpd-survey-results-raw-data/
 # (Accessed 25 January 2024)
 # 
-# The .xlsx file cannot be directly downloaded from its URI as there is
+# The .xlsx file cannot be directly downloaded in `R` from its URL as there is
 # protection on the file: it must be downloaded by submitting the form on the
 # web page, either manually by clicking the button on the page, or by
 # simulating the form submission using form headers within an {httr2} pipeline.
@@ -47,6 +47,52 @@ raw_data <- dl_tmp |>
     skip_empty_rows = TRUE,
     skip_empty_cols = TRUE
   ) |>
-  tibble::as_tibble()
+  tibble::as_tibble() |>
+  dplyr::select(!"B") # respondent number not necessary
 
-# usethis::use_data(apha_analysts, overwrite = TRUE)
+# informed by https://emilyriederer.netlify.app/post/column-name-contracts/
+clean_col_names <- c(
+  "respondent_id",
+  "form_started_dttm",
+  "form_ended_dttm",
+  "q00a_age_bracket_cat",
+  "q01a_gender_cat",
+  "q02a_max_education_level_cat",
+  "q03a_analyst_years_n",
+  "q04a_role_description_cat",
+  "q05a_afc_band_cat",
+  "q06a_current_org_years_cat",
+  "q07a_future_health_work_cat",
+  "q08a_apha_aware_ind",
+  "q09a_apha_registered_cat",
+  "q10a_other_org_member_cat",
+  "q11a_nhs_cpd_aware_cat",
+  "q12a_cpd_time_at_work_cat",
+  "q13a_cpd_outside_work_ind",
+  "q13b_cpd_outside_work_days_txt",
+  "q14a_mgr_cpd_supportive_cat",
+  "q15a_mgr_cpd_more_support_ind",
+  "q16a_org_cpd_supportive_cat",
+  "q17a_org_cpd_budget_cat",
+  "q17b_org_cpd_budget_txt",
+  "q18a_org_study_leave_ind",
+  "q18b_org_study_leave_days_txt",
+  "q19a_mgr_cpd_discuss_freq_cat",
+  "q20a_cpd_opps_nhs_intranet_ind",
+  "q20b_cpd_opps_org_website_ind",
+  "q20c_cpd_opps_blogs_ind",
+  "q20d_cpd_opps_twitter_ind",
+  "q20e_cpd_opps_linkedin_ind",
+  "q20f_cpd_opps_word_of_mouth_ind",
+  "q20g_cpd_opps_apha_website_ind",
+  "q20h_cpd_opps_other_txt",
+  "q21a_cpd_opps_sources_txt",
+  "q22a_org_nhs_type_cat",
+  "q23a_org_analyst_team_size_cat",
+  "q24a_org_analytics_influence_cat"
+)
+
+
+
+
+# usethis::use_data(apha_cpd_survey, overwrite = TRUE)
