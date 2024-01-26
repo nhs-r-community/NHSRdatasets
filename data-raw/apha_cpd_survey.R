@@ -136,5 +136,8 @@ var_labels <- c(
 ) |>
   rlang::set_names(clean_col_names)
 
+apha_cpd_survey <- raw_data |>
+  dplyr::rename_with(\(x) clean_col_names) |>
+  labelled::set_variable_labels(.labels = var_labels)
 
-# usethis::use_data(apha_cpd_survey, overwrite = TRUE)
+usethis::use_data(apha_cpd_survey, overwrite = TRUE)
