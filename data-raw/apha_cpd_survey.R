@@ -48,6 +48,7 @@ raw_data <- dl_tmp |>
     skip_empty_cols = TRUE
   ) |>
   tibble::as_tibble() |>
+  dplyr::mutate(across("A", as.integer)) |>
   dplyr::select(!"B") # respondent number not necessary
 
 # informed by https://emilyriederer.netlify.app/post/column-name-contracts/
@@ -65,7 +66,7 @@ clean_col_names <- c(
   "q07a_future_health_work_cat",
   "q08a_apha_aware_ind",
   "q09a_apha_registered_cat",
-  "q10a_other_org_member_cat",
+  "q10a_other_org_member_txt",
   "q11a_nhs_cpd_aware_cat",
   "q12a_cpd_time_at_work_cat",
   "q13a_cpd_outside_work_ind",
@@ -92,7 +93,48 @@ clean_col_names <- c(
   "q24a_org_analytics_influence_cat"
 )
 
-
+# Provide explanatory labels for columns; use original name/question as default
+var_labels <- c(
+  "UserID",
+  "Started",
+  "Ended",
+  "What's your age?",
+  "What's your gender?",
+  "What's your highest level of education?",
+  "How long have you been a healthcare analyst? (years)",
+  "Which of the following best describes your current role?",
+  "Which of the following Agenda for Change bands best describe your role?",
+  "How many years have you been working in the NHS/your organisation?",
+  "What is the likelihood you’ll be working in the NHS/your organisation in 3 years time?",
+  "Have you heard of the Association of Professional Healthcare Analysts (AphA)?",
+  "Are you professionally registered with the AphA? If so, at what level?",
+  "Are you a member of an alternative association?",
+  "As an analyst, are you aware of professional development opportunities in the NHS?",
+  "As an analyst, are you provided with opportunities/time to upskill during work hours, i.e. you have time to do this at work?",
+  "Do you undertake CPD out of work hours?",
+  "If yes, on how many days per year?",
+  "Do you feel your manager is supportive of your professional development?",
+  "Would you like more support on CPD from your line manager?",
+  "Do you feel your organisation is supportive of your professional development?",
+  "Does your organisation have a budget for CPD?",
+  "Please state budget per year:",
+  "Does your organisation offer study leave?",
+  "Please state number of days study leave allowed per year",
+  "How often do you discuss your professional development plan, career progression or potential training with your line manager(s)?",
+  "Where do you learn from professional development opportunities? - NHS intranet",
+  "Where do you learn from professional development opportunities? - Organisation websites",
+  "Where do you learn from professional development opportunities? - Blogs",
+  "Where do you learn from professional development opportunities? - Twitter",
+  "Where do you learn from professional development opportunities? - LinkedIn",
+  "Where do you learn from professional development opportunities? - Word of mouth recommendations",
+  "Where do you learn from professional development opportunities? - AphA website",
+  "Where do you learn from professional development opportunities? - Other (please specify):",
+  "Are there any professional development opportunities (e.g. AphA website, websites, blogs, or twitter accounts you follow) that you would recommend to your fellow colleagues? Please specify:",
+  "What sort of NHS organisation do you work for?",
+  "What’s the size of your analytics team (including both full-time and part-time staff)?",
+  "Do you feel that analytics influences important decisions in your organisation?"
+) |>
+  rlang::set_names(clean_col_names)
 
 
 # usethis::use_data(apha_cpd_survey, overwrite = TRUE)
