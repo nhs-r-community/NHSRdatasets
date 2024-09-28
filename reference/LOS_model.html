@@ -24,7 +24,7 @@ Data were generate to learn Generalized Linear Models (GLM) concepts, modelling 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">NHSRdatasets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -43,9 +43,6 @@ Data were generate to learn Generalized Linear Models (GLM) concepts, modelling 
     </li>
     <li>
       <a href="../articles/LOS_model.html">LOS_model: A simulated hospital length-of-stay dataset</a>
-    </li>
-    <li>
-      <a href="../articles/ons_mortality.html">Building the ONS mortality dataset</a>
     </li>
     <li>
       <a href="../articles/stranded_model.html">Stranded Model Tutorial</a>
@@ -92,7 +89,7 @@ Data were generate to learn Generalized Linear Models (GLM) concepts, modelling 
 <dd><p>A fictional patient ID number</p></dd>
 
 <dt>Organisation</dt>
-<dd><p>A factor representing one of ten fictional hospital trusts, e.g. Trust1</p></dd>
+<dd><p>A factor representing one of ten fictional hospital trusts, for example Trust1</p></dd>
 
 <dt>Age</dt>
 <dd><p>Age in years of each fictional patient</p></dd>
@@ -114,7 +111,7 @@ Data were generate to learn Generalized Linear Models (GLM) concepts, modelling 
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">LOS_model</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Death</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">LOS</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"binomial"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Death</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">LOS</span>, data <span class="op">=</span> <span class="va">LOS_model</span>, family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
@@ -138,7 +135,7 @@ Data were generate to learn Generalized Linear Models (GLM) concepts, modelling 
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Now with an Age, LOS, and Age*LOS interaction.</span></span></span>
-<span class="r-in"><span><span class="va">model2</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Death</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">*</span> <span class="va">LOS</span>, data<span class="op">=</span><span class="va">LOS_model</span>, family<span class="op">=</span><span class="st">"binomial"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">model2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Death</span> <span class="op">~</span> <span class="va">Age</span> <span class="op">*</span> <span class="va">LOS</span>, data <span class="op">=</span> <span class="va">LOS_model</span>, family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">model2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
@@ -172,11 +169,11 @@ Data were generate to learn Generalized Linear Models (GLM) concepts, modelling 
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by <a href="https://github.com/StatsGary" class="external-link">Gary Hutson</a>, <a href="https://github.com/tomjemmett" class="external-link">Tom Jemmett</a>, <a href="https://www.mainard.co.uk" class="external-link">Chris Mainey</a>, <a href="https://github.com/Lextuga007" class="external-link">Zoë Turner</a>.</p>
+  <p></p><p>Developed by <a href="https://github.com/StatsGary" class="external-link">Gary Hutson</a>, <a href="https://github.com/tomjemmett" class="external-link">Tom Jemmett</a>, <a href="https://www.mainard.co.uk" class="external-link">Chris Mainey</a>, Fran Barton, <a href="https://github.com/Lextuga007" class="external-link">Zoë Turner</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>

@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">NHSRdatasets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -65,9 +65,6 @@
     </li>
     <li>
       <a href="../articles/LOS_model.html">LOS_model: A simulated hospital length-of-stay dataset</a>
-    </li>
-    <li>
-      <a href="../articles/ons_mortality.html">Building the ONS mortality dataset</a>
     </li>
     <li>
       <a href="../articles/stranded_model.html">Stranded Model Tutorial</a>
@@ -105,7 +102,6 @@
                         <h4 data-toc-skip class="author">Gary
 Hutson</h4>
             
-            <h4 data-toc-skip class="date">2024-08-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nhs-r-community/NHSRdatasets/blob/main/vignettes/stranded_model.Rmd" class="external-link"><code>vignettes/stranded_model.Rmd</code></a></small>
       <div class="hidden name"><code>stranded_model.Rmd</code></div>
@@ -130,8 +126,8 @@ to hospital</li>
 referred from care home</li>
 <li>
 <strong>medicallysafe:</strong> Integer - flag to indicate whether
-the patient is medically safe e.g. safe to be discharged but hasn’t
-been</li>
+the patient is medically safe for example safe to be discharged but
+hasn’t been</li>
 <li>
 <strong>hcop:</strong> Integer - flag to indicate whether the
 patient is in a Health Care for Older People area</li>
@@ -189,24 +185,24 @@ a few.</p>
 for our machine learning model. We will drop the admit_date and recode
 the frailty index, and perhaps allocate the age into age bands.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">stranded_data</span> <span class="op">&lt;-</span> <span class="va">stranded_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>stranded.label<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">stranded.label</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">stranded_data</span> <span class="op">&lt;-</span> <span class="va">stranded_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>stranded.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">stranded.label</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">admit_date</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Next, I will select the categorical variables and make these into
-dummy variables, i.e. a numerical encoding of a categorical
+dummy variables, that is a numerical encoding of a categorical
 variable:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select_all.html" class="external-link">select_if</a></span><span class="op">(</span><span class="va">stranded_data</span>, <span class="va">is.character</span><span class="op">)</span></span>
-<span><span class="va">cat_dummy</span> <span class="op">&lt;-</span> <span class="fu">varhandle</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/varhandle/man/to.dummy.html" class="external-link">to.dummy</a></span><span class="op">(</span><span class="va">cats</span><span class="op">$</span><span class="va">frailty_index</span>, <span class="st">"frail_ind"</span><span class="op">)</span> </span>
-<span><span class="co">#Converts the frailty index column to dummy encoding and sets a column called "frail_ind" prefix</span></span>
-<span><span class="va">cat_dummy</span> <span class="op">&lt;-</span> <span class="va">cat_dummy</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">frail_ind.No_index_item</span><span class="op">)</span> <span class="co">#Drop the field of interest</span></span>
+<span><span class="va">cat_dummy</span> <span class="op">&lt;-</span> <span class="fu">varhandle</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/varhandle/man/to.dummy.html" class="external-link">to.dummy</a></span><span class="op">(</span><span class="va">cats</span><span class="op">$</span><span class="va">frailty_index</span>, <span class="st">"frail_ind"</span><span class="op">)</span></span>
+<span><span class="co"># Converts the frailty index column to dummy encoding and sets a column called "frail_ind" prefix</span></span>
+<span><span class="va">cat_dummy</span> <span class="op">&lt;-</span> <span class="va">cat_dummy</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">frail_ind.No_index_item</span><span class="op">)</span> <span class="co"># Drop the field of interest</span></span>
 <span><span class="co"># Drop the frailty index from the stranded data frame and bind on our new encoding categorical variables</span></span>
-<span><span class="va">stranded_data</span> <span class="op">&lt;-</span> <span class="va">stranded_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">frailty_index</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols</a></span><span class="op">(</span><span class="va">cat_dummy</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">stranded_data</span> <span class="op">&lt;-</span> <span class="va">stranded_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">frailty_index</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols</a></span><span class="op">(</span><span class="va">cat_dummy</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span></span></code></pre></div>
 <p>The data is now ready for splitting into a simple train and
 validation split, to do the machine learning on the set.</p>
 </div>
@@ -215,7 +211,7 @@ validation split, to do the machine learning on the set.</p>
 </h2>
 <p>The next step is to create a simple hold out train/test split:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">split</span> <span class="op">&lt;-</span> <span class="fu">rsample</span><span class="fu">::</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">initial_split</a></span><span class="op">(</span><span class="va">stranded_data</span>, prop <span class="op">=</span> <span class="fl">3</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">split</span> <span class="op">&lt;-</span> <span class="fu">rsample</span><span class="fu">::</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">initial_split</a></span><span class="op">(</span><span class="va">stranded_data</span>, prop <span class="op">=</span> <span class="fl">3</span> <span class="op">/</span> <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">train</span> <span class="op">&lt;-</span> <span class="fu">rsample</span><span class="fu">::</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">training</a></span><span class="op">(</span><span class="va">split</span><span class="op">)</span></span>
 <span><span class="va">test</span> <span class="op">&lt;-</span> <span class="fu">rsample</span><span class="fu">::</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">testing</a></span><span class="op">(</span><span class="va">split</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -227,8 +223,10 @@ patients<a class="anchor" aria-label="anchor" href="#create-simple-logistic-regr
 CARET:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span><span class="va">glm_class_mod</span> <span class="op">&lt;-</span> <span class="fu">caret</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/caret/man/train.html" class="external-link">train</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">stranded.label</span><span class="op">)</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">train</span>, </span>
-<span>                 method <span class="op">=</span> <span class="st">"glm"</span><span class="op">)</span></span>
+<span><span class="va">glm_class_mod</span> <span class="op">&lt;-</span> <span class="fu">caret</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/caret/man/train.html" class="external-link">train</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">stranded.label</span><span class="op">)</span> <span class="op">~</span> <span class="va">.</span>,</span>
+<span>  data <span class="op">=</span> <span class="va">train</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"glm"</span></span>
+<span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</span></span>
 <span><span class="co">#&gt; Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">glm_class_mod</span><span class="op">)</span></span>
@@ -255,14 +253,14 @@ hyperparameter selection, different resampling strategies, etc.</p>
 in the wild:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">preds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">glm_class_mod</span>, newdata <span class="op">=</span> <span class="va">test</span><span class="op">)</span> <span class="co"># Predict class</span></span>
-<span><span class="va">pred_prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">glm_class_mod</span>, newdata <span class="op">=</span> <span class="va">test</span>, type<span class="op">=</span><span class="st">"prob"</span><span class="op">)</span> <span class="co">#Predict probs</span></span>
+<span><span class="va">pred_prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">glm_class_mod</span>, newdata <span class="op">=</span> <span class="va">test</span>, type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span> <span class="co"># Predict probs</span></span>
 <span></span>
 <span><span class="co"># Join prediction on to actual test data frame and evaluate in confusion matrix</span></span>
 <span></span>
 <span><span class="va">predicted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">preds</span>, <span class="va">pred_prob</span><span class="op">)</span></span>
-<span><span class="va">test</span> <span class="op">&lt;-</span> <span class="va">test</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols</a></span><span class="op">(</span><span class="va">predicted</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>pred_class<span class="op">=</span><span class="va">preds</span><span class="op">)</span></span>
+<span><span class="va">test</span> <span class="op">&lt;-</span> <span class="va">test</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols</a></span><span class="op">(</span><span class="va">predicted</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>pred_class <span class="op">=</span> <span class="va">preds</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 175</span></span>
@@ -286,8 +284,7 @@ in the wild:</p>
 </h2>
 <p>The final step is to evaluate the model:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu">caret</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/caret/man/confusionMatrix.html" class="external-link">confusionMatrix</a></span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">stranded.label</span>, <span class="va">test</span><span class="op">$</span><span class="va">pred_class</span>, positive<span class="op">=</span><span class="st">"Stranded"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">caret</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/caret/man/confusionMatrix.html" class="external-link">confusionMatrix</a></span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">stranded.label</span>, <span class="va">test</span><span class="op">$</span><span class="va">pred_class</span>, positive <span class="op">=</span> <span class="st">"Stranded"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Confusion Matrix and Statistics</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;               Reference</span></span>
@@ -337,12 +334,12 @@ albeit this only works for binary classification problems.</p>
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by <a href="https://github.com/StatsGary" class="external-link">Gary Hutson</a>, <a href="https://github.com/tomjemmett" class="external-link">Tom Jemmett</a>, <a href="https://www.mainard.co.uk" class="external-link">Chris Mainey</a>, <a href="https://github.com/Lextuga007" class="external-link">Zoë Turner</a>.</p>
+<p>Developed by <a href="https://github.com/StatsGary" class="external-link">Gary Hutson</a>, <a href="https://github.com/tomjemmett" class="external-link">Tom Jemmett</a>, <a href="https://www.mainard.co.uk" class="external-link">Chris Mainey</a>, Fran Barton, <a href="https://github.com/Lextuga007" class="external-link">Zoë Turner</a>.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer>

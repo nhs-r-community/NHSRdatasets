@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">NHSRdatasets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -42,9 +42,6 @@
     </li>
     <li>
       <a href="../articles/LOS_model.html">LOS_model: A simulated hospital length-of-stay dataset</a>
-    </li>
-    <li>
-      <a href="../articles/ons_mortality.html">Building the ONS mortality dataset</a>
     </li>
     <li>
       <a href="../articles/stranded_model.html">Stranded Model Tutorial</a>
@@ -76,13 +73,20 @@
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="0.3.3" id="nhsrdatasets-033">NHSRdatasets 0.3.3<a class="anchor" aria-label="anchor" href="#nhsrdatasets-033"></a></h2>
+<ul><li>Moved the vignette for how ONS provisionally recorded deaths to an R script available in the data-raw folder. This is also available on the Quarto NHS-R Community website and <a href="https://github.com/nhs-r-community/nhs-r-community/blob/main/blog/building-the-ons-mortality-dataset.qmd" class="external-link">GitHub</a>
+</li>
+<li>Noted in this version the previous addition of the dataset from AphA (with kind permission) from their CPD Survey, thanks to Fran Barton. Code detailing how the data was extracted using the httr2 package and tidied can be found in the <a href="https://github.com/nhs-r-community/NHSRdatasets/blob/main/data-raw/apha_cpd_survey.R" class="external-link">data-raw folder</a>.</li>
+<li>Noted in this version the previous addition of the dataset from European Centre for Disease Prevention and Control for reported COVID19 infections and deaths by day and country collected on the 14th December 2020, thanks to Chris Mainey.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="0.3.0" id="nhsrdatasets-030">NHSRdatasets 0.3.0<small>2021-03-13</small><a class="anchor" aria-label="anchor" href="#nhsrdatasets-030"></a></h2>
 <ul><li>Added two new datasets for ‘stranded patients’ and synthetic early warning scores (NEWS), including vignettes, thanks to Gary Hutson.</li>
 <li>Removed Travis and added GitHub actions</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.2.0" id="nhsrdatasets-020">NHSRdatasets 0.2.0<small>2020-05-04</small><a class="anchor" aria-label="anchor" href="#nhsrdatasets-020"></a></h2>
-<ul><li>Added a new ONS Mortality data set, and vignette showing it’s construction, thanks to Zoë Turner.</li>
+<ul><li>Added a new ONS Mortality data set, and vignette showing its construction, thanks to Zoë Turner.</li>
 <li>Resaved .Rdata files as rda, using “gzip” compression.</li>
 <li>Other minor documentation tweaks.</li>
 </ul></div>
@@ -106,11 +110,11 @@
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by <a href="https://github.com/StatsGary" class="external-link">Gary Hutson</a>, <a href="https://github.com/tomjemmett" class="external-link">Tom Jemmett</a>, <a href="https://www.mainard.co.uk" class="external-link">Chris Mainey</a>, <a href="https://github.com/Lextuga007" class="external-link">Zoë Turner</a>.</p>
+  <p></p><p>Developed by <a href="https://github.com/StatsGary" class="external-link">Gary Hutson</a>, <a href="https://github.com/tomjemmett" class="external-link">Tom Jemmett</a>, <a href="https://www.mainard.co.uk" class="external-link">Chris Mainey</a>, Fran Barton, <a href="https://github.com/Lextuga007" class="external-link">Zoë Turner</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>
