@@ -32,5 +32,5 @@
 #' library(dplyr)
 #' data("synthetic_news_data")
 #' synthetic_news_data %>%
-#'  glimpse()
+#'   glimpse()
 "synthetic_news_data"

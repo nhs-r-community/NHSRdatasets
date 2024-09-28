@@ -27,13 +27,14 @@
 #' @examples
 #' data(ons_mortality)
 #'
-#'library(dplyr)
-#'library(tidyr)
+#' library(dplyr)
+#' library(tidyr)
 #'
-#'wideForm <- ons_mortality %>%
-#'  select(-week_no) %>%
-#'  pivot_wider(names_from = date,
-#'              values_from = counts
-#'  )
+#' wideForm <- ons_mortality %>%
+#'   select(-week_no) %>%
+#'   pivot_wider(
+#'     names_from = date,
+#'     values_from = counts
+#'   )
 #'
 "ons_mortality"

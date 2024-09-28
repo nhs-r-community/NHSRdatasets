@@ -51,9 +51,11 @@
 #'   filter(any(type == "1")) %>%
 #'   summarise_at(vars(attendances, breaches), sum) %>%
 #'   arrange(desc(attendances)) %>%
-#'   mutate(performance = 1 - breaches / attendances,
-#'          overall_performance = 1 - sum(breaches) / sum(attendances),
-#'          rank = rank(-performance, ties.method = "first") / n()) %>%
+#'   mutate(
+#'     performance = 1 - breaches / attendances,
+#'     overall_performance = 1 - sum(breaches) / sum(attendances),
+#'     rank = rank(-performance, ties.method = "first") / n()
+#'   ) %>%
 #'   ggplot(aes(rank, performance)) +
 #'   geom_vline(xintercept = c(0.25, 0.5, 0.75), linetype = "dotted") +
 #'   geom_hline(yintercept = 0.95, colour = "red") +
@@ -61,11 +63,14 @@
 #'   geom_point() +
 #'   scale_y_continuous(labels = percent) +
 #'   theme_minimal() +
-#'   theme(panel.grid = element_blank(),
-#'         axis.text.x = element_blank()) +
-#'   labs(title = "4 Hour performance by trust",
-#'        subtitle = "Apr-16 through Mar-19",
-#'        x = "", y = "")
+#'   theme(
+#'     panel.grid = element_blank(),
+#'     axis.text.x = element_blank()
+#'   ) +
+#'   labs(
+#'     title = "4 Hour performance by trust",
+#'     subtitle = "Apr-16 through Mar-19",
+#'     x = "", y = ""
+#'   )
 #'
 "ae_attendances"
-

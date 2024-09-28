@@ -29,6 +29,6 @@
 #' library(dplyr)
 #' data("stranded_data")
 #' stranded_data %>%
-#'  glimpse()
+#'   glimpse()
 #'
 "stranded_data"

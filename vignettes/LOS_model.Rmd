@@ -47,11 +47,11 @@ prop.table(table(LOS_model$Death))
 Now lets look at the distributions of Age and LOS.  We might expect Age to be normally distributed, but this would be unrealistic, as elderly patient represent higher proportions of the total in-patients.  It could be uniform, it could be bi-modal (or have more peaks), but nothing is particularly clear.  LOS is highly right-skewed.  This means that the high values will affect the mean, dragging it out, and the median would be a better estimation of the centre of the distribution.  This shows that most patients don't stay very long, but a few patients stay notably longer.
 
 ```{R VisageLOS}
-ggplot(LOS_model, aes(x=Age)) +
-  geom_histogram(alpha=0.5, col=1, fill=12, bins=20)+
+ggplot(LOS_model, aes(x = Age)) +
+  geom_histogram(alpha = 0.5, col = 1, fill = 12, bins = 20) +
   ggtitle("Distribution of Age")
-ggplot(LOS_model, aes(x=LOS)) +
-  geom_histogram(alpha=0.5, col=1, fill=13, bins=20)+
+ggplot(LOS_model, aes(x = LOS)) +
+  geom_histogram(alpha = 0.5, col = 1, fill = 13, bins = 20) +
   ggtitle("Distribution of Length-of-Stay")
 ```
 
@@ -93,12 +93,11 @@ Let's fit a generalized linear model, firstly for `Death`, and secondly for `LOS
 `Death` is a binary variable recorded in our `LOS_model` dataset.  This cannot be linear and is usually modelled using the `binomial` family argument, and the `logit` link function.  This link function is the default in `R` for `binomial` regressions, and is commonly referred to as __Logistic Regression__.  We'll fit this using the `glm` function.  Rather than fitting `Death` as such, the link function makes this the log-odds of death.
 
 ```{r glm1, collapse=TRUE}
-glm_binomial <- glm(Death ~ Age + LOS, data=LOS_model, family="binomial")
+glm_binomial <- glm(Death ~ Age + LOS, data = LOS_model, family = "binomial")
 
 summary(glm_binomial)
 
 ModelMetrics::auc(glm_binomial)
-
 ```
 
 Using the `summary` function, we can see our model output, including:
@@ -118,12 +117,11 @@ If we consider the logic of the model above, it is telling us that LOS is a sign
 We can add these to our models with `*` to include the interaction and the independent terms, or `:` if you just want the interaction without the independent terms:
 
 ```{r glm2}
-glm_binomial2<- glm(Death ~ Age + LOS + Age*LOS, data=LOS_model, family="binomial")
+glm_binomial2 <- glm(Death ~ Age + LOS + Age * LOS, data = LOS_model, family = "binomial")
 
 summary(glm_binomial2)
 
 ModelMetrics::auc(glm_binomial2)
-
 ```
 
 Now our model is suggesting that Age, LOS and their interaction are significant.  This suggests that, as well as their own effects, their combination is important, and their effects confound each other.
@@ -135,9 +133,9 @@ Now our model is suggesting that Age, LOS and their interaction are significant.
 Now we have built a model, we can use it to predict our expected $y$, the probability of death per patient in this case.  We can supply a new dataset to fit it to, using `newdata`, or omitting this fits our model to the original dataset.  Using a `glm`, we have built a model via a link function, so we need to decide what scale to make our predictions on: the `link` scale (the log-odds of death in this case) or the `response` (the probability of death in this case).
 
 ```{r glm5}
-LOS_model$preds <- predict(glm_binomial2, type="response")
+LOS_model$preds <- predict(glm_binomial2, type = "response")
 
-head(LOS_model,5)
+head(LOS_model, 5)
 ```
 
 We have added our predictions back into the original `data.frame` using the column name `preds`, and patient ID 1 has a risk of death of 0.136 or 13.6% probability of death.  These predictions can be used in many different applications, but common uses of them are identifying the highest risk patients for clinical audit, comparing ratios of the observed deaths and expected deaths (sum of the probability), or risk-adjusted control chart monitoring.
@@ -150,25 +148,21 @@ LOS, the time a patient is in hospital, is another variable to examine in the da
 
 
 ```{r glm3}
-
-glm_poisson <- glm(LOS ~ Age * Death, data=LOS_model, family="poisson" )
+glm_poisson <- glm(LOS ~ Age * Death, data = LOS_model, family = "poisson")
 
 summary(glm_poisson)
-
 ```
 
 We can't use the `AUC` value here, as that is related to categories.  We can only make comparisons between models or in terms of prediction error.  Lets fit the same model without the interaction and see if it is different using the `AIC` or the likelihood ratio test (that tell you the same thing):
 
 ```{r glm4}
-
-glm_poisson2 <- glm(LOS ~ Age + Death, data=LOS_model, family="poisson" )
+glm_poisson2 <- glm(LOS ~ Age + Death, data = LOS_model, family = "poisson")
 
 AIC(glm_poisson)
 AIC(glm_poisson2)
 
 # anova(glm_poisson2, glm_poisson, test="Chisq")  will do the same thing without using the lmtest package
 lmtest::lrtest(glm_poisson, glm_poisson2)
-
 ```
 
 Our `AIC` is lower for the interaction model, and the likelihood ratio test suggest the reduced model is significantly worse.
@@ -179,9 +173,7 @@ One of the downfalls of a Poisson models that it's variance is fixed.  This is a
 
 We can test for this, by comparing the ratio of the sum of the squared Pearson residuals over the degrees of freedom.  If this value is 1, then the variance is as expected ('equidispersion'), but if it is  >1, then we have OD.
 ```{r od}
- sum(residuals(glm_poisson,type="pearson") ^2)/ df.residual(glm_poisson)
-    
-
+sum(residuals(glm_poisson, type = "pearson")^2) / df.residual(glm_poisson)
 ```
 
 __Our model is overdispersed, with residual variance around 1.4 times what the Poisson distribution expects.__
@@ -201,20 +193,18 @@ There are various different ways to deal with this, and this vignette demonstrat
 
 So lets try some of them out.  To fit a quasi-Poisson model, we simply change the family.  Note the dispersion parameter matches the calculation above:
 ```{r quasi}
-quasi<-glm(LOS ~ Age * Death, data=LOS_model, family="quasipoisson" )
+quasi <- glm(LOS ~ Age * Death, data = LOS_model, family = "quasipoisson")
 
 summary(quasi)
-
 ```
 
 For a negative binomial model, two options are `glm.nb` from the `MASS` package, or `glmmTMB` function from the package of the same name.  Note that the function from `MASS` does not take a `family` argument.  The dispersion factor here is quadratic to the mean, so don't compare it directly to the scale factor above.
 ```{r nb, warning=FALSE, message=FALSE}
 library(MASS)
 
-nb <- glm.nb(LOS ~ Age * Death, data=LOS_model,)
+nb <- glm.nb(LOS ~ Age * Death, data = LOS_model, )
 
 summary(nb)
-
 ```
 
 
@@ -223,14 +213,13 @@ Finally, using the random-intercept model, fitted with `glmer` from the `lme4` p
 ```{r glmm, warning=FALSE}
 library(lme4)
 
-glmm <- glmer(LOS ~ scale(Age) * Death + (1|Organisation), data=LOS_model, family="poisson")
+glmm <- glmer(LOS ~ scale(Age) * Death + (1 | Organisation), data = LOS_model, family = "poisson")
 
 summary(glmm)
 ```
 
 ```{r confint}
 confint(glmm)
-
 ```
 
 These models are significantly more complicated.  `Confint` can be use to calculate the confidence intervals above by profiling the likelihood (provided you have the `MASS` package installed).  This allow you to assess the significance of the random-effects.  Our CI butts up to zero here, and the AIC is slightly worse than the `glm`.  This suggests it is not well-modelled with the normally distributed random-intercept.  The NB model appears to perform better.
