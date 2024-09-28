@@ -48,8 +48,9 @@ remotes::install_github("nhs-r-community/NHSRdatasets")
 ## Datasets available
 
 Note that the versions can be different between CRAN and currently
-version 0.3.0 on CRAN doesn’t include the Covid-19 data but version
-0.3.1 from GitHub does.
+version 0.3.0 on CRAN doesn’t include the Covid-19 data or
+[AphA](https://www.aphanalysts.org/) CPD Survey data which is available
+directly from the GitHub repository.
 
 Further information on the data can be found through the page
 <https://nhs-r-community.github.io/NHSRdatasets/> which can also be
@@ -78,9 +79,9 @@ agree to abide by its terms.
 
 # Citation
 
-It’s great to see the {NHSRdatasets} package and data used as it
-promotes the work of the NHS-R Community so, where it’s relevant and
-makes sense, please give us a mention!
+It’s great to see the NHSRdatasets package and data used as it promotes
+the work of the NHS-R Community so, where it’s relevant and makes sense,
+please give us a mention!
 
 ## Users of the mortality dataset:
 
@@ -89,5 +90,14 @@ under © Crown copyright and is free to use under the terms of the Open
 Government Licence. Any subsequent use should include a source
 accreditation to ONS to help people find the original releases and any
 statistical corrections that may have occurred since this was included
-in this pacakge - Source: Office for National Statistics licensed under
+in this package - Source: Office for National Statistics licensed under
 the Open Government Licence.
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
