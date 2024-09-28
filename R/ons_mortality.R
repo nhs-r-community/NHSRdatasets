@@ -20,7 +20,7 @@
 #' \item{week_no}{integer, each week in a year is numbered sequentially.}
 #' }
 #'
-#' @source Collected by Zoë Turner \email{zoe.turner2@nottshc.nhs.uk}, Apr-2020 from \url{https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales}
+#' @source Collected by Zoë Turner \email{zoe.turner3@nhs.net}, Apr-2020 from \url{https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales}
 #'
 #' @usage data(ons_mortality)
 #'
