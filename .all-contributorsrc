@@ -1,4 +1,21 @@
 {
   "projectName": "NHSRdatasets",
-  "projectOwner": "nhs-r-community"
+  "projectOwner": "nhs-r-community",
+  "files": [
+    "README.md"
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "francisbarton",
+      "name": "Fran Barton",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1819920?v=4",
+      "profile": "https://github.com/francisbarton",
+      "contributions": [
+        "code"
+      ]
+    }
+  ]
 }
