@@ -129,7 +129,7 @@ var_labels <- c(
   "Where do you learn from professional development opportunities? - Word of mouth recommendations",
   "Where do you learn from professional development opportunities? - AphA website",
   "Where do you learn from professional development opportunities? - Other (please specify):",
-  "Are there any professional development opportunities (e.g. AphA website, websites, blogs, or twitter accounts you follow) that you would recommend to your fellow colleagues? Please specify:",
+  "Are there any professional development opportunities (for example AphA website, websites, blogs, or twitter accounts you follow) that you would recommend to your fellow colleagues? Please specify:",
   "What sort of NHS organisation do you work for?",
   "What’s the size of your analytics team (including both full-time and part-time staff)?",
   "Do you feel that analytics influences important decisions in your organisation?"

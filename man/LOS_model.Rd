@@ -8,7 +8,7 @@
 Data frame with five columns
 \describe{
 \item{ID}{A fictional patient ID number}
-\item{Organisation}{A factor representing one of ten fictional hospital trusts, e.g. Trust1}
+\item{Organisation}{A factor representing one of ten fictional hospital trusts, for example Trust1}
 \item{Age}{Age in years of each fictional patient}
 \item{LOS}{In-hospital length of stay in days.  The difference between admission and discharge date in dates}
 \item{Death}{Binary for death status: 0 = survived, 1= died in hospital}

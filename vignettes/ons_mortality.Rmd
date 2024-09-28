@@ -46,8 +46,8 @@ In order to prepare this data for analysis the worksheet for weekly figures was 
 
 The dataset contains:
 
-- __category_1:__ character, containing the names of the groups for counts, e.g. "Total deaths", "all ages".
-- __category_2:__ character, subcategory of names of groups where necessary, e.g. details of region: "East", details of age bands "15-44".
+- __category_1:__ character, containing the names of the groups for counts, for example "Total deaths", "all ages".
+- __category_2:__ character, subcategory of names of groups where necessary, for example details of region: "East", details of age bands "15-44".
 - __counts:__ numeric, numbers of deaths in whole numbers and average numbers with decimal points. To retain the integrity of the format this column data is left as character.
 - __date:__ date, format is yyyy-mm-dd; all dates are a Friday.
 - __week_no:__ integer, each week in a year is numbered sequentially.

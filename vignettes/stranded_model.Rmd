@@ -22,7 +22,7 @@ The dataset contains:
 - __stranded.label:__ a character metric to indicate whether the patient is stranded, or not
 - __age:__ Integer - the age of the patient on admission to hospital
 - __care.home.referral:__ Integer - flag to indicate referred from care home
-- __medicallysafe:__ Integer - flag to indicate whether the patient is medically safe e.g. safe to be discharged but hasn't been
+- __medicallysafe:__ Integer - flag to indicate whether the patient is medically safe for example safe to be discharged but hasn't been
 - __hcop:__ Integer - flag to indicate whether the patient is in a Health Care for Older People area
 - __mental_health_care:__ Integer - flag to indicate mental health care provision
 - __period_of_previous_care:__ Integer - flag to indicate previous periods of care
