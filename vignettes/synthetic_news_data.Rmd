@@ -1,7 +1,6 @@
 ---
 title: "Synthetic NEWS Data"
 author: "Dr Muhammad Faisal, Gary Hutson, and Professor Mohammed A Mohammed"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Synthetic NEWS Data}
@@ -49,11 +48,10 @@ Synthetic data can be generated from new data, utilising the above methodology, 
 ```{r observed_data_generation}
 library(readr)
 library(dplyr)
-df <- suppressWarnings(read_csv("https://raw.githubusercontent.com/StatsGary/SyntheticNEWSData/main/observed_news_data.csv") %>% 
+df <- suppressWarnings(read_csv("https://raw.githubusercontent.com/StatsGary/SyntheticNEWSData/main/observed_news_data.csv") %>%
   dplyr::select(everything(), -X1))
 
 glimpse(df)
-
 ```
 
 This reads in the observed NEWS data from the GitHub repository. Now, we will utilise the `synthpop` package to create a synthetically generated dataset. 
@@ -63,36 +61,37 @@ This reads in the observed NEWS data from the GitHub repository. Now, we will ut
 As stated, now we will use the real observed data and generate a synthetic set, utilising the equations and process mapped out in the preceding sections:
 
 ```{r synth}
-library(synthpop)  
-syn_df <- syn(df,seed=4321)
+library(synthpop)
+syn_df <- syn(df, seed = 4321)
 #### synthetic data
 synthetic_news_data <- syn_df$syn
 glimpse(synthetic_news_data)
-
 ```
 
 ```{r visuals}
 library(ggplot2)
-#Create temperature tibbles to compare observed vs synthetically generated labels
-obs <- tibble(label="observed_data", value = df$temp)
-synth <- tibble(label="synthetic_data",value = synthetic_news_data$temp)
+# Create temperature tibbles to compare observed vs synthetically generated labels
+obs <- tibble(label = "observed_data", value = df$temp)
+synth <- tibble(label = "synthetic_data", value = synthetic_news_data$temp)
 
-#Merge the frames together to get a comparison
-merged <- obs %>% 
+# Merge the frames together to get a comparison
+merged <- obs %>%
   bind_rows(synth)
 
-#Create the plot
-plot <- merged %>% 
+# Create the plot
+plot <- merged %>%
   ggplot(aes(value, fill = label)) +
-  geom_histogram(alpha = 0.9, position = 'identity')  + theme_minimal() + 
-  scale_fill_manual(values=c("#BCBDC1", "#2061AC")) +
-  labs(title="Observed vs Synthetically NEWS values",
-       subtitle="Based on NEWS Temperature score",
-       x="NEWS Temperature Score", y="Score frequency") + 
+  geom_histogram(alpha = 0.9, position = "identity") +
+  theme_minimal() +
+  scale_fill_manual(values = c("#BCBDC1", "#2061AC")) +
+  labs(
+    title = "Observed vs Synthetically NEWS values",
+    subtitle = "Based on NEWS Temperature score",
+    x = "NEWS Temperature Score", y = "Score frequency"
+  ) +
   theme(legend.position = "none")
 
 print(plot)
-
 ```
 
 

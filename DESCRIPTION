@@ -2,11 +2,12 @@ Package: NHSRdatasets
 Type: Package
 Title: NHS and Healthcare-Related Data for Education and Training
 Date: 2022-11-08
-Version: 0.3.2
+Version: 0.3.3
 Authors@R: c(
-          person("Gary", "Hutson", , "g.hutson@nhs.net", "aut", comment = c(ORCID="0000-0003-3534-6143")),
+          person("Gary", "Hutson", , , "aut", comment = c(ORCID="0000-0003-3534-6143")),
           person("Tom", "Jemmett", ,"thomas.jemmett@nhs.net", "aut", comment = c(ORCID="0000-0002-6943-2990")),
           person("Chris", "Mainey", ,"c.mainey1@nhs.net", c("aut", "cre"), comment = c(ORCID ="0000-0002-3018-6171")),
+          person("Fran", "Barton", ,"fbarton@alwaysdata.net", "aut", comment = c(ORCID = "0000-0002-5650-1176")),
           person("Zoë", "Turner", role = "aut", email = "zoe.turner3@nhs.net", comment = c(ORCID = "0000-0003-1033-9158")),
           person("NHS-R community", role = "cph")
           )
@@ -16,11 +17,9 @@ License: CC0
 Language: en-GB
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Depends: R (>= 3.5.0)
 BugReports: https://github.com/nhs-r-community/NHSRdatasets/issues
-Imports: 
-    tibble
 Suggests: 
     caret,
     dplyr,
@@ -29,9 +28,7 @@ Suggests:
     ggplot2,
     ggrepel,
     httr2,
-    janitor,
     knitr,
-    labelled,
     lattice,
     lme4,
     lmtest,
@@ -39,14 +36,13 @@ Suggests:
     magrittr,
     MASS,
     ModelMetrics,
-    openxlsx2,
     rcmdcheck,
     readr,
     rmarkdown,
     rsample,
     scales,
-    stringi,
     synthpop,
+    tibble,
     tidyr,
     varhandle
 VignetteBuilder: knitr
