@@ -42,6 +42,6 @@
   "skipCi": true,
   "repoType": "github",
   "repoHost": "https://github.com",
-  "projectName": "nhs-r-community",
+  "projectName": "NHSRdatasets",
   "projectOwner": "nhs-r-community"
 }
