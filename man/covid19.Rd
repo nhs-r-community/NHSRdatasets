@@ -41,13 +41,15 @@ library(scales)
 # Create a plot of the performance for England over time
 covid19 \%>\%
   filter(countries_and_territories ==
-  c( "United_Kingdom", "Italy", "France", "Germany", "Spain")) \%>\%
-  ggplot(aes(x=date_reported, y= cases, col=countries_and_territories)) +
-  geom_line()+
+    c("United_Kingdom", "Italy", "France", "Germany", "Spain")) \%>\%
+  ggplot(aes(x = date_reported, y = cases, col = countries_and_territories)) +
+  geom_line() +
   scale_color_discrete("Country") +
-  scale_y_continuous(labels=comma)+
-  labs(y="Cases", x="Date", title="Covid-19 cases for selected countries"
-       , alt="A plot of covid-19 cases in France, Germany, Italy, Spain & the UK")+
+  scale_y_continuous(labels = comma) +
+  labs(
+    y = "Cases", x = "Date", title = "Covid-19 cases for selected countries",
+    alt = "A plot of covid-19 cases in France, Germany, Italy, Spain & the UK"
+  ) +
   theme_minimal()
 }
 \keyword{coronavirus}

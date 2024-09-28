@@ -27,11 +27,11 @@ Data were generate to learn Generalized Linear Models (GLM) concepts, modelling 
 \examples{
 data(LOS_model)
 
-model1 <- glm(Death ~ Age + LOS, data=LOS_model, family="binomial")
+model1 <- glm(Death ~ Age + LOS, data = LOS_model, family = "binomial")
 summary(model1)
 
 # Now with an Age, LOS, and Age*LOS interaction.
-model2<- glm(Death ~ Age * LOS, data=LOS_model, family="binomial")
+model2 <- glm(Death ~ Age * LOS, data = LOS_model, family = "binomial")
 summary(model2)
 
 }

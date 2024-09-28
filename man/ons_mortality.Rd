@@ -15,7 +15,7 @@ Data frame with five columns
 }
 }
 \source{
-Collected by Zoë Turner \email{zoe.turner2@nottshc.nhs.uk}, Apr-2020 from \url{https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales}
+Collected by Zoë Turner \email{zoe.turner3@nhs.net}, Apr-2020 from \url{https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales}
 }
 \usage{
 data(ons_mortality)
@@ -35,10 +35,11 @@ library(dplyr)
 library(tidyr)
 
 wideForm <- ons_mortality \%>\%
- select(-week_no) \%>\%
- pivot_wider(names_from = date,
-             values_from = counts
- )
+  select(-week_no) \%>\%
+  pivot_wider(
+    names_from = date,
+    values_from = counts
+  )
 
 }
 \keyword{England}
