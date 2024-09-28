@@ -19,8 +19,6 @@ LazyData: true
 RoxygenNote: 7.3.2
 Depends: R (>= 3.5.0)
 BugReports: https://github.com/nhs-r-community/NHSRdatasets/issues
-Imports: 
-    tibble
 Suggests: 
     caret,
     dplyr,
@@ -30,7 +28,6 @@ Suggests:
     ggrepel,
     httr2,
     knitr,
-    labelled,
     lattice,
     lme4,
     lmtest,
@@ -38,13 +35,13 @@ Suggests:
     magrittr,
     MASS,
     ModelMetrics,
-    openxlsx2,
     rcmdcheck,
     readr,
     rmarkdown,
     rsample,
     scales,
     synthpop,
+    tibble,
     tidyr,
     varhandle
 VignetteBuilder: knitr
