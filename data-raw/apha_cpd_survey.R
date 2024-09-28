@@ -110,7 +110,7 @@ var_labels <- c(
   "Are you professionally registered with the AphA? If so, at what level?",
   "Are you a member of an alternative association?",
   "As an analyst, are you aware of professional development opportunities in the NHS?",
-  "As an analyst, are you provided with opportunities/time to upskill during work hours, i.e. you have time to do this at work?",
+  "As an analyst, are you provided with opportunities/time to upskill during work hours, that is you have time to do this at work?",
   "Do you undertake CPD out of work hours?",
   "If yes, on how many days per year?",
   "Do you feel your manager is supportive of your professional development?",

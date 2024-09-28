@@ -55,7 +55,7 @@ stranded_data <- stranded_data %>%
   dplyr::mutate(stranded.label = factor(stranded.label)) %>%
   dplyr::select(everything(), -c(admit_date))
 ```
-Next, I will select the categorical variables and make these into dummy variables, i.e. a numerical encoding of a categorical variable:
+Next, I will select the categorical variables and make these into dummy variables, that is a numerical encoding of a categorical variable:
 
 ```{r dummy_encode}
 cats <- select_if(stranded_data, is.character)
