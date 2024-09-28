@@ -29,7 +29,6 @@ Suggests:
     ggplot2,
     ggrepel,
     httr2,
-    janitor,
     knitr,
     labelled,
     lattice,
@@ -45,7 +44,6 @@ Suggests:
     rmarkdown,
     rsample,
     scales,
-    stringi,
     synthpop,
     tidyr,
     varhandle
