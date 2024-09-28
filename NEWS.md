@@ -4,10 +4,14 @@
 available in the data-raw folder. 
 This is also available on the Quarto NHS-R Community website and 
 [GitHub](https://github.com/nhs-r-community/nhs-r-community/blob/main/blog/building-the-ons-mortality-dataset.qmd)
-- Noted in this patch the previous addition of the dataset from AphA (with kind 
+- Noted in this version the previous addition of the dataset from AphA (with kind 
 permission) from their CPD Survey, thanks to Fran Barton. Code detailing how the
 data was extracted using the httr2 package and tidied can be found in the 
 [data-raw folder](https://github.com/nhs-r-community/NHSRdatasets/blob/main/data-raw/apha_cpd_survey.R).
+- Noted in this version the previous addition of the dataset from European 
+Centre for Disease Prevention and Control for reported COVID19 infections and 
+deaths by day and country collected on the 14th December 2020, thanks to Chris
+Mainey.
 
 # NHSRdatasets 0.3.0
 
