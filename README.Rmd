@@ -74,3 +74,14 @@ It's great to see the {NHSRdatasets} package and data used as it promotes the wo
 
 The data used to build the mortality dataset in this package is released under © Crown copyright and is free to use under the terms of the Open Government Licence. 
 Any subsequent use should include a source accreditation to ONS to help people find the original releases and any statistical corrections that may have occurred since this was included in this pacakge - Source: Office for National Statistics licensed under the Open Government Licence.
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
