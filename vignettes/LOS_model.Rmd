@@ -1,7 +1,6 @@
 ---
 title: "LOS_model: A simulated hospital length-of-stay dataset"
 author: "Chris Mainey"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{LOS_model: A simulated hospital length-of-stay dataset}

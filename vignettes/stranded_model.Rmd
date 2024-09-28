@@ -1,7 +1,6 @@
 ---
 title: "Stranded Model Tutorial"
 author: "Gary Hutson"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Stranded Model Tutorial}

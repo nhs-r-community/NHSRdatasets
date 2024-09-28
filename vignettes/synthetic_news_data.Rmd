@@ -1,7 +1,6 @@
 ---
 title: "Synthetic NEWS Data"
 author: "Dr Muhammad Faisal, Gary Hutson, and Professor Mohammed A Mohammed"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Synthetic NEWS Data}
