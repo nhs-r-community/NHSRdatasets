@@ -54,6 +54,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "cathblatter",
+      "name": "Cath Blatter",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24943957?v=4",
+      "profile": "https://github.com/cathblatter",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

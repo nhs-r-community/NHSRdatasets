@@ -106,6 +106,7 @@ the Open Government Licence.
       <td align="center" valign="top" width="14.28%"><a href="https://rhian.rbind.io"><img src="https://avatars.githubusercontent.com/u/7017740?v=4?s=100" width="100px;" alt="Rhian Davies"/><br /><sub><b>Rhian Davies</b></sub></a><br /><a href="#maintenance-StatsRhian" title="Maintenance">🚧</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/chrismainey"><img src="https://avatars.githubusercontent.com/u/39626211?v=4?s=100" width="100px;" alt="Chris Mainey"/><br /><sub><b>Chris Mainey</b></sub></a><br /><a href="https://github.com/nhs-r-community/NHSRdatasets/commits?author=chrismainey" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://tjmt.uk/"><img src="https://avatars.githubusercontent.com/u/12023696?v=4?s=100" width="100px;" alt="Tom Jemmett"/><br /><sub><b>Tom Jemmett</b></sub></a><br /><a href="https://github.com/nhs-r-community/NHSRdatasets/commits?author=tomjemmett" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/cathblatter"><img src="https://avatars.githubusercontent.com/u/24943957?v=4?s=100" width="100px;" alt="Cath Blatter"/><br /><sub><b>Cath Blatter</b></sub></a><br /><a href="https://github.com/nhs-r-community/NHSRdatasets/issues?q=author%3Acathblatter" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
