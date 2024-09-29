@@ -11,8 +11,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-# NHS-R Community Datasets <a href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
+# NHS-R Community Datasets <a href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="60" /></a>
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-34-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/nhs-r-community/NHSRdatasets/workflows/R-CMD-check/badge.svg)](https://github.com/nhs-r-community/NHSRdatasets/actions)
@@ -46,6 +49,9 @@ To install the development version from [GitHub](https://github.com/) with:
 # install.packages("remotes")
 remotes::install_github("nhs-r-community/NHSRdatasets")
 ```
+
+Once installed go to the Getting Started article from the [website](https://nhs-r-community.github.io/NHSRdatasets) and the same link can 
+be found on the top right of the GitHub Repository.
 
 ## Datasets available
 

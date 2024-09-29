@@ -34,8 +34,9 @@ data(ons_mortality)
 library(dplyr)
 library(tidyr)
 
-wideForm <- ons_mortality \%>\%
-  select(-week_no) \%>\%
+# create a dataset that is "wide" with each date as a column
+ons_mortality |>
+  select(-week_no) |>
   pivot_wider(
     names_from = date,
     values_from = counts
