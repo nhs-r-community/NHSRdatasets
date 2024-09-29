@@ -2,7 +2,7 @@
 title: "NHSRdatasets"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ae_attendances dataset}
+  %\VignetteIndexEntry{NHSRdatasets}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
