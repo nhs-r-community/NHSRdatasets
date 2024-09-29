@@ -98,6 +98,18 @@ the Open Government Licence.
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://philosopher-analyst.netlify.app/"><img src="https://avatars.githubusercontent.com/u/39963221?v=4?s=100" width="100px;" alt="Zoë Turner"/><br /><sub><b>Zoë Turner</b></sub></a><br /><a href="https://github.com/nhs-r-community/NHSRdatasets/commits?author=Lextuga007" title="Code">💻</a> <a href="https://github.com/nhs-r-community/NHSRdatasets/commits?author=Lextuga007" title="Documentation">📖</a> <a href="#maintenance-Lextuga007" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/francisbarton"><img src="https://avatars.githubusercontent.com/u/1819920?v=4?s=100" width="100px;" alt="Fran Barton"/><br /><sub><b>Fran Barton</b></sub></a><br /><a href="https://github.com/nhs-r-community/NHSRdatasets/commits?author=francisbarton" title="Code">💻</a> <a href="#data-francisbarton" title="Data">🔣</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://rhian.rbind.io"><img src="https://avatars.githubusercontent.com/u/7017740?v=4?s=100" width="100px;" alt="Rhian Davies"/><br /><sub><b>Rhian Davies</b></sub></a><br /><a href="#maintenance-StatsRhian" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/chrismainey"><img src="https://avatars.githubusercontent.com/u/39626211?v=4?s=100" width="100px;" alt="Chris Mainey"/><br /><sub><b>Chris Mainey</b></sub></a><br /><a href="https://github.com/nhs-r-community/NHSRdatasets/commits?author=chrismainey" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
+
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
