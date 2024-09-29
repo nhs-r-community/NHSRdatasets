@@ -109,6 +109,9 @@ the Open Government Licence.
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/cathblatter"><img src="https://avatars.githubusercontent.com/u/24943957?v=4?s=100" width="100px;" alt="Cath Blatter"/><br /><sub><b>Cath Blatter</b></sub></a><br /><a href="https://github.com/nhs-r-community/NHSRdatasets/issues?q=author%3Acathblatter" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/MHWauben"><img src="https://avatars.githubusercontent.com/u/38880899?v=4?s=100" width="100px;" alt="Martine Wauben"/><br /><sub><b>Martine Wauben</b></sub></a><br /><a href="https://github.com/nhs-r-community/NHSRdatasets/commits?author=MHWauben" title="Documentation">📖</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="http://hutsons-hacks.info/"><img src="https://avatars.githubusercontent.com/u/44023992?v=4?s=100" width="100px;" alt="Gary Hutson"/><br /><sub><b>Gary Hutson</b></sub></a><br /><a href="#data-StatsGary" title="Data">🔣</a></td>
+    </tr>
   </tbody>
 </table>
 
