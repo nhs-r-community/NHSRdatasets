@@ -29,6 +29,9 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
+  <a href="../articles/NHSRdatasets.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -118,12 +121,33 @@ Licence <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">wideForm</span> <span class="op">&lt;-</span> <span class="va">ons_mortality</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">week_no</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="co"># create a dataset that is "wide" with each date as a column</span></span></span>
+<span class="r-in"><span><span class="va">ons_mortality</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">week_no</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    names_from <span class="op">=</span> <span class="va">date</span>,</span></span>
 <span class="r-in"><span>    values_from <span class="op">=</span> <span class="va">counts</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 97 × 537</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category_1     category_2 `2010-01-08` `2010-01-15` `2010-01-22` `2010-01-29`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Total deaths   all ages          <span style="text-decoration: underline;">12</span>968        <span style="text-decoration: underline;">12</span>541       <span style="text-decoration: underline;">11</span>762        <span style="text-decoration: underline;">11</span>056 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Total deaths   average o…        <span style="text-decoration: underline;">12</span>050        <span style="text-decoration: underline;">12</span>600       <span style="text-decoration: underline;">11</span>692.       <span style="text-decoration: underline;">11</span>069.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> All respirato… v 2001             <span style="text-decoration: underline;">2</span>345         <span style="text-decoration: underline;">2</span>293        <span style="text-decoration: underline;">1</span>955         <span style="text-decoration: underline;">1</span>698 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Persons        Under 1 y…           61           69          66           68 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Persons        01-14                24           29          18           21 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Persons        15-44               299          331         347          336 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Persons        45-64              <span style="text-decoration: underline;">1</span>570         <span style="text-decoration: underline;">1</span>465        <span style="text-decoration: underline;">1</span>392         <span style="text-decoration: underline;">1</span>300 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Persons        65-74              <span style="text-decoration: underline;">2</span>049         <span style="text-decoration: underline;">1</span>860        <span style="text-decoration: underline;">1</span>781         <span style="text-decoration: underline;">1</span>666 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Persons        75-84              <span style="text-decoration: underline;">3</span>952         <span style="text-decoration: underline;">3</span>883        <span style="text-decoration: underline;">3</span>501         <span style="text-decoration: underline;">3</span>359 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Persons        85+                <span style="text-decoration: underline;">5</span>012         <span style="text-decoration: underline;">4</span>902        <span style="text-decoration: underline;">4</span>654         <span style="text-decoration: underline;">4</span>305 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 87 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 531 more variables: `2010-02-05` &lt;dbl&gt;, `2010-02-12` &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   `2010-02-19` &lt;dbl&gt;, `2010-02-26` &lt;dbl&gt;, `2010-03-05` &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   `2010-03-12` &lt;dbl&gt;, `2010-03-19` &lt;dbl&gt;, `2010-03-26` &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   `2010-04-02` &lt;dbl&gt;, `2010-04-09` &lt;dbl&gt;, `2010-04-16` &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   `2010-04-23` &lt;dbl&gt;, `2010-04-30` &lt;dbl&gt;, `2010-05-07` &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   `2010-05-14` &lt;dbl&gt;, `2010-05-21` &lt;dbl&gt;, `2010-05-28` &lt;dbl&gt;, …</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
