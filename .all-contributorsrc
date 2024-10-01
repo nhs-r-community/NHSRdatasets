@@ -81,6 +81,15 @@
       "contributions": [
         "data"
       ]
+    },
+    {
+      "login": "jasonpott",
+      "name": "Jason Pott",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43917006?v=4",
+      "profile": "https://github.com/jasonpott",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
