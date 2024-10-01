@@ -119,7 +119,7 @@ through:</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nhs-r-community/NHSRdatasets" class="external-link">NHSRdatasets</a></span><span class="op">)</span></span></code></pre></div>
 <p>To view the datasets (which is useful as CRAN and the GitHub versions
 may differ), type:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>NHSRdatasets<span class="sc">::</span></span></code></pre></div>
+<pre><code>NHSRdatasets::</code></pre>
 <p>If you are using RStudio an automatic prompt will appear with all the
 datasets available. It’s also possible to bring the view up by putting
 the cursor after the second colon and using the tab key.</p>
@@ -155,7 +155,7 @@ is related to how it is viewed within RStudio, not in a report. To
 restrict the number of rows in an RMarkdown output like html the code
 will have to be:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">NHSRdatasets</span><span class="fu">::</span><span class="va"><a href="../reference/ae_attendances.html">ae_attendances</a></span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="fu">NHSRdatasets</span><span class="fu">::</span><span class="va"><a href="../reference/ae_attendances.html">ae_attendances</a></span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       period org_code type attendances breaches admissions</span></span>
 <span><span class="co">#&gt; 1 2017-03-01      RF4    1       21289     2879       5060</span></span>
@@ -177,13 +177,18 @@ into more detail on <a href="https://intro-r-rstudio.nhsrcommunity.com/session-o
 <p>A new object called <code>dat</code> will appear in the Environment
 tab of the top right pane of RStudio (if you have the default layout).
 The object also says it has 12765 obs (which are rows) and 6 variables
-(which are columns). Clicking on the blue circle with a white arrow next
-to the word <code>dat</code> will expand the view in the Environment tab
-and clicking on the word <code>dat</code> will open the data in a new
-tab in the top left panel.</p>
+(which are columns).</p>
+<p>Using code to see something similar but in the Console in RStudio
+type:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
+<p>Clicking on the blue circle with a white arrow next to the word
+<code>dat</code> will expand the view in the Environment tab and
+clicking on the word <code>dat</code> will open the data in a new tab in
+the top left panel.</p>
 <p>If you are not using RStudio and want to use the Console where code
 is run directly use:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
 <p>and you will see this code in the Console when you click on the name
 as every action in RStudio is translated to code in the Console.</p>
@@ -193,10 +198,10 @@ as every action in RStudio is translated to code in the Console.</p>
 </h2>
 <p>To find out about the dataset you can use the question mark before it
 in code:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">?</span><span class="va">ons_mortality</span></span></code></pre></div>
 <p>You will see the <code>Usage</code> says:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"ons_mortality"</span><span class="op">)</span></span></code></pre></div>
 <p>This does the same as creating an object using the code
 <code>ons_mortality &lt;- NHSRdatasets::ons_mortality</code> and uses
@@ -205,7 +210,7 @@ also doesn’t require a name like the above code as it uses the existing
 name for the data.</p>
 <p>If you try to use the assignment operator with the function it will
 appear as a <code>vector</code> just saying “ons_mortality”.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ons</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"ons_mortality"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
