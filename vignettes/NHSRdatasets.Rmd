@@ -27,7 +27,7 @@ library(NHSRdatasets)
 
 To view the datasets (which is useful as CRAN and the GitHub versions may differ), type:
 
-```{r}
+```
 NHSRdatasets::
 ```
 
@@ -66,7 +66,7 @@ Tibbles in an RMarkdown or Quarto output, like this vignette, will print every r
 To restrict the number of rows in an RMarkdown output like html the code will have to be:
 
 ```{r eval=TRUE}
-NHSRdatasets::ae_attendances |> 
+NHSRdatasets::ae_attendances |>
   head(n = 2)
 ```
 
@@ -84,6 +84,13 @@ dat <- NHSRdatasets::ae_attendances
 
 A new object called `dat` will appear in the Environment tab of the top right pane of RStudio (if you have the default layout).
 The object also says it has 12765 obs (which are rows) and 6 variables (which are columns).
+
+Using code to see something similar but in the Console in RStudio type:
+
+```{r}
+glimpse(dat)
+```
+
 Clicking on the blue circle with a white arrow next to the word `dat` will expand the view in the Environment tab and clicking on the word `dat` will open the data in a new tab in the top left panel.
 
 If you are not using RStudio and want to use the Console where code is run directly use:

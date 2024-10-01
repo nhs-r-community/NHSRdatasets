@@ -1,5 +1,11 @@
 
-# NHS-R Community Datasets <a href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
+# NHS-R Community Datasets <a href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="60" style="float:right; height:200px;"/></a>
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
+[![All
+Contributors](https://img.shields.io/github/all-contributors/projectOwner/projectName?color=ee8449&style=flat-square)](#contributors)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <!-- badges: start -->
 
