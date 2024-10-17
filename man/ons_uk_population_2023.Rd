@@ -8,15 +8,15 @@
 Tibble with six columns
 \describe{
 \item{sex}{male or female}
-\item{Code}{The country/geography code}
-\href{Name}{country of the UK}
+\item{Code}{country/geography code}
+\item{Name}{country of the UK}
 \item{Geography}{Country}
 \item{age}{year of age}
 \item{count}{the number of people in this group}
 }
 }
 \source{
-\href{https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland}{ONS Estimates of the population for the UK, England, Wales, Scotland, and Northern Ireland}
+\url{https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland}{ONS Estimates of the population for the UK, England, Wales, Scotland, and Northern Ireland}
 }
 \usage{
 data(ons_uk_population_2023)
@@ -29,7 +29,7 @@ National and subnational mid-year population estimates for the UK and its
 }
 \details{
 Data sourced from
-\href{https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland}
+\url{https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland}
 }
 \examples{
 data(ons_uk_population_2023)
