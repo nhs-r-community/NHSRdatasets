@@ -35,14 +35,14 @@
 #'
 #' # create a dataset that has total population by age groups for England
 #' ons_uk_population_2023 |>
-#' filter(Name=="ENGLAND") |>
-#'   mutate(age_group = case_when(as.numeric(age)<=17 ~ "0-17",
-#'                               as.numeric(age)>=18 & as.numeric(age)<=64 ~ "18-64",
-#'                               as.numeric(age)>=65 ~ "65+",
-#'                               age=="90+" ~ "65+")) |>
-#'  group_by(age_group) |>
-#'  summarise(count=sum(count))
-#'
-#'
+#'   filter(Name == "ENGLAND") |>
+#'   mutate(age_group = case_when(
+#'     as.numeric(age) <= 17 ~ "0-17",
+#'     as.numeric(age) >= 18 & as.numeric(age) <= 64 ~ "18-64",
+#'     as.numeric(age) >= 65 ~ "65+",
+#'     age == "90+" ~ "65+"
+#'   )) |>
+#'   group_by(age_group) |>
+#'   summarise(count = sum(count))
 #'
 "ons_uk_population_2023"
