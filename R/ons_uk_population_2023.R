@@ -29,36 +29,19 @@
 #' @examples
 #' data(ons_uk_population_2023)
 #'
-#' library(readxl)
-#' library(tidyverse)
+#'
+#' library(dplyr)
 #' library(tidyr)
-
-#' #Load the data in
-#' population_data_2023_f <- read_excel(
-#' "mye23tablesuk.xlsx",
-#'  sheet="MYE2 - Females",
-#'  skip = 7)
-
-#' population_data_2023_m <- read_excel(
-#'  "mye23tablesuk.xlsx",
-#'  sheet="MYE2 - Males",
-#'  skip = 7)
-
-
-#' #pivot longer
-#' population_data_2023_f <- population_data_2023_f |>
-#'  select(!`All ages`) |>
-#'  pivot_longer(`0`:`90+`, names_to = "age", values_to = "count")
-
-#' population_data_2023_m <- population_data_2023_m |>
-#'  select(!`All ages`) |>
-#'  pivot_longer(`0`:`90+`, names_to = "age", values_to = "count")
-
-#' population_data_combined <- bind_rows(
-#'  females = population_data_2023_f,
-#'  males = population_data_2023_m,
-#'  .id = "sex"
-#' )
+#'
+#' # create a dataset that has total population by age groups for England
+#' ons_uk_population_2023 |>
+#' filter(Name=="ENGLAND") |>
+#'   mutate(age_group = case_when(as.numeric(age)<=17 ~ "0-17",
+#'                               as.numeric(age)>=18 & as.numeric(age)<=64 ~ "18-64",
+#'                               as.numeric(age)>=65 ~ "65+",
+#'                               age=="90+" ~ "65+")) |>
+#'  group_by(age_group) |>
+#'  summarise(count=sum(count))
 #'
 #'
 #'
