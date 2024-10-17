@@ -16,7 +16,7 @@ Tibble with six columns
 }
 }
 \source{
-\url{https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland}{ONS Estimates of the population for the UK, England, Wales, Scotland, and Northern Ireland}
+\url{https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland}
 }
 \usage{
 data(ons_uk_population_2023)
@@ -24,12 +24,11 @@ data(ons_uk_population_2023)
 \description{
 ONS Population Estimates for Mid-year 2023
 National and subnational mid-year population estimates for the UK and its
- constituent countries by administrative area, age and sex (including
-  components of population change, median age and population density).
+constituent countries by administrative area, age and sex (including
+components of population change, median age and population density).
 }
 \details{
-Data sourced from
-\url{https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland}
+ONS Estimates of the population for the UK, England, Wales, Scotland, and Northern Ireland
 }
 \examples{
 data(ons_uk_population_2023)
