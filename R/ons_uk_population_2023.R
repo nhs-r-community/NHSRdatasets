@@ -33,7 +33,7 @@
 #' library(tidyverse)
 #' library(tidyr)
 
-#' Load the data in
+#' #Load the data in
 #' population_data_2023_f <- read_excel(
 #' "mye23tablesuk.xlsx",
 #'  sheet="MYE2 - Females",
@@ -45,7 +45,7 @@
 #'  skip = 7)
 
 
-#' pivot longer
+#' #pivot longer
 #' population_data_2023_f <- population_data_2023_f |>
 #'  select(!`All ages`) |>
 #'  pivot_longer(`0`:`90+`, names_to = "age", values_to = "count")
