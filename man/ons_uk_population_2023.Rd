@@ -39,11 +39,11 @@ library(tidyverse)
 library(tidyr)
 Load the data in
 population_data_2023_f <- read_excel(
-"C:/Users/jacqueline.grout/Downloads/mye23tablesuk.xlsx",
+"mye23tablesuk.xlsx",
  sheet="MYE2 - Females",
  skip = 7)
 population_data_2023_m <- read_excel(
- "C:/Users/jacqueline.grout/Downloads/mye23tablesuk.xlsx",
+ "mye23tablesuk.xlsx",
  sheet="MYE2 - Males",
  skip = 7)
 pivot longer
