@@ -27,8 +27,10 @@ population_data_2023_m <- population_data_2023_m |>
   select(!`All ages`) |>
   pivot_longer(`0`:`90+`, names_to = "age", values_to = "count")
 
-population_data_combined <- bind_rows(
+ons_uk_population_2023 <- bind_rows(
   females = population_data_2023_f,
   males = population_data_2023_m,
   .id = "sex"
 )
+
+usethis::use_data(ons_uk_population_2023, overwrite = TRUE)

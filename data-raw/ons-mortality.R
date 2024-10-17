@@ -407,3 +407,5 @@ ons_mortality %>%
   slice(1)
 
 unlink("working_files", recursive = TRUE)
+
+usethis::use_data(ons_mortality, overwrite = TRUE)
