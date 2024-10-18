@@ -2,7 +2,7 @@
 # NHS-R Community Datasets <a href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="60" style="float:right; height:200px;"/></a>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <!-- badges: start -->
@@ -120,6 +120,7 @@ the Open Government Licence.
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://hutsons-hacks.info/"><img src="https://avatars.githubusercontent.com/u/44023992?v=4?s=100" width="100px;" alt="Gary Hutson"/><br /><sub><b>Gary Hutson</b></sub></a><br /><a href="#data-StatsGary" title="Data">🔣</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jasonpott"><img src="https://avatars.githubusercontent.com/u/43917006?v=4?s=100" width="100px;" alt="Jason Pott"/><br /><sub><b>Jason Pott</b></sub></a><br /><a href="https://github.com/nhs-r-community/NHSRdatasets/commits?author=jasonpott" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jacgrout"><img src="https://avatars.githubusercontent.com/u/103451105?v=4?s=100" width="100px;" alt="Jacqueline Grout"/><br /><sub><b>Jacqueline Grout</b></sub></a><br /><a href="#data-jacgrout" title="Data">🔣</a></td>
     </tr>
   </tbody>
 </table>
