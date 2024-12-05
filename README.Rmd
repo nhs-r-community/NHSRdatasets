@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 <a href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' width="100"/></a> *This package is part of the NHS-R Community suite of [R packages](https://nhsrcommunity.com/packages.html).*
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/github/all-contributors/nhs-r-community/NHSRDatasets?color=ee8449&style=flat-square)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <!-- badges: start -->
