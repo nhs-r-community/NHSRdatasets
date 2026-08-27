@@ -21,29 +21,15 @@ RoxygenNote: 7.3.2
 Depends: R (>= 3.5.0)
 BugReports: https://github.com/nhs-r-community/NHSRdatasets/issues
 Suggests: 
-    caret,
     dplyr,
-    e1071,
-    forcats,
     ggplot2,
-    ggrepel,
     httr2,
     knitr,
-    lattice,
-    lme4,
-    lmtest,
-    lubridate,
     magrittr,
-    MASS,
-    ModelMetrics,
     rcmdcheck,
     readr,
-    rmarkdown,
-    rsample,
     scales,
-    synthpop,
     tibble,
-    tidyr,
-    varhandle
+    tidyr
 VignetteBuilder: knitr
 URL: https://github.com/nhs-r-community/NHSRdatasets, https://nhs-r-community.github.io/NHSRdatasets/
