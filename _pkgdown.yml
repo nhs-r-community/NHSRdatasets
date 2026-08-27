@@ -6,6 +6,7 @@ navbar:
   type: default
   right:
   - icon: fa-github fa-lg
+    aria-label: GitHub logo
     href: https://github.com/nhs-r-community/NHSRdatasets
 
 
@@ -17,6 +18,7 @@ development:
   mode: auto
 
 template:
+  bootstrap: 5
   params:
     ganalytics: UA-146859070-2
 
