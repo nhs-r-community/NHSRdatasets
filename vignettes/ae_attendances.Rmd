@@ -48,9 +48,9 @@ ae_attendances <- NHSRdatasets::ae_attendances
 
 ae_attendances |>
   mutate(
-  # set the period column to show in Month-Year as a character format
+    # set the period column to show in Month-Year as a character format
     period = format(period, "%b-%y"),
-  # set the numeric columns to have a comma at the 1000's place
+    # set the numeric columns to have a comma at the 1000's place
     across(
       c(attendances, breaches, admissions),
       scales::comma
@@ -60,7 +60,6 @@ ae_attendances |>
   head(10) |>
   # format for display
   kableExtra::kable()
-  
 ```
 
 We can calculate the 4 hours performance for England as a whole like so:
@@ -72,7 +71,7 @@ england_performance <- ae_attendances |>
     dplyr::across(c(attendances, breaches), sum),
     .groups = "drop"
   ) |>
- dplyr::mutate(
+  dplyr::mutate(
     performance = 1 - breaches / attendances
   )
 
@@ -88,7 +87,6 @@ england_performance |>
   # show the first 10 rows and format as a table
   head(10) |>
   kableExtra::kable()
-
 ```
 
 We can now plot the monthly performance

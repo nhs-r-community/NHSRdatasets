@@ -2,7 +2,7 @@
 title: "Contributing to the package"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Contributing}
+  %\VignetteIndexEntry{Contributing to the package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
