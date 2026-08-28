@@ -1,0 +1,42 @@
+---
+title: "Dataset: ONS Weekly Provisional Registered Deaths in England and Wales"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Dataset: ONS Weekly Provisional Registered Deaths in England and Wales}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(NHSRdatasets)
+
+ons_mortality <- NHSRdatasets::ons_mortality
+```
+
+This vignette details why the `ons_mortality` dataset was created and how to load it.
+
+# Deaths registered weekly in England and Wales, provisional
+
+Provisional counts of the number of deaths registered in England and Wales, by age, sex and region, from week commencing 8th January 2010 to 3rd April 2020.
+
+This data has been made available through Office of National Statistics under the Open Government Licence \url{http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/} but is made available in wide form across separate year's Excel spreadsheets.
+These were brought together, tidied in a way they could be merged together and produced in long form using the R script `data-raw\ons_mortality.R` and a blog can be found on the [NHS-R Community website](https://nhsrcommunity.com/blog/building-the-ons-mortality-dataset.html).
+
+This data continues to be made available by ONS but is not added to this dataset. 
+Corrections may have occurred too between this data snapshot and what is available through the ONS website.
+
+The dataset contains:
+
+- __category_1:__ character with categories that relate to grouped data like Persons, Males and Females but also for some other parts of the Excel dataset that aren't headers like "average of same week over 5 years"
+- __category_2:__ character with categoris for grouped ages, age bands and regions as well as text from Excel spreadsheets like "v 2013 (IRIS)"
+- __counts:__ numeric as counts of deaths recorded
+- __date:__ date format as yyyy-mm-dd
+- __week_no:__ integer relating to the week number starting at the first week of the year
+
