@@ -1,0 +1,73 @@
+---
+title: "Contributing to the package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Contributing}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Aside from the notes on the README about contributing (being in line with code of conduct) there are some further things to consider when contributing datasets to this package, particularly as CRAN has some restrictions and the benefit of this R package is its being available through GitHub and CRAN.
+
+
+## Consider teachability using R
+
+This package came from teaching/show-and-tell type work using R using healthcare data. 
+Although this is relevant to a general audience it is, in a sense, opinionated as the data is held in R objects for use in R and would be more familiar with people who are working, or wish to work, in healthcare data.
+
+We have some datasets like an example survey from [AphA Analysts](https://www.aphanalysts.org/join-apha/) which isn't healthcare specific and relates to analysts who work with healthcare.
+This is real data which can be used to practice working with text (freetext and categorical) which can be useful cleaning and manipulating practice.
+
+## Limitations
+
+Because this package has found a wider audience through CRAN as it's easy to install and there may be some organisations that restrict R packages to only those through CRAN, we will only accept datasets that are relatively small in size as they contribute to the package size overall. 
+
+CRAN has a limit of 5MB for the entire package, so each dataset should be no more than 500KB in size. 
+You can check with `object.size()` in R.
+
+## Sensitive data
+
+As this is a publicly available and used dataset we do not accept any sensitive or disclosive information.
+
+Ideally the data should be from a published source, or synthetic/generated data and where synthetically generated we request that the information around the generation of the data is also shared in the package (in the R folder).
+This is because synthetic data can still have a governance issue where data may be used as if it were real and we need to ensure that the origin of the data is available and retained.
+
+As of August 2026, the datasets in this package have not been created or modified in any way by AI.
+
+## Licences
+
+If data, particularly from publicly available sources, have an existing [licence](https://en.wikipedia.org/wiki/Software_license) this must be referenced and adhered to particularly if those licences have restrictions for example [Open Governance Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/). 
+
+Attribution must be included to the source data where appropriate.
+
+Where these are not applicable the licence and attribution will be the default open licences used and referenced by NHS-R Community.
+
+## Data type and code style
+
+- Datasets should be saved as a `tibble` and a data frame can be converted to that using `as_tibble()` from the `tibble` R package.
+- Datasets should be named using [camel case](https://en.wikipedia.org/wiki/Camel_case), as should all columns within the dataset so no spaces or capital letters.
+- Datasets should be documented with [roxygen2](https://roxygen2.r-lib.org/) with a high level overview.
+
+## Vignettes
+
+Vignettes which describe the data in more detail as well as useful examples of how to use the data will be very welcome.
+
+Vignettes should use [tidyverse](https://tidyverse.org/) functions and coding style, avoiding base R and `data.table` as `tidyverse` is currently the coding style for NHS-R Community. 
+
+## Package dependencies
+
+This R package has no dependency packages but does have suggested to support code examples in the README and vignettes.
+Currently we have static datasets that have already been curated and do not have plans to make any of the functions dynamic so we wish to avoid any dependencies to ensure stability and longevity of this package in CRAN.
+
+## Updating the package
+
+This package should, ideally, require very little input over time from maintainers so although some datasets may change over time (for example [mortality](https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales) continues to have data publications) this package will not be updated to include this data.
+
+Some changes my be required to maintain the overall structure of the package, including submitted new datasets.
