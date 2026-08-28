@@ -1,0 +1,92 @@
+---
+title: "NHSRdatasets"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{NHSRdatasets}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  eval = FALSE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(NHSRdatasets)
+```
+
+NHSRdatasets is a package developed originally by NHS-R Community for use in its free R training and for example code in blogs or other material. 
+It's doesn't contain any sensitive information and for some datasets it  follows the layout and structure of the data whilst for others it is a way of accessing the freely available data from elsewhere.
+In these circumstances the data may have been transformed (changed).
+
+These datasets are static and are not updated. 
+As well as being available through R as a `function` the data is also available in the R data format `.rda` which are available from the [data folder on GitHub](https://github.com/nhs-r-community/NHSRdatasets/tree/main/data).
+
+## Using the package
+
+Once installed the data can be used in an R session by typing:
+
+```{r}
+NHSRdatasets::ae_attendances
+```
+
+or load the package first
+
+```{r}
+library(NHSRdatasets)
+
+ae_attendances
+```
+
+To create an `object` so making the data available as a data frame:
+
+```{r}
+data <- ae_attendances
+```
+
+## Datasets
+
+This package currently provides static datasets for:
+
+- ae_attendances 
+- apha_cpd_survey
+- covid19
+- LOS_model
+- ons_mortality
+- ons_uk_population_2023
+- stranded_data
+- synthetic_news_data
+
+Each data set has documentation for the function which can be called by either putting the cursor in the name and selecting F1 or by running the R code:
+
+```{r}
+?ae_attendances()
+```
+
+It's also possible to write this without the brackets:
+
+```{r}
+?ae_attendances
+```
+
+If the package hasn't been loaded it's still possible to find the help files by using two question marks to look `globally`
+
+```{r}
+??ae_attendances
+```
+
+## Examples of use
+
+[A search for the code](https://github.com/search?q=org%3Anhs-r-community+library%28NHSRdatasets%29&type=code) `library(NHSRdatasets)` on the NHS-R Community GitHub returns a number of examples, the search criteria being:
+
+```
+org:nhs-r-community library(NHSRdatasets)
+```
+
+It's used in other package examples like [NHSRplotthedots](https://github.com/nhs-r-community/NHSRplotthedots) and [FunnelPlotR](https://github.com/nhs-r-community/FunnelPlotR) and training like [Git](https://github.com/nhs-r-community/git_training) and [Intermediate R](https://github.com/nhs-r-community/intermediate_R_training).

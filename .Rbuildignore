@@ -17,3 +17,5 @@ README.Rmd
 ^\.github$
 ^data-raw$
 .all-contributorsrc
+^\.positai$
+^\.claude$

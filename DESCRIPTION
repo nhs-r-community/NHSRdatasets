@@ -23,11 +23,14 @@ Suggests:
     dplyr,
     ggplot2,
     httr2,
+    knitr,
     magrittr,
     rcmdcheck,
     readr,
+    rmarkdown,
     scales,
     tibble,
     tidyr
 URL: https://github.com/nhs-r-community/NHSRdatasets, https://nhs-r-community.github.io/NHSRdatasets/
 Config/roxygen2/version: 8.1.0
+VignetteBuilder: knitr
