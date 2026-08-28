@@ -1,0 +1,157 @@
+---
+title: "Dataset: AphA CPD Survey"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{Dataset: AphA CPD Survey}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(NHSRdatasets)
+library(tibble)
+library(purrr)
+
+apha_cpd_survey <- NHSRdatasets::apha_cpd_survey
+```
+
+This vignette details why the `apha_cpd_survey` dataset was created and how to load it with some details on how to view some of the data.
+
+The dataset contains:
+
+- __respondent_id:__ integer unique id for each respondent
+- __form_started_dttm:__ date time
+- __form_ended_dttm:__ date time
+- __q00a_age_bracket_cat:__ character of age brackets 
+- __q01a_gender_cat:__ character for Male, Female and Prefer not to say
+- __q02a_max_education_level_cat:__ character 
+- __q03a_analyst_years_n:__ character
+- __q04a_role_description_cat:__ character freetext
+- __q05a_afc_band_cat:__ character
+- __q06a_current_org_years_cat:__ character
+- __q07a_future_health_work_cat:__ character
+- __q08a_apha_aware_ind:__ character
+- __q09a_apha_registered_cat:__ character
+- __q10a_other_org_member_txt:__ character freetext
+- __q11a_nhs_cpd_aware_cat:__ character
+- __q12a_cpd_time_at_work_cat:__ character
+- __q13a_cpd_outside_work_ind:__ character
+- __q13b_cpd_outside_work_days_txt:__ character freetext
+- __q14a_mgr_cpd_supportive_cat:__ character
+- __q15a_mgr_cpd_more_support_ind:__ character
+- __q16a_org_cpd_supportive_cat:__ character
+- __q17a_org_cpd_budget_cat:__ character
+- __q17b_org_cpd_budget_txt:__ character freetext
+- __q18a_org_study_leave_ind:__ character
+- __q18b_org_study_leave_days_txt:__ character freetext
+- __q19a_mgr_cpd_discuss_freq_cat:__ character
+- __q20a_cpd_opps_nhs_intranet_ind:__ character
+- __q20b_cpd_opps_org_website_ind:__ character
+- __q20c_cpd_opps_blogs_ind:__ character
+- __q20d_cpd_opps_twitter_ind:__ character
+- __q20e_cpd_opps_linkedin_ind:__ character
+- __q20f_cpd_opps_word_of_mouth_ind:__ character
+- __q20g_cpd_opps_apha_website_ind:__ character
+- __q20h_cpd_opps_other_txt:__ character freetext
+- __q21a_cpd_opps_sources_txt:__ character freetext
+- __q22a_org_nhs_type_cat:__ character
+- __q23a_org_analyst_team_size_cat:__ character
+- __q24a_org_analytics_influence_cat:__ character
+
+## Association of Healthcare Analysts CPD survey data
+
+Data was provided with permission from Rony Arafin in 2024, the then president of AphA to include this dataset as part of training. 
+
+The data had been collected through a survey of analysts which was analysed and published by AphA on [their website](https://www.aphanalysts.org/ltnws/nhs-at-risk-of-losing-a-generation-of-data-analysts/).
+This is a good example of real survey collected data as it includes some standardised text and some freetext with missing values and combinations of numbers and text in some fields.
+
+There are also 38 columns of data with partial questions which are related, for example, Q20 has parts a, b, c, d, e, f, g and h.
+
+This data has a lot of structure to it for text based analysis but is a good dataset for practising data cleaning.
+
+The R script used to scrape and produce the dataset can be found in the data-raw folder `data-raw/apha_cpd_survey.R`.
+
+## Labels
+
+The data has labels as well as column headers which can be seen in the RStudio environment panel as `attr(*, "label")= chr`
+
+To view the attribute/label for one column
+
+```{r}
+attributes(apha_cpd_survey$q00a_age_bracket_cat)
+```
+
+To view all labels with the headers
+
+```{r}
+df <- tibble(
+  variable = names(apha_cpd_survey),
+  variable_label = map_chr(
+    apha_cpd_survey,
+    ~ attr(.x, "label") %||% NA_character_
+  ),
+  value_labels = map(
+    apha_cpd_survey,
+    ~ attr(.x, "labels")
+  )
+)
+```
+
+
+To view just the data a bit more cleanly
+
+```{r}
+tibble::glimpse(apha_cpd_survey)
+```
+
+
+## Categories for columns
+
+As there are so many columns, to find the category information this will need both a function and a purrr loop:
+
+```{r eval=FALSE}
+
+# Simple function that uses base R unique() to return the unique data from a column
+unique_data <- function(data, column) { 
+  unique(data$column)
+  }
+
+# maps across all the columns and gives unique data
+purrr::imap(
+  apha_cpd_survey,
+  ~ unique(.x)
+  )
+```
+
+As some columns have freetext or lots of unique data (as for date time columns) not all of this will be useful to so restricting to only those that are known to have a few categories will be more helpful
+
+```{r}
+data <- apha_cpd_survey %>% 
+  # unselect the columns with dttm in the name
+  dplyr::select(!ends_with("dttm")) |>
+  # unselect respondent_id as that is a unique number
+  dplyr::select(-respondent_id) |> 
+  # freetext columns
+  dplyr::select(-c(q04a_role_description_cat,
+                   q13b_cpd_outside_work_days_txt,
+                   q17b_org_cpd_budget_txt,
+                   q18b_org_study_leave_days_txt,
+                   q20h_cpd_opps_other_txt,
+                   q21a_cpd_opps_sources_txt))
+
+# Rerun the purrr loop to see the data
+purrr::imap(
+  data,
+  ~ unique(.x)
+  )
+```
+
