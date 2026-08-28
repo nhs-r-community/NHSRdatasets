@@ -81,6 +81,13 @@ If the package hasn't been loaded it's still possible to find the help files by 
 ??ae_attendances
 ```
 
+To see the all the datasets in the package this base R code will open a new window in RStudio with the name of the dataset and the short description
+
+```{r}
+data(package = "NHSRdatasets")
+```
+
+
 ## Examples of use
 
 [A search for the code](https://github.com/search?q=org%3Anhs-r-community+library%28NHSRdatasets%29&type=code) `library(NHSRdatasets)` on the NHS-R Community GitHub returns a number of examples, the search criteria being:
