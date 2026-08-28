@@ -3,7 +3,7 @@ title: "Dataset: A simulated hospital length-of-stay (LOS)"
 author: "Chris Mainey"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{LOS_model: A simulated hospital length-of-stay dataset}
+  %\VignetteIndexEntry{Dataset: A simulated hospital length-of-stay (LOS)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

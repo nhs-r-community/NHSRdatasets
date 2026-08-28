@@ -3,7 +3,7 @@ title: "Dataset: Synthetic NEWS Data"
 author: "Jason Pott"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Synthetic NEWS Data}
+  %\VignetteIndexEntry{Dataset: Synthetic NEWS Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
