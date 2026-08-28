@@ -21,7 +21,6 @@ knitr::opts_chunk$set(
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/nhs-r-community/NHSRdatasets/workflows/R-CMD-check/badge.svg)](https://github.com/nhs-r-community/NHSRdatasets/actions)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN version](https://www.r-pkg.org/badges/version/NHSRdatasets)](https://cran.r-project.org/package=NHSRdatasets)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/NHSRdatasets)](https://cran.r-project.org/package=NHSRdatasets)

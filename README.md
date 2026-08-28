@@ -11,7 +11,6 @@ Contributors](https://img.shields.io/github/all-contributors/nhs-r-community/NHS
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/nhs-r-community/NHSRdatasets/workflows/R-CMD-check/badge.svg)](https://github.com/nhs-r-community/NHSRdatasets/actions)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -32,7 +31,7 @@ found in the training materials from NHS-OA (formerly NHS-R Community).
 
 We encourage contributions to the package, both to expand the set of
 training material, and also as development for newer `R`/github users as
-a first or early contribution.\
+a first or early contribution.  
 Please add relevant free, open source data sets that you think may
 benefit the NHS-R Community.
 
