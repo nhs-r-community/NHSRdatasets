@@ -1,0 +1,39 @@
+---
+title: "Dataset: ONS UK population 2023"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Dataset: ONS UK population 2023}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(NHSRdatasets)
+
+ons_uk_population_2023 <- NHSRdatasets::ons_uk_population_2023
+```
+
+This vignette details why the `ons_uk_population_2023` dataset was created and how to load it.
+
+# ONS UK Population 2023
+
+This dataset was added in October 2024 as part of Hacktoberfest.
+The original data was sourced from the [ONS mid year estimates of population for England and Wales]( https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland) and was tidied using the R script in `data-raw\ons_uk_population_2023.R`.
+
+
+The dataset contains:
+
+- __sex:__ character for females and males
+- __Code:__ character code for areas which corresponds to the Name column
+- __Name:__ character for areas in the UK and in this dataset has been restricted to Countries and grouped Countries (United Kingdom and Great Britain)
+- __Geography:__ character detail on area and in this dataset is just Country
+- __age:__ character with age in years from 0 to 90+
+- __count:__ number referring to the count of population 
+
