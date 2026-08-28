@@ -20,17 +20,29 @@ LazyData: true
 Depends: R (>= 4.1.0)
 BugReports: https://github.com/nhs-r-community/NHSRdatasets/issues
 Suggests: 
+    caret,
     dplyr,
+    e1071,
+    forcats,
     ggplot2,
+    ggrepel,
     httr2,
     knitr,
+    lattice,
+    lme4,
+    lmtest,
+    lubridate,
     magrittr,
+    MASS,
+    ModelMetrics,
     rcmdcheck,
     readr,
     rmarkdown,
+    rsample,
     scales,
     tibble,
-    tidyr
+    tidyr,
+    varhandle
+VignetteBuilder: knitr
 URL: https://github.com/nhs-r-community/NHSRdatasets, https://nhs-r-community.github.io/NHSRdatasets/
 Config/roxygen2/version: 8.1.0
-VignetteBuilder: knitr

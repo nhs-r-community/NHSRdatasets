@@ -5,8 +5,6 @@ vignette: >
   %\VignetteIndexEntry{NHSRdatasets}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
-  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -28,9 +26,9 @@ In these circumstances the data may have been transformed (changed).
 These datasets are static and are not updated. 
 As well as being available through R as a `function` the data is also available in the R data format `.rda` which are available from the [data folder on GitHub](https://github.com/nhs-r-community/NHSRdatasets/tree/main/data).
 
-## Using the package
+## Viewing the data in the console
 
-Once installed the data can be used in an R session by typing:
+Once a dataset is selected the first 10 rows will appear in the console:
 
 ```{r}
 NHSRdatasets::ae_attendances
@@ -86,7 +84,6 @@ To see the all the datasets in the package this base R code will open a new wind
 ```{r}
 data(package = "NHSRdatasets")
 ```
-
 
 ## Examples of use
 
