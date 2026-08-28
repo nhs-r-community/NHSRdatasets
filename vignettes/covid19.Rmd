@@ -1,0 +1,42 @@
+---
+title: "Dataset: Covid19"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Dataset: Covid19}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(NHSRdatasets)
+
+covid19 <- NHSRdatasets::covid19
+```
+
+This vignette details why the `covid19` dataset was created and how to load it.
+
+The dataset contains:
+
+- __date_reported:__ Date in the universal format yyyy-mm-dd
+- __continent:__ Factor
+- __countries_and_territories:__ factor
+- __country_territory_code:__ factor
+- __population_2019:__ integer
+- __cases:__ integer
+- __deaths:__ integer
+
+## Covid19 data
+
+This data was included in the package in August 2021.
+
+The information was collected at the time from [European Centre for Disease Prevention and Control](https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide) and the page is still available but archived (as of August 2026). 
+The data was made available under the open licence, compatible with the  CC BY 4.0 license, further details available at \href{https://www.ecdc.europa.eu/en/copyright}{ECDC}.
+
+Data were collated and published up to 14th December 2020, and was tidied before submission (no script for that work is available).
