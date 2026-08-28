@@ -115,8 +115,13 @@ You will see the `Usage` says:
 data("ons_mortality")
 ```
 
-This does the same as creating an object using the code `ons_mortality <- NHSRdatasets::ons_mortality` and uses the package utils which is available through RStudio automatically.
-It also doesn't require a name like the above code as it uses the existing name for the data.
+To see the all the datasets in the package this base R code will open a new window in RStudio with the name of the dataset and the short description
+
+```{r}
+data(package = "NHSRdatasets")
+```
+
+## Examples of use
 
 If you try to use the assignment operator with the function it will appear as a `vector` just saying "ons_mortality".
 
