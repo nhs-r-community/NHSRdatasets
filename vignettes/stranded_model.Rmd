@@ -1,9 +1,9 @@
 ---
-title: "Stranded Model Tutorial"
+title: "Dataset: Stranded Model Tutorial"
 author: "Gary Hutson"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Stranded Model Tutorial}
+  %\VignetteIndexEntry{Dataset: Stranded Model Tutorial}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

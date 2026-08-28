@@ -1,10 +1,10 @@
 ---
-title: "ae_attendances dataset"
+title: "Dataset: Accident and Emergency attendances"
 author:
 - '[Tom Jemmett][tj_email], [The Strategy Unit][su_web]'
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ae_attendances dataset}
+  %\VignetteIndexEntry{Dataset: Accident and Emergency attendances}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
