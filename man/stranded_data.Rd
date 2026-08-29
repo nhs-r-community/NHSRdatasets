@@ -3,7 +3,7 @@
 \docType{data}
 \name{stranded_data}
 \alias{stranded_data}
-\title{Stranded Patient (Patients flagged as having a greater than 7 day LOS) Model}
+\title{Stranded Patient (Patients flagged as having a greater than 7 day Length of Stay) Model}
 \format{
 Tibble with nine columns (1 x outcome and 8 predictors)
 \describe{
