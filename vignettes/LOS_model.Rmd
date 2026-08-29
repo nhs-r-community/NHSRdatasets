@@ -1,9 +1,9 @@
 ---
-title: "Data set: A simulated hospital length-of-stay dataset"
+title: "Dataset: A simulated hospital length-of-stay (LOS)"
 author: "Chris Mainey"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Data set: A simulated hospital length-of-stay dataset}
+  %\VignetteIndexEntry{Dataset: A simulated hospital length-of-stay (LOS)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,9 +15,13 @@ knitr::opts_chunk$set(
 )
 ```
 
+_Edited by Zoë Turner 28 August 2026_
+
 This vignette details why the `LOS_model` dataset was created, how to load it, and gives examples of use for learning/teaching regression modelling using Generalized Linear Models (GLMs), and related techniques.
 
-The data were created specifically for regression tutorials, simulating a small set of data on hospital in-patient spells.  The data are 10 sets of 30 simulated patient records, representing 10 different hospitals ("Trusts").  The dataset contains:
+The data were created specifically for regression tutorials, simulating a small set of data on hospital in-patient spells.  The data are 10 sets of 30 simulated patient records, representing 10 different hospitals ("Trusts").  
+
+The dataset contains:
 
 - __ID:__ an integer value patient number
 - __Organisation:__ A factor, containing hospital name, for example "Trust1"
@@ -31,8 +35,11 @@ The data were created specifically for regression tutorials, simulating a small 
 library(NHSRdatasets)
 library(dplyr)
 library(ggplot2)
+library(ModelMetrics)
+library(lme4)
+library(lmtest)
 
-data("LOS_model")
+LOS_model <- NHSRdatasets::LOS_model
 
 head(LOS_model)
 
@@ -46,12 +53,13 @@ prop.table(table(LOS_model$Death))
 Now lets look at the distributions of Age and LOS.  We might expect Age to be normally distributed, but this would be unrealistic, as elderly patient represent higher proportions of the total in-patients.  It could be uniform, it could be bi-modal (or have more peaks), but nothing is particularly clear.  LOS is highly right-skewed.  This means that the high values will affect the mean, dragging it out, and the median would be a better estimation of the centre of the distribution.  This shows that most patients don't stay very long, but a few patients stay notably longer.
 
 ```{R VisageLOS}
-ggplot(LOS_model, aes(x = Age)) +
-  geom_histogram(alpha = 0.5, col = 1, fill = 12, bins = 20) +
-  ggtitle("Distribution of Age")
-ggplot(LOS_model, aes(x = LOS)) +
-  geom_histogram(alpha = 0.5, col = 1, fill = 13, bins = 20) +
-  ggtitle("Distribution of Length-of-Stay")
+ggplot2::ggplot(LOS_model, aes(x = Age)) +
+  ggplot2::geom_histogram(alpha = 0.5, col = 1, fill = 12, bins = 20) +
+  ggplot2::ggtitle("Distribution of Age")
+
+ggplot2::ggplot(LOS_model, aes(x = LOS)) +
+  ggplot2::geom_histogram(alpha = 0.5, col = 1, fill = 13, bins = 20) +
+  ggplot2::ggtitle("Distribution of Length-of-Stay")
 ```
 
 
@@ -198,10 +206,9 @@ summary(quasi)
 ```
 
 For a negative binomial model, two options are `glm.nb` from the `MASS` package, or `glmmTMB` function from the package of the same name.  Note that the function from `MASS` does not take a `family` argument.  The dispersion factor here is quadratic to the mean, so don't compare it directly to the scale factor above.
-```{r nb, warning=FALSE, message=FALSE}
-library(MASS)
 
-nb <- glm.nb(LOS ~ Age * Death, data = LOS_model, )
+```{r nb, warning=FALSE, message=FALSE}
+nb <- MASS::glm.nb(LOS ~ Age * Death, data = LOS_model)
 
 summary(nb)
 ```
@@ -210,9 +217,7 @@ summary(nb)
 Finally, using the random-intercept model, fitted with `glmer` from the `lme4` package.  The extra formula argument specifies the random-intercept, where 1 means the intercept, and the `|` reads as 'intercept varying by organisation.'
 
 ```{r glmm, warning=FALSE}
-library(lme4)
-
-glmm <- glmer(LOS ~ scale(Age) * Death + (1 | Organisation), data = LOS_model, family = "poisson")
+glmm <- lme4::glmer(LOS ~ scale(Age) * Death + (1 | Organisation), data = LOS_model, family = "poisson")
 
 summary(glmm)
 ```
@@ -245,6 +250,3 @@ The `LOS_model` dataset is a fabricated patient dataset with Age, Length of Stay
 1. CAMERON, A. C. & TRIVEDI, P. K. 2013. _Regression Analysis of Count Data_, Cambridge University Press
 
 1. GOLDSTEIN, H. 2010. _Multilevel Statistical Models_, John Wiley & Sons Inc.
-
-
-
