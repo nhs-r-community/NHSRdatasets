@@ -13,26 +13,14 @@ knitr::opts_chunk$set(
   eval = FALSE,
   comment = "#>"
 )
-
-options(tidyverse.quiet = TRUE)
 ```
 
-The package NHSRdatasets has several datasets from a range of areas related to health and care.
+NNHSRdatasets is a package developed originally by NHS-R Community for use in its free R training and for example code in blogs or other material. 
+It's doesn't contain any sensitive information and for some datasets it  follows the layout and structure of the data whilst for others it is a way of accessing the freely available data from elsewhere.
+In these circumstances the data may have been transformed (changed).
 
-Once installed, as for any package, this will have to be called through:
-
-```{r eval=TRUE, load-data}
-library(NHSRdatasets)
-```
-
-To view the datasets (which is useful as CRAN and the GitHub versions may differ), type:
-
-```
-NHSRdatasets::
-```
-
-If you are using RStudio an automatic prompt will appear with all the datasets available.
-It's also possible to bring the view up by putting the cursor after the second colon and using the tab key.
+These datasets are static and are not updated. 
+As well as being available through R as a `function` the data is also available in the R data format `.rda` which are available from the [data folder on GitHub](https://github.com/nhs-r-community/NHSRdatasets/tree/main/data).
 
 ## Viewing the data in the console
 
@@ -42,77 +30,49 @@ Once a dataset is selected the first 10 rows will appear in the console:
 NHSRdatasets::ae_attendances
 ```
 
-This is because the data is stored as [tibbles](https://r4ds.had.co.nz/tibbles.html). 
-Tibbles are the same as a data frame but they change the behaviour slightly to improve some features, one of which is how many rows appear in the console which defaults to a more manageable 10.
-
-Another feature is that if you have a lot of columns and only a few are shown in the console, the names of the obscured columns are printed under the top 10 rows. 
-In this example the column `admissions` couldn't fit onto the console but is listed underneath the data.
-
-```
-# ℹ 12,755 more rows
-# ℹ 1 more variable: admissions <dbl>
-# ℹ Use `print(n = ...)` to see more rows
-```
-
-You can also return many more rows by applying the `print(n =)` function to the code like:
+or load the package first
 
 ```{r}
-print(NHSRdatasets::ae_attendances, n = 2)
+library(NHSRdatasets)
+
+ae_attendances
 ```
 
-### Printing tibbles in RMarkdown or Quarto
-
-Tibbles in an RMarkdown or Quarto output, like this vignette, will print every row as the behaviour that is coded to return the top 10 rows is related to how it is viewed within RStudio, not in a report.
-To restrict the number of rows in an RMarkdown output like html the code will have to be:
-
-```{r eval=TRUE}
-NHSRdatasets::ae_attendances |>
-  head(n = 2)
-```
-
-## Creating an object
-
-Creating an object of the dataset you are working with makes it easier to view the whole of the dataset, use functionality within the IDE (like RStudio or VS Code) to order/search and means you can change the data by adding new columns for example.
-
-The NHS-R Community slides from the Introduction to R and R Studio go into more detail on [objects](https://intro-r-rstudio.nhsrcommunity.com/session-objects.html#/title-slide).
-
-To create an object and open it in RStudio:
+To create an `object` so making the data available as a data frame:
 
 ```{r}
-dat <- NHSRdatasets::ae_attendances
+data <- ae_attendances
 ```
 
-A new object called `dat` will appear in the Environment tab of the top right pane of RStudio (if you have the default layout).
-The object also says it has 12765 obs (which are rows) and 6 variables (which are columns).
+## Datasets
 
-Using code to see something similar but in the Console in RStudio type:
+This package currently provides static datasets for:
+
+- ae_attendances 
+- apha_cpd_survey
+- covid19
+- LOS_model
+- ons_mortality
+- ons_uk_population_2023
+- stranded_data
+- synthetic_news_data
+
+Each data set has documentation for the function which can be called by either putting the cursor in the name and selecting F1 or by running the R code:
 
 ```{r}
-glimpse(dat)
+?ae_attendances()
 ```
 
-Clicking on the blue circle with a white arrow next to the word `dat` will expand the view in the Environment tab and clicking on the word `dat` will open the data in a new tab in the top left panel.
-
-If you are not using RStudio and want to use the Console where code is run directly use:
-
-```{r eval=FALSE}
-View(dat)
-```
-
-and you will see this code in the Console when you click on the name as every action in RStudio is translated to code in the Console.
-
-## Finding help
-
-To find out about the dataset you can use the question mark before it in code:
+It's also possible to write this without the brackets:
 
 ```{r}
-?ons_mortality
+?ae_attendances
 ```
 
-You will see the `Usage` says:
+If the package hasn't been loaded it's still possible to find the help files by using two question marks to look `globally`
 
 ```{r}
-data("ons_mortality")
+??ae_attendances
 ```
 
 To see the all the datasets in the package this base R code will open a new window in RStudio with the name of the dataset and the short description
@@ -123,8 +83,8 @@ data(package = "NHSRdatasets")
 
 ## Examples of use
 
-If you try to use the assignment operator with the function it will appear as a `vector` just saying "ons_mortality".
+[A search for the code](https://github.com/search?q=org%3Anhs-r-community+library%28NHSRdatasets%29&type=code) `library(NHSRdatasets)` on the NHS-R Community GitHub returns a number of examples, the search criteria being:
 
-```{r eval=TRUE}
-ons <- data("ons_mortality")
+```
+org:nhs-r-community library(NHSRdatasets)
 ```
