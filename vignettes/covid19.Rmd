@@ -1,0 +1,103 @@
+---
+title: "Dataset: Covid19"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{Dataset: Covid19}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(NHSRdatasets)
+
+covid19 <- NHSRdatasets::covid19
+```
+
+This vignette details why the `covid19` dataset was created, how to load it and an example of how to use the `stringr` package to search for countries and territories.
+
+The dataset contains:
+
+- __date_reported:__ Date in the universal format yyyy-mm-dd
+- __continent:__ Factor
+- __countries_and_territories:__ factor
+- __country_territory_code:__ factor
+- __population_2019:__ integer
+- __cases:__ integer
+- __deaths:__ integer
+
+## Covid19 data
+
+This data was included in the package in August 2021.
+
+The information was collected at the time from [European Centre for Disease Prevention and Control](https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide) and the page is still available but archived (as of August 2026). 
+The data was made available under the open licence, compatible with the  CC BY 4.0 license, further details available at [ECDC](https://www.ecdc.europa.eu/en/copyright).
+
+Data were collated and published up to 14th December 2020, and was tidied before submission (no script for that work is available).
+
+## Using the data
+
+Using the `stringr` package to find parts of a word we'll look for countries and territories which have the word "and" in them
+
+```{r}
+covid19 |>
+  dplyr::filter(stringr::str_detect(countries_and_territories, "and")) |>
+  dplyr::distinct(countries_and_territories) |>
+  head(5)
+```
+
+Luckily, in this top 5 we can see that "and" appears with underscores either side, with spaces either side and also appears as part of the name, for example Isl**and**s.
+
+Knowing that "and" can be surrounded by spaces or underscores we could search for those two formats
+
+```{r}
+covid19 |>
+  # rather than having two separate filters which is "AND" and returns nothing the code uses | for "OR"
+  dplyr::filter(stringr::str_detect(countries_and_territories, "_and_") |
+    stringr::str_detect(countries_and_territories, " and ")) |>
+  dplyr::distinct(countries_and_territories)
+```
+
+Just to check that "and" never occurs as "And" which R would see as distinct to "and" we could look for that but we can also make all text lowercase before searching
+
+```{r}
+covid19 |>
+  dplyr::mutate(countries_and_territories = tolower(countries_and_territories)) |>
+  dplyr::filter(stringr::str_detect(countries_and_territories, "_and_") |
+    stringr::str_detect(countries_and_territories, " and ")) |>
+  dplyr::distinct(countries_and_territories)
+```
+
+That brings back the same number of countries and territories but given that the text is likely to be printed and read we don't want to keep the text as lower case but are more likely to want to remove the underscore
+
+```{r}
+covid19 |>
+  dplyr::filter(stringr::str_detect(countries_and_territories, "_and_") |
+    stringr::str_detect(countries_and_territories, " and ")) |>
+  dplyr::distinct(countries_and_territories) |>
+  dplyr::mutate(countries_and_territories = stringr::str_replace(countries_and_territories, "_", ""))
+```
+
+`str_replace` removes the first underscore in the text because it replaces only the first match.
+To replace all instances of `_` which is what we'd want in this case we need to use `str_replace_all`
+
+```{r}
+covid19 |>
+  dplyr::filter(stringr::str_detect(countries_and_territories, "_and_") |
+    stringr::str_detect(countries_and_territories, " and ")) |>
+  dplyr::distinct(countries_and_territories) |>
+  dplyr::mutate(countries_and_territories = stringr::str_replace_all(countries_and_territories, "_", " "))
+```
+
+## Other places to see this data used
+
+The NHS-R Community [Introduction to Quarto](https://intro-quarto.nhsrcommunity.com/) course uses this dataset to show how to use parameters in Quarto for reports.
+Simple code is available in a [data repository](https://github.com/nhs-r-community/intro_quarto_data/blob/main/covid-analysis.qmd) and the course works through the steps to produce Covid19 reports for different countries and territories.
