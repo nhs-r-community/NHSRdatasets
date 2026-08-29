@@ -15,6 +15,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+_Edited by Zoë Turner 28 August 2026_
+
 This vignette details why the `stranded_model` dataset was created, how to load it, and gives examples of use with the caret Machine Learning library.
 
 The dataset contains:
@@ -38,9 +40,12 @@ library(ggplot2)
 library(caret)
 library(rsample)
 library(varhandle)
+library(tibble)
 
-data("stranded_data")
-glimpse(stranded_data)
+stranded_data <- NHSRdatasets::stranded_data
+
+tibble::glimpse(stranded_data)
+
 prop.table(table(stranded_data$stranded.label))
 ```
 
@@ -51,23 +56,27 @@ This is good, it shows a relatively even split between the not stranded and stra
 The next step will be to decide which features need to be engineered for our machine learning model. We will drop the admit_date and recode the frailty index, and perhaps allocate the age into age bands. 
 
 ```{r feature_engineering}
-stranded_data <- stranded_data %>%
-  dplyr::mutate(stranded.label = factor(stranded.label)) %>%
+stranded_data <- stranded_data |>
+  dplyr::mutate(stranded.label = factor(stranded.label)) |>
   dplyr::select(everything(), -c(admit_date))
 ```
+
 Next, I will select the categorical variables and make these into dummy variables, that is a numerical encoding of a categorical variable:
 
 ```{r dummy_encode}
 cats <- select_if(stranded_data, is.character)
+
 cat_dummy <- varhandle::to.dummy(cats$frailty_index, "frail_ind")
+
 # Converts the frailty index column to dummy encoding and sets a column called "frail_ind" prefix
-cat_dummy <- cat_dummy %>%
-  as.data.frame() %>%
+cat_dummy <- cat_dummy |>
+  as.data.frame() |>
   dplyr::select(-frail_ind.No_index_item) # Drop the field of interest
+
 # Drop the frailty index from the stranded data frame and bind on our new encoding categorical variables
-stranded_data <- stranded_data %>%
-  dplyr::select(-frailty_index) %>%
-  bind_cols(cat_dummy) %>%
+stranded_data <- stranded_data |>
+  dplyr::select(-frailty_index) |>
+  bind_cols(cat_dummy) |>
   na.omit(.)
 ```
 
@@ -89,12 +98,16 @@ test <- rsample::testing(split)
 The next step will be to create a stranded classification model, in CARET:
 
 ```{r class_model}
+# Fix the seed so that the same numbers will always be generated
 set.seed(123)
+
 glm_class_mod <- caret::train(factor(stranded.label) ~ .,
   data = train,
   method = "glm"
 )
-print(glm_class_mod)
+
+
+glm_class_mod
 ```
 
 This is a very basic model and could be improved by model choice, hyperparameter selection, different resampling strategies, etc.
@@ -111,8 +124,9 @@ pred_prob <- predict(glm_class_mod, newdata = test, type = "prob") # Predict pro
 # Join prediction on to actual test data frame and evaluate in confusion matrix
 
 predicted <- data.frame(preds, pred_prob)
-test <- test %>%
-  bind_cols(predicted) %>%
+
+test <- test |>
+  bind_cols(predicted) |>
   dplyr::rename(pred_class = preds)
 
 glimpse(test)
