@@ -1,0 +1,63 @@
+---
+title: "Dataset: ONS UK population 2023"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{Dataset: ONS UK population 2023}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(NHSRdatasets)
+
+ons_uk_population_2023 <- NHSRdatasets::ons_uk_population_2023
+```
+
+This vignette details why the `ons_uk_population_2023` dataset was created and how to load it.
+
+# ONS UK Population 2023
+
+This dataset was added in October 2024 as part of Hacktoberfest
+The original data was sourced from the [ONS mid year estimates of population for England and Wales]( https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland) and was tidied using the code in `vignette("create_ons_uk_population_2023")`.
+
+The dataset contains:
+
+- __sex:__ character for females and males
+- __Code:__ character code for areas which corresponds to the Name column
+- __Name:__ character for areas in the UK and in this dataset has been restricted to Countries and grouped Countries (United Kingdom and Great Britain)
+- __Geography:__ character detail on area and in this dataset is just Country
+- __age:__ character with age in years from 0 to 90+
+- __count:__ number referring to the count of population 
+
+
+## Small charts exploration
+
+A line chart to see all the Regions using `ggplot2`
+
+```{r}
+ons_uk_population_2023 |>
+  dplyr::filter(Name == "UNITED KINGDOM") |>
+  ggplot2::ggplot(ggplot2::aes(age, count, colour = sex)) +
+  ggplot2::geom_col() +
+  ggplot2::facet_wrap(~sex)
+
+```
+
+Looking at the chart there seems to be a spike in numbers towards the latter ages. 
+
+Scanning the ages they are in order so looking at the last 5 ages for both sexes, male and female
+
+```{r}
+ons_uk_population_2023 |> 
+  dplyr::filter(Name == "UNITED KINGDOM") |> 
+  dplyr::slice_tail(n = 5, by = sex)
+```
+
+we can see that there is an unusual increase in numbers for the 90+ age group for both males and females
