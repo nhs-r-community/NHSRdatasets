@@ -62,9 +62,9 @@ As this R package is `static` and does not use an API or any other code
 to dynamically provide information data can be accessed directly through
 GitHub from the `.rda` files which are stored in the `data` folder.
 
-The code used to produce these `.rda` files is in the folder `data-raw`.
-Note that some of this may be out of date or links are unavailable so
-this is included only for reference.
+The code used to produce some of these `.rda` files has been included as
+vignettes. Note that some of this may be out of date or links are
+unavailable so this is included only for reference.
 
 ## Contributing
 

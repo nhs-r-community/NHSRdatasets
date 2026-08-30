@@ -1,17 +1,33 @@
-# Source and licence acknowledgement
-#
-# This data has been made available through Office of National Statistics under
-# the [Open Government
-# Licence](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
-#
-# The main page for downloads is found on the ONS People Population and
-# Community pages
-# https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales
-# This was original a vignette and the text and code has been moved to be a blog
-# https://nhsrcommunity.nhsrcommunity.com/blog/building-the-ons-mortality-dataset.html
+---
+title: "Create dataset: ons-mortality"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Create dataset: ons-mortality}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  eval = FALSE,
+  comment = "#>"
+)
+```
+
+### This code is the original written to get and transform the data and is not updated.
+
+Source and licence acknowledgement
+
+This data has been made available through Office of National Statistics under the [Open Government
+Licence](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+
+The main page for downloads is found on the [ONS People Population and Community pages](https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales).
+This was original a vignette and the text and code has been moved to be an NHS-R Community [blog](https://nhsrcommunity.nhsrcommunity.com/blog/building-the-ons-mortality-dataset.html).
+
+```{r get-data}
 # 2019
-download.file(
+utils::download.file(
   "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2019/publishedweek522019.xls",
   destfile = "2019Mortality.xls",
   method = "wininet",
@@ -19,7 +35,7 @@ download.file(
 )
 
 # 2018
-download.file(
+utils::download.file(
   "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2018/publishedweek522018withupdatedrespiratoryrow.xls",
   destfile = "2018Mortality.xls",
   method = "wininet",
@@ -27,7 +43,7 @@ download.file(
 )
 
 # 2017
-download.file(
+utils::download.file(
   "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2017/publishedweek522017.xls",
   destfile = "2017Mortality.xls",
   method = "wininet",
@@ -35,7 +51,7 @@ download.file(
 )
 
 # 2016
-download.file(
+utils::download.file(
   "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2016/publishedweek522016.xls",
   destfile = "2016Mortality.xls",
   method = "wininet",
@@ -43,7 +59,7 @@ download.file(
 )
 
 # 2015
-download.file(
+utils::download.file(
   "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2015/publishedweek2015.xls",
   destfile = "2015Mortality.xls",
   method = "wininet",
@@ -51,7 +67,7 @@ download.file(
 )
 
 # 2014
-download.file(
+utils::download.file(
   "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2014/publishedweek2014.xls",
   destfile = "2014Mortality.xls",
   method = "wininet",
@@ -59,7 +75,7 @@ download.file(
 )
 
 # 2013
-download.file(
+utils::download.file(
   "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2013/publishedweek2013.xls",
   destfile = "2013Mortality.xls",
   method = "wininet",
@@ -67,7 +83,7 @@ download.file(
 )
 
 # 2012
-download.file(
+utils::download.file(
   "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2012/publishedweek2012.xls",
   destfile = "2012Mortality.xls",
   method = "wininet",
@@ -75,7 +91,7 @@ download.file(
 )
 
 # 2011
-download.file(
+utils::download.file(
   "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2011/publishedweek2011.xls",
   destfile = "2011Mortality.xls",
   method = "wininet",
@@ -83,13 +99,15 @@ download.file(
 )
 
 # 2010
-download.file(
+utils::download.file(
   "https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fbirthsdeathsandmarriages%2fdeaths%2fdatasets%2fweeklyprovisionalfiguresondeathsregisteredinenglandandwales%2f2010/publishedweek2010.xls",
   destfile = "2010Mortality.xls",
   method = "wininet",
   mode = "wb"
 )
+```
 
+```{r}
 library(readxl)
 library(dplyr)
 
@@ -133,15 +151,16 @@ for (i in files_list_sheets) {
 
   assign(i, x)
 }
-
+```
 
 ## Format data functions
 
 ### 2010 - 2015
 
-# Column names that are not related to data points to be removed. This is the same for all years' spreadsheets.
-# Note that single quotes are used for the categories as one sentence includes '' in the text (4).
+Column names that are not related to data points to be removed. This is the same for all years' spreadsheets.
+Note that single quotes are used for the categories as one sentence includes '' in the text (4).
 
+```{r}
 remove_lookup <- c(
   "week over the previous five years1",
   "Deaths by underlying cause2,3",
@@ -268,10 +287,11 @@ Mortality2012 <- formatFunction(`working_files/Weekly/2012Mortality-Weekly Figur
 Mortality2013 <- formatFunction(`working_files/Weekly/2013Mortality-Weekly Figures 2013.csv`)
 Mortality2014 <- formatFunction(`working_files/Weekly/2014Mortality-Weekly Figures 2014.csv`)
 Mortality2015 <- formatFunction(`working_files/Weekly/2015Mortality-Weekly Figures 2015.csv`)
+```
 
+### Format data 2016 - 2019
 
-#### Format data 2016 - 2019
-
+```{r}
 formatFunction2016 <- function(file) {
   ONS <- file %>%
     clean_names() %>%
@@ -409,3 +429,4 @@ ons_mortality %>%
 unlink("working_files", recursive = TRUE)
 
 usethis::use_data(ons_mortality, overwrite = TRUE)
+```
