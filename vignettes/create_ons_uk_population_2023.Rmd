@@ -37,7 +37,6 @@ population_data_2023_m <- read_excel(
   skip = 7
 )
 
-
 # pivot longer
 population_data_2023_f <- population_data_2023_f |>
   select(!`All ages`) |>
