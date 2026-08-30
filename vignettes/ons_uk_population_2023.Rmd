@@ -30,9 +30,9 @@ The original data was sourced from the [ONS mid year estimates of population for
 The dataset contains:
 
 - __sex:__ character for females and males
-- __Code:__ character code for areas which corresponds to the Name column
-- __Name:__ character for areas in the UK and in this dataset has been restricted to Countries and grouped Countries (United Kingdom and Great Britain)
-- __Geography:__ character detail on area and in this dataset is just Country
+- __code:__ character code for areas which corresponds to the Name column
+- __name:__ character for areas in the UK and in this dataset has been restricted to Countries and grouped Countries (United Kingdom and Great Britain)
+- __geography:__ character detail on area and in this dataset is just Country
 - __age:__ character with age in years from 0 to 90+
 - __count:__ number referring to the count of population 
 
@@ -43,7 +43,7 @@ A line chart to see all the Regions using `ggplot2`
 
 ```{r}
 ons_uk_population_2023 |>
-  dplyr::filter(Name == "UNITED KINGDOM") |>
+  dplyr::filter(name == "UNITED KINGDOM") |>
   ggplot2::ggplot(ggplot2::aes(age, count, colour = sex)) +
   ggplot2::geom_col() +
   ggplot2::facet_wrap(~sex)
@@ -56,7 +56,7 @@ Scanning the ages they are in order so looking at the last 5 ages for both sexes
 
 ```{r}
 ons_uk_population_2023 |> 
-  dplyr::filter(Name == "UNITED KINGDOM") |> 
+  dplyr::filter(name == "UNITED KINGDOM") |> 
   dplyr::slice_tail(n = 5, by = sex)
 ```
 
