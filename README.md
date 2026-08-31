@@ -105,6 +105,13 @@ in this package
 > Source: Office for National Statistics licensed under the Open
 > Government Licence.
 
+## Changes to NHS-R Community
+
+All references in this package are to NHS-R Community, however, from
+2025 NHS-R Community and NHS Pycom started a merge to become NHS Open
+Analytics. At the time of updating this package the current move to NHS
+Open Analytics is ongoing.
+
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
