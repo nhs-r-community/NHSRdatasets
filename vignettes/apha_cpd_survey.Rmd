@@ -25,7 +25,7 @@ apha_cpd_survey <- NHSRdatasets::apha_cpd_survey
 ```
 
 This vignette details why the `apha_cpd_survey` dataset was created and how to load it with some details on how to view some of the data.
-For code used to extract and clean the data can be found in `vignette("apha_cpd_survey")`
+For code used to extract and clean the data can be found in `vignette("create_apha_cpd_survey")`.
 
 The dataset contains:
 
