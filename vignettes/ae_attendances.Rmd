@@ -198,11 +198,11 @@ performance_by_trust |>
     head(performance_by_trust_ranking, 5),
     tail(performance_by_trust_ranking, 5)
   )) |>
-  ggplot2::ggplot(aes(period, performance)) +
+  ggplot2::ggplot(ggplot2::aes(period, performance)) +
   ggplot2::geom_line() +
   ggplot2::geom_point() +
   ggplot2::scale_y_continuous(labels = scales::percent) +
-  ggplot2::facet_wrap(vars(org_code), nrow = 2) +
+  ggplot2::facet_wrap(ggplot2::vars(org_code), nrow = 2) +
   ggplot2::theme(legend.position = "bottom") +
   ggplot2::labs(
     x = "Month of attendance",
