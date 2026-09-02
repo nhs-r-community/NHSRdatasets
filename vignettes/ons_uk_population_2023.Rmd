@@ -39,7 +39,7 @@ The dataset contains:
 
 ## Small charts exploration
 
-A line chart to see all the Regions using `ggplot2`
+A bar chart to see all the Regions using `ggplot2`
 
 ```{r}
 ons_uk_population_2023 |>
