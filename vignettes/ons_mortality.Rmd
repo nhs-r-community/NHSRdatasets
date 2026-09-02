@@ -37,7 +37,7 @@ Corrections may have occurred too between this data snapshot and what is availab
 The dataset contains:
 
 - __category_1:__ character with categories that relate to grouped data like Persons, Males and Females but also for some other parts of the Excel dataset that aren't headers like "average of same week over 5 years"
-- __category_2:__ character with categoris for grouped ages, age bands and regions as well as text from Excel spreadsheets like "v 2013 (IRIS)"
+- __category_2:__ character with categories for grouped ages, age bands and regions as well as text from Excel spreadsheets like "v 2013 (IRIS)"
 - __counts:__ numeric as counts of deaths recorded
 - __date:__ date format as yyyy-mm-dd
 - __week_no:__ integer relating to the week number starting at the first week of the year
