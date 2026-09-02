@@ -15,8 +15,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-NNHSRdatasets is a package developed originally by NHS-R Community for use in its free R training and for example code in blogs or other material. 
-It's doesn't contain any sensitive information and for some datasets it  follows the layout and structure of the data whilst for others it is a way of accessing the freely available data from elsewhere.
+NHSRdatasets is a package developed originally by NHS-R Community for use in its free R training and for example code in blogs or other material.
+It doesn't contain any sensitive information and, for some datasets, it follows the layout and structure of the data; for others it provides access to freely available data from elsewhere.
 In these circumstances the data may have been transformed (changed).
 
 These datasets are static and are not updated. 
