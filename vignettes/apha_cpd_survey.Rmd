@@ -133,9 +133,9 @@ purrr::imap(
 As some columns have freetext or lots of unique data (as for date time columns) not all of this will be useful so restricting to only those that are known to have a few categories will be more helpful
 
 ```{r}
-data <- apha_cpd_survey %>%
+data <- apha_cpd_survey |>
   # unselect the columns with dttm in the name
-  dplyr::select(!ends_with("dttm")) |>
+  dplyr::select(!dplyr::ends_with("dttm")) |>
   # unselect respondent_id as that is a unique number
   dplyr::select(-respondent_id) |>
   # freetext columns
