@@ -115,7 +115,7 @@ tibble::glimpse(apha_cpd_survey)
 
 ## Categories for columns
 
-As there are so many columns finding the cateorgies or unique data is possible with using a function and a `purrr` loop:
+As there are so many columns finding the categories or unique data is possible with using a function and a `purrr` loop:
 
 ```{r eval=FALSE}
 # Simple function that uses base R unique() to return the unique data from a column
