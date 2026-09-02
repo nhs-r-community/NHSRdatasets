@@ -71,4 +71,4 @@ Currently we have static datasets that have already been curated and do not have
 
 This package should, ideally, require very little input over time from maintainers so although some datasets may change over time (for example [mortality](https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales) continues to have data publications) this package will not be updated to include this data.
 
-Some changes my be required to maintain the overall structure of the package, including submitted new datasets.
+Some changes may be required to maintain the overall structure of the package, including submitted new datasets.
