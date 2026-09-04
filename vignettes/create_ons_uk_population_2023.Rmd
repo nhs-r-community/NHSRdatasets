@@ -1,5 +1,25 @@
-# Source: https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland
+---
+title: "Create dataset: ons_uk_population_2023"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Create dataset: ons_uk_population_2023}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  eval = FALSE,
+  comment = "#>"
+)
+```
+
+### This code is the original written to get and transform the data and is not updated.
+
+Source: [ONS](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland)
+
+```{r code}
 library(readxl)
 library(tidyverse)
 library(tidyr)
@@ -17,7 +37,6 @@ population_data_2023_m <- read_excel(
   skip = 7
 )
 
-
 # pivot longer
 population_data_2023_f <- population_data_2023_f |>
   select(!`All ages`) |>
@@ -32,5 +51,8 @@ ons_uk_population_2023 <- bind_rows(
   males = population_data_2023_m,
   .id = "sex"
 )
+ons_uk_population_2023 <- ons_uk_population_2023 |>
+  janitor::clean_names()
 
 usethis::use_data(ons_uk_population_2023, overwrite = TRUE)
+```

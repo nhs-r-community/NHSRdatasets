@@ -28,7 +28,7 @@ data(ons_mortality)
 \description{
 Provisional counts of the number of deaths registered in England and Wales,
 by age, sex and region, from week commencing 8th January 2010 to
-3rd April 202.
+3rd April 2020.
 }
 \details{
 Source and licence acknowledgement

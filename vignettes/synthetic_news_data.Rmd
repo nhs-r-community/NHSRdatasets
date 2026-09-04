@@ -1,9 +1,9 @@
 ---
-title: "Synthetic NEWS Data"
+title: "Dataset: Synthetic NEWS Data"
 author: "Jason Pott"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Synthetic NEWS Data}
+  %\VignetteIndexEntry{Dataset: Synthetic NEWS Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,29 +15,41 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Loading the dataset from NHSRDatasets
+_Edited by Zoë Turner 28 August 2026_
 
-This dataset is available from the [NHSRDatasets](https://CRAN.R-project.org/package=NHSRdatasets) package and similar comparisons can be made with the above. These examples can be used for data wrangling and data visualisation. 
+This vignette gives information on the `synthetic_news_data` dataset which contains:
+
+- __male:__ an integer flag (0 or 1)
+- __age:__ integer of ages
+- __NEWS:__ integer
+- __syst:__ integer
+- __dias:__ integer
+- __temp:__ number
+- __pulse:__ integer
+- __resp:__ integer
+- __sat:__ integer
+- __sup:__ integer
+- __alert:__ integer
+- __died:__ integer
 
 ```{r}
 library(NHSRdatasets)
 
 NEWS_var <- NHSRdatasets::synthetic_news_data
-
 ```
 
-For mode information about the [synthpop](http://gradientdescending.com/generating-synthetic-data-sets-with-synthpop-in-r/) package.
+This data was created using the [synthpop](http://gradientdescending.com/generating-synthetic-data-sets-with-synthpop-in-r/) package.
 
 ## What is NEWS?
 
-NEWS is short for the National Early Warning Score. [NHS England have provided a detailed introduction here](https://www.england.nhs.uk/ourwork/clinical-policy/sepsis/nationalearlywarningscore/)
+NEWS is short for the National Early Warning Score. [NHS England have provided a detailed introduction](https://www.england.nhs.uk/ourwork/clinical-policy/sepsis/nationalearlywarningscore/)
 
 The latest iteration of the NEWS score is NEWS2.
 
 The premise of NEWS is that physiology such as heart rate (pulse), respiration rate, consciousness (GCS or AVPU) are all routinely measured. 
 
 GCS = Glasgow Coma Score (Categorical score 3-15) measuring the Eyes, verbal and motor responses.
-AVPU = A categorical description of how concious a patient is A - Alert, V - Responds to voice, P - Responds to painful stimuli, U - Unresponsive.
+AVPU = A categorical description of how conscious a patient is A - Alert, V - Responds to voice, P - Responds to painful stimuli, U - Unresponsive.
 
 However there are a range of professional groups who use these measurements, and it can e challenging to recognise the deteriorating patient from the raw measurements alone especially if you do not often work with acutely unwell patients.
 
@@ -64,8 +76,8 @@ library(NHSRdatasets)
 library(dplyr)
 
 sbp_news <- NEWS_var |>
-  mutate(sbp = as.numeric(syst)) |>
-  mutate(news = case_when(
+  dplyr::mutate(sbp = as.numeric(syst)) |>
+  dplyr::mutate(news = dplyr::case_when(
     sbp <= 90 | sbp >= 220 ~ 3,
     sbp %in% c(91:100) ~ 2,
     sbp %in% c(101:110) ~ 1,
@@ -78,8 +90,8 @@ sbp_news <- NEWS_var |>
 
 ```{r}
 hr_news <- NEWS_var |>
-  mutate(pulse = as.numeric(pulse)) |>
-  mutate(news = case_when(
+  dplyr::mutate(pulse = as.numeric(pulse)) |>
+  dplyr::mutate(news = dplyr::case_when(
     pulse <= 40 | pulse >= 131 ~ 3,
     pulse %in% c(111:130) ~ 2,
     pulse %in% c(41:50, 91:110) ~ 1,
@@ -92,8 +104,8 @@ hr_news <- NEWS_var |>
 
 ```{r}
 rr_news <- NEWS_var |>
-  mutate(resp_rate = as.numeric(resp)) |>
-  mutate(news = case_when(
+  dplyr::mutate(resp_rate = as.numeric(resp)) |>
+  dplyr::mutate(news = dplyr::case_when(
     resp_rate <= 8 | resp_rate >= 25 ~ 3,
     resp_rate %in% c(21:24) ~ 2,
     resp_rate %in% c(9:11) ~ 1,
@@ -106,7 +118,7 @@ rr_news <- NEWS_var |>
 
 ```{r}
 NEWS_var |>
-  mutate(news = case_when(
+  dplyr::mutate(news = dplyr::case_when(
     sat <= 91 ~ 3,
     sat %in% c(92:93) ~ 2,
     sat %in% c(94:95) ~ 1,
@@ -119,7 +131,7 @@ NEWS_var |>
 
 ```{r}
 NEWS_var |>
-  mutate(news = case_when(
+  dplyr::mutate(news = dplyr::case_when(
     temp <= 35 ~ 3,
     temp >= 39.1 ~ 2,
     temp %in% c(38.1:39, 35.1:36) ~ 1,

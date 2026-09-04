@@ -8,9 +8,9 @@
 Tibble with six columns
 \describe{
 \item{sex}{male or female}
-\item{Code}{country/geography code}
-\item{Name}{country of the UK}
-\item{Geography}{Country}
+\item{code}{country/geography code}
+\item{name}{country of the UK}
+\item{geography}{Country}
 \item{age}{year of age}
 \item{count}{the number of people in this group}
 }
@@ -39,7 +39,7 @@ library(tidyr)
 
 # create a dataset that has total population by age groups for England
 ons_uk_population_2023 |>
-  filter(Name == "ENGLAND") |>
+  filter(name == "ENGLAND") |>
   mutate(age_group = case_when(
     as.numeric(age) <= 17 ~ "0-17",
     as.numeric(age) >= 18 & as.numeric(age) <= 64 ~ "18-64",
