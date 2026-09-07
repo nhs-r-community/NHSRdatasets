@@ -6,29 +6,43 @@ navbar:
   type: default
   right:
   - icon: fa-github fa-lg
+    aria-label: GitHub logo
     href: https://github.com/nhs-r-community/NHSRdatasets
 
 
 authors:
-  Chris Mainey:
-    href: https://www.mainard.co.uk
-  Tom Jemmett:
-    href: https://github.com/tomjemmett
-  Zoë Turner:
-    href: https://github.com/Lextuga007
-  Gary Hutson:
-    href: https://github.com/StatsGary
   NHS-R Community:
     href: https://nhsrcommunity.com
-
-twitter:
-     icon: fa-lg fa-twitter
-     href: http://twitter.com/NHSrCommunity
 
 development:
   mode: auto
 
 template:
+  bootstrap: 5
   params:
     ganalytics: UA-146859070-2
 
+articles:
+- title: About the package
+  navbar: About the package
+  contents:
+  - contributing
+
+- title: How to use the dataset
+  navbar: How to use the dataset
+  contents:
+  - ae_attendances
+  - apha_cpd_survey
+  - covid19
+  - LOS_model
+  - ons_mortality
+  - ons_uk_population_2023
+  - stranded_model
+  - synthetic_news_data
+
+- title: Archive how the dataset was created
+  navbar: Archive how the dataset was created
+  contents:
+  - create_apha_cpd_survey
+  - create_ons_mortality
+  - create_ons_uk_population_2023

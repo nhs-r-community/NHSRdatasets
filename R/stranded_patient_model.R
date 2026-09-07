@@ -1,4 +1,4 @@
-#' Stranded Patient (Patients flagged as having a greater than 7 day LOS) Model
+#' Stranded Patient (Patients flagged as having a greater than 7 day Length of Stay) Model
 #'
 #' This model is to be used as a machine learning classification model, for
 #' supervised learning. The binary outcome is stranded vs not stranded patients.
