@@ -53,7 +53,7 @@ pak::pkg_install("nhs-r-community/NHSRdatasets")
 ```
 
 Once installed go to the Get Started article from the
-[website](https://nhs-r-community.github.io/NHSRdatasets) (the same link
+[website](`vignette("NHSRdatasets")) (the same link
 can be found on the top right of the GitHub Repository).
 
 ## Datasets available
