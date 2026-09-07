@@ -18,7 +18,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/nhs-r-community/NHSRdatasets/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/nhs-r-community/NHSRdatasets/blob/v1.0.0/DESCRIPTION)
 
 Turner Z, Mainey C, Jemmett T, Barton F, Hutson G (2026). *NHSRdatasets:
 NHS and Healthcare-Related Data for Education and Training*. R package
