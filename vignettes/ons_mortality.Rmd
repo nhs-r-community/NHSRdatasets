@@ -28,7 +28,7 @@ This vignette details why the `ons_mortality` dataset was created and how to loa
 
 Provisional counts of the number of deaths registered in England and Wales, by age, sex and region, from week commencing 8th January 2010 to 3rd April 2020.
 
-This data has been made available through [Office of National Statistics under the Open Government Licence](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) but is made available in wide form across separate year's Excel spreadsheets.
+This data has been made available through [Office of National Statistics under the Open Government Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) but is made available in wide form across separate year's Excel spreadsheets.
 These were brought together, tidied in a way they could be merged together and produced in long form using the code in the `vignette("create_ons_mortality")` and a blog can be found on the [NHS-R Community website](https://nhsrcommunity.com/blog/building-the-ons-mortality-dataset.html).
 
 This data continues to be made available by ONS but is not added to this dataset. 
