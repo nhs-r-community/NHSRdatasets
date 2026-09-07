@@ -18,7 +18,7 @@ Wales, by age, sex and region, from week commencing 8th January 2010 to
 
 This data has been made available through [Office of National Statistics
 under the Open Government
-Licence](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
+Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
 but is made available in wide form across separate year’s Excel
 spreadsheets. These were brought together, tidied in a way they could be
 merged together and produced in long form using the code in the

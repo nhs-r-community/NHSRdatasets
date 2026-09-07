@@ -18,16 +18,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/nhs-r-community/NHSRdatasets/blob/v1.0.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/nhs-r-community/NHSRdatasets/blob/main/DESCRIPTION)
 
 Turner Z, Mainey C, Jemmett T, Barton F, Hutson G (2026). *NHSRdatasets:
 NHS and Healthcare-Related Data for Education and Training*. R package
-version 0.3.3, <https://github.com/nhs-r-community/NHSRdatasets>.
+version 1.0.0, <https://github.com/nhs-r-community/NHSRdatasets>.
 
     @Manual{,
       title = {NHSRdatasets: NHS and Healthcare-Related Data for Education and Training},
       author = {Zoë Turner and Chris Mainey and Tom Jemmett and Fran Barton and Gary Hutson},
       year = {2026},
-      note = {R package version 0.3.3},
+      note = {R package version 1.0.0},
       url = {https://github.com/nhs-r-community/NHSRdatasets},
     }

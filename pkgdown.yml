@@ -15,7 +15,7 @@ articles:
   ons_uk_population_2023: ons_uk_population_2023.html
   stranded_model: stranded_model.html
   synthetic_news_data: synthetic_news_data.html
-last_built: 2026-09-07T14:05Z
+last_built: 2026-09-07T16:29Z
 urls:
   reference: https://nhs-r-community.github.io/NHSRdatasets/reference
   article: https://nhs-r-community.github.io/NHSRdatasets/articles

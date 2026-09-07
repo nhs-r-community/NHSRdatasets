@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">NHSRdatasets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,14 +55,25 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/nhs-r-community/NHSRdatasets/blob/v1.0.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/nhs-r-community/NHSRdatasets/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.0" id="nhsrdatasets-100">NHSRdatasets 1.0.0<a class="anchor" aria-label="anchor" href="#nhsrdatasets-100"></a></h2>
+<p>Stable release with updated documentation to complement the datasetset added in previous versions.</p>
+<ul><li>ons_uk_population_2023 thanks to Jacqueline Grout</li>
+</ul><p>Added vignettes for all datasets and edited existing to ensure they work with with any changes to hyperlinks or deprecated functions.</p>
+<div class="section level3">
+<h3 id="breaking-changes-1-0-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-1-0-0"></a></h3>
+<p>Column headers for <code>ons_uk_population_2023</code> moved from mixed case to lower case in line with the coding style of the package. This had been added to the package but not with a release.</p>
+<p>Moved R scripts on how some datasets were created from the <code>data-raw</code> folder to vignettes.</p>
+</div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.3" id="nhsrdatasets-033">NHSRdatasets 0.3.3<a class="anchor" aria-label="anchor" href="#nhsrdatasets-033"></a></h2>
 <ul><li>Moved the vignette for how ONS provisionally recorded deaths to an R script available in the data-raw folder. This is also available on the Quarto NHS-R Community website and <a href="https://github.com/nhs-r-community/nhs-r-community/blob/main/blog/building-the-ons-mortality-dataset.qmd" class="external-link">GitHub</a>
 </li>
-<li>Noted in this version the previous addition of the dataset from AphA (with kind permission) from their CPD Survey, thanks to Fran Barton. Code detailing how the data was extracted using the httr2 package and tidied can be found in the <a href="https://github.com/nhs-r-community/NHSRdatasets/blob/main/data-raw/apha_cpd_survey.R" class="external-link">data-raw folder</a>.</li>
+<li>Noted in this version the previous addition of the dataset from AphA (with kind permission) from their CPD Survey, thanks to Fran Barton. Code detailing how the data was extracted using the httr2 package and tidied can be found in the data-raw folder [removed in later version and made into a vignette].</li>
 <li>Noted in this version the previous addition of the dataset from European Centre for Disease Prevention and Control for reported COVID19 infections and deaths by day and country collected on the 14th December 2020, thanks to Chris Mainey.</li>
 </ul></div>
     <div class="section level2">
