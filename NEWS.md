@@ -1,3 +1,22 @@
+# NHSRdatasets 1.0.0
+
+Stable release with updated documentation to complement the datasetset added in
+previous versions.
+
+- ons_uk_population_2023 thanks to Jacqueline Grout
+
+Added vignettes for all datasets and edited existing to ensure they work with
+with any changes to hyperlinks or deprecated functions.
+
+## Breaking changes
+
+Column headers for `ons_uk_population_2023` moved from mixed case to lower case
+in line with the coding style of the package.
+This had been added to the package but not with a release.
+
+Moved R scripts on how some datasets were created from the `data-raw` folder to
+vignettes.
+
 # NHSRdatasets 0.3.3
 
 - Moved the vignette for how ONS provisionally recorded deaths to an R script

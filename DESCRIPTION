@@ -2,7 +2,7 @@ Package: NHSRdatasets
 Type: Package
 Title: NHS and Healthcare-Related Data for Education and Training
 Date: 2022-11-08
-Version: 0.3.3
+Version: 1.0.0
 Authors@R: c(
           person("Zoë", "Turner", , email = "zoe.turner3@nhs.net", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-1033-9158")),
           person("Chris", "Mainey", ,"c.mainey1@nhs.net", role = "aut", comment = c(ORCID ="0000-0002-3018-6171")),
