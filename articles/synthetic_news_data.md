@@ -1,0 +1,229 @@
+# Dataset: Synthetic NEWS Data
+
+*Edited by Zoë Turner 28 August 2026*
+
+This vignette gives information on the `synthetic_news_data` dataset
+which contains:
+
+- **male:** an integer flag (0 or 1)
+- **age:** integer of ages
+- **NEWS:** integer
+- **syst:** integer
+- **dias:** integer
+- **temp:** number
+- **pulse:** integer
+- **resp:** integer
+- **sat:** integer
+- **sup:** integer
+- **alert:** integer
+- **died:** integer
+
+``` r
+
+library(NHSRdatasets)
+
+NEWS_var <- NHSRdatasets::synthetic_news_data
+```
+
+This data was created using the
+[synthpop](http://gradientdescending.com/generating-synthetic-data-sets-with-synthpop-in-r/)
+package.
+
+## What is NEWS?
+
+NEWS is short for the National Early Warning Score. [NHS England have
+provided a detailed
+introduction](https://www.england.nhs.uk/ourwork/clinical-policy/sepsis/nationalearlywarningscore/)
+
+The latest iteration of the NEWS score is NEWS2.
+
+The premise of NEWS is that physiology such as heart rate (pulse),
+respiration rate, consciousness (GCS or AVPU) are all routinely
+measured.
+
+GCS = Glasgow Coma Score (Categorical score 3-15) measuring the Eyes,
+verbal and motor responses. AVPU = A categorical description of how
+conscious a patient is A - Alert, V - Responds to voice, P - Responds to
+painful stimuli, U - Unresponsive.
+
+However there are a range of professional groups who use these
+measurements, and it can e challenging to recognise the deteriorating
+patient from the raw measurements alone especially if you do not often
+work with acutely unwell patients.
+
+NEWS(2) provides categorical classifications for distinct ranges of
+physiology. Each category is scored 0-3.
+
+The more abnormal a measure of physiology the greater the categorical
+score attributed. The score is supposed to be calculated at the time the
+physiology is measured. In a hospital this is often when the nurse or
+healthcare assistant completes their observation rounds.
+
+The categorical NEWS score then is linked to distinct actions that
+should be followed. These actions will typically be localised by
+organisations depending on the level of resource that is available to
+support medical emergencies.
+
+### Criticisms of NEWS
+
+There are some criticisms of NEWS that were addressed by NEWS2. These
+were that normal measures of Oxygen saturation (SpO2) were not universal
+and often meant over escalation of “normal” abnormal physiology in
+patients with respiratory diseases such as COPD. These were addressed
+though adjusted ranges for SpO2.
+
+There have also been concerns that in some cases the NEWS score has been
+introduced to settings (often mandatory) where it has not been
+validated. The Score was developed by the Royal College of Physicians.
+They often represent clinical specialties who work in-patient medicine.
+As such the data that was used to develop the score was based on data
+from patients who were typically out of the acute phase of their illness
+and so abnormal physiology was a measure post therapeutic interventions.
+In most Cases NEWS has been shown to be robust to these criticisms.
+
+NEWS is more work for (typically nursing) staff to complete, NEWS is
+also not validated as an incomplete score for example where just a heart
+rate, Blood pressure and SpO2 are recorded which is a common set of
+measurements in most outpatient settings.
+
+### Here are some code chunks for the calculation of NEWS sub scores:
+
+#### Systolic Blood pressure (column `syst`)
+
+``` r
+
+library(NHSRdatasets)
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+
+sbp_news <- NEWS_var |>
+  dplyr::mutate(sbp = as.numeric(syst)) |>
+  dplyr::mutate(news = dplyr::case_when(
+    sbp <= 90 | sbp >= 220 ~ 3,
+    sbp %in% c(91:100) ~ 2,
+    sbp %in% c(101:110) ~ 1,
+    !is.numeric(pulse) ~ NA_real_,
+    TRUE ~ 0
+  ))
+```
+
+#### Heart Rate (column `pulse`)
+
+``` r
+
+hr_news <- NEWS_var |>
+  dplyr::mutate(pulse = as.numeric(pulse)) |>
+  dplyr::mutate(news = dplyr::case_when(
+    pulse <= 40 | pulse >= 131 ~ 3,
+    pulse %in% c(111:130) ~ 2,
+    pulse %in% c(41:50, 91:110) ~ 1,
+    !is.numeric(pulse) ~ NA_real_,
+    TRUE ~ 0
+  ))
+```
+
+#### Resp Rate (column `resp`)
+
+``` r
+
+rr_news <- NEWS_var |>
+  dplyr::mutate(resp_rate = as.numeric(resp)) |>
+  dplyr::mutate(news = dplyr::case_when(
+    resp_rate <= 8 | resp_rate >= 25 ~ 3,
+    resp_rate %in% c(21:24) ~ 2,
+    resp_rate %in% c(9:11) ~ 1,
+    !is.numeric(resp_rate) ~ NA_real_,
+    TRUE ~ 0
+  ))
+```
+
+#### SpO2 Oxygen Saturation (column `sat`)
+
+``` r
+
+NEWS_var |>
+  dplyr::mutate(news = dplyr::case_when(
+    sat <= 91 ~ 3,
+    sat %in% c(92:93) ~ 2,
+    sat %in% c(94:95) ~ 1,
+    !is.numeric(sat) ~ NA_real_,
+    TRUE ~ 0
+  ))
+#> # A tibble: 1,000 × 13
+#>     male   age  NEWS  syst  dias  temp pulse  resp   sat   sup alert  died  news
+#>    <int> <int> <int> <int> <int> <dbl> <int> <int> <int> <int> <int> <int> <dbl>
+#>  1     0    68     3   150    98  36.8    78    26    96     0     0     0     0
+#>  2     1    94     1   145    67  35      62    18    96     0     0     0     0
+#>  3     0    85     0   169    69  36.2    54    18    96     0     0     0     0
+#>  4     1    44     0   154   106  36.9    80    17    96     0     0     0     0
+#>  5     0    77     1   122    67  36.4    62    20    95     0     0     0     1
+#>  6     0    58     1   146   106  35.3    73    20    98     0     0     0     0
+#>  7     0    25     4    65    42  35.6    72    12    99     0     0     0     0
+#>  8     0    69     0   116    56  37.2    90    16    97     0     0     0     0
+#>  9     0    91     1   162    72  35.5    60    16    99     0     0     0     0
+#> 10     0    70     1   132    96  35.3    67    16    97     0     0     0     0
+#> # ℹ 990 more rows
+```
+
+#### Temperature (column `temp`)
+
+``` r
+
+NEWS_var |>
+  dplyr::mutate(news = dplyr::case_when(
+    temp <= 35 ~ 3,
+    temp >= 39.1 ~ 2,
+    temp %in% c(38.1:39, 35.1:36) ~ 1,
+    !is.numeric(temp) ~ NA_real_,
+    TRUE ~ 0
+  ))
+#> # A tibble: 1,000 × 13
+#>     male   age  NEWS  syst  dias  temp pulse  resp   sat   sup alert  died  news
+#>    <int> <int> <int> <int> <int> <dbl> <int> <int> <int> <int> <int> <int> <dbl>
+#>  1     0    68     3   150    98  36.8    78    26    96     0     0     0     0
+#>  2     1    94     1   145    67  35      62    18    96     0     0     0     3
+#>  3     0    85     0   169    69  36.2    54    18    96     0     0     0     0
+#>  4     1    44     0   154   106  36.9    80    17    96     0     0     0     0
+#>  5     0    77     1   122    67  36.4    62    20    95     0     0     0     0
+#>  6     0    58     1   146   106  35.3    73    20    98     0     0     0     0
+#>  7     0    25     4    65    42  35.6    72    12    99     0     0     0     0
+#>  8     0    69     0   116    56  37.2    90    16    97     0     0     0     0
+#>  9     0    91     1   162    72  35.5    60    16    99     0     0     0     0
+#> 10     0    70     1   132    96  35.3    67    16    97     0     0     0     0
+#> # ℹ 990 more rows
+```
+
+In addition NEWS2 has altered ranges for patients with known respiratory
+diseases. These need additional logic on a per patient basis to
+implement.
+
+## Summary
+
+In many ways, synthetic data reflects George Box’s observation that “all
+models are wrong, but some are useful” while providing a “useful
+approximation \[of\] those found in the real world”.
+
+The connection between the clinical outcomes of a patient visits and
+costs rarely exist in practice, so being able to assess these trade-offs
+in synthetic data allow for measurement and enhancement of the value of
+care – cost divided by outcomes.
+
+Synthetic data is likely not a 100% accurate depiction of real-world
+outcomes, like cost and clinical quality, but rather a useful
+approximation of these variables. Moreover, synthetic data is constantly
+improving, and methods like validation and calibration will continue to
+make these data sources more realistic.
+
+Besides synthetic data used to protect the privacy and confidentiality
+of set of data, it can be used for testing fraud detection systems by
+creating realistic behaviour profiles for users and attackers. In
+machine learning, it can also be used to train and test models. The
+synthetic data can aid in creating a baseline for future testing or
+studies such as clinical trial studies.

@@ -1,0 +1,94 @@
+# NHSRdatasets
+
+NHSRdatasets is a package developed originally by NHS-R Community for
+use in its free R training and for example code in blogs or other
+material. It doesn’t contain any sensitive information and, for some
+datasets, it follows the layout and structure of the data; for others it
+provides access to freely available data from elsewhere. In these
+circumstances the data may have been transformed (changed).
+
+These datasets are static and are not updated. As well as being
+available through R as a `function` the data is also available in the R
+data format `.rda` which are available from the [data folder on
+GitHub](https://github.com/nhs-r-community/NHSRdatasets/tree/main/data).
+
+## Viewing the data in the console
+
+Once a dataset is selected the first 10 rows will appear in the console:
+
+``` r
+
+NHSRdatasets::ae_attendances
+```
+
+or load the package first
+
+``` r
+
+library(NHSRdatasets)
+
+ae_attendances
+```
+
+To create an `object` so making the data available as a data frame:
+
+``` r
+
+data <- ae_attendances
+```
+
+## Datasets
+
+This package currently provides static datasets for:
+
+- ae_attendances
+- apha_cpd_survey
+- covid19
+- LOS_model
+- ons_mortality
+- ons_uk_population_2023
+- stranded_data
+- synthetic_news_data
+
+Each data set has documentation for the function which can be called by
+either putting the cursor in the name and selecting F1 or by running the
+R code:
+
+``` r
+
+?ae_attendances()
+```
+
+It’s also possible to write this without the brackets:
+
+``` r
+
+?ae_attendances
+```
+
+If the package hasn’t been loaded it’s still possible to find the help
+files by using two question marks to look `globally`
+
+``` r
+
+??ae_attendances
+```
+
+To see the all the datasets in the package this base R code will open a
+new window in RStudio with the name of the dataset and the short
+description
+
+``` r
+
+data(package = "NHSRdatasets")
+```
+
+## Examples of use
+
+[A search for the
+code](https://github.com/search?q=org%3Anhs-r-community+library%28NHSRdatasets%29&type=code)
+[`library(NHSRdatasets)`](https://github.com/nhs-r-community/NHSRdatasets)
+on the NHS-R Community GitHub returns a number of examples, the search
+criteria being:
+
+    org:nhs-r-community library(NHSRdatasets)
