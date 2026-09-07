@@ -1,29 +1,35 @@
-## Release summary
-This is the fourth release of a collaborative dataset package for British National Health Services NHS-R community. It contains datasets and vignettes to teach R in a familiar context.  It is likely to see periodic releases as we receive contributions.
+## Updates in this release
 
-## Test environments
-* local windows 10, R 4.0.3
-* local windows 10, R 4.0.4
-* local WSL2 Ubuntu 20.04.02, R 4.0.4
-* Mac OS X 10.15.7, R 4.0.4 (GitHub Actions)
-* ubuntu 16.04.6 LTS (Travis-ci), R 4.0.2
-* win-builder(devel)
-* r-hub:
-  * Windows Server 2008 R2 SP1, R-devel, 32/64 bit
-  * Ubuntu Linux 16.04 LTS, R-release, GCC
-  * Fedora Linux, R-devel, clang, gfortran
-  
+- No changes to functionality
+- Additional datasets in this version
+- Additional documentation in vignettes to support the datasets use
+- Change in maintainer - the email for the current maintainer fails as the 
+account has been closed (it was chris.mainey@nhs.net and updated in DESCRIPTION 
+to chris.mainey1@nhs.net). Change to zoe.turner3@nhs.net who has been a package
+developer previously and will now be maintainer. 
 
-## R CMD check results
-There were no ERRORs or WARNINGs, with NOTES:
 
-New maintainer: change of email address for current maintainer
+## check results on local installation
+There were no ERRORs, WARNINGS or NOTES on the following local installation:
 
-Namespace in Imports field not imported from: 'tibble'
-     All declared Imports should be used.
-This is a data package with serialised data from saved tibbles, so tibble requirement not detected.
+* Windows 11 install using R 4.5.1
+* Windows 11 install using R 4.6.1
 
-No linux errors locally, on github actions or Travis, but PREPERROR on R-Hub that seems to be about how docker is functioning, rather than the package itself.
-     
+## Other Test Environments
+
+GitHub actions all passed running R-CMD-check on the following platforms:
+
+* macOS-latest (release)
+* ubuntu-latest (devel)
+* ubuntu-latest (oldrel-1)
+* ubuntu-latest (release)
+* windows-latest (release)
+
+devtools::check(remote = TRUE, manual = TRUE) and devtools::check_win_*
+detail change in maintainer as NOTE and url service unavailable for 
+https://www.aphanalysts.org/ which is currently down for maintenance (expected
+back Sept 2026).
+
 ## Downstream dependencies
-There are no known downstream dependencies for this package.
+
+revdepcheck::revdep_check() shows no downstream dependencies.

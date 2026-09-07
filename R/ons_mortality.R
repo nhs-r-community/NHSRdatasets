@@ -8,7 +8,7 @@
 #'
 #' This data has been made available through Office of National Statistics under
 #' the Open Government Licence
-#' \url{http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/}
+#' \url{https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/}
 #'
 #'
 #' @docType data

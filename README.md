@@ -53,7 +53,7 @@ pak::pkg_install("nhs-r-community/NHSRdatasets")
 ```
 
 Once installed go to the Get Started article from the
-[website](https://nhs-r-community.github.io/NHSRdatasets) (the same link
+[website](`vignette("NHSRdatasets")) (the same link
 can be found on the top right of the GitHub Repository).
 
 ## Datasets available
@@ -177,7 +177,7 @@ Wauben</b></sub></a><br /><a href="https://github.com/nhs-r-community/NHSRdatase
 
 <td align="center" valign="top" width="14.28%">
 
-<a href="http://hutsons-hacks.info/"><img src="https://avatars.githubusercontent.com/u/44023992?v=4?s=100" width="100px;" alt="Gary Hutson"/><br /><sub><b>Gary
+<a href="https://hutsons-hacks.info/"><img src="https://avatars.githubusercontent.com/u/44023992?v=4?s=100" width="100px;" alt="Gary Hutson"/><br /><sub><b>Gary
 Hutson</b></sub></a><br /><a href="#data-StatsGary" title="Data">🔣</a>
 </td>
 

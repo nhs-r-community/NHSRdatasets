@@ -42,7 +42,7 @@ This data was created using the [synthpop](http://gradientdescending.com/generat
 
 ## What is NEWS?
 
-NEWS is short for the National Early Warning Score. [NHS England have provided a detailed introduction](https://www.england.nhs.uk/ourwork/clinical-policy/sepsis/nationalearlywarningscore/)
+NEWS is short for the National Early Warning Score. 
 
 The latest iteration of the NEWS score is NEWS2.
 

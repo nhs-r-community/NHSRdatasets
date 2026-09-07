@@ -20,10 +20,10 @@ knitr::opts_chunk$set(
 Source and licence acknowledgement
 
 This data has been made available through Office of National Statistics under the [Open Government
-Licence](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
 
 The main page for downloads is found on the [ONS People Population and Community pages](https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales).
-This was original a vignette and the text and code has been moved to be an NHS-R Community [blog](https://nhsrcommunity.nhsrcommunity.com/blog/building-the-ons-mortality-dataset.html).
+This was original a vignette and the text and code has been moved to be an NHS-R Community [blog](https://nhsrcommunity.com/blog/building-the-ons-mortality-dataset.html).
 
 ```{r get-data}
 # 2019
