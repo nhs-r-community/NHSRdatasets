@@ -42,8 +42,8 @@ pak::pkg_install("nhs-r-community/NHSRdatasets")
 ```
 
 Once installed go to the Get Started article from the
-[website](https://nhs-r-community.github.io/NHSRdatasets/%60vignette(%22NHSRdatasets%22))
-(the same link can be found on the top right of the GitHub Repository).
+\[website\](\`vignette(“NHSRdatasets”) (the same link can be found on
+the top right of the GitHub Repository).
 
 ## Datasets available
 
@@ -61,7 +61,7 @@ Please see our [guidance on how to
 contribute](https://tools.nhsrcommunity.com/contribution.html).
 
 This project is released with a Contributor [Code of
-Conduct](https://nhs-r-community.github.io/NHSRdatasets/CODE_OF_CONDUCT.md).
+Conduct](https://github.com/nhs-r-community/NHSRdatasets/blob/main/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
 When contributing a dataset, the contributor certifies that:

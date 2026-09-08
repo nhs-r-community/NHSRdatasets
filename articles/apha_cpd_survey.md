@@ -61,11 +61,12 @@ Data was provided with permission from Rony Arafin in 2024, the then
 president of AphA, to include this dataset as part of training.
 
 The data had been collected through a survey of analysts which was
-analysed and published by AphA on [their
-website](https://www.aphanalysts.org/ltnws/nhs-at-risk-of-losing-a-generation-of-data-analysts/).
-This is a good example of real survey collected data as it includes some
-standardised text and some freetext with missing values and combinations
-of numbers and text in some fields.
+analysed and published by Association of Professional Healthcare
+Analysts (AphA),
+ltnws/nhs-at-risk-of-losing-a-generation-of-data-analysts/ (Accessed
+January 2024). This is a good example of real survey collected data as
+it includes some standardised text and some freetext with missing values
+and combinations of numbers and text in some fields.
 
 There are also 38 columns of data with partial questions which are
 related, for example, Q20 has parts a, b, c, d, e, f, g and h.

@@ -62,12 +62,14 @@ labels using the `{labelled}` package
 descriptive context for the "clean" column names. Variable labels can be
 viewed using `labelled::get_variable_labels (apha_cpd_survey)`.
 
-Survey press release web page:
-<https://www.aphanalysts.org/ltnws/nhs-at-risk-of-losing-a-generation-of-data-analysts/>
+Survey press release web page: Association of Professional Healthcare
+Analysts (AphA)
+ltnws/nhs-at-risk-of-losing-a-generation-of-data-analysts/
 
 ## Source
 
-<https://www.aphanalysts.org/documents/cpd-survey-results-raw-data/>
+Association of Professional Healthcare Analysts (AphA),
+documents/cpd-survey-results-raw-data/
 
 The survey of NHS and other healthcare data analysts was conducted in
 July 2022. The results data is made available in this package with the

@@ -2,9 +2,8 @@
 
 ### This code is the original written to get and transform the data and is not updated.
 
-Source:
-<https://www.aphanalysts.org/documents/cpd-survey-results-raw-data/>
-(Accessed 25 January 2024)
+Source: Association of Professional Healthcare Analysts (AphA),
+documents/cpd-survey-results-raw-data (Accessed 25 January 2024)
 
 The .xlsx file cannot be directly downloaded in `R` from its URL as
 there is protection on the file: it must be downloaded by submitting the

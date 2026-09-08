@@ -14,10 +14,10 @@ in a sense, opinionated as the data is held in R objects for use in R
 and would be more familiar with people who are working, or wish to work,
 in healthcare data.
 
-We have some datasets like an example survey from [AphA
-Analysts](https://www.aphanalysts.org/join-apha/) which isn’t healthcare
-specific and relates to analysts who work with healthcare. This is real
-data which can be used to practice working with text (freetext and
+We have some datasets like an example survey from Association of
+Professional Healthcare Analysts (AphA) which isn’t healthcare specific
+and relates to analysts who work with healthcare. This is real data
+which can be used to practice working with text (freetext and
 categorical) which can be useful cleaning and manipulating practice.
 
 ## Limitations
