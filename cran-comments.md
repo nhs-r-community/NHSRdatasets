@@ -1,6 +1,5 @@
 ## Updates in this release
 
-- No changes to functionality
 - Additional datasets in this version
 - Additional documentation in vignettes to support the datasets use
 - Change in maintainer - the email for the current maintainer fails as the 
