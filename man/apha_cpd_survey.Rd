@@ -44,10 +44,12 @@ Original survey questions (lightly edited) are provided as variable labels
  (apha_cpd_survey)}.
 
 
-Survey press release web page: \url{https://www.aphanalysts.org/ltnws/nhs-at-risk-of-losing-a-generation-of-data-analysts/}
+Survey press release web page: Association of Professional Healthcare Analysts (AphA)
+ltnws/nhs-at-risk-of-losing-a-generation-of-data-analysts/
 }
 \source{
-\url{https://www.aphanalysts.org/documents/cpd-survey-results-raw-data/}
+Association of Professional Healthcare Analysts (AphA),
+documents/cpd-survey-results-raw-data/
 
 The survey of NHS and other healthcare data analysts was conducted in July
  2022. The results data is made available in this package with the permission

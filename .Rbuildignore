@@ -17,3 +17,6 @@ README.Rmd
 ^\.github$
 .all-contributorsrc
 ^revdep$
+^CRAN-SUBMISSION$
+^\.positai$
+^\.claude$
