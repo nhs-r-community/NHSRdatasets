@@ -22,7 +22,7 @@ Aside from the notes on the README about contributing (being in line with code o
 This package came from teaching/show-and-tell type work using R using healthcare data. 
 Although this is relevant to a general audience it is, in a sense, opinionated as the data is held in R objects for use in R and would be more familiar with people who are working, or wish to work, in healthcare data.
 
-We have some datasets like an example survey from [AphA Analysts](https://www.aphanalysts.org/join-apha/) which isn't healthcare specific and relates to analysts who work with healthcare.
+We have some datasets like an example survey from Association of Professional Healthcare Analysts (AphA) which isn't healthcare specific and relates to analysts who work with healthcare.
 This is real data which can be used to practice working with text (freetext and categorical) which can be useful cleaning and manipulating practice.
 
 ## Limitations
