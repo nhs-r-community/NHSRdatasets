@@ -2,6 +2,8 @@
 
 ## NHSRdatasets 1.0.0
 
+CRAN release: 2026-09-08
+
 Stable release with updated documentation to complement the datasetset
 added in previous versions.
 

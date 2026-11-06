@@ -531,7 +531,7 @@ summary(glmm)
 #> 
 #> Scaled residuals: 
 #>     Min      1Q  Median      3Q     Max 
-#> -2.6962 -0.8040 -0.0905  0.8521  4.2508 
+#> -2.6962 -0.8040 -0.0905  0.8521  4.2509 
 #> 
 #> Random effects:
 #>  Groups       Name        Variance Std.Dev.
@@ -540,10 +540,10 @@ summary(glmm)
 #> 
 #> Fixed effects:
 #>                  Estimate Std. Error z value Pr(>|z|)    
-#> (Intercept)       1.43006    0.03818  37.455  < 2e-16 ***
-#> scale(Age)        0.50621    0.03263  15.513  < 2e-16 ***
-#> Death             0.46200    0.06391   7.229 4.87e-13 ***
-#> scale(Age):Death -0.56021    0.06116  -9.159  < 2e-16 ***
+#> (Intercept)       1.43007    0.03819  37.449  < 2e-16 ***
+#> scale(Age)        0.50622    0.03264  15.510  < 2e-16 ***
+#> Death             0.46200    0.06393   7.227 4.94e-13 ***
+#> scale(Age):Death -0.56020    0.06118  -9.157  < 2e-16 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> 
@@ -559,11 +559,11 @@ summary(glmm)
 confint(glmm)
 #> Computing profile confidence intervals ...
 #>                       2.5 %     97.5 %
-#> .sig01            0.0000000  0.1511091
-#> (Intercept)       1.3494487  1.5079603
-#> scale(Age)        0.4426232  0.5705897
-#> Death             0.3353807  0.5860630
-#> scale(Age):Death -0.6797590 -0.4398533
+#> .sig01            0.0000000  0.1511114
+#> (Intercept)       1.3494492  1.5079599
+#> scale(Age)        0.4426231  0.5705901
+#> Death             0.3353796  0.5860631
+#> scale(Age):Death -0.6797591 -0.4398526
 ```
 
 These models are significantly more complicated. `Confint` can be use to

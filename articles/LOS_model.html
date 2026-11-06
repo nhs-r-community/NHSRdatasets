@@ -613,7 +613,7 @@ and the <code>|</code> reads as ‘intercept varying by organisation.’</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Scaled residuals: </span></span>
 <span><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
-<span><span class="co">#&gt; -2.6962 -0.8040 -0.0905  0.8521  4.2508 </span></span>
+<span><span class="co">#&gt; -2.6962 -0.8040 -0.0905  0.8521  4.2509 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Random effects:</span></span>
 <span><span class="co">#&gt;  Groups       Name        Variance Std.Dev.</span></span>
@@ -622,10 +622,10 @@ and the <code>|</code> reads as ‘intercept varying by organisation.’</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Fixed effects:</span></span>
 <span><span class="co">#&gt;                  Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
-<span><span class="co">#&gt; (Intercept)       1.43006    0.03818  37.455  &lt; 2e-16 ***</span></span>
-<span><span class="co">#&gt; scale(Age)        0.50621    0.03263  15.513  &lt; 2e-16 ***</span></span>
-<span><span class="co">#&gt; Death             0.46200    0.06391   7.229 4.87e-13 ***</span></span>
-<span><span class="co">#&gt; scale(Age):Death -0.56021    0.06116  -9.159  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; (Intercept)       1.43007    0.03819  37.449  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; scale(Age)        0.50622    0.03264  15.510  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; Death             0.46200    0.06393   7.227 4.94e-13 ***</span></span>
+<span><span class="co">#&gt; scale(Age):Death -0.56020    0.06118  -9.157  &lt; 2e-16 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -638,11 +638,11 @@ and the <code>|</code> reads as ‘intercept varying by organisation.’</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">glmm</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Computing profile confidence intervals ...</span></span>
 <span><span class="co">#&gt;                       2.5 %     97.5 %</span></span>
-<span><span class="co">#&gt; .sig01            0.0000000  0.1511091</span></span>
-<span><span class="co">#&gt; (Intercept)       1.3494487  1.5079603</span></span>
-<span><span class="co">#&gt; scale(Age)        0.4426232  0.5705897</span></span>
-<span><span class="co">#&gt; Death             0.3353807  0.5860630</span></span>
-<span><span class="co">#&gt; scale(Age):Death -0.6797590 -0.4398533</span></span></code></pre></div>
+<span><span class="co">#&gt; .sig01            0.0000000  0.1511114</span></span>
+<span><span class="co">#&gt; (Intercept)       1.3494492  1.5079599</span></span>
+<span><span class="co">#&gt; scale(Age)        0.4426231  0.5705901</span></span>
+<span><span class="co">#&gt; Death             0.3353796  0.5860631</span></span>
+<span><span class="co">#&gt; scale(Age):Death -0.6797591 -0.4398526</span></span></code></pre></div>
 <p>These models are significantly more complicated. <code>Confint</code>
 can be use to calculate the confidence intervals above by profiling the
 likelihood (provided you have the <code>MASS</code> package installed).
