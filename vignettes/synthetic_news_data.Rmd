@@ -81,7 +81,7 @@ sbp_news <- NEWS_var |>
     sbp <= 90 | sbp >= 220 ~ 3,
     sbp %in% c(91:100) ~ 2,
     sbp %in% c(101:110) ~ 1,
-    !is.numeric(pulse) ~ NA_real_,
+    !is.numeric(sbp) ~ NA_real_,
     TRUE ~ 0
   ))
 ```
